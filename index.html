@@ -1,430 +1,590 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Pavan Educator</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fb;
-            color: #172033;
-        }
-
-        /* NAVBAR */
-
-        .navbar {
-            height: 72px;
-            background: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 7%;
-            border-bottom: 1px solid #e5e8ef;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 23px;
-            font-weight: 800;
-            color: #172033;
-        }
-
-        .logo span {
-            color: #3157d5;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 28px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #4c5668;
-            font-size: 15px;
-            font-weight: 600;
-        }
-
-        .nav-links a:hover {
-            color: #3157d5;
-        }
-
-        .login-btn {
-            padding: 11px 22px;
-            border: none;
-            border-radius: 8px;
-            background: #3157d5;
-            color: white;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        /* HERO */
-
-        .hero {
-            min-height: 570px;
-            padding: 80px 8%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 50px;
-            background:
-                radial-gradient(circle at 85% 25%, #dfe7ff 0, transparent 28%),
-                linear-gradient(135deg, #f4f7ff, #ffffff);
-        }
-
-        .hero-content {
-            max-width: 650px;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 8px 14px;
-            border-radius: 30px;
-            background: #e8edff;
-            color: #3157d5;
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            font-size: 58px;
-            line-height: 1.08;
-            margin-bottom: 22px;
-        }
-
-        .hero h1 span {
-            color: #3157d5;
-        }
-
-        .hero p {
-            color: #626d80;
-            font-size: 18px;
-            line-height: 1.7;
-            max-width: 580px;
-        }
-
-        .hero-buttons {
-            margin-top: 30px;
-            display: flex;
-            gap: 15px;
-        }
-
-        .primary-btn {
-            background: #3157d5;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 14px 25px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .secondary-btn {
-            background: white;
-            color: #3157d5;
-            border: 1px solid #ccd3e2;
-            border-radius: 8px;
-            padding: 14px 25px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        /* HERO CARD */
-
-        .hero-card {
-            width: 360px;
-            min-height: 330px;
-            padding: 35px;
-            border-radius: 22px;
-            background: #111827;
-            color: white;
-            box-shadow: 0 25px 60px rgba(25, 40, 90, 0.22);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-card::before {
-            content: "";
-            position: absolute;
-            width: 180px;
-            height: 180px;
-            background: #3157d5;
-            border-radius: 50%;
-            top: -70px;
-            right: -60px;
-            filter: blur(10px);
-            opacity: 0.7;
-        }
-
-        .hero-card-icon {
-            font-size: 50px;
-            margin-bottom: 30px;
-        }
-
-        .hero-card h2 {
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-
-        .hero-card p {
-            color: #b8c0cf;
-            font-size: 15px;
-        }
-
-        /* QUICK FEATURES */
-
-        .features {
-            padding: 55px 8%;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            background: white;
-        }
-
-        .feature {
-            padding: 25px;
-            border: 1px solid #e5e8ef;
-            border-radius: 14px;
-            background: white;
-        }
-
-        .feature-icon {
-            font-size: 30px;
-            margin-bottom: 15px;
-        }
-
-        .feature h3 {
-            margin-bottom: 8px;
-        }
-
-        .feature p {
-            color: #697487;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        /* SECTION */
-
-        .section {
-            padding: 85px 8%;
-        }
-
-        .section-heading {
-            text-align: center;
-            margin-bottom: 45px;
-        }
-
-        .section-heading small {
-            color: #3157d5;
-            font-weight: 800;
-            letter-spacing: 2px;
-        }
-
-        .section-heading h2 {
-            font-size: 38px;
-            margin-top: 10px;
-        }
-
-        /* COURSES */
-
-        .courses {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .course {
-            background: white;
-            border: 1px solid #e4e8ef;
-            border-radius: 15px;
-            padding: 30px;
-            transition: 0.25s;
-        }
-
-        .course:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 18px 40px rgba(20, 35, 80, 0.10);
-        }
-
-        .course-label {
-            color: #3157d5;
-            font-size: 12px;
-            font-weight: 800;
-        }
-
-        .course h3 {
-            font-size: 23px;
-            margin: 14px 0;
-        }
-
-        .course p {
-            color: #687386;
-            line-height: 1.6;
-        }
-
-        .course a {
-            display: inline-block;
-            margin-top: 20px;
-            color: #3157d5;
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        /* ABOUT */
-
-        .about {
-            padding: 90px 8%;
-            background: #111827;
-            color: white;
-            text-align: center;
-        }
-
-        .about h2 {
-            font-size: 40px;
-            margin-bottom: 18px;
-        }
-
-        .about p {
-            max-width: 700px;
-            margin: auto;
-            color: #b9c1cf;
-            line-height: 1.8;
-        }
-
-        /* FOOTER */
-
-        footer {
-            background: #0b1120;
-            color: white;
-            text-align: center;
-            padding: 35px;
-        }
-
-        footer p {
-            color: #8f99aa;
-            margin-top: 8px;
-            font-size: 14px;
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 900px) {
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .hero h1 {
-                font-size: 43px;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .features {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .courses {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-card {
-                width: 100%;
-                max-width: 360px;
-            }
-        }
-
-        @media (max-width: 550px) {
-
-            .features {
-                grid-template-columns: 1fr;
-            }
-
-            .navbar {
-                padding: 0 5%;
-            }
-
-            .login-btn {
-                padding: 9px 14px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pavan Educator</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #050914;
+    color: white;
+}
+
+/* BACKGROUND */
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: #1769ff;
+    border-radius: 50%;
+    filter: blur(180px);
+    opacity: 0.18;
+    top: -150px;
+    left: -120px;
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: #9c27ff;
+    border-radius: 50%;
+    filter: blur(180px);
+    opacity: 0.15;
+    bottom: -200px;
+    right: -120px;
+    z-index: -1;
+}
+
+/* NAVBAR */
+
+.navbar {
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    background: rgba(5, 9, 20, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: .5px;
+}
+
+.logo span {
+    color: #28b6ff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #c5ccda;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nav-links a:hover {
+    color: #28b6ff;
+}
+
+.login-btn {
+    border: none;
+    color: white;
+    font-weight: 700;
+    padding: 11px 22px;
+    border-radius: 9px;
+    cursor: pointer;
+    background: linear-gradient(90deg, #09b8ff, #9c3cff);
+    box-shadow: 0 8px 25px rgba(60,120,255,.25);
+}
+
+/* MAIN */
+
+.main {
+    max-width: 1400px;
+    margin: 35px auto;
+    padding: 0 25px;
+}
+
+.container {
+    min-height: 650px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,.1);
+    background: rgba(11,17,32,.85);
+    box-shadow: 0 30px 80px rgba(0,0,0,.45);
+}
+
+/* LEFT */
+
+.left {
+    position: relative;
+    min-height: 650px;
+    padding: 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    background:
+        linear-gradient(145deg, rgba(17,105,190,.45), rgba(10,15,30,.9));
+}
+
+.left::before {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: #087cff;
+    filter: blur(100px);
+    opacity: .2;
+    top: -120px;
+    right: -100px;
+}
+
+.brand {
+    position: relative;
+    z-index: 2;
+}
+
+.brand-badge {
+    display: inline-flex;
+    padding: 12px 17px;
+    border-radius: 12px;
+    background: linear-gradient(135deg,#168cff,#923cff);
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 18px;
+}
+
+.brand h1 {
+    font-size: 45px;
+    letter-spacing: 1px;
+}
+
+.brand h1 span {
+    color: #20bfff;
+}
+
+.brand p {
+    margin-top: 10px;
+    color: #aeb8ca;
+    letter-spacing: 3px;
+    font-size: 12px;
+}
+
+/* EDUCATION VISUAL */
+
+.education-visual {
+    position: relative;
+    z-index: 2;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle {
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    background: linear-gradient(145deg,#172b50,#0c1324);
+    border: 1px solid rgba(255,255,255,.15);
+    box-shadow: 0 0 60px rgba(20,150,255,.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+}
+
+.left-bottom {
+    position: relative;
+    z-index: 2;
+}
+
+.left-bottom h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.left-bottom p {
+    color: #aeb8ca;
+    line-height: 1.7;
+    max-width: 500px;
+}
+
+/* RIGHT */
+
+.right {
+    padding: 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(4,8,20,.65);
+}
+
+.welcome {
+    margin-bottom: 35px;
+}
+
+.welcome small {
+    color: #20bfff;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.welcome h2 {
+    font-size: 43px;
+    margin-top: 12px;
+    line-height: 1.1;
+}
+
+.welcome h2 span {
+    color: #9c48ff;
+}
+
+.welcome p {
+    color: #8994a8;
+    margin-top: 14px;
+    line-height: 1.6;
+}
+
+/* FEATURE GRID */
+
+.features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.feature {
+    min-height: 145px;
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(255,255,255,.035);
+    transition: .3s;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    border-color: rgba(40,182,255,.45);
+    background: rgba(40,182,255,.06);
+}
+
+.icon {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.feature h3 {
+    font-size: 18px;
+    margin-bottom: 7px;
+}
+
+.feature p {
+    color: #8490a4;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* ACTIONS */
+
+.actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.primary {
+    flex: 1;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    background: linear-gradient(90deg,#0bbcff,#9840ff);
+    color: white;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.secondary {
+    flex: 1;
+    border: 1px solid rgba(255,255,255,.12);
+    padding: 15px;
+    border-radius: 10px;
+    background: rgba(255,255,255,.04);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* STATS */
+
+.stats {
+    max-width: 1200px;
+    margin: 35px auto 80px;
+    padding: 0 25px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 18px;
+}
+
+.stat {
+    padding: 28px;
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(255,255,255,.035);
+    border-radius: 16px;
+    text-align: center;
+}
+
+.stat strong {
+    display: block;
+    font-size: 30px;
+    color: #20bfff;
+}
+
+.stat span {
+    display: block;
+    margin-top: 8px;
+    color: #8994a8;
+    font-size: 13px;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 35px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,.07);
+    color: #7f899c;
+}
+
+footer strong {
+    color: white;
+}
+
+/* MOBILE */
+
+@media(max-width:900px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .left {
+        min-height: 520px;
+    }
+
+    .right {
+        min-height: 550px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(max-width:550px) {
+
+    .main {
+        padding: 0 12px;
+    }
+
+    .left,
+    .right {
+        padding: 35px 25px;
+    }
+
+    .brand h1 {
+        font-size: 35px;
+    }
+
+    .welcome h2 {
+        font-size: 34px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+        padding: 0 12px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
+<header class="navbar">
 
-    <header class="navbar">
+    <div class="logo">
+        Pavan <span>Educator</span>
+    </div>
 
-        <div class="logo">
-            Pavan <span>Educator</span>
-        </div>
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Courses</a></li>
+        <li><a href="#">Materials</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Videos</a></li>
+    </ul>
 
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#courses">Courses</a></li>
-            <li><a href="#materials">Materials</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#videos">Videos</a></li>
-            <li><a href="#about">About</a></li>
-        </ul>
+    <button class="login-btn">Login</button>
 
-        <button class="login-btn">Login</button>
-
-    </header>
+</header>
 
 
-    <!-- HERO -->
+<main class="main">
 
-    <section class="hero">
+    <section class="container">
 
-        <div class="hero-content">
+        <!-- LEFT SIDE -->
 
-            <div class="tag">
-                LEARN • BUILD • GROW
+        <div class="left">
+
+            <div class="brand">
+
+                <div class="brand-badge">PE</div>
+
+                <h1>
+                    PAVAN <span>EDUCATOR</span>
+                </h1>
+
+                <p>
+                    LEARN • BUILD • GROW
+                </p>
+
             </div>
 
-            <h1>
-                Learn Skills.<br>
-                <span>Build Your Future.</span>
-            </h1>
 
-            <p>
-                Welcome to Pavan Educator — a learning platform
-                for students to explore courses, study materials,
-                practical projects and useful technology resources.
-            </p>
+            <div class="education-visual">
 
-            <div class="hero-buttons">
+                <div class="circle">
+                    🎓
+                </div>
 
-                <button class="primary-btn">
+            </div>
+
+
+            <div class="left-bottom">
+
+                <h2>Learn Beyond Classrooms.</h2>
+
+                <p>
+                    Discover courses, practical projects, study
+                    materials and technology resources designed
+                    for today's students.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="right">
+
+            <div class="welcome">
+
+                <small>WELCOME TO</small>
+
+                <h2>
+                    Pavan <span>Educator</span>
+                </h2>
+
+                <p>
+                    Everything you need to learn, practice and
+                    build your skills in one place.
+                </p>
+
+            </div>
+
+
+            <div class="features">
+
+                <div class="feature">
+
+                    <div class="icon">📚</div>
+
+                    <h3>Courses</h3>
+
+                    <p>
+                        Learn programming and technology
+                        through structured courses.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="icon">📄</div>
+
+                    <h3>Study Materials</h3>
+
+                    <p>
+                        Notes, PDFs, questions and useful
+                        learning resources.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="icon">💻</div>
+
+                    <h3>Projects</h3>
+
+                    <p>
+                        Build practical projects and
+                        improve your development skills.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="icon">🎥</div>
+
+                    <h3>Video Learning</h3>
+
+                    <p>
+                        Tutorials and demonstrations
+                        for practical learning.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="actions">
+
+                <button class="primary">
                     Explore Courses →
                 </button>
 
-                <button class="secondary-btn">
+                <button class="secondary">
                     View Projects
                 </button>
 
@@ -432,237 +592,49 @@
 
         </div>
 
-
-        <div class="hero-card">
-
-            <div class="hero-card-icon">🎓</div>
-
-            <h2>Learn. Create. Achieve.</h2>
-
-            <p>
-                Practical learning resources designed to help
-                students improve their skills and build real projects.
-            </p>
-
-        </div>
-
     </section>
 
+</main>
 
-    <!-- FEATURES -->
 
-    <section class="features" id="materials">
+<section class="stats">
 
-        <div class="feature">
-            <div class="feature-icon">📚</div>
-            <h3>Courses</h3>
-            <p>
-                Learn programming, technology and academic subjects.
-            </p>
-        </div>
+    <div class="stat">
+        <strong>10+</strong>
+        <span>Courses</span>
+    </div>
 
-        <div class="feature">
-            <div class="feature-icon">📄</div>
-            <h3>Study Materials</h3>
-            <p>
-                Access notes, PDFs, questions and useful resources.
-            </p>
-        </div>
+    <div class="stat">
+        <strong>50+</strong>
+        <span>Study Materials</span>
+    </div>
 
-        <div class="feature">
-            <div class="feature-icon">💻</div>
-            <h3>Projects</h3>
-            <p>
-                Explore practical projects and develop your skills.
-            </p>
-        </div>
+    <div class="stat">
+        <strong>20+</strong>
+        <span>Projects</span>
+    </div>
 
-        <div class="feature">
-            <div class="feature-icon">🎥</div>
-            <h3>Video Learning</h3>
-            <p>
-                Watch tutorials and learn concepts step by step.
-            </p>
-        </div>
+    <div class="stat">
+        <strong>100+</strong>
+        <span>Learning Resources</span>
+    </div>
 
-    </section>
+</section>
 
 
-    <!-- COURSES -->
+<footer>
 
-    <section class="section" id="courses">
+    <strong>Pavan Educator</strong>
 
-        <div class="section-heading">
+    <p>
+        Learn • Build • Grow
+    </p>
 
-            <small>START LEARNING</small>
+    <p>
+        © 2026 Pavan Educator. All Rights Reserved.
+    </p>
 
-            <h2>Popular Courses</h2>
-
-        </div>
-
-
-        <div class="courses">
-
-            <div class="course">
-
-                <div class="course-label">
-                    PROGRAMMING
-                </div>
-
-                <h3>Java Programming</h3>
-
-                <p>
-                    Learn Java programming from fundamentals
-                    to object-oriented programming.
-                </p>
-
-                <a href="#">Explore Course →</a>
-
-            </div>
-
-
-            <div class="course">
-
-                <div class="course-label">
-                    WEB DEVELOPMENT
-                </div>
-
-                <h3>Web Development</h3>
-
-                <p>
-                    Learn HTML, CSS and JavaScript and create
-                    modern websites.
-                </p>
-
-                <a href="#">Explore Course →</a>
-
-            </div>
-
-
-            <div class="course">
-
-                <div class="course-label">
-                    DATABASE
-                </div>
-
-                <h3>MySQL</h3>
-
-                <p>
-                    Learn databases, SQL queries and
-                    practical database development.
-                </p>
-
-                <a href="#">Explore Course →</a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- PROJECTS -->
-
-    <section class="section" id="projects">
-
-        <div class="section-heading">
-
-            <small>BUILD SOMETHING</small>
-
-            <h2>Featured Projects</h2>
-
-        </div>
-
-
-        <div class="courses">
-
-            <div class="course">
-
-                <div class="course-label">
-                    STUDENT PROJECT
-                </div>
-
-                <h3>Attendance Management System</h3>
-
-                <p>
-                    A professional attendance management
-                    system with dashboard and reports.
-                </p>
-
-                <a href="#">View Project →</a>
-
-            </div>
-
-
-            <div class="course">
-
-                <div class="course-label">
-                    WEB PROJECT
-                </div>
-
-                <h3>Student Result System</h3>
-
-                <p>
-                    A system for managing student marks,
-                    results and academic performance.
-                </p>
-
-                <a href="#">View Project →</a>
-
-            </div>
-
-
-            <div class="course">
-
-                <div class="course-label">
-                    SOFTWARE
-                </div>
-
-                <h3>Student Management System</h3>
-
-                <p>
-                    Manage students, courses and academic
-                    information in one place.
-                </p>
-
-                <a href="#">View Project →</a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- VIDEOS -->
-
-    <section class="about" id="videos">
-
-        <h2>Learn Through Videos</h2>
-
-        <p>
-            Video tutorials, programming lessons and practical
-            demonstrations will be added here.
-        </p>
-
-    </section>
-
-
-    <!-- FOOTER -->
-
-    <footer id="about">
-
-        <h3>Pavan Educator</h3>
-
-        <p>
-            Learn • Build • Grow
-        </p>
-
-        <p>
-            © 2026 Pavan Educator. All Rights Reserved.
-        </p>
-
-    </footer>
+</footer>
 
 </body>
 </html>

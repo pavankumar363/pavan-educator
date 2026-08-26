@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pavan Educator | My Projects</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#f7f9fc;
+    color:#172033;
+}
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:295px;
+    height:100vh;
+    background:#071a33;
+    color:white;
+    padding:30px 25px;
+    display:flex;
+    flex-direction:column;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:800;
+    padding:5px 5px 55px;
+}
+
+.logo span{
+    color:#2474ff;
+}
+
+.panel-title{
+    color:#aeb9cb;
+    font-size:17px;
+    font-weight:700;
+    margin-bottom:25px;
+}
+
+.menu{
+    list-style:none;
+}
+
+.menu li{
+    margin-bottom:18px;
+}
+
+.menu a{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:17px 18px;
+    border-radius:10px;
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+    font-weight:600;
+}
+
+.menu a:hover,
+.menu a.active{
+    background:#2474ff;
+}
+
+.menu-icon{
+    width:25px;
+    text-align:center;
+    font-size:24px;
+}
+
+.separator{
+    height:1px;
+    background:#28405f;
+    margin-top:15px;
+}
+
+.logout{
+    margin-top:auto;
+}
+
+.logout a{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:17px 20px;
+    border-radius:10px;
+    background:#142b4a;
+    color:#ff5252;
+    text-decoration:none;
+    font-size:18px;
+    font-weight:700;
+}
+
+.main{
+    margin-left:295px;
+    min-height:100vh;
+}
+
+.topbar{
+    height:105px;
+    background:white;
+    border-bottom:1px solid #e4e9f1;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 45px;
+}
+
+.topbar h1{
+    font-size:30px;
+}
+
+.user-top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:18px;
+    font-weight:700;
+}
+
+.user-icon{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#2474ff;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+}
+
+.content{
+    padding:40px;
+}
+
+.heading{
+    margin-bottom:25px;
+}
+
+.heading h2{
+    font-size:28px;
+}
+
+.heading p{
+    margin-top:8px;
+    color:#64748b;
+}
+
+.project-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+}
+
+.project{
+    background:white;
+    border:1px solid #dce5f2;
+    border-radius:18px;
+    padding:30px;
+}
+
+.project-icon{
+    font-size:45px;
+    margin-bottom:20px;
+}
+
+.project h3{
+    font-size:23px;
+    margin-bottom:10px;
+}
+
+.project p{
+    color:#64748b;
+    line-height:1.6;
+}
+
+.back{
+    display:inline-block;
+    margin-top:30px;
+    padding:13px 22px;
+    background:#2474ff;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:700;
+}
+
+@media(max-width:700px){
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .project-grid{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+    <div class="logo">
+        Pavan <span>Educator</span>
+    </div>
+
+    <div class="panel-title">
+        STUDENT PANEL
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="student-dashboard.html">
+                <span class="menu-icon">🏠</span>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="student-projects.html" class="active">
+                <span class="menu-icon">💻</span>
+                My Projects
+            </a>
+        </li>
+
+        <li>
+            <a href="student-profile.html">
+                <span class="menu-icon">👤</span>
+                My Profile
+            </a>
+        </li>
+
+    </ul>
+
+    <div class="separator"></div>
+
+    <div class="logout">
+        <a href="login.html" onclick="logout()">
+            🚪 Logout
+        </a>
+    </div>
+
+</aside>
+
+
+<main class="main">
+
+    <header class="topbar">
+
+        <h1>My Projects</h1>
+
+        <div class="user-top">
+            <div class="user-icon">👤</div>
+            <span id="studentName">Student</span>
+        </div>
+
+    </header>
+
+
+    <div class="content">
+
+        <div class="heading">
+            <h2>My Projects</h2>
+            <p>View and manage your projects.</p>
+        </div>
+
+
+        <div class="project-grid">
+
+            <div class="project">
+
+                <div class="project-icon">
+                    💻
+                </div>
+
+                <h3>
+                    My First Project
+                </h3>
+
+                <p>
+                    Your project information
+                    will appear here.
+                </p>
+
+            </div>
+
+
+            <div class="project">
+
+                <div class="project-icon">
+                    🚀
+                </div>
+
+                <h3>
+                    New Project
+                </h3>
+
+                <p>
+                    More student projects
+                    can be added here.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <a
+            href="student-dashboard.html"
+            class="back"
+        >
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</main>
+
+
+<script>
+
+const username =
+    sessionStorage.getItem("currentUser");
+
+const students =
+    JSON.parse(
+        localStorage.getItem("pavanStudents")
+    ) || [];
+
+const student =
+    students.find(function(item){
+        return item.username === username;
+    });
+
+if(student){
+    document.getElementById(
+        "studentName"
+    ).textContent = student.name;
+}
+
+function logout(){
+
+    sessionStorage.clear();
+
+}
+
+</script>
+
+</body>
+</html>

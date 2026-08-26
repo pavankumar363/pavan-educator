@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pavan Educator | Login</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:
+        radial-gradient(circle at 10% 90%, #dce9ff 0, transparent 25%),
+        radial-gradient(circle at 90% 20%, #e5ecff 0, transparent 25%),
+        linear-gradient(135deg, #f8fbff, #eef4ff);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+}
+
+
+/* LOGIN CARD */
+
+.login-container {
+    width: 100%;
+    max-width: 900px;
+
+    background: rgba(255,255,255,0.94);
+
+    border: 1px solid #d9e3f5;
+
+    border-radius: 28px;
+
+    box-shadow:
+        0 25px 70px rgba(35, 83, 160, 0.15);
+
+    overflow: hidden;
+}
+
+
+/* HEADER */
+
+.header {
+    text-align: center;
+    padding: 45px 45px 20px;
+}
+
+
+.logo-icon {
+    width: 75px;
+    height: 75px;
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e8f0ff;
+
+    color: #1769ff;
+
+    font-size: 38px;
+
+    box-shadow:
+        0 10px 30px rgba(37,99,235,.12);
+}
+
+
+.header h1 {
+    margin-top: 25px;
+
+    font-size: 43px;
+
+    color: #172033;
+}
+
+
+.header h1 span {
+    color: #1769ff;
+}
+
+
+.header p {
+    margin-top: 12px;
+
+    color: #65738d;
+
+    font-size: 17px;
+}
+
+
+.header p span {
+    color: #1769ff;
+
+    font-weight: 700;
+}
+
+
+/* FORM */
+
+.form {
+    padding: 25px 65px 45px;
+}
+
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #172033;
+
+    font-weight: 700;
+}
+
+
+.input-box {
+    position: relative;
+}
+
+
+.input-box input {
+    width: 100%;
+
+    height: 58px;
+
+    border: 1px solid #cbd8ee;
+
+    border-radius: 11px;
+
+    padding: 0 50px 0 48px;
+
+    font-size: 15px;
+
+    color: #172033;
+
+    background: #fbfdff;
+
+    outline: none;
+
+    transition: .25s;
+}
+
+
+.input-box input:focus {
+    border-color: #1769ff;
+
+    box-shadow:
+        0 0 0 4px rgba(23,105,255,.08);
+}
+
+
+.input-icon {
+    position: absolute;
+
+    left: 17px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 21px;
+
+    color: #1769ff;
+}
+
+
+.password-toggle {
+    position: absolute;
+
+    right: 17px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+    color: #6f7d94;
+}
+
+
+/* LOGIN AS */
+
+.login-as {
+    margin-top: 25px;
+}
+
+
+.login-as-title {
+    margin-bottom: 12px;
+
+    font-weight: 700;
+
+    color: #172033;
+}
+
+
+.roles {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 14px;
+}
+
+
+.role {
+    height: 105px;
+
+    border: 1px solid #d5dfef;
+
+    border-radius: 13px;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    transition: .25s;
+}
+
+
+.role-icon {
+    font-size: 27px;
+}
+
+
+.role-name {
+    font-weight: 700;
+
+    color: #28344a;
+}
+
+
+.role:hover {
+    border-color: #1769ff;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(37,99,235,.08);
+}
+
+
+.role.active {
+    border: 2px solid #1769ff;
+
+    background: #f1f6ff;
+
+    box-shadow:
+        0 8px 22px rgba(37,99,235,.12);
+}
+
+
+/* OPTIONS */
+
+.options {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin: 23px 0;
+}
+
+
+.remember {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: #68758a;
+
+    font-size: 14px;
+}
+
+
+.remember input {
+    width: 16px;
+    height: 16px;
+}
+
+
+.forgot {
+    color: #1769ff;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+.forgot:hover {
+    text-decoration: underline;
+}
+
+
+/* LOGIN BUTTON */
+
+.login-button {
+    width: 100%;
+
+    height: 58px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #078cff,
+            #6949ff,
+            #a92cff
+        );
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 28px rgba(72,76,255,.22);
+
+    transition: .25s;
+}
+
+
+.login-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 17px 35px rgba(72,76,255,.28);
+}
+
+
+/* FOOTER */
+
+.security {
+    border-top: 1px solid #e5ebf5;
+
+    padding: 23px;
+
+    text-align: center;
+
+    color: #708099;
+
+    font-size: 14px;
+}
+
+
+.security strong {
+    color: #1769ff;
+}
+
+
+/* MOBILE */
+
+@media(max-width:650px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .header {
+        padding: 35px 25px 15px;
+    }
+
+    .header h1 {
+        font-size: 34px;
+    }
+
+    .form {
+        padding: 20px 25px 35px;
+    }
+
+    .roles {
+        grid-template-columns: 1fr;
+    }
+
+    .role {
+        height: 70px;
+
+        flex-direction: row;
+    }
+
+    .options {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="login-container">
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="logo-icon">
+            🎓
+        </div>
+
+        <h1>
+            Welcome <span>Back!</span>
+        </h1>
+
+        <p>
+            Sign in to continue to
+            <span>Pavan Educator</span>
+        </p>
+
+    </div>
+
+
+    <!-- FORM -->
+
+    <form class="form" onsubmit="login(event)">
+
+
+        <!-- USERNAME -->
+
+        <div class="form-group">
+
+            <label>
+                Username
+            </label>
+
+            <div class="input-box">
+
+                <span class="input-icon">
+                    👤
+                </span>
+
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Enter your username"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="form-group">
+
+            <label>
+                Password
+            </label>
+
+            <div class="input-box">
+
+                <span class="input-icon">
+                    🔒
+                </span>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+                <button
+                    type="button"
+                    class="password-toggle"
+                    onclick="togglePassword()"
+                >
+                    👁
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- LOGIN ROLE -->
+
+        <div class="login-as">
+
+            <div class="login-as-title">
+                Login As
+            </div>
+
+
+            <div class="roles">
+
+
+                <div
+                    class="role active"
+                    onclick="selectRole(this,'Admin')"
+                >
+
+                    <div class="role-icon">
+                        🛡️
+                    </div>
+
+                    <div class="role-name">
+                        Admin
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="role"
+                    onclick="selectRole(this,'Student')"
+                >
+
+                    <div class="role-icon">
+                        🎓
+                    </div>
+
+                    <div class="role-name">
+                        Student
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="role"
+                    onclick="selectRole(this,'Visitor')"
+                >
+
+                    <div class="role-icon">
+                        👥
+                    </div>
+
+                    <div class="role-name">
+                        Visitor
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- OPTIONS -->
+
+        <div class="options">
+
+            <label class="remember">
+
+                <input
+                    type="checkbox"
+                    id="remember"
+                >
+
+                Remember me
+
+            </label>
+
+
+            <a
+                href="#"
+                class="forgot"
+            >
+                Forgot Password?
+            </a>
+
+        </div>
+
+
+        <!-- BUTTON -->
+
+        <button
+            type="submit"
+            class="login-button"
+        >
+            → &nbsp; LOGIN
+        </button>
+
+
+    </form>
+
+
+    <!-- SECURITY -->
+
+    <div class="security">
+
+        🛡️ &nbsp;
+
+        <strong>Secure.</strong>
+        Reliable. Smart Learning.
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+let selectedRole = "Admin";
+
+
+function selectRole(element, role) {
+
+    document
+        .querySelectorAll(".role")
+        .forEach(item => {
+
+            item.classList.remove("active");
+
+        });
+
+
+    element.classList.add("active");
+
+
+    selectedRole = role;
+
+}
+
+
+function togglePassword() {
+
+    const password =
+        document.getElementById("password");
+
+    if (password.type === "password") {
+
+        password.type = "text";
+
+    } else {
+
+        password.type = "password";
+
+    }
+
+}
+
+
+function login(event) {
+
+    event.preventDefault();
+
+    const username =
+        document.getElementById("username").value;
+
+    alert(
+        "Login selected as " +
+        selectedRole +
+        "\\nUsername: " +
+        username
+    );
+
+}
+
+</script>
+
+
+</body>
+</html>

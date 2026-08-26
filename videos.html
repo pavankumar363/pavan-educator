@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pavan Educator | Videos</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f8ff;
+    color: #172033;
+}
+
+/* NAVBAR */
+
+.navbar {
+    height: 74px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    border-bottom: 1px solid #e6ebf5;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    text-decoration: none;
+    font-size: 23px;
+    font-weight: 800;
+    color: #172033;
+}
+
+.logo span {
+    color: #2563eb;
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #4d5870;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #2563eb;
+}
+
+.login-btn {
+    text-decoration: none;
+    background: #2563eb;
+    color: white;
+    padding: 11px 23px;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+/* HERO */
+
+.video-hero {
+    text-align: center;
+    padding: 75px 20px;
+    background: linear-gradient(135deg, #eef4ff, #ffffff);
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 30px;
+    background: #e5edff;
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.video-hero h1 {
+    font-size: 48px;
+    margin: 20px 0 15px;
+}
+
+.video-hero h1 span {
+    color: #2563eb;
+}
+
+.video-hero p {
+    max-width: 680px;
+    margin: auto;
+    color: #68758a;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+/* SEARCH */
+
+.search-area {
+    max-width: 900px;
+    margin: -28px auto 50px;
+    padding: 0 20px;
+    position: relative;
+}
+
+.search-box {
+    width: 100%;
+    height: 58px;
+    border: 1px solid #d7e0ef;
+    border-radius: 12px;
+    background: white;
+    padding: 0 22px;
+    font-size: 16px;
+    outline: none;
+    box-shadow: 0 10px 30px rgba(30,70,140,.08);
+}
+
+.search-box:focus {
+    border-color: #2563eb;
+}
+
+/* CONTENT */
+
+.content {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 25px 90px;
+}
+
+.heading {
+    margin-bottom: 30px;
+}
+
+.heading small {
+    color: #2563eb;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.heading h2 {
+    font-size: 32px;
+    margin-top: 8px;
+}
+
+/* VIDEO GRID */
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.video-card {
+    background: white;
+    border: 1px solid #e2e8f2;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: .25s;
+}
+
+.video-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(30,70,140,.10);
+}
+
+/* VIDEO THUMBNAIL */
+
+.thumbnail {
+    height: 190px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg,#dfe9ff,#f6f9ff);
+}
+
+.play-button {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #2563eb;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+    padding-left: 4px;
+    box-shadow: 0 10px 25px rgba(37,99,235,.25);
+    cursor: pointer;
+    transition: .25s;
+}
+
+.play-button:hover {
+    transform: scale(1.08);
+}
+
+.duration {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    background: rgba(0,0,0,.75);
+    color: white;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 11px;
+}
+
+/* VIDEO INFO */
+
+.video-info {
+    padding: 24px;
+}
+
+.video-label {
+    color: #2563eb;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.video-info h3 {
+    font-size: 20px;
+    margin: 11px 0;
+}
+
+.video-info p {
+    color: #687389;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.watch-btn {
+    display: block;
+    margin-top: 20px;
+    padding: 12px;
+    text-align: center;
+    text-decoration: none;
+    background: #2563eb;
+    color: white;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+/* FOOTER */
+
+footer {
+    background: #0e1525;
+    color: white;
+    text-align: center;
+    padding: 35px;
+}
+
+footer p {
+    color: #929caf;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .video-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px) {
+
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .video-hero h1 {
+        font-size: 38px;
+    }
+
+    .navbar {
+        padding: 0 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+    <a href="index.html" class="logo">
+        Pavan <span>Educator</span>
+    </a>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="index.html">Home</a>
+        </li>
+
+        <li>
+            <a href="courses.html">Courses</a>
+        </li>
+
+        <li>
+            <a href="projects.html">Projects</a>
+        </li>
+
+        <li>
+            <a href="videos.html" class="active">Videos</a>
+        </li>
+
+        <li>
+            <a href="about.html">About</a>
+        </li>
+
+    </ul>
+
+    <a href="login.html" class="login-btn">
+        Login
+    </a>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="video-hero">
+
+    <div class="badge">
+        LEARN THROUGH VIDEOS
+    </div>
+
+    <h1>
+        Educational <span>Videos</span>
+    </h1>
+
+    <p>
+        Learn programming, web development and technology
+        through simple and practical video tutorials.
+    </p>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<div class="search-area">
+
+    <input
+        type="text"
+        id="videoSearch"
+        class="search-box"
+        placeholder="🔍  Search videos..."
+        onkeyup="searchVideos()"
+    >
+
+</div>
+
+
+<!-- VIDEOS -->
+
+<main class="content">
+
+    <div class="heading">
+
+        <small>RECENT VIDEOS</small>
+
+        <h2>Learn With Pavan Educator</h2>
+
+    </div>
+
+
+    <div class="video-grid">
+
+
+        <!-- VIDEO 1 -->
+
+        <div class="video-card">
+
+            <div class="thumbnail">
+
+                <div
+                    class="play-button"
+                    onclick="showMessage('Java Programming')"
+                >
+                    ▶
+                </div>
+
+                <div class="duration">
+                    12:30
+                </div>
+
+            </div>
+
+            <div class="video-info">
+
+                <div class="video-label">
+                    PROGRAMMING
+                </div>
+
+                <h3>
+                    Java Programming Basics
+                </h3>
+
+                <p>
+                    Learn the fundamentals of Java
+                    programming step by step.
+                </p>
+
+                <a
+                    href="#"
+                    class="watch-btn"
+                    onclick="showMessage('Java Programming'); return false;"
+                >
+                    ▶ Watch Video
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- VIDEO 2 -->
+
+        <div class="video-card">
+
+            <div class="thumbnail">
+
+                <div
+                    class="play-button"
+                    onclick="showMessage('HTML and CSS')"
+                >
+                    ▶
+                </div>
+
+                <div class="duration">
+                    15:20
+                </div>
+
+            </div>
+
+            <div class="video-info">
+
+                <div class="video-label">
+                    WEB DEVELOPMENT
+                </div>
+
+                <h3>
+                    HTML & CSS Basics
+                </h3>
+
+                <p>
+                    Learn how to create your first
+                    professional webpage.
+                </p>
+
+                <a
+                    href="#"
+                    class="watch-btn"
+                    onclick="showMessage('HTML and CSS'); return false;"
+                >
+                    ▶ Watch Video
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- VIDEO 3 -->
+
+        <div class="video-card">
+
+            <div class="thumbnail">
+
+                <div
+                    class="play-button"
+                    onclick="showMessage('JavaScript')"
+                >
+                    ▶
+                </div>
+
+                <div class="duration">
+                    18:45
+                </div>
+
+            </div>
+
+            <div class="video-info">
+
+                <div class="video-label">
+                    WEB DEVELOPMENT
+                </div>
+
+                <h3>
+                    JavaScript Introduction
+                </h3>
+
+                <p>
+                    Understand JavaScript basics and
+                    make websites interactive.
+                </p>
+
+                <a
+                    href="#"
+                    class="watch-btn"
+                    onclick="showMessage('JavaScript'); return false;"
+                >
+                    ▶ Watch Video
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- VIDEO 4 -->
+
+        <div class="video-card">
+
+            <div class="thumbnail">
+
+                <div
+                    class="play-button"
+                    onclick="showMessage('Python Programming')"
+                >
+                    ▶
+                </div>
+
+                <div class="duration">
+                    20:10
+                </div>
+
+            </div>
+
+            <div class="video-info">
+
+                <div class="video-label">
+                    PROGRAMMING
+                </div>
+
+                <h3>
+                    Python Programming
+                </h3>
+
+                <p>
+                    Start learning Python programming
+                    with simple examples.
+                </p>
+
+                <a
+                    href="#"
+                    class="watch-btn"
+                    onclick="showMessage('Python Programming'); return false;"
+                >
+                    ▶ Watch Video
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- VIDEO 5 -->
+
+        <div class="video-card">
+
+            <div class="thumbnail">
+
+                <div
+                    class="play-button"
+                    onclick="showMessage('MySQL Database')"
+                >
+                    ▶
+                </div>
+
+                <div class="duration">
+                    16:35
+                </div>
+
+            </div>
+
+            <div class="video-info">
+
+                <div class="video-label">
+                    DATABASE
+                </div>
+
+                <h3>
+                    MySQL Database Basics
+                </h3>
+
+                <p>
+                    Learn databases, tables and
+                    basic SQL queries.
+                </p>
+
+                <a
+                    href="#"
+                    class="watch-btn"
+                    onclick="showMessage('MySQL Database'); return false;"
+                >
+                    ▶ Watch Video
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- VIDEO 6 -->
+
+        <div class="video-card">
+
+            <div class="thumbnail">
+
+                <div
+                    class="play-button"
+                    onclick="showMessage('Web Project')"
+                >
+                    ▶
+                </div>
+
+                <div class="duration">
+                    25:00
+                </div>
+
+            </div>
+
+            <div class="video-info">
+
+                <div class="video-label">
+                    PROJECT
+                </div>
+
+                <h3>
+                    Build Your First Website
+                </h3>
+
+                <p>
+                    Follow a practical project and
+                    build a website from scratch.
+                </p>
+
+                <a
+                    href="#"
+                    class="watch-btn"
+                    onclick="showMessage('Build Your First Website'); return false;"
+                >
+                    ▶ Watch Video
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <strong>
+        Pavan Educator
+    </strong>
+
+    <p>
+        Learn • Build • Grow
+    </p>
+
+    <p>
+        © 2026 Pavan Educator. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script>
+
+function searchVideos() {
+
+    const search =
+        document
+        .getElementById("videoSearch")
+        .value
+        .toLowerCase();
+
+    const cards =
+        document
+        .querySelectorAll(".video-card");
+
+    cards.forEach(function(card) {
+
+        const text =
+            card.innerText.toLowerCase();
+
+        if (text.includes(search)) {
+
+            card.style.display = "";
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+function showMessage(videoName) {
+
+    alert(
+        "Video: " +
+        videoName +
+        "\n\nThe video will be added here soon."
+    );
+
+}
+
+</script>
+
+</body>
+</html>

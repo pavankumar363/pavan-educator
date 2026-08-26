@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Pavan Educator | My Projects</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -13,20 +16,26 @@
 }
 
 body{
-    font-family:Arial, sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     background:#f7f9fc;
     color:#172033;
 }
+
+/* SIDEBAR */
 
 .sidebar{
     position:fixed;
     left:0;
     top:0;
+
     width:295px;
     height:100vh;
+
     background:#071a33;
     color:white;
+
     padding:30px 25px;
+
     display:flex;
     flex-direction:column;
 }
@@ -34,6 +43,7 @@ body{
 .logo{
     font-size:30px;
     font-weight:800;
+
     padding:5px 5px 55px;
 }
 
@@ -43,8 +53,10 @@ body{
 
 .panel-title{
     color:#aeb9cb;
+
     font-size:17px;
     font-weight:700;
+
     margin-bottom:25px;
 }
 
@@ -59,11 +71,17 @@ body{
 .menu a{
     display:flex;
     align-items:center;
+
     gap:18px;
+
     padding:17px 18px;
+
     border-radius:10px;
+
     color:white;
+
     text-decoration:none;
+
     font-size:18px;
     font-weight:600;
 }
@@ -81,7 +99,9 @@ body{
 
 .separator{
     height:1px;
+
     background:#28405f;
+
     margin-top:15px;
 }
 
@@ -92,28 +112,52 @@ body{
 .logout a{
     display:flex;
     align-items:center;
+
     gap:15px;
+
     padding:17px 20px;
+
     border-radius:10px;
+
     background:#142b4a;
+
     color:#ff5252;
+
     text-decoration:none;
+
     font-size:18px;
     font-weight:700;
 }
+
+.logout a:hover{
+    background:#ff5252;
+    color:white;
+}
+
+
+/* MAIN */
 
 .main{
     margin-left:295px;
     min-height:100vh;
 }
 
+
+/* TOPBAR */
+
 .topbar{
     height:105px;
+
     background:white;
+
     border-bottom:1px solid #e4e9f1;
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
+
     padding:0 45px;
 }
 
@@ -123,8 +167,11 @@ body{
 
 .user-top{
     display:flex;
+
     align-items:center;
+
     gap:12px;
+
     font-size:18px;
     font-weight:700;
 }
@@ -132,21 +179,36 @@ body{
 .user-icon{
     width:45px;
     height:45px;
+
     border-radius:50%;
+
     background:#2474ff;
+
     color:white;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     font-size:23px;
 }
+
+
+/* CONTENT */
 
 .content{
     padding:40px;
 }
 
 .heading{
-    margin-bottom:25px;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:30px;
 }
 
 .heading h2{
@@ -155,52 +217,341 @@ body{
 
 .heading p{
     margin-top:8px;
+
     color:#64748b;
 }
 
+
+/* ADD BUTTON */
+
+.add-btn{
+    border:none;
+
+    background:#2474ff;
+
+    color:white;
+
+    padding:14px 22px;
+
+    border-radius:9px;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+.add-btn:hover{
+    background:#155bd4;
+}
+
+
+/* PROJECT GRID */
+
 .project-grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+
+    grid-template-columns:
+        repeat(2,1fr);
+
     gap:25px;
 }
 
+
+/* PROJECT CARD */
+
 .project{
     background:white;
+
     border:1px solid #dce5f2;
+
     border-radius:18px;
+
     padding:30px;
+
+    transition:.2s;
+}
+
+.project:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(30,70,140,.08);
 }
 
 .project-icon{
-    font-size:45px;
+    width:65px;
+    height:65px;
+
+    border-radius:14px;
+
+    background:#edf3ff;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:32px;
+
     margin-bottom:20px;
 }
 
 .project h3{
     font-size:23px;
+
     margin-bottom:10px;
 }
 
-.project p{
+.project-description{
     color:#64748b;
+
     line-height:1.6;
+
+    font-size:14px;
+
+    min-height:45px;
 }
 
-.back{
+.project-link{
     display:inline-block;
-    margin-top:30px;
-    padding:13px 22px;
-    background:#2474ff;
-    color:white;
+
+    margin-top:18px;
+
+    color:#2474ff;
+
     text-decoration:none;
+
+    font-weight:700;
+
+    font-size:14px;
+}
+
+.project-actions{
+    display:flex;
+
+    gap:10px;
+
+    margin-top:20px;
+}
+
+.edit-btn,
+.delete-btn{
+    flex:1;
+
+    border:none;
+
+    padding:11px;
+
     border-radius:8px;
+
+    cursor:pointer;
+
     font-weight:700;
 }
 
-@media(max-width:700px){
+.edit-btn{
+    background:#eaf2ff;
+    color:#2474ff;
+}
+
+.delete-btn{
+    background:#fff0f0;
+    color:#dc3545;
+}
+
+
+/* EMPTY */
+
+.empty{
+    background:white;
+
+    border:1px dashed #cbd7e8;
+
+    border-radius:18px;
+
+    padding:60px 30px;
+
+    text-align:center;
+
+    color:#64748b;
+
+    grid-column:1/-1;
+}
+
+.empty-icon{
+    font-size:55px;
+
+    margin-bottom:15px;
+}
+
+
+/* MODAL */
+
+.modal{
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(5,20,40,.60);
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:1000;
+
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+
+    max-width:600px;
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    max-height:90vh;
+
+    overflow-y:auto;
+}
+
+.modal-header{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:25px;
+}
+
+.modal-header h2{
+    font-size:24px;
+}
+
+.close-btn{
+    border:none;
+
+    background:#f0f3f8;
+
+    width:38px;
+    height:38px;
+
+    border-radius:50%;
+
+    font-size:21px;
+
+    cursor:pointer;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    margin-bottom:8px;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+
+    border:1px solid #d5deec;
+
+    border-radius:9px;
+
+    padding:13px;
+
+    font-family:inherit;
+
+    outline:none;
+}
+
+.form-group input{
+    height:48px;
+}
+
+.form-group textarea{
+    min-height:120px;
+
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    border-color:#2474ff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(36,116,255,.08);
+}
+
+.form-actions{
+    display:flex;
+
+    gap:10px;
+
+    margin-top:25px;
+}
+
+.cancel-btn,
+.save-btn{
+    flex:1;
+
+    height:48px;
+
+    border-radius:8px;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+.cancel-btn{
+    background:white;
+
+    border:1px solid #d5deec;
+
+    color:#64748b;
+}
+
+.save-btn{
+    background:#2474ff;
+
+    border:none;
+
+    color:white;
+}
+
+
+/* MOBILE */
+
+@media(max-width:800px){
+
     .sidebar{
         position:relative;
+
         width:100%;
+
         height:auto;
     }
 
@@ -211,152 +562,892 @@ body{
     .project-grid{
         grid-template-columns:1fr;
     }
+
+    .heading{
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:20px;
+    }
+
+    .topbar{
+        padding:0 20px;
+    }
+
+    .content{
+        padding:20px;
+    }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- SIDEBAR -->
+
 <aside class="sidebar">
 
+
     <div class="logo">
+
         Pavan <span>Educator</span>
+
     </div>
 
+
     <div class="panel-title">
+
         STUDENT PANEL
+
     </div>
+
 
     <ul class="menu">
 
+
         <li>
+
             <a href="student-dashboard.html">
-                <span class="menu-icon">🏠</span>
+
+                <span class="menu-icon">
+                    🏠
+                </span>
+
                 Dashboard
+
             </a>
+
         </li>
 
+
         <li>
-            <a href="student-projects.html" class="active">
-                <span class="menu-icon">💻</span>
+
+            <a
+                href="student-projects.html"
+                class="active"
+            >
+
+                <span class="menu-icon">
+                    💻
+                </span>
+
                 My Projects
+
             </a>
+
         </li>
 
+
         <li>
+
             <a href="student-profile.html">
-                <span class="menu-icon">👤</span>
+
+                <span class="menu-icon">
+                    👤
+                </span>
+
                 My Profile
+
             </a>
+
         </li>
+
 
     </ul>
 
+
     <div class="separator"></div>
 
+
     <div class="logout">
-        <a href="login.html" onclick="logout()">
+
+        <a
+            href="login.html"
+            onclick="logout()"
+        >
+
             🚪 Logout
+
         </a>
+
     </div>
+
 
 </aside>
 
 
+
+<!-- MAIN -->
+
 <main class="main">
+
 
     <header class="topbar">
 
-        <h1>My Projects</h1>
+
+        <h1>
+            My Projects
+        </h1>
+
 
         <div class="user-top">
-            <div class="user-icon">👤</div>
-            <span id="studentName">Student</span>
+
+            <div class="user-icon">
+                👤
+            </div>
+
+            <span id="studentName">
+                Student
+            </span>
+
         </div>
+
 
     </header>
 
 
+
     <div class="content">
 
+
         <div class="heading">
-            <h2>My Projects</h2>
-            <p>View and manage your projects.</p>
+
+
+            <div>
+
+                <h2>
+                    My Projects
+                </h2>
+
+                <p>
+                    Create and manage your own projects.
+                </p>
+
+            </div>
+
+
+            <button
+                class="add-btn"
+                onclick="openAddProject()"
+            >
+
+                + Create Project
+
+            </button>
+
+
         </div>
 
 
-        <div class="project-grid">
 
-            <div class="project">
+        <!-- PROJECTS -->
+
+        <div
+            class="project-grid"
+            id="projectGrid"
+        ></div>
+
+
+    </div>
+
+
+</main>
+
+
+
+<!-- MODAL -->
+
+<div
+    class="modal"
+    id="projectModal"
+>
+
+
+    <div class="modal-box">
+
+
+        <div class="modal-header">
+
+
+            <h2 id="modalTitle">
+                Create Project
+            </h2>
+
+
+            <button
+                class="close-btn"
+                onclick="closeModal()"
+            >
+
+                ×
+
+            </button>
+
+
+        </div>
+
+
+
+        <form
+            onsubmit="saveProject(event)"
+        >
+
+
+            <div class="form-group">
+
+                <label>
+                    Project Name
+                </label>
+
+                <input
+                    type="text"
+                    id="projectName"
+                    placeholder="Example: Student Management System"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    id="projectDescription"
+                    placeholder="Describe your project..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Project Link
+                </label>
+
+                <input
+                    type="url"
+                    id="projectLink"
+                    placeholder="https://example.com"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    GitHub Link
+                </label>
+
+                <input
+                    type="url"
+                    id="githubLink"
+                    placeholder="https://github.com/username/project"
+                >
+
+            </div>
+
+
+            <div class="form-actions">
+
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="closeModal()"
+                >
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="save-btn"
+                >
+
+                    Save Project
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =========================
+   CURRENT STUDENT
+========================= */
+
+const username =
+    sessionStorage.getItem(
+        "currentUser"
+    );
+
+
+const students =
+    JSON.parse(
+        localStorage.getItem(
+            "pavanStudents"
+        )
+    ) || [];
+
+
+const student =
+    students.find(
+        function(item){
+
+            return item.username === username;
+
+        }
+    );
+
+
+/* SHOW STUDENT NAME */
+
+if(student){
+
+    document.getElementById(
+        "studentName"
+    ).textContent =
+        student.name;
+
+}
+
+
+/* =========================
+   PROJECT STORAGE
+========================= */
+
+/*
+   Each student's projects are
+   stored separately.
+*/
+
+let allProjects =
+    JSON.parse(
+        localStorage.getItem(
+            "pavanStudentProjects"
+        )
+    ) || {};
+
+
+if(
+    !username
+){
+
+    alert(
+        "Please login first."
+    );
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* =========================
+   CURRENT PROJECTS
+========================= */
+
+function getMyProjects(){
+
+    return allProjects[username] || [];
+
+}
+
+
+/* =========================
+   SAVE STORAGE
+========================= */
+
+function saveAllProjects(){
+
+    localStorage.setItem(
+        "pavanStudentProjects",
+        JSON.stringify(allProjects)
+    );
+
+}
+
+
+/* =========================
+   EDIT INDEX
+========================= */
+
+let editingIndex = -1;
+
+
+/* =========================
+   RENDER
+========================= */
+
+function renderProjects(){
+
+
+    const grid =
+        document.getElementById(
+            "projectGrid"
+        );
+
+
+    const projects =
+        getMyProjects();
+
+
+    grid.innerHTML = "";
+
+
+    if(
+        projects.length === 0
+    ){
+
+        grid.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    💻
+                </div>
+
+                <h2>
+                    No Projects Yet
+                </h2>
+
+                <p>
+                    Create your first project using
+                    the button above.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    projects.forEach(
+        function(project,index){
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "project";
+
+
+            let linkHTML = "";
+
+
+            if(
+                project.projectLink
+            ){
+
+                linkHTML += `
+
+                    <a
+                        href="${safeAttribute(project.projectLink)}"
+                        target="_blank"
+                        class="project-link"
+                    >
+                        🌐 View Project
+                    </a>
+
+                `;
+
+            }
+
+
+            if(
+                project.githubLink
+            ){
+
+                linkHTML += `
+
+                    <a
+                        href="${safeAttribute(project.githubLink)}"
+                        target="_blank"
+                        class="project-link"
+                        style="margin-left:15px"
+                    >
+                        💻 GitHub
+                    </a>
+
+                `;
+
+            }
+
+
+            card.innerHTML = `
 
                 <div class="project-icon">
                     💻
                 </div>
 
+
                 <h3>
-                    My First Project
+                    ${escapeHTML(project.name)}
                 </h3>
 
-                <p>
-                    Your project information
-                    will appear here.
+
+                <p class="project-description">
+
+                    ${escapeHTML(
+                        project.description
+                    )}
+
                 </p>
 
-            </div>
+
+                ${linkHTML}
 
 
-            <div class="project">
+                <div class="project-actions">
 
-                <div class="project-icon">
-                    🚀
+
+                    <button
+                        class="edit-btn"
+                        onclick="editProject(${index})"
+                    >
+
+                        ✏️ Edit
+
+                    </button>
+
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteProject(${index})"
+                    >
+
+                        🗑️ Delete
+
+                    </button>
+
+
                 </div>
 
-                <h3>
-                    New Project
-                </h3>
-
-                <p>
-                    More student projects
-                    can be added here.
-                </p>
-
-            </div>
-
-        </div>
+            `;
 
 
-        <a
-            href="student-dashboard.html"
-            class="back"
-        >
-            ← Back to Dashboard
-        </a>
+            grid.appendChild(card);
 
-    </div>
+        }
+    );
 
-</main>
-
-
-<script>
-
-const username =
-    sessionStorage.getItem("currentUser");
-
-const students =
-    JSON.parse(
-        localStorage.getItem("pavanStudents")
-    ) || [];
-
-const student =
-    students.find(function(item){
-        return item.username === username;
-    });
-
-if(student){
-    document.getElementById(
-        "studentName"
-    ).textContent = student.name;
 }
+
+
+/* =========================
+   CREATE PROJECT
+========================= */
+
+function openAddProject(){
+
+
+    editingIndex = -1;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "Create Project";
+
+
+    document.getElementById(
+        "projectName"
+    ).value = "";
+
+
+    document.getElementById(
+        "projectDescription"
+    ).value = "";
+
+
+    document.getElementById(
+        "projectLink"
+    ).value = "";
+
+
+    document.getElementById(
+        "githubLink"
+    ).value = "";
+
+
+    document.getElementById(
+        "projectModal"
+    ).classList.add("show");
+
+}
+
+
+/* =========================
+   EDIT PROJECT
+========================= */
+
+function editProject(index){
+
+
+    const projects =
+        getMyProjects();
+
+
+    const project =
+        projects[index];
+
+
+    editingIndex = index;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "Edit Project";
+
+
+    document.getElementById(
+        "projectName"
+    ).value =
+        project.name;
+
+
+    document.getElementById(
+        "projectDescription"
+    ).value =
+        project.description;
+
+
+    document.getElementById(
+        "projectLink"
+    ).value =
+        project.projectLink || "";
+
+
+    document.getElementById(
+        "githubLink"
+    ).value =
+        project.githubLink || "";
+
+
+    document.getElementById(
+        "projectModal"
+    ).classList.add("show");
+
+}
+
+
+/* =========================
+   SAVE PROJECT
+========================= */
+
+function saveProject(event){
+
+    event.preventDefault();
+
+
+    const project = {
+
+        name:
+            document.getElementById(
+                "projectName"
+            ).value.trim(),
+
+        description:
+            document.getElementById(
+                "projectDescription"
+            ).value.trim(),
+
+        projectLink:
+            document.getElementById(
+                "projectLink"
+            ).value.trim(),
+
+        githubLink:
+            document.getElementById(
+                "githubLink"
+            ).value.trim(),
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    if(
+        !allProjects[username]
+    ){
+
+        allProjects[username] = [];
+
+    }
+
+
+    if(
+        editingIndex === -1
+    ){
+
+        allProjects[username].push(
+            project
+        );
+
+
+        alert(
+            "Project created successfully!"
+        );
+
+    }
+
+    else{
+
+        allProjects[username][
+            editingIndex
+        ] = project;
+
+
+        alert(
+            "Project updated successfully!"
+        );
+
+    }
+
+
+    saveAllProjects();
+
+    closeModal();
+
+    renderProjects();
+
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+function deleteProject(index){
+
+
+    const projects =
+        getMyProjects();
+
+
+    if(
+        !confirm(
+            'Delete "' +
+            projects[index].name +
+            '"?'
+        )
+    ){
+
+        return;
+
+    }
+
+
+    projects.splice(
+        index,
+        1
+    );
+
+
+    allProjects[username] =
+        projects;
+
+
+    saveAllProjects();
+
+    renderProjects();
+
+
+    alert(
+        "Project deleted successfully!"
+    );
+
+}
+
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+function closeModal(){
+
+    document.getElementById(
+        "projectModal"
+    )
+    .classList
+    .remove("show");
+
+}
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHTML(value){
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+    div.textContent =
+        value;
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================
+   SAFE LINK
+========================= */
+
+function safeAttribute(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/"/g,"&quot;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;");
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
 
 function logout(){
 
@@ -364,7 +1455,15 @@ function logout(){
 
 }
 
+
+/* =========================
+   INITIAL LOAD
+========================= */
+
+renderProjects();
+
 </script>
 
 </body>
+
 </html>

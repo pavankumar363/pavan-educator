@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pavan Educator | Projects</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f8ff;
+    color: #172033;
+}
+
+/* NAVBAR */
+
+.navbar {
+    height: 74px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    border-bottom: 1px solid #e6ebf5;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    text-decoration: none;
+    font-size: 23px;
+    font-weight: 800;
+    color: #172033;
+}
+
+.logo span {
+    color: #2563eb;
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #4d5870;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #2563eb;
+}
+
+.login-btn {
+    text-decoration: none;
+    background: #2563eb;
+    color: white;
+    padding: 11px 23px;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+/* HERO */
+
+.project-hero {
+    text-align: center;
+    padding: 75px 20px;
+    background: linear-gradient(135deg, #eef4ff, #ffffff);
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 30px;
+    background: #e5edff;
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.project-hero h1 {
+    font-size: 48px;
+    margin: 20px 0 15px;
+}
+
+.project-hero h1 span {
+    color: #2563eb;
+}
+
+.project-hero p {
+    max-width: 680px;
+    margin: auto;
+    color: #68758a;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+/* CONTENT */
+
+.content {
+    max-width: 1200px;
+    margin: auto;
+    padding: 70px 25px 90px;
+}
+
+.heading {
+    margin-bottom: 30px;
+}
+
+.heading small {
+    color: #2563eb;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.heading h2 {
+    font-size: 32px;
+    margin-top: 8px;
+}
+
+/* PROJECT GRID */
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.project-card {
+    background: white;
+    border: 1px solid #e2e8f2;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: .25s;
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(30,70,140,.10);
+}
+
+.project-image {
+    height: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg,#e9f0ff,#f7faff);
+    font-size: 65px;
+}
+
+.project-info {
+    padding: 25px;
+}
+
+.project-label {
+    color: #2563eb;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.project-info h3 {
+    font-size: 21px;
+    margin: 12px 0;
+}
+
+.project-info p {
+    color: #687389;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 18px;
+}
+
+.tech {
+    background: #edf3ff;
+    color: #2563eb;
+    padding: 6px 9px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.project-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.project-btn {
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    padding: 11px 8px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.primary {
+    background: #2563eb;
+    color: white;
+}
+
+.secondary {
+    background: #eef3ff;
+    color: #2563eb;
+}
+
+/* FOOTER */
+
+footer {
+    background: #0e1525;
+    color: white;
+    text-align: center;
+    padding: 35px;
+}
+
+footer p {
+    color: #929caf;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .project-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px) {
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-hero h1 {
+        font-size: 38px;
+    }
+
+    .navbar {
+        padding: 0 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+    <a href="index.html" class="logo">
+        Pavan <span>Educator</span>
+    </a>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="index.html">Home</a>
+        </li>
+
+        <li>
+            <a href="courses.html">Courses</a>
+        </li>
+
+        <li>
+            <a href="projects.html" class="active">Projects</a>
+        </li>
+
+        <li>
+            <a href="videos.html">Videos</a>
+        </li>
+
+        <li>
+            <a href="about.html">About</a>
+        </li>
+
+    </ul>
+
+    <a href="login.html" class="login-btn">
+        Login
+    </a>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="project-hero">
+
+    <div class="badge">
+        BUILD SOMETHING
+    </div>
+
+    <h1>
+        Explore <span>Projects</span>
+    </h1>
+
+    <p>
+        Discover practical projects, student applications
+        and real-world software ideas that help turn
+        learning into experience.
+    </p>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<main class="content">
+
+    <div class="heading">
+
+        <small>FEATURED PROJECTS</small>
+
+        <h2>Our Projects</h2>
+
+    </div>
+
+
+    <div class="project-grid">
+
+
+        <!-- PROJECT 1 -->
+
+        <div class="project-card">
+
+            <div class="project-image">
+                📊
+            </div>
+
+            <div class="project-info">
+
+                <div class="project-label">
+                    WEB APPLICATION
+                </div>
+
+                <h3>
+                    Attendance Management System
+                </h3>
+
+                <p>
+                    A complete attendance management system
+                    with student records, attendance entry,
+                    reports and dashboard features.
+                </p>
+
+                <div class="technologies">
+
+                    <span class="tech">HTML</span>
+                    <span class="tech">CSS</span>
+                    <span class="tech">JavaScript</span>
+
+                </div>
+
+                <div class="project-actions">
+
+                    <a href="#" class="project-btn primary">
+                        View Project
+                    </a>
+
+                    <a href="#" class="project-btn secondary">
+                        Source Code
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT 2 -->
+
+        <div class="project-card">
+
+            <div class="project-image">
+                🎓
+            </div>
+
+            <div class="project-info">
+
+                <div class="project-label">
+                    STUDENT SYSTEM
+                </div>
+
+                <h3>
+                    Student Result System
+                </h3>
+
+                <p>
+                    A student result management application
+                    for marks, grades and academic performance.
+                </p>
+
+                <div class="technologies">
+
+                    <span class="tech">HTML</span>
+                    <span class="tech">CSS</span>
+                    <span class="tech">JavaScript</span>
+
+                </div>
+
+                <div class="project-actions">
+
+                    <a href="#" class="project-btn primary">
+                        View Project
+                    </a>
+
+                    <a href="#" class="project-btn secondary">
+                        Source Code
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT 3 -->
+
+        <div class="project-card">
+
+            <div class="project-image">
+                💻
+            </div>
+
+            <div class="project-info">
+
+                <div class="project-label">
+                    WEB APPLICATION
+                </div>
+
+                <h3>
+                    Student Management System
+                </h3>
+
+                <p>
+                    A system designed to manage student
+                    information and academic records.
+                </p>
+
+                <div class="technologies">
+
+                    <span class="tech">HTML</span>
+                    <span class="tech">CSS</span>
+                    <span class="tech">JavaScript</span>
+
+                </div>
+
+                <div class="project-actions">
+
+                    <a href="#" class="project-btn primary">
+                        View Project
+                    </a>
+
+                    <a href="#" class="project-btn secondary">
+                        Source Code
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT 4 -->
+
+        <div class="project-card">
+
+            <div class="project-image">
+                🌐
+            </div>
+
+            <div class="project-info">
+
+                <div class="project-label">
+                    WEBSITE
+                </div>
+
+                <h3>
+                    Educational Website
+                </h3>
+
+                <p>
+                    A responsive educational website for
+                    sharing courses and learning resources.
+                </p>
+
+                <div class="technologies">
+
+                    <span class="tech">HTML</span>
+                    <span class="tech">CSS</span>
+                    <span class="tech">JavaScript</span>
+
+                </div>
+
+                <div class="project-actions">
+
+                    <a href="#" class="project-btn primary">
+                        View Project
+                    </a>
+
+                    <a href="#" class="project-btn secondary">
+                        Source Code
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT 5 -->
+
+        <div class="project-card">
+
+            <div class="project-image">
+                📱
+            </div>
+
+            <div class="project-info">
+
+                <div class="project-label">
+                    APPLICATION
+                </div>
+
+                <h3>
+                    Student Utility App
+                </h3>
+
+                <p>
+                    A collection of useful tools and features
+                    designed to help students in daily learning.
+                </p>
+
+                <div class="technologies">
+
+                    <span class="tech">JavaScript</span>
+                    <span class="tech">HTML</span>
+                    <span class="tech">CSS</span>
+
+                </div>
+
+                <div class="project-actions">
+
+                    <a href="#" class="project-btn primary">
+                        View Project
+                    </a>
+
+                    <a href="#" class="project-btn secondary">
+                        Source Code
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT 6 -->
+
+        <div class="project-card">
+
+            <div class="project-image">
+                🚀
+            </div>
+
+            <div class="project-info">
+
+                <div class="project-label">
+                    FUTURE PROJECT
+                </div>
+
+                <h3>
+                    More Projects Coming Soon
+                </h3>
+
+                <p>
+                    New student projects, software ideas and
+                    practical applications will be added here.
+                </p>
+
+                <div class="technologies">
+
+                    <span class="tech">Projects</span>
+                    <span class="tech">Learning</span>
+
+                </div>
+
+                <div class="project-actions">
+
+                    <a href="index.html" class="project-btn primary">
+                        Back Home
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <strong>
+        Pavan Educator
+    </strong>
+
+    <p>
+        Learn • Build • Grow
+    </p>
+
+    <p>
+        © 2026 Pavan Educator. All Rights Reserved.
+    </p>
+
+</footer>
+
+</body>
+</html>

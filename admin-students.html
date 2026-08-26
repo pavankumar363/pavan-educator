@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pavan Educator | Students</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f7fc;
+    color:#172033;
+}
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+    background:#111a2e;
+    color:white;
+    padding:25px 18px;
+}
+
+.logo{
+    padding:10px 12px 30px;
+    font-size:23px;
+    font-weight:800;
+}
+
+.logo span{color:#4d8dff}
+
+.admin-label{
+    color:#8e9bb3;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1px;
+    padding:0 12px 12px;
+}
+
+.menu{list-style:none}
+
+.menu li{margin-bottom:7px}
+
+.menu a{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:13px 14px;
+    color:#c9d2e3;
+    text-decoration:none;
+    border-radius:9px;
+    font-size:14px;
+    font-weight:600;
+}
+
+.menu a:hover,
+.menu a.active{
+    background:#2563eb;
+    color:white;
+}
+
+.menu-icon{
+    width:24px;
+    text-align:center;
+}
+
+.logout{
+    position:absolute;
+    bottom:25px;
+    left:18px;
+    right:18px;
+}
+
+.logout a{
+    display:block;
+    text-align:center;
+    padding:12px;
+    border-radius:9px;
+    background:#1c2944;
+    color:#c9d2e3;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:700;
+}
+
+.logout a:hover{
+    background:#dc3545;
+    color:white;
+}
+
+.main{
+    margin-left:250px;
+    min-height:100vh;
+}
+
+.topbar{
+    height:75px;
+    background:white;
+    border-bottom:1px solid #e2e8f2;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 35px;
+}
+
+.page-title h1{font-size:23px}
+
+.page-title p{
+    color:#7a869b;
+    font-size:13px;
+    margin-top:4px;
+}
+
+.back-link{
+    text-decoration:none;
+    color:#2563eb;
+    font-weight:700;
+    font-size:14px;
+}
+
+.content{padding:35px}
+
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.page-header h2{font-size:28px}
+
+.page-header p{
+    color:#7a869b;
+    margin-top:6px;
+    font-size:14px;
+}
+
+.add-btn{
+    border:none;
+    background:#2563eb;
+    color:white;
+    padding:13px 20px;
+    border-radius:9px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.add-btn:hover{background:#1d4ed8}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.stat{
+    background:white;
+    border:1px solid #e1e7f2;
+    border-radius:13px;
+    padding:20px;
+}
+
+.stat-icon{font-size:25px}
+
+.stat h3{
+    font-size:27px;
+    margin-top:10px;
+}
+
+.stat p{
+    color:#7a869b;
+    font-size:13px;
+    margin-top:4px;
+}
+
+.search-box{
+    width:100%;
+    height:52px;
+    background:white;
+    border:1px solid #dce4f0;
+    border-radius:10px;
+    padding:0 18px;
+    font-size:14px;
+    outline:none;
+    margin-bottom:25px;
+}
+
+.search-box:focus{border-color:#2563eb}
+
+.table-box{
+    background:white;
+    border:1px solid #e1e7f2;
+    border-radius:15px;
+    overflow:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:900px;
+}
+
+th{
+    background:#f7f9fd;
+    color:#687389;
+    text-align:left;
+    padding:16px;
+    font-size:12px;
+    text-transform:uppercase;
+}
+
+td{
+    padding:16px;
+    border-top:1px solid #edf0f5;
+    font-size:13px;
+}
+
+.student-name{
+    font-weight:700;
+}
+
+.badge{
+    display:inline-block;
+    padding:6px 9px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:700;
+}
+
+.online{
+    background:#e7f8ee;
+    color:#16834b;
+}
+
+.offline{
+    background:#f0f2f5;
+    color:#687389;
+}
+
+.actions{
+    display:flex;
+    gap:7px;
+}
+
+.edit-btn,
+.delete-btn{
+    border:none;
+    padding:8px 11px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:700;
+}
+
+.edit-btn{
+    background:#eaf1ff;
+    color:#2563eb;
+}
+
+.delete-btn{
+    background:#fff0f0;
+    color:#dc3545;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(10,20,40,.55);
+    align-items:center;
+    justify-content:center;
+    z-index:2000;
+    padding:20px;
+}
+
+.modal.show{display:flex}
+
+.modal-box{
+    width:100%;
+    max-width:600px;
+    max-height:90vh;
+    overflow-y:auto;
+    background:white;
+    border-radius:18px;
+    padding:30px;
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.close-btn{
+    border:none;
+    background:#f0f3f8;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.form-group{margin-bottom:16px}
+
+.form-group label{
+    display:block;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:7px;
+}
+
+.form-group input,
+.form-group select{
+    width:100%;
+    padding:12px;
+    border:1px solid #d5deec;
+    border-radius:8px;
+    outline:none;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+    border-color:#2563eb;
+}
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.form-actions{
+    display:flex;
+    gap:10px;
+    margin-top:22px;
+}
+
+.cancel-btn,
+.save-btn{
+    flex:1;
+    padding:12px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:700;
+}
+
+.cancel-btn{
+    border:1px solid #d5deec;
+    background:white;
+}
+
+.save-btn{
+    border:none;
+    background:#2563eb;
+    color:white;
+}
+
+.empty{
+    padding:50px;
+    text-align:center;
+    color:#7a869b;
+}
+
+@media(max-width:900px){
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:700px){
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+    }
+
+    .main{margin-left:0}
+
+    .logout{
+        position:relative;
+        left:auto;
+        right:auto;
+        bottom:auto;
+        margin-top:20px;
+    }
+
+    .content{padding:20px}
+
+    .page-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .form-row{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+    <div class="logo">
+        Pavan <span>Educator</span>
+    </div>
+
+    <div class="admin-label">ADMIN PANEL</div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="admin-dashboard.html">
+                <span class="menu-icon">🏠</span>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="admin-courses.html">
+                <span class="menu-icon">📚</span>
+                Courses
+            </a>
+        </li>
+
+        <li>
+            <a href="admin-projects.html">
+                <span class="menu-icon">💻</span>
+                Projects
+            </a>
+        </li>
+
+        <li>
+            <a href="admin-videos.html">
+                <span class="menu-icon">🎥</span>
+                Videos
+            </a>
+        </li>
+
+        <li>
+            <a href="admin-students.html" class="active">
+                <span class="menu-icon">🎓</span>
+                Students
+            </a>
+        </li>
+
+        <li>
+            <a href="admin-settings.html">
+                <span class="menu-icon">⚙️</span>
+                Settings
+            </a>
+        </li>
+
+    </ul>
+
+    <div class="logout">
+        <a href="login.html" onclick="logout()">🚪 Logout</a>
+    </div>
+
+</aside>
+
+
+<main class="main">
+
+<header class="topbar">
+
+    <div class="page-title">
+        <h1>Student Management</h1>
+        <p>Manage students and view login activity</p>
+    </div>
+
+    <a href="admin-dashboard.html" class="back-link">
+        ← Dashboard
+    </a>
+
+</header>
+
+
+<div class="content">
+
+
+<div class="page-header">
+
+    <div>
+        <h2>Students</h2>
+        <p>Add, edit and monitor student accounts.</p>
+    </div>
+
+    <button class="add-btn" onclick="openAddModal()">
+        + Add Student
+    </button>
+
+</div>
+
+
+<!-- STATISTICS -->
+
+<div class="stats">
+
+    <div class="stat">
+        <div class="stat-icon">🎓</div>
+        <h3 id="totalStudents">0</h3>
+        <p>Total Students</p>
+    </div>
+
+    <div class="stat">
+        <div class="stat-icon">🔐</div>
+        <h3 id="totalLogins">0</h3>
+        <p>Total Logins</p>
+    </div>
+
+    <div class="stat">
+        <div class="stat-icon">👤</div>
+        <h3 id="uniqueLogins">0</h3>
+        <p>Students Logged In</p>
+    </div>
+
+    <div class="stat">
+        <div class="stat-icon">📅</div>
+        <h3 id="todayLogins">0</h3>
+        <p>Today's Logins</p>
+    </div>
+
+</div>
+
+
+<input
+    type="text"
+    id="search"
+    class="search-box"
+    placeholder="🔍 Search students..."
+    onkeyup="renderStudents()"
+>
+
+
+<div class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+<th>Username</th>
+<th>Class</th>
+<th>Age</th>
+<th>Location</th>
+<th>Logins</th>
+<th>Status</th>
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody id="studentTable"></tbody>
+
+</table>
+
+</div>
+
+
+</div>
+
+</main>
+
+
+<!-- MODAL -->
+
+<div class="modal" id="studentModal">
+
+<div class="modal-box">
+
+<div class="modal-header">
+
+<h2 id="modalTitle">Add Student</h2>
+
+<button class="close-btn" onclick="closeModal()">×</button>
+
+</div>
+
+
+<form onsubmit="saveStudent(event)">
+
+
+<div class="form-group">
+
+<label>Student Name</label>
+
+<input
+    type="text"
+    id="studentName"
+    placeholder="Enter student name"
+    required
+>
+
+</div>
+
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>Username</label>
+
+<input
+    type="text"
+    id="studentUsername"
+    placeholder="Enter username"
+    required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Password</label>
+
+<input
+    type="text"
+    id="studentPassword"
+    placeholder="Enter password"
+    required
+>
+
+</div>
+
+</div>
+
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>Class</label>
+
+<input
+    type="text"
+    id="studentClass"
+    placeholder="Example: 10th Class"
+    required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Age</label>
+
+<input
+    type="number"
+    id="studentAge"
+    min="1"
+    max="100"
+    placeholder="Age"
+    required
+>
+
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Location</label>
+
+<input
+    type="text"
+    id="studentLocation"
+    placeholder="Example: Kurnool"
+>
+
+</div>
+
+
+<div class="form-actions">
+
+<button
+    type="button"
+    class="cancel-btn"
+    onclick="closeModal()"
+>
+    Cancel
+</button>
+
+<button
+    type="submit"
+    class="save-btn"
+>
+    Save Student
+</button>
+
+</div>
+
+
+</form>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* ================= STUDENTS ================= */
+
+const defaultStudents = [
+
+{
+    name:"Demo Student",
+    username:"student",
+    password:"student123",
+    studentClass:"10th Class",
+    age:"16",
+    location:"Kurnool"
+}
+
+];
+
+
+let students =
+    JSON.parse(
+        localStorage.getItem("pavanStudents")
+    );
+
+
+if(!students){
+
+    students = defaultStudents;
+
+    saveStudents();
+
+}
+
+
+let editingIndex = -1;
+
+
+/* ================= SAVE ================= */
+
+function saveStudents(){
+
+    localStorage.setItem(
+        "pavanStudents",
+        JSON.stringify(students)
+    );
+
+}
+
+
+/* ================= LOGIN DATA ================= */
+
+function getLoginData(){
+
+    return JSON.parse(
+        localStorage.getItem(
+            "pavanStudentLogins"
+        )
+    ) || [];
+
+}
+
+
+/* ================= STATISTICS ================= */
+
+function updateStatistics(){
+
+    const loginData = getLoginData();
+
+    let totalLogins = 0;
+
+    loginData.forEach(function(item){
+
+        totalLogins +=
+            Number(item.loginCount || 0);
+
+    });
+
+
+    const today =
+        new Date().toLocaleDateString();
+
+
+    let todayLogins = 0;
+
+    loginData.forEach(function(item){
+
+        if(
+            item.lastLogin &&
+            new Date(
+                item.lastLogin
+            ).toLocaleDateString()
+            === today
+        ){
+
+            todayLogins += 1;
+
+        }
+
+    });
+
+
+    document.getElementById(
+        "totalStudents"
+    ).textContent =
+        students.length;
+
+
+    document.getElementById(
+        "totalLogins"
+    ).textContent =
+        totalLogins;
+
+
+    document.getElementById(
+        "uniqueLogins"
+    ).textContent =
+        loginData.length;
+
+
+    document.getElementById(
+        "todayLogins"
+    ).textContent =
+        todayLogins;
+
+}
+
+
+/* ================= RENDER ================= */
+
+function renderStudents(){
+
+    const tbody =
+        document.getElementById(
+            "studentTable"
+        );
+
+
+    const search =
+        document.getElementById(
+            "search"
+        ).value
+        .toLowerCase()
+        .trim();
+
+
+    tbody.innerHTML = "";
+
+
+    const loginData =
+        getLoginData();
+
+
+    const filtered =
+        students.filter(
+            function(student){
+
+                return (
+
+                    student.name
+                    .toLowerCase()
+                    .includes(search)
+
+                    ||
+
+                    student.username
+                    .toLowerCase()
+                    .includes(search)
+
+                    ||
+
+                    student.studentClass
+                    .toLowerCase()
+                    .includes(search)
+
+                    ||
+
+                    student.location
+                    .toLowerCase()
+                    .includes(search)
+
+                );
+
+            }
+        );
+
+
+    if(filtered.length === 0){
+
+        tbody.innerHTML = `
+
+        <tr>
+            <td colspan="8">
+
+                <div class="empty">
+
+                    🎓
+
+                    <h3>
+                        No students found
+                    </h3>
+
+                    <p>
+                        Add a student or try another search.
+                    </p>
+
+                </div>
+
+            </td>
+        </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    filtered.forEach(function(student){
+
+        const realIndex =
+            students.indexOf(student);
+
+
+        const login =
+            loginData.find(
+                function(item){
+
+                    return item.username
+                        === student.username;
+
+                }
+            );
+
+
+        const loginCount =
+            login
+            ? Number(login.loginCount || 0)
+            : 0;
+
+
+        const status =
+            loginCount > 0
+            ? `<span class="badge online">Logged In</span>`
+            : `<span class="badge offline">Not Logged In</span>`;
+
+
+        tbody.innerHTML += `
+
+        <tr>
+
+            <td class="student-name">
+                ${escapeHTML(student.name)}
+            </td>
+
+            <td>
+                ${escapeHTML(student.username)}
+            </td>
+
+            <td>
+                ${escapeHTML(student.studentClass)}
+            </td>
+
+            <td>
+                ${escapeHTML(student.age)}
+            </td>
+
+            <td>
+                ${escapeHTML(student.location || "-")}
+            </td>
+
+            <td>
+                ${loginCount}
+            </td>
+
+            <td>
+                ${status}
+            </td>
+
+            <td>
+
+                <div class="actions">
+
+                    <button
+                        class="edit-btn"
+                        onclick="editStudent(${realIndex})"
+                    >
+                        ✏️
+                    </button>
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteStudent(${realIndex})"
+                    >
+                        🗑️
+                    </button>
+
+                </div>
+
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+
+    updateStatistics();
+
+}
+
+
+/* ================= ADD ================= */
+
+function openAddModal(){
+
+    editingIndex = -1;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "Add Student";
+
+
+    document.getElementById(
+        "studentName"
+    ).value = "";
+
+
+    document.getElementById(
+        "studentUsername"
+    ).value = "";
+
+
+    document.getElementById(
+        "studentPassword"
+    ).value = "";
+
+
+    document.getElementById(
+        "studentClass"
+    ).value = "";
+
+
+    document.getElementById(
+        "studentAge"
+    ).value = "";
+
+
+    document.getElementById(
+        "studentLocation"
+    ).value = "";
+
+
+    document.getElementById(
+        "studentModal"
+    ).classList.add("show");
+
+}
+
+
+/* ================= EDIT ================= */
+
+function editStudent(index){
+
+    const student =
+        students[index];
+
+
+    editingIndex = index;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "Edit Student";
+
+
+    document.getElementById(
+        "studentName"
+    ).value =
+        student.name;
+
+
+    document.getElementById(
+        "studentUsername"
+    ).value =
+        student.username;
+
+
+    document.getElementById(
+        "studentPassword"
+    ).value =
+        student.password;
+
+
+    document.getElementById(
+        "studentClass"
+    ).value =
+        student.studentClass;
+
+
+    document.getElementById(
+        "studentAge"
+    ).value =
+        student.age;
+
+
+    document.getElementById(
+        "studentLocation"
+    ).value =
+        student.location;
+
+
+    document.getElementById(
+        "studentModal"
+    ).classList.add("show");
+
+}
+
+
+/* ================= SAVE STUDENT ================= */
+
+function saveStudent(event){
+
+    event.preventDefault();
+
+
+    const student = {
+
+        name:
+            document.getElementById(
+                "studentName"
+            ).value.trim(),
+
+        username:
+            document.getElementById(
+                "studentUsername"
+            ).value.trim(),
+
+        password:
+            document.getElementById(
+                "studentPassword"
+            ).value.trim(),
+
+        studentClass:
+            document.getElementById(
+                "studentClass"
+            ).value.trim(),
+
+        age:
+            document.getElementById(
+                "studentAge"
+            ).value.trim(),
+
+        location:
+            document.getElementById(
+                "studentLocation"
+            ).value.trim()
+
+    };
+
+
+    if(editingIndex === -1){
+
+        students.push(student);
+
+        alert(
+            "Student added successfully!"
+        );
+
+    }
+
+    else{
+
+        students[editingIndex] =
+            student;
+
+        alert(
+            "Student updated successfully!"
+        );
+
+    }
+
+
+    saveStudents();
+
+    closeModal();
+
+    renderStudents();
+
+}
+
+
+/* ================= DELETE ================= */
+
+function deleteStudent(index){
+
+    const student =
+        students[index];
+
+
+    if(
+        !confirm(
+            'Delete "' +
+            student.name +
+            '"?'
+        )
+    ){
+
+        return;
+
+    }
+
+
+    students.splice(
+        index,
+        1
+    );
+
+
+    saveStudents();
+
+    renderStudents();
+
+
+    alert(
+        "Student deleted successfully!"
+    );
+
+}
+
+
+/* ================= CLOSE ================= */
+
+function closeModal(){
+
+    document.getElementById(
+        "studentModal"
+    )
+    .classList
+    .remove("show");
+
+}
+
+
+/* ================= LOGOUT ================= */
+
+function logout(){
+
+    sessionStorage.removeItem(
+        "currentRole"
+    );
+
+    sessionStorage.removeItem(
+        "currentUser"
+    );
+
+}
+
+
+/* ================= ESCAPE ================= */
+
+function escapeHTML(value){
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        value;
+
+    return div.innerHTML;
+
+}
+
+
+/* ================= INITIAL ================= */
+
+renderStudents();
+
+updateStatistics();
+
+</script>
+
+</body>
+</html>

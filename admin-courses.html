@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pavan Educator | Manage Courses</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fc;
+    color: #172033;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+    background: #111a2e;
+    color: white;
+    padding: 25px 18px;
+}
+
+.logo {
+    padding: 10px 12px 30px;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.logo span {
+    color: #4d8dff;
+}
+
+.admin-label {
+    color: #8e9bb3;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 0 12px 12px;
+}
+
+.menu {
+    list-style: none;
+}
+
+.menu li {
+    margin-bottom: 7px;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 13px 14px;
+    color: #c9d2e3;
+    text-decoration: none;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.menu a:hover,
+.menu a.active {
+    background: #2563eb;
+    color: white;
+}
+
+.menu-icon {
+    width: 24px;
+    text-align: center;
+}
+
+.logout {
+    position: absolute;
+    bottom: 25px;
+    left: 18px;
+    right: 18px;
+}
+
+.logout a {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    border-radius: 9px;
+    background: #1c2944;
+    color: #c9d2e3;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.logout a:hover {
+    background: #dc3545;
+    color: white;
+}
+
+/* ================= MAIN ================= */
+
+.main {
+    margin-left: 250px;
+    min-height: 100vh;
+}
+
+/* ================= TOPBAR ================= */
+
+.topbar {
+    height: 75px;
+    background: white;
+    border-bottom: 1px solid #e2e8f2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 35px;
+}
+
+.page-title h1 {
+    font-size: 23px;
+}
+
+.page-title p {
+    color: #7a869b;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.back-link {
+    text-decoration: none;
+    color: #2563eb;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* ================= CONTENT ================= */
+
+.content {
+    padding: 35px;
+}
+
+/* ================= HEADER ================= */
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.page-header h2 {
+    font-size: 28px;
+}
+
+.page-header p {
+    color: #7a869b;
+    margin-top: 6px;
+    font-size: 14px;
+}
+
+.add-btn {
+    border: none;
+    background: #2563eb;
+    color: white;
+    padding: 13px 20px;
+    border-radius: 9px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background: #1d4ed8;
+}
+
+/* ================= SEARCH ================= */
+
+.search-box {
+    width: 100%;
+    height: 52px;
+    background: white;
+    border: 1px solid #dce4f0;
+    border-radius: 10px;
+    padding: 0 18px;
+    font-size: 14px;
+    outline: none;
+    margin-bottom: 25px;
+}
+
+.search-box:focus {
+    border-color: #2563eb;
+}
+
+/* ================= COURSE GRID ================= */
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.course-card {
+    background: white;
+    border: 1px solid #e1e7f2;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: .2s;
+}
+
+.course-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 35px rgba(30,70,140,.08);
+}
+
+.course-icon {
+    height: 130px;
+    background: linear-gradient(135deg,#e9f0ff,#f7faff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 55px;
+}
+
+.course-info {
+    padding: 22px;
+}
+
+.course-category {
+    color: #2563eb;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.course-info h3 {
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.course-info p {
+    color: #687389;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.course-actions {
+    display: flex;
+    gap: 9px;
+    margin-top: 18px;
+}
+
+.edit-btn,
+.delete-btn {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.edit-btn {
+    background: #eaf1ff;
+    color: #2563eb;
+}
+
+.delete-btn {
+    background: #fff0f0;
+    color: #dc3545;
+}
+
+.edit-btn:hover {
+    background: #dce8ff;
+}
+
+.delete-btn:hover {
+    background: #ffe0e0;
+}
+
+/* ================= MODAL ================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,20,40,.55);
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-box {
+    width: 100%;
+    max-width: 550px;
+    background: white;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 25px 70px rgba(0,0,0,.2);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.modal-header h2 {
+    font-size: 23px;
+}
+
+.close-btn {
+    border: none;
+    background: #f0f3f8;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.form-group {
+    margin-bottom: 17px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    border: 1px solid #d5deec;
+    border-radius: 8px;
+    padding: 12px;
+    font-family: inherit;
+    outline: none;
+}
+
+.form-group textarea {
+    height: 90px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #2563eb;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.cancel-btn,
+.save-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.cancel-btn {
+    border: 1px solid #d5deec;
+    background: white;
+    color: #687389;
+}
+
+.save-btn {
+    border: none;
+    background: #2563eb;
+    color: white;
+}
+
+/* ================= EMPTY ================= */
+
+.empty {
+    background: white;
+    border: 1px solid #e1e7f2;
+    border-radius: 15px;
+    padding: 50px;
+    text-align: center;
+    color: #7a869b;
+    grid-column: 1 / -1;
+}
+
+.empty-icon {
+    font-size: 45px;
+    margin-bottom: 12px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:1000px) {
+
+    .sidebar {
+        width: 210px;
+    }
+
+    .main {
+        margin-left: 210px;
+    }
+
+    .course-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width:700px) {
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .main {
+        margin-left: 0;
+    }
+
+    .logout {
+        position: relative;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        margin-top: 20px;
+    }
+
+    .topbar {
+        padding: 0 20px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .course-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        Pavan <span>Educator</span>
+    </div>
+
+    <div class="admin-label">
+        ADMIN PANEL
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="admin-dashboard.html">
+                <span class="menu-icon">🏠</span>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="admin-courses.html" class="active">
+                <span class="menu-icon">📚</span>
+                Courses
+            </a>
+        </li>
+
+        <li>
+            <a href="admin-projects.html">
+                <span class="menu-icon">💻</span>
+                Projects
+            </a>
+        </li>
+
+        <li>
+            <a href="admin-videos.html">
+                <span class="menu-icon">🎥</span>
+                Videos
+            </a>
+        </li>
+
+        <li>
+            <a href="admin-students.html">
+                <span class="menu-icon">🎓</span>
+                Students
+            </a>
+        </li>
+
+        <li>
+            <a href="admin-settings.html">
+                <span class="menu-icon">⚙️</span>
+                Settings
+            </a>
+        </li>
+
+    </ul>
+
+    <div class="logout">
+
+        <a href="login.html" onclick="logout()">
+            🚪 Logout
+        </a>
+
+    </div>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div class="page-title">
+
+            <h1>
+                Course Management
+            </h1>
+
+            <p>
+                Add and manage your educational courses
+            </p>
+
+        </div>
+
+        <a
+            href="admin-dashboard.html"
+            class="back-link"
+        >
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    <!-- CONTENT -->
+
+    <div class="content">
+
+
+        <!-- PAGE HEADER -->
+
+        <div class="page-header">
+
+            <div>
+
+                <h2>
+                    Courses
+                </h2>
+
+                <p>
+                    Create, edit and remove courses.
+                </p>
+
+            </div>
+
+            <button
+                class="add-btn"
+                onclick="openAddModal()"
+            >
+                + Add Course
+            </button>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <input
+            type="text"
+            id="search"
+            class="search-box"
+            placeholder="🔍 Search courses..."
+            onkeyup="renderCourses()"
+        >
+
+
+        <!-- COURSE GRID -->
+
+        <div
+            class="course-grid"
+            id="courseGrid"
+        ></div>
+
+
+    </div>
+
+</main>
+
+
+<!-- ================= MODAL ================= -->
+
+<div
+    class="modal"
+    id="courseModal"
+>
+
+    <div class="modal-box">
+
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">
+                Add Course
+            </h2>
+
+            <button
+                class="close-btn"
+                onclick="closeModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form onsubmit="saveCourse(event)">
+
+
+            <div class="form-group">
+
+                <label>
+                    Course Name
+                </label>
+
+                <input
+                    type="text"
+                    id="courseName"
+                    placeholder="Example: Java Programming"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Category
+                </label>
+
+                <select id="courseCategory">
+
+                    <option>
+                        Programming
+                    </option>
+
+                    <option>
+                        Web Development
+                    </option>
+
+                    <option>
+                        Database
+                    </option>
+
+                    <option>
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    id="courseDescription"
+                    placeholder="Enter course description..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Icon / Emoji
+                </label>
+
+                <input
+                    type="text"
+                    id="courseIcon"
+                    placeholder="☕"
+                    maxlength="4"
+                >
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="closeModal()"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="save-btn"
+                >
+                    Save Course
+                </button>
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* ================= DEFAULT COURSES ================= */
+
+const defaultCourses = [
+
+    {
+        name: "Java Programming",
+        category: "Programming",
+        description:
+            "Learn Java fundamentals, OOP, classes, objects and practical programming.",
+        icon: "☕"
+    },
+
+    {
+        name: "Web Development",
+        category: "Web Development",
+        description:
+            "Learn HTML, CSS and JavaScript and build modern responsive websites.",
+        icon: "🌐"
+    },
+
+    {
+        name: "Python Programming",
+        category: "Programming",
+        description:
+            "Learn Python programming fundamentals and practical applications.",
+        icon: "🐍"
+    },
+
+    {
+        name: "MySQL Database",
+        category: "Database",
+        description:
+            "Learn SQL, tables, relationships and database management.",
+        icon: "🗄️"
+    },
+
+    {
+        name: "C Programming",
+        category: "Programming",
+        description:
+            "Learn variables, loops, arrays, functions and programming fundamentals.",
+        icon: "💻"
+    },
+
+    {
+        name: "JavaScript",
+        category: "Web Development",
+        description:
+            "Learn JavaScript fundamentals and create interactive websites.",
+        icon: "⚡"
+    }
+
+];
+
+
+/* ================= LOAD COURSES ================= */
+
+let courses =
+    JSON.parse(
+        localStorage.getItem("pavanCourses")
+    );
+
+
+if (!courses || courses.length === 0) {
+
+    courses = defaultCourses;
+
+    saveCourses();
+
+}
+
+
+/* ================= EDIT INDEX ================= */
+
+let editingIndex = -1;
+
+
+/* ================= SAVE STORAGE ================= */
+
+function saveCourses() {
+
+    localStorage.setItem(
+        "pavanCourses",
+        JSON.stringify(courses)
+    );
+
+}
+
+
+/* ================= RENDER ================= */
+
+function renderCourses() {
+
+    const grid =
+        document.getElementById(
+            "courseGrid"
+        );
+
+    const search =
+        document.getElementById(
+            "search"
+        )
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    grid.innerHTML = "";
+
+
+    const filtered =
+        courses.filter(function(course) {
+
+            return (
+                course.name
+                .toLowerCase()
+                .includes(search)
+                ||
+                course.category
+                .toLowerCase()
+                .includes(search)
+            );
+
+        });
+
+
+    if (filtered.length === 0) {
+
+        grid.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    📚
+                </div>
+
+                <h3>
+                    No courses found
+                </h3>
+
+                <p>
+                    Try another search or add a new course.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    filtered.forEach(function(course) {
+
+        const realIndex =
+            courses.indexOf(course);
+
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "course-card";
+
+
+        card.innerHTML = `
+
+            <div class="course-icon">
+                ${course.icon || "📚"}
+            </div>
+
+            <div class="course-info">
+
+                <div class="course-category">
+                    ${escapeHTML(course.category)}
+                </div>
+
+                <h3>
+                    ${escapeHTML(course.name)}
+                </h3>
+
+                <p>
+                    ${escapeHTML(course.description)}
+                </p>
+
+                <div class="course-actions">
+
+                    <button
+                        class="edit-btn"
+                        onclick="editCourse(${realIndex})"
+                    >
+                        ✏️ Edit
+                    </button>
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteCourse(${realIndex})"
+                    >
+                        🗑️ Delete
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+/* ================= OPEN ADD ================= */
+
+function openAddModal() {
+
+    editingIndex = -1;
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "Add Course";
+
+
+    document.getElementById(
+        "courseName"
+    ).value = "";
+
+
+    document.getElementById(
+        "courseCategory"
+    ).value =
+        "Programming";
+
+
+    document.getElementById(
+        "courseDescription"
+    ).value = "";
+
+
+    document.getElementById(
+        "courseIcon"
+    ).value = "";
+
+
+    document.getElementById(
+        "courseModal"
+    ).classList.add("show");
+
+}
+
+
+/* ================= EDIT COURSE ================= */
+
+function editCourse(index) {
+
+    const course =
+        courses[index];
+
+
+    editingIndex = index;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "Edit Course";
+
+
+    document.getElementById(
+        "courseName"
+    ).value =
+        course.name;
+
+
+    document.getElementById(
+        "courseCategory"
+    ).value =
+        course.category;
+
+
+    document.getElementById(
+        "courseDescription"
+    ).value =
+        course.description;
+
+
+    document.getElementById(
+        "courseIcon"
+    ).value =
+        course.icon;
+
+
+    document.getElementById(
+        "courseModal"
+    ).classList.add("show");
+
+}
+
+
+/* ================= SAVE COURSE ================= */
+
+function saveCourse(event) {
+
+    event.preventDefault();
+
+
+    const course = {
+
+        name:
+            document.getElementById(
+                "courseName"
+            ).value.trim(),
+
+        category:
+            document.getElementById(
+                "courseCategory"
+            ).value,
+
+        description:
+            document.getElementById(
+                "courseDescription"
+            ).value.trim(),
+
+        icon:
+            document.getElementById(
+                "courseIcon"
+            ).value.trim() || "📚"
+
+    };
+
+
+    if (editingIndex === -1) {
+
+        courses.push(course);
+
+    }
+
+    else {
+
+        courses[editingIndex] =
+            course;
+
+    }
+
+
+    saveCourses();
+
+    closeModal();
+
+    renderCourses();
+
+
+    alert(
+        editingIndex === -1
+        ? "Course added successfully!"
+        : "Course updated successfully!"
+    );
+
+}
+
+
+/* ================= DELETE ================= */
+
+function deleteCourse(index) {
+
+    const course =
+        courses[index];
+
+
+    const confirmed =
+        confirm(
+            'Delete "' +
+            course.name +
+            '"?'
+        );
+
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+
+    courses.splice(index, 1);
+
+    saveCourses();
+
+    renderCourses();
+
+
+    alert(
+        "Course deleted successfully!"
+    );
+
+}
+
+
+/* ================= CLOSE MODAL ================= */
+
+function closeModal() {
+
+    document.getElementById(
+        "courseModal"
+    ).classList.remove("show");
+
+}
+
+
+/* ================= ESCAPE HTML ================= */
+
+function escapeHTML(value) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        value;
+
+    return div.innerHTML;
+
+}
+
+
+/* ================= LOGOUT ================= */
+
+function logout() {
+
+    sessionStorage.removeItem(
+        "currentRole"
+    );
+
+    sessionStorage.removeItem(
+        "currentUser"
+    );
+
+}
+
+
+/* ================= INITIAL LOAD ================= */
+
+renderCourses();
+
+</script>
+
+</body>
+</html>

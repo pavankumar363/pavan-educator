@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -9,576 +10,557 @@
 
 <style>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f4f7fc;
-    color: #172033;
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f7fc;
+    color:#172033;
 }
+
 
 /* ================= SIDEBAR ================= */
 
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
 
-    width: 250px;
-    height: 100vh;
+    width:250px;
+    height:100vh;
 
-    background: #111a2e;
-    color: white;
+    background:#111a2e;
+    color:white;
 
-    padding: 25px 18px;
+    padding:25px 18px;
 
-    z-index: 1000;
+    display:flex;
+    flex-direction:column;
 }
 
-.logo {
-    padding: 10px 12px 30px;
+.logo{
+    padding:10px 12px 30px;
 
-    font-size: 23px;
-    font-weight: 800;
+    font-size:23px;
+    font-weight:800;
 }
 
-.logo span {
-    color: #4d8dff;
+.logo span{
+    color:#4d8dff;
 }
 
-.admin-label {
-    color: #8e9bb3;
-    font-size: 11px;
-    font-weight: 700;
+.admin-label{
+    color:#8e9bb3;
 
-    letter-spacing: 1px;
+    font-size:11px;
+    font-weight:700;
 
-    padding: 0 12px 12px;
+    letter-spacing:1px;
+
+    padding:0 12px 12px;
 }
 
-.menu {
-    list-style: none;
+.menu{
+    list-style:none;
 }
 
-.menu li {
-    margin-bottom: 7px;
+.menu li{
+    margin-bottom:7px;
 }
 
-.menu a {
-    display: flex;
-    align-items: center;
+.menu a{
+    display:flex;
 
-    gap: 13px;
+    align-items:center;
 
-    padding: 13px 14px;
+    gap:13px;
 
-    color: #c9d2e3;
-    text-decoration: none;
+    padding:13px 14px;
 
-    border-radius: 9px;
+    color:#c9d2e3;
 
-    font-size: 14px;
-    font-weight: 600;
+    text-decoration:none;
 
-    transition: .2s;
+    border-radius:9px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    transition:.2s;
 }
 
 .menu a:hover,
-.menu a.active {
-    background: #2563eb;
-    color: white;
+.menu a.active{
+    background:#2563eb;
+    color:white;
 }
 
-.menu-icon {
-    width: 24px;
-    text-align: center;
+.menu-icon{
+    width:24px;
+    text-align:center;
 }
+
+.logout{
+    margin-top:auto;
+}
+
+.logout a{
+    display:block;
+
+    text-align:center;
+
+    padding:12px;
+
+    border-radius:9px;
+
+    background:#1c2944;
+
+    color:#c9d2e3;
+
+    text-decoration:none;
+
+    font-size:13px;
+
+    font-weight:700;
+}
+
+.logout a:hover{
+    background:#dc3545;
+    color:white;
+}
+
 
 /* ================= MAIN ================= */
 
-.main {
-    margin-left: 250px;
-    min-height: 100vh;
+.main{
+    margin-left:250px;
+
+    min-height:100vh;
 }
+
 
 /* ================= TOPBAR ================= */
 
-.topbar {
-    height: 75px;
+.topbar{
+    height:75px;
 
-    background: white;
+    background:white;
 
-    border-bottom: 1px solid #e2e8f2;
+    border-bottom:
+        1px solid #e2e8f2;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display:flex;
 
-    padding: 0 35px;
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 35px;
 }
 
-.page-title h1 {
-    font-size: 23px;
+.page-title h1{
+    font-size:23px;
 }
 
-.page-title p {
-    color: #7a869b;
-    font-size: 13px;
-    margin-top: 4px;
+.page-title p{
+    color:#7a869b;
+
+    font-size:13px;
+
+    margin-top:4px;
 }
 
-.user-area {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.admin-user{
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:14px;
+
+    font-weight:700;
 }
 
-.avatar {
-    width: 42px;
-    height: 42px;
+.admin-avatar{
+    width:38px;
+    height:38px;
 
-    border-radius: 50%;
+    border-radius:50%;
 
-    background: #e7efff;
+    background:#2563eb;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    color:white;
 
-    font-size: 20px;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
 }
 
-.user-info strong {
-    display: block;
-    font-size: 14px;
-}
-
-.user-info span {
-    color: #7a869b;
-    font-size: 12px;
-}
 
 /* ================= CONTENT ================= */
 
-.content {
-    padding: 35px;
+.content{
+    padding:35px;
 }
+
 
 /* ================= WELCOME ================= */
 
-.welcome {
+.welcome{
     background:
         linear-gradient(
-            120deg,
+            135deg,
             #2563eb,
-            #5948e8
+            #5848f5
         );
 
-    color: white;
+    color:white;
 
-    border-radius: 17px;
+    border-radius:18px;
 
-    padding: 30px 35px;
+    padding:30px 35px;
 
-    margin-bottom: 28px;
+    margin-bottom:25px;
 
-    box-shadow:
-        0 15px 35px
-        rgba(37,99,235,.18);
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
 }
 
-.welcome h2 {
-    font-size: 28px;
-    margin-bottom: 8px;
+.welcome h2{
+    font-size:27px;
+
+    margin-bottom:8px;
 }
 
-.welcome p {
-    color: #dce7ff;
-    line-height: 1.6;
+.welcome p{
+    opacity:.9;
+
+    font-size:14px;
 }
 
-/* ================= STAT CARDS ================= */
+.welcome-icon{
+    width:70px;
+    height:70px;
 
-.stats {
-    display: grid;
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.18);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:34px;
+}
+
+
+/* ================= STATISTICS ================= */
+
+.stats{
+    display:grid;
 
     grid-template-columns:
-        repeat(4, 1fr);
+        repeat(4,1fr);
 
-    gap: 20px;
+    gap:18px;
 
-    margin-bottom: 30px;
+    margin-bottom:25px;
 }
 
-.stat-card {
-    background: white;
+.stat{
+    background:white;
 
-    border: 1px solid #e1e7f2;
+    border:
+        1px solid #e1e7f2;
 
-    border-radius: 14px;
+    border-radius:14px;
 
-    padding: 23px;
+    padding:22px;
 
-    display: flex;
-
-    align-items: center;
-
-    gap: 17px;
-
-    transition: .2s;
+    transition:.2s;
 }
 
-.stat-card:hover {
-    transform: translateY(-4px);
+.stat:hover{
+    transform:translateY(-3px);
 
     box-shadow:
-        0 12px 30px
-        rgba(30,70,140,.08);
+        0 10px 25px
+        rgba(30,70,140,.07);
 }
 
-.stat-icon {
-    width: 52px;
-    height: 52px;
+.stat-top{
+    display:flex;
 
-    border-radius: 12px;
+    align-items:center;
 
-    background: #eaf1ff;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    font-size: 24px;
+    justify-content:space-between;
 }
 
-.stat-info span {
-    color: #7a869b;
+.stat-icon{
+    width:45px;
+    height:45px;
 
-    font-size: 12px;
+    border-radius:10px;
+
+    background:#edf3ff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:23px;
 }
 
-.stat-info strong {
-    display: block;
+.stat h2{
+    margin-top:18px;
 
-    font-size: 26px;
-
-    margin-top: 4px;
+    font-size:28px;
 }
 
-/* ================= GRID ================= */
+.stat p{
+    color:#7a869b;
 
-.dashboard-grid {
-    display: grid;
+    font-size:13px;
 
-    grid-template-columns:
-        2fr 1fr;
-
-    gap: 25px;
+    margin-top:4px;
 }
 
-.panel {
-    background: white;
 
-    border: 1px solid #e1e7f2;
+/* ================= SECTION ================= */
 
-    border-radius: 15px;
+.section-title{
+    display:flex;
 
-    padding: 25px;
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin:30px 0 15px;
 }
 
-.panel-title {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    margin-bottom: 22px;
+.section-title h2{
+    font-size:21px;
 }
 
-.panel-title h2 {
-    font-size: 19px;
+.view-all{
+    color:#2563eb;
+
+    text-decoration:none;
+
+    font-size:13px;
+
+    font-weight:700;
 }
 
-.panel-title a {
-    color: #2563eb;
-
-    font-size: 13px;
-
-    text-decoration: none;
-
-    font-weight: 700;
-}
 
 /* ================= QUICK ACTIONS ================= */
 
-.actions {
-    display: grid;
+.actions{
+    display:grid;
 
     grid-template-columns:
-        repeat(2, 1fr);
+        repeat(4,1fr);
 
-    gap: 14px;
+    gap:18px;
 }
 
-.action {
-    border: 1px solid #e1e7f2;
+.action{
+    background:white;
 
-    border-radius: 11px;
+    border:
+        1px solid #e1e7f2;
 
-    padding: 18px;
+    border-radius:14px;
 
-    text-decoration: none;
+    padding:23px;
 
-    color: #172033;
+    text-decoration:none;
 
-    transition: .2s;
+    color:#172033;
+
+    transition:.2s;
 }
 
-.action:hover {
-    border-color: #2563eb;
+.action:hover{
+    transform:translateY(-3px);
 
-    transform: translateY(-2px);
+    border-color:#2563eb;
 
     box-shadow:
-        0 8px 20px
-        rgba(37,99,235,.07);
+        0 10px 25px
+        rgba(30,70,140,.07);
 }
 
-.action-icon {
-    font-size: 26px;
+.action-icon{
+    font-size:30px;
 
-    margin-bottom: 10px;
+    margin-bottom:13px;
 }
 
-.action h3 {
-    font-size: 15px;
+.action h3{
+    font-size:16px;
 
-    margin-bottom: 5px;
+    margin-bottom:6px;
 }
 
-.action p {
-    color: #7a869b;
+.action p{
+    color:#7a869b;
 
-    font-size: 12px;
+    font-size:12px;
 
-    line-height: 1.5;
+    line-height:1.5;
 }
 
-/* ================= ACTIVITY ================= */
 
-.activity {
-    list-style: none;
+/* ================= LOGIN ACTIVITY ================= */
+
+.activity{
+    background:white;
+
+    border:
+        1px solid #e1e7f2;
+
+    border-radius:14px;
+
+    overflow:hidden;
 }
 
-.activity li {
-    display: flex;
+.activity table{
+    width:100%;
 
-    gap: 13px;
-
-    padding: 14px 0;
-
-    border-bottom:
-        1px solid #edf0f5;
+    border-collapse:collapse;
 }
 
-.activity li:last-child {
-    border-bottom: none;
+.activity th{
+    background:#f7f9fd;
+
+    color:#687389;
+
+    text-align:left;
+
+    padding:15px;
+
+    font-size:11px;
+
+    text-transform:uppercase;
 }
 
-.activity-icon {
-    width: 34px;
-    height: 34px;
+.activity td{
+    padding:15px;
 
-    background: #edf3ff;
-
-    border-radius: 8px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-}
-
-.activity-text strong {
-    display: block;
-
-    font-size: 13px;
-}
-
-.activity-text span {
-    color: #8a95a7;
-
-    font-size: 11px;
-
-    display: block;
-
-    margin-top: 3px;
-}
-
-/* ================= TABLE ================= */
-
-.table-wrapper {
-    margin-top: 25px;
-
-    background: white;
-
-    border: 1px solid #e1e7f2;
-
-    border-radius: 15px;
-
-    padding: 25px;
-
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-
-    border-collapse: collapse;
-}
-
-th {
-    text-align: left;
-
-    color: #6e7b91;
-
-    font-size: 12px;
-
-    padding: 13px;
-
-    background: #f7f9fd;
-}
-
-td {
-    padding: 15px 13px;
-
-    border-bottom:
+    border-top:
         1px solid #edf0f5;
 
-    font-size: 13px;
+    font-size:13px;
 }
 
-.status {
-    padding: 5px 9px;
+.status{
+    display:inline-block;
 
-    border-radius: 20px;
+    padding:5px 9px;
 
-    font-size: 11px;
+    border-radius:20px;
 
-    font-weight: 700;
+    background:#e7f8ee;
+
+    color:#16834b;
+
+    font-size:10px;
+
+    font-weight:700;
 }
 
-.status.active {
-    background: #e6f8ef;
-    color: #16834b;
+.no-data{
+    padding:35px;
+
+    text-align:center;
+
+    color:#7a869b;
 }
 
-/* ================= LOGOUT ================= */
 
-.logout {
-    position: absolute;
+/* ================= RESPONSIVE ================= */
 
-    bottom: 25px;
+@media(max-width:1100px){
 
-    left: 18px;
-    right: 18px;
-}
-
-.logout a {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 8px;
-
-    padding: 12px;
-
-    border-radius: 9px;
-
-    background: #1c2944;
-
-    color: #c9d2e3;
-
-    text-decoration: none;
-
-    font-size: 13px;
-
-    font-weight: 700;
-}
-
-.logout a:hover {
-    background: #dc3545;
-    color: white;
-}
-
-/* ================= MOBILE ================= */
-
-@media(max-width:1000px) {
-
-    .sidebar {
-        width: 210px;
-    }
-
-    .main {
-        margin-left: 210px;
-    }
-
-    .stats {
+    .stats{
         grid-template-columns:
             repeat(2,1fr);
     }
 
-    .dashboard-grid {
-        grid-template-columns: 1fr;
+    .actions{
+        grid-template-columns:
+            repeat(2,1fr);
     }
+
 }
 
-@media(max-width:700px) {
+@media(max-width:700px){
 
-    .sidebar {
-        position: relative;
+    .sidebar{
+        position:relative;
 
-        width: 100%;
+        width:100%;
 
-        height: auto;
+        height:auto;
     }
 
-    .main {
-        margin-left: 0;
+    .main{
+        margin-left:0;
     }
 
-    .logout {
-        position: relative;
-
-        left: auto;
-        right: auto;
-        bottom: auto;
-
-        margin-top: 20px;
+    .logout{
+        margin-top:20px;
     }
 
-    .topbar {
-        padding: 0 20px;
+    .topbar{
+        padding:0 20px;
     }
 
-    .content {
-        padding: 20px;
+    .content{
+        padding:20px;
     }
 
-    .stats {
-        grid-template-columns: 1fr;
+    .welcome{
+        padding:25px;
+
+        align-items:flex-start;
     }
 
-    .actions {
-        grid-template-columns: 1fr;
+    .welcome-icon{
+        display:none;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .actions{
+        grid-template-columns:1fr;
+    }
+
+    .activity{
+        overflow-x:auto;
+    }
+
+    .activity table{
+        min-width:650px;
     }
 
 }
@@ -586,6 +568,7 @@ td {
 </style>
 
 </head>
+
 
 <body>
 
@@ -603,7 +586,9 @@ td {
 
 
     <div class="admin-label">
+
         ADMIN PANEL
+
     </div>
 
 
@@ -723,6 +708,7 @@ td {
 </aside>
 
 
+
 <!-- ================= MAIN ================= -->
 
 <main class="main">
@@ -740,37 +726,27 @@ td {
             </h1>
 
             <p>
-                Manage your Pavan Educator website
+                Manage your Pavan Educator platform
             </p>
 
         </div>
 
 
-        <div class="user-area">
+        <div class="admin-user">
 
-
-            <div class="avatar">
+            <div class="admin-avatar">
                 🛡️
             </div>
 
-
-            <div class="user-info">
-
-                <strong id="adminName">
-                    Admin
-                </strong>
-
-                <span>
-                    Administrator
-                </span>
-
-            </div>
-
+            <span>
+                Admin
+            </span>
 
         </div>
 
 
     </header>
+
 
 
     <!-- CONTENT -->
@@ -782,358 +758,305 @@ td {
 
         <section class="welcome">
 
-            <h2>
-                Welcome back, Admin! 👋
-            </h2>
 
-            <p>
-                Manage courses, projects, videos and
-                student content from your dashboard.
-            </p>
+            <div>
+
+                <h2>
+                    Welcome back, Admin! 👋
+                </h2>
+
+                <p>
+                    Here's what's happening
+                    on your platform today.
+                </p>
+
+            </div>
+
+
+            <div class="welcome-icon">
+
+                🛡️
+
+            </div>
+
 
         </section>
 
 
-        <!-- STATISTICS -->
+
+        <!-- ================= STATS ================= -->
 
         <section class="stats">
 
 
-            <div class="stat-card">
+            <!-- TOTAL STUDENTS -->
 
-                <div class="stat-icon">
-                    📚
-                </div>
+            <div class="stat">
 
-                <div class="stat-info">
 
-                    <span>
-                        Total Courses
-                    </span>
+                <div class="stat-top">
 
-                    <strong>
-                        6
-                    </strong>
+                    <div class="stat-icon">
+                        🎓
+                    </div>
 
                 </div>
+
+
+                <h2 id="adminTotalStudents">
+                    0
+                </h2>
+
+
+                <p>
+                    Total Students
+                </p>
+
 
             </div>
 
 
-            <div class="stat-card">
 
-                <div class="stat-icon">
-                    💻
-                </div>
+            <!-- TOTAL LOGINS -->
 
-                <div class="stat-info">
+            <div class="stat">
 
-                    <span>
-                        Projects
-                    </span>
 
-                    <strong>
-                        6
-                    </strong>
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        🔐
+                    </div>
 
                 </div>
+
+
+                <h2 id="adminTotalLogins">
+                    0
+                </h2>
+
+
+                <p>
+                    Total Student Logins
+                </p>
+
 
             </div>
 
 
-            <div class="stat-card">
 
-                <div class="stat-icon">
-                    🎥
-                </div>
+            <!-- STUDENTS LOGGED IN -->
 
-                <div class="stat-info">
+            <div class="stat">
 
-                    <span>
-                        Videos
-                    </span>
 
-                    <strong>
-                        6
-                    </strong>
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        🟢
+                    </div>
 
                 </div>
+
+
+                <h2 id="adminStudentsLoggedIn">
+                    0
+                </h2>
+
+
+                <p>
+                    Students Logged In
+                </p>
+
 
             </div>
 
 
-            <div class="stat-card">
 
-                <div class="stat-icon">
+            <!-- STUDENT PROJECTS -->
+
+            <div class="stat">
+
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        💻
+                    </div>
+
+                </div>
+
+
+                <h2 id="adminStudentProjects">
+                    0
+                </h2>
+
+
+                <p>
+                    Student Projects
+                </p>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ================= QUICK ACTIONS ================= -->
+
+        <div class="section-title">
+
+            <h2>
+                Quick Management
+            </h2>
+
+        </div>
+
+
+        <section class="actions">
+
+
+            <a
+                href="admin-students.html"
+                class="action"
+            >
+
+                <div class="action-icon">
                     🎓
                 </div>
 
-                <div class="stat-info">
+                <h3>
+                    Students
+                </h3>
 
-                    <span>
-                        Students
-                    </span>
+                <p>
+                    Manage student accounts
+                    and login activity.
+                </p>
 
-                    <strong>
-                        0
-                    </strong>
+            </a>
 
+
+
+            <a
+                href="admin-projects.html"
+                class="action"
+            >
+
+                <div class="action-icon">
+                    💻
                 </div>
 
-            </div>
+                <h3>
+                    Projects
+                </h3>
+
+                <p>
+                    Manage projects on
+                    your platform.
+                </p>
+
+            </a>
+
+
+
+            <a
+                href="admin-courses.html"
+                class="action"
+            >
+
+                <div class="action-icon">
+                    📚
+                </div>
+
+                <h3>
+                    Courses
+                </h3>
+
+                <p>
+                    Add and manage
+                    educational courses.
+                </p>
+
+            </a>
+
+
+
+            <a
+                href="admin-videos.html"
+                class="action"
+            >
+
+                <div class="action-icon">
+                    🎥
+                </div>
+
+                <h3>
+                    Videos
+                </h3>
+
+                <p>
+                    Manage educational
+                    videos.
+                </p>
+
+            </a>
 
 
         </section>
 
 
-        <!-- DASHBOARD GRID -->
 
-        <section class="dashboard-grid">
+        <!-- ================= LOGIN ACTIVITY ================= -->
 
+        <div class="section-title">
 
-            <!-- QUICK ACTIONS -->
+            <h2>
+                Recent Student Login Activity
+            </h2>
 
-            <div class="panel">
 
+            <a
+                href="admin-students.html"
+                class="view-all"
+            >
+                View Students →
+            </a>
 
-                <div class="panel-title">
+        </div>
 
-                    <h2>
-                        Quick Actions
-                    </h2>
 
-                </div>
 
-
-                <div class="actions">
-
-
-                    <a
-                        href="admin-courses.html"
-                        class="action"
-                    >
-
-                        <div class="action-icon">
-                            📚
-                        </div>
-
-                        <h3>
-                            Manage Courses
-                        </h3>
-
-                        <p>
-                            Add, edit and manage courses.
-                        </p>
-
-                    </a>
-
-
-                    <a
-                        href="admin-projects.html"
-                        class="action"
-                    >
-
-                        <div class="action-icon">
-                            💻
-                        </div>
-
-                        <h3>
-                            Manage Projects
-                        </h3>
-
-                        <p>
-                            Add and organize projects.
-                        </p>
-
-                    </a>
-
-
-                    <a
-                        href="admin-videos.html"
-                        class="action"
-                    >
-
-                        <div class="action-icon">
-                            🎥
-                        </div>
-
-                        <h3>
-                            Manage Videos
-                        </h3>
-
-                        <p>
-                            Add educational videos.
-                        </p>
-
-                    </a>
-
-
-                    <a
-                        href="admin-students.html"
-                        class="action"
-                    >
-
-                        <div class="action-icon">
-                            🎓
-                        </div>
-
-                        <h3>
-                            Students
-                        </h3>
-
-                        <p>
-                            View and manage students.
-                        </p>
-
-                    </a>
-
-
-                </div>
-
-
-            </div>
-
-
-            <!-- ACTIVITY -->
-
-            <div class="panel">
-
-
-                <div class="panel-title">
-
-                    <h2>
-                        Recent Activity
-                    </h2>
-
-                </div>
-
-
-                <ul class="activity">
-
-
-                    <li>
-
-                        <div class="activity-icon">
-                            📚
-                        </div>
-
-                        <div class="activity-text">
-
-                            <strong>
-                                Courses page updated
-                            </strong>
-
-                            <span>
-                                Recently
-                            </span>
-
-                        </div>
-
-                    </li>
-
-
-                    <li>
-
-                        <div class="activity-icon">
-                            💻
-                        </div>
-
-                        <div class="activity-text">
-
-                            <strong>
-                                Projects added
-                            </strong>
-
-                            <span>
-                                Recently
-                            </span>
-
-                        </div>
-
-                    </li>
-
-
-                    <li>
-
-                        <div class="activity-icon">
-                            🎥
-                        </div>
-
-                        <div class="activity-text">
-
-                            <strong>
-                                Videos page created
-                            </strong>
-
-                            <span>
-                                Recently
-                            </span>
-
-                        </div>
-
-                    </li>
-
-
-                    <li>
-
-                        <div class="activity-icon">
-                            🌐
-                        </div>
-
-                        <div class="activity-text">
-
-                            <strong>
-                                Website updated
-                            </strong>
-
-                            <span>
-                                Recently
-                            </span>
-
-                        </div>
-
-                    </li>
-
-
-                </ul>
-
-
-            </div>
-
-
-        </section>
-
-
-        <!-- WEBSITE STATUS -->
-
-        <section class="table-wrapper">
-
-
-            <div class="panel-title">
-
-                <h2>
-                    Website Status
-                </h2>
-
-            </div>
+        <section class="activity">
 
 
             <table>
+
 
                 <thead>
 
                     <tr>
 
                         <th>
-                            SERVICE
+                            Username
                         </th>
 
                         <th>
-                            STATUS
+                            Login Count
                         </th>
 
                         <th>
-                            DESCRIPTION
+                            First Login
+                        </th>
+
+                        <th>
+                            Last Login
+                        </th>
+
+                        <th>
+                            Status
                         </th>
 
                     </tr>
@@ -1141,94 +1064,10 @@ td {
                 </thead>
 
 
-                <tbody>
-
-
-                    <tr>
-
-                        <td>
-                            Website
-                        </td>
-
-                        <td>
-
-                            <span class="status active">
-                                Online
-                            </span>
-
-                        </td>
-
-                        <td>
-                            Pavan Educator website
-                        </td>
-
-                    </tr>
-
-
-                    <tr>
-
-                        <td>
-                            Courses
-                        </td>
-
-                        <td>
-
-                            <span class="status active">
-                                Active
-                            </span>
-
-                        </td>
-
-                        <td>
-                            Course system available
-                        </td>
-
-                    </tr>
-
-
-                    <tr>
-
-                        <td>
-                            Projects
-                        </td>
-
-                        <td>
-
-                            <span class="status active">
-                                Active
-                            </span>
-
-                        </td>
-
-                        <td>
-                            Project system available
-                        </td>
-
-                    </tr>
-
-
-                    <tr>
-
-                        <td>
-                            Videos
-                        </td>
-
-                        <td>
-
-                            <span class="status active">
-                                Active
-                            </span>
-
-                        </td>
-
-                        <td>
-                            Video system available
-                        </td>
-
-                    </tr>
-
+                <tbody id="loginActivity">
 
                 </tbody>
+
 
             </table>
 
@@ -1238,41 +1077,313 @@ td {
 
     </div>
 
+
 </main>
+
 
 
 <script>
 
-/* ================= USER ================= */
 
-const currentUser =
-    sessionStorage.getItem("currentUser");
+/* =========================
+   LOAD STUDENTS
+========================= */
 
-if (currentUser) {
+function getStudents(){
+
+    return JSON.parse(
+        localStorage.getItem(
+            "pavanStudents"
+        )
+    ) || [];
+
+}
+
+
+/* =========================
+   LOAD LOGINS
+========================= */
+
+function getLogins(){
+
+    return JSON.parse(
+        localStorage.getItem(
+            "pavanStudentLogins"
+        )
+    ) || [];
+
+}
+
+
+/* =========================
+   LOAD PROJECTS
+========================= */
+
+function getStudentProjects(){
+
+    return JSON.parse(
+        localStorage.getItem(
+            "pavanStudentProjects"
+        )
+    ) || {};
+
+}
+
+
+/* =========================
+   UPDATE STATISTICS
+========================= */
+
+function updateStatistics(){
+
+
+    const students =
+        getStudents();
+
+
+    const logins =
+        getLogins();
+
+
+    const projects =
+        getStudentProjects();
+
+
+    /* TOTAL STUDENTS */
 
     document.getElementById(
-        "adminName"
-    ).textContent = currentUser;
+        "adminTotalStudents"
+    ).textContent =
+        students.length;
+
+
+    /* TOTAL LOGINS */
+
+    let totalLogins = 0;
+
+
+    logins.forEach(
+        function(item){
+
+            totalLogins +=
+                Number(
+                    item.loginCount || 0
+                );
+
+        }
+    );
+
+
+    document.getElementById(
+        "adminTotalLogins"
+    ).textContent =
+        totalLogins;
+
+
+    /* UNIQUE STUDENTS LOGGED IN */
+
+    document.getElementById(
+        "adminStudentsLoggedIn"
+    ).textContent =
+        logins.length;
+
+
+    /* STUDENT PROJECTS */
+
+    let totalProjects = 0;
+
+
+    Object.keys(projects).forEach(
+        function(username){
+
+            if(
+                Array.isArray(
+                    projects[username]
+                )
+            ){
+
+                totalProjects +=
+                    projects[username].length;
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "adminStudentProjects"
+    ).textContent =
+        totalProjects;
 
 }
 
 
-/* ================= LOGOUT ================= */
+/* =========================
+   LOGIN ACTIVITY
+========================= */
 
-function logout() {
+function renderLoginActivity(){
 
-    sessionStorage.removeItem(
-        "currentRole"
-    );
 
-    sessionStorage.removeItem(
-        "currentUser"
+    const tbody =
+        document.getElementById(
+            "loginActivity"
+        );
+
+
+    const logins =
+        getLogins();
+
+
+    tbody.innerHTML = "";
+
+
+    if(
+        logins.length === 0
+    ){
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="5"
+                    class="no-data"
+                >
+
+                    No student login
+                    activity yet.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* SHOW NEWEST FIRST */
+
+    const sorted =
+        [...logins].reverse();
+
+
+    sorted.slice(0,10).forEach(
+        function(item){
+
+            tbody.innerHTML += `
+
+                <tr>
+
+                    <td>
+                        <strong>
+                            ${escapeHTML(
+                                item.username
+                            )}
+                        </strong>
+                    </td>
+
+
+                    <td>
+                        ${Number(
+                            item.loginCount || 0
+                        )}
+                    </td>
+
+
+                    <td>
+                        ${escapeHTML(
+                            item.firstLogin || "-"
+                        )}
+                    </td>
+
+
+                    <td>
+                        ${escapeHTML(
+                            item.lastLogin || "-"
+                        )}
+                    </td>
+
+
+                    <td>
+
+                        <span class="status">
+                            Logged In
+                        </span>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
     );
 
 }
+
+
+/* =========================
+   ESCAPE
+========================= */
+
+function escapeHTML(value){
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+    div.textContent =
+        value;
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logout(){
+
+    sessionStorage.clear();
+
+}
+
+
+/* =========================
+   INITIAL LOAD
+========================= */
+
+updateStatistics();
+
+renderLoginActivity();
+
+
+/* =========================
+   AUTO REFRESH
+========================= */
+
+setInterval(
+    function(){
+
+        updateStatistics();
+
+        renderLoginActivity();
+
+    },
+    5000
+);
 
 </script>
 
 
 </body>
+
 </html>

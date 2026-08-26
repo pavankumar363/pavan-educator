@@ -777,7 +777,115 @@ function login(event) {
     }
 
 
-    /* ================= STUDENT ================= */
+ /* ================= STUDENT ================= */
+
+else if (selectedRole === "Student") {
+
+    /*
+       Get students created from
+       Admin → Students
+    */
+    const students =
+        JSON.parse(
+            localStorage.getItem("pavanStudents")
+        ) || [];
+
+
+    /*
+       Find matching username + password
+    */
+    const student =
+        students.find(function(item) {
+
+            return (
+                item.username === username &&
+                item.password === password
+            );
+
+        });
+
+
+    if (student) {
+
+        /* Record the login */
+
+        recordStudentLogin(
+            student.username
+        );
+
+
+        /* Save current student */
+
+        sessionStorage.setItem(
+            "currentRole",
+            "Student"
+        );
+
+        sessionStorage.setItem(
+            "currentUser",
+            student.username
+        );
+
+
+        /*
+           Save student information
+           for the Student Dashboard
+        */
+
+        sessionStorage.setItem(
+            "studentName",
+            student.name
+        );
+
+        sessionStorage.setItem(
+            "studentClass",
+            student.studentClass
+        );
+
+        sessionStorage.setItem(
+            "studentAge",
+            student.age
+        );
+
+        sessionStorage.setItem(
+            "studentLocation",
+            student.location
+        );
+
+
+        /* Remember login */
+
+        if (remember) {
+
+            localStorage.setItem(
+                "pavanLogin",
+                "Student"
+            );
+
+            localStorage.setItem(
+                "pavanUsername",
+                student.username
+            );
+
+        }
+
+
+        /* Open Student Dashboard */
+
+        window.location.href =
+            "student-dashboard.html";
+
+    }
+
+    else {
+
+        alert(
+            "Invalid Student username or password."
+        );
+
+    }
+
+}
 
     else if (
         selectedRole === "Student"

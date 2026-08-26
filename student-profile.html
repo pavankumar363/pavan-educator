@@ -549,6 +549,128 @@ const student =
 
 
 /* DISPLAY DATA */
+    /* =========================
+   DISPLAY CURRENT STUDENT
+========================= */
+
+if (!username) {
+
+    alert("Please login first.");
+
+    window.location.href =
+        "login.html";
+
+}
+else if (!student) {
+
+    alert("Student account not found.");
+
+    window.location.href =
+        "login.html";
+
+}
+else {
+
+    /* Student name */
+
+    document.getElementById(
+        "topName"
+    ).textContent =
+        student.name;
+
+
+    document.getElementById(
+        "profileName"
+    ).textContent =
+        student.name;
+
+
+    document.getElementById(
+        "studentName"
+    ).textContent =
+        student.name;
+
+
+    /* Username */
+
+    document.getElementById(
+        "studentUsername"
+    ).textContent =
+        student.username;
+
+
+    /* Class */
+
+    document.getElementById(
+        "studentClass"
+    ).textContent =
+        student.studentClass;
+
+
+    /* Age */
+
+    document.getElementById(
+        "studentAge"
+    ).textContent =
+        student.age;
+
+
+    /* Location */
+
+    document.getElementById(
+        "studentLocation"
+    ).textContent =
+        student.location || "-";
+
+
+    /* Login count */
+
+    const loginData =
+        JSON.parse(
+            localStorage.getItem(
+                "pavanStudentLogins"
+            )
+        ) || [];
+
+
+    const loginRecord =
+        loginData.find(
+            function(item) {
+
+                return (
+                    item.username ===
+                    student.username
+                );
+
+            }
+        );
+
+
+    const count =
+        loginRecord
+        ? Number(
+            loginRecord.loginCount || 0
+        )
+        : 0;
+
+
+    document.getElementById(
+        "loginCount"
+    ).textContent =
+        count;
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logout() {
+
+    sessionStorage.clear();
+
+}
 
 if(student){
 

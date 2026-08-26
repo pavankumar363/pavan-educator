@@ -4,343 +4,437 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Pavan Educator | Login</title>
 
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
 <style>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    min-height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
+body{
+    font-family:Arial,Helvetica,sans-serif;
 
-    background:
-        radial-gradient(circle at 10% 90%, #dce9ff 0, transparent 25%),
-        radial-gradient(circle at 90% 20%, #e5ecff 0, transparent 25%),
-        linear-gradient(135deg, #f8fbff, #eef4ff);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-}
-
-.login-container {
-    width: 100%;
-    max-width: 900px;
-
-    background: rgba(255,255,255,.96);
-
-    border: 1px solid #d9e3f5;
-    border-radius: 28px;
-
-    box-shadow: 0 25px 70px rgba(35,83,160,.15);
-
-    overflow: hidden;
-}
-
-.header {
-    text-align: center;
-    padding: 45px 45px 20px;
-}
-
-.logo-icon {
-    width: 75px;
-    height: 75px;
-
-    margin: auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background: #e8f0ff;
-    color: #1769ff;
-
-    font-size: 38px;
-}
-
-.header h1 {
-    margin-top: 25px;
-    font-size: 43px;
-    color: #172033;
-}
-
-.header h1 span {
-    color: #1769ff;
-}
-
-.header p {
-    margin-top: 12px;
-    color: #65738d;
-    font-size: 17px;
-}
-
-.header p span {
-    color: #1769ff;
-    font-weight: 700;
-}
-
-.form {
-    padding: 25px 65px 45px;
-}
-
-.form-group {
-    margin-bottom: 22px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 9px;
-    color: #172033;
-    font-weight: 700;
-}
-
-.input-box {
-    position: relative;
-}
-
-.input-box input {
-    width: 100%;
-    height: 58px;
-
-    border: 1px solid #cbd8ee;
-    border-radius: 11px;
-
-    padding: 0 50px 0 48px;
-
-    font-size: 15px;
-    color: #172033;
-
-    background: #fbfdff;
-    outline: none;
-}
-
-.input-box input:focus {
-    border-color: #1769ff;
-
-    box-shadow:
-        0 0 0 4px
-        rgba(23,105,255,.08);
-}
-
-.input-icon {
-    position: absolute;
-
-    left: 17px;
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    font-size: 21px;
-    color: #1769ff;
-}
-
-.password-toggle {
-    position: absolute;
-
-    right: 17px;
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    border: none;
-    background: transparent;
-
-    cursor: pointer;
-
-    font-size: 20px;
-}
-
-.login-as {
-    margin-top: 25px;
-}
-
-.login-as-title {
-    margin-bottom: 12px;
-
-    font-weight: 700;
-    color: #172033;
-}
-
-.roles {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap: 14px;
-}
-
-.role {
-    height: 105px;
-
-    border: 1px solid #d5dfef;
-
-    border-radius: 13px;
-
-    background: white;
-
-    cursor: pointer;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 8px;
-
-    transition: .25s;
-}
-
-.role-icon {
-    font-size: 27px;
-}
-
-.role-name {
-    font-weight: 700;
-    color: #28344a;
-}
-
-.role:hover {
-    border-color: #1769ff;
-    transform: translateY(-2px);
-}
-
-.role.active {
-    border: 2px solid #1769ff;
-    background: #f1f6ff;
-}
-
-.options {
-    display: flex;
-
-    justify-content: space-between;
-    align-items: center;
-
-    margin: 23px 0;
-}
-
-.remember {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-
-    color: #68758a;
-
-    font-size: 14px;
-}
-
-.forgot {
-    color: #1769ff;
-
-    text-decoration: none;
-
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.login-button {
-    width: 100%;
-    height: 58px;
-
-    border: none;
-    border-radius: 11px;
+    min-height:100vh;
 
     background:
         linear-gradient(
-            90deg,
-            #078cff,
-            #6949ff,
-            #a92cff
+            135deg,
+            #071a33,
+            #123c73
         );
 
-    color: white;
+    display:flex;
 
-    font-size: 17px;
-    font-weight: 800;
+    align-items:center;
+    justify-content:center;
 
-    cursor: pointer;
+    padding:20px;
 }
 
-.login-button:hover {
-    transform: translateY(-2px);
+
+/* LOGIN CONTAINER */
+
+.login-container{
+
+    width:100%;
+
+    max-width:1000px;
+
+    min-height:600px;
+
+    background:white;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    box-shadow:
+        0 25px 60px
+        rgba(0,0,0,.25);
+
 }
 
-.home-button {
-    display: block;
 
-    text-align: center;
+/* LEFT */
 
-    margin-top: 18px;
+.left{
 
-    color: #1769ff;
+    background:
+        linear-gradient(
+            145deg,
+            #126df3,
+            #5546f4
+        );
 
-    text-decoration: none;
+    color:white;
 
-    font-size: 14px;
+    padding:60px 50px;
 
-    font-weight: 700;
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
 }
 
-.security {
-    border-top: 1px solid #e5ebf5;
+.logo{
 
-    padding: 23px;
+    font-size:32px;
 
-    text-align: center;
+    font-weight:800;
 
-    color: #708099;
-
-    font-size: 14px;
+    margin-bottom:60px;
 }
 
-.security strong {
-    color: #1769ff;
+.logo span{
+
+    color:#dbe8ff;
 }
 
-@media(max-width:650px) {
+.left h1{
 
-    body {
-        padding: 15px;
+    font-size:42px;
+
+    line-height:1.15;
+
+    margin-bottom:20px;
+}
+
+.left p{
+
+    font-size:17px;
+
+    line-height:1.7;
+
+    opacity:.9;
+
+    max-width:420px;
+}
+
+.features{
+
+    margin-top:40px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+}
+
+.feature{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-size:15px;
+}
+
+.feature-icon{
+
+    width:35px;
+    height:35px;
+
+    border-radius:9px;
+
+    background:
+        rgba(255,255,255,.18);
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+}
+
+
+/* RIGHT */
+
+.right{
+
+    padding:55px 50px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+}
+
+.right h2{
+
+    font-size:30px;
+
+    margin-bottom:8px;
+}
+
+.subtitle{
+
+    color:#718096;
+
+    font-size:14px;
+
+    margin-bottom:30px;
+}
+
+
+/* ROLE */
+
+.role-title{
+
+    font-size:13px;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+}
+
+.roles{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:10px;
+
+    margin-bottom:25px;
+}
+
+.role{
+
+    border:1px solid #d9e2ef;
+
+    border-radius:9px;
+
+    padding:13px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+    font-size:13px;
+
+    transition:.2s;
+}
+
+.role:hover{
+
+    border-color:#2474ff;
+}
+
+.role.selected{
+
+    background:#2474ff;
+
+    color:white;
+
+    border-color:#2474ff;
+}
+
+
+/* FORM */
+
+.form-group{
+
+    margin-bottom:18px;
+}
+
+.form-group label{
+
+    display:block;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    margin-bottom:7px;
+}
+
+.form-group input{
+
+    width:100%;
+
+    height:48px;
+
+    padding:0 14px;
+
+    border:1px solid #d5deec;
+
+    border-radius:9px;
+
+    outline:none;
+
+    font-size:14px;
+}
+
+.form-group input:focus{
+
+    border-color:#2474ff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(36,116,255,.08);
+}
+
+
+/* REMEMBER */
+
+.remember{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-bottom:22px;
+
+    color:#64748b;
+
+    font-size:13px;
+}
+
+
+/* LOGIN */
+
+.login-btn{
+
+    width:100%;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:9px;
+
+    background:#2474ff;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.login-btn:hover{
+
+    background:#155bd4;
+}
+
+.login-btn:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+}
+
+
+/* MESSAGE */
+
+.message{
+
+    display:none;
+
+    margin-top:15px;
+
+    padding:12px;
+
+    border-radius:8px;
+
+    font-size:13px;
+
+    text-align:center;
+}
+
+.message.error{
+
+    display:block;
+
+    background:#fff0f0;
+
+    color:#c62828;
+}
+
+.message.success{
+
+    display:block;
+
+    background:#eaf8ef;
+
+    color:#16834b;
+}
+
+
+/* FOOTER */
+
+.footer{
+
+    text-align:center;
+
+    color:#9aa5b6;
+
+    font-size:12px;
+
+    margin-top:25px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:750px){
+
+    .login-container{
+
+        grid-template-columns:1fr;
     }
 
-    .header {
-        padding: 35px 25px 15px;
+    .left{
+
+        padding:40px 30px;
     }
 
-    .header h1 {
-        font-size: 34px;
+    .left h1{
+
+        font-size:32px;
     }
 
-    .form {
-        padding: 20px 25px 35px;
+    .features{
+
+        margin-top:25px;
     }
 
-    .roles {
-        grid-template-columns: 1fr;
-    }
+    .right{
 
-    .role {
-        height: 70px;
-        flex-direction: row;
-    }
-
-    .options {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
+        padding:40px 30px;
     }
 
 }
@@ -349,348 +443,632 @@ body {
 
 </head>
 
+
 <body>
 
 
 <div class="login-container">
 
 
-    <div class="header">
+<!-- ================= LEFT ================= -->
 
-        <div class="logo-icon">
-            🎓
-        </div>
+<section class="left">
 
-        <h1>
-            Welcome <span>Back!</span>
-        </h1>
 
-        <p>
-            Sign in to continue to
-            <span>Pavan Educator</span>
-        </p>
+    <div class="logo">
+
+        Pavan <span>Educator</span>
 
     </div>
 
 
+    <h1>
+
+        Learn.<br>
+        Build.<br>
+        Grow.
+
+    </h1>
+
+
+    <p>
+
+        Welcome to your learning platform.
+        Access projects, courses and your
+        personal student space.
+
+    </p>
+
+
+    <div class="features">
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🎓
+            </div>
+
+            Student Dashboard
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                💻
+            </div>
+
+            Student Projects
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                👤
+            </div>
+
+            Personal Profile
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ================= RIGHT ================= -->
+
+<section class="right">
+
+
+    <h2>
+        Welcome Back
+    </h2>
+
+
+    <p class="subtitle">
+        Login to continue to Pavan Educator
+    </p>
+
+
+
+    <!-- ROLE -->
+
+    <div class="role-title">
+        Login as
+    </div>
+
+
+    <div class="roles">
+
+
+        <div
+            class="role selected"
+            id="studentRole"
+            onclick="selectRole('Student')"
+        >
+
+            🎓 Student
+
+        </div>
+
+
+        <div
+            class="role"
+            id="adminRole"
+            onclick="selectRole('Admin')"
+        >
+
+            🛡️ Admin
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- FORM -->
+
     <form
-        class="form"
+        id="loginForm"
         onsubmit="login(event)"
     >
 
 
         <div class="form-group">
 
+
             <label>
-                Username
+                Email / Username
             </label>
 
-            <div class="input-box">
 
-                <span class="input-icon">
-                    👤
-                </span>
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter your username"
+                autocomplete="username"
+                required
+            >
 
-                <input
-                    type="text"
-                    id="username"
-                    placeholder="Enter your username"
-                    required
-                >
-
-            </div>
 
         </div>
 
 
+
         <div class="form-group">
+
 
             <label>
                 Password
             </label>
 
-            <div class="input-box">
 
-                <span class="input-icon">
-                    🔒
-                </span>
-
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Enter your password"
-                    required
-                >
-
-                <button
-                    type="button"
-                    class="password-toggle"
-                    onclick="togglePassword()"
-                >
-                    👁
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="login-as">
-
-            <div class="login-as-title">
-                Login As
-            </div>
-
-            <div class="roles">
-
-
-                <div
-                    class="role active"
-                    onclick="selectRole(this,'Admin')"
-                >
-
-                    <div class="role-icon">
-                        🛡️
-                    </div>
-
-                    <div class="role-name">
-                        Admin
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="role"
-                    onclick="selectRole(this,'Student')"
-                >
-
-                    <div class="role-icon">
-                        🎓
-                    </div>
-
-                    <div class="role-name">
-                        Student
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="role"
-                    onclick="selectRole(this,'Visitor')"
-                >
-
-                    <div class="role-icon">
-                        👥
-                    </div>
-
-                    <div class="role-name">
-                        Visitor
-                    </div>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-
-        <div class="options">
-
-            <label class="remember">
-
-                <input
-                    type="checkbox"
-                    id="remember"
-                >
-
-                Remember me
-
-            </label>
-
-
-            <a
-                href="#"
-                class="forgot"
-                onclick="forgotPassword(event)"
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                required
             >
 
-                Forgot Password?
-
-            </a>
 
         </div>
+
+
+
+        <label class="remember">
+
+
+            <input
+                type="checkbox"
+                id="remember"
+            >
+
+
+            Remember me
+
+
+        </label>
+
 
 
         <button
             type="submit"
-            class="login-button"
+            class="login-btn"
+            id="loginButton"
         >
 
-            → &nbsp; LOGIN
+            LOGIN
 
         </button>
-
-
-        <a
-            href="index.html"
-            class="home-button"
-        >
-
-            ← Back to Home
-
-        </a>
 
 
     </form>
 
 
-    <div class="security">
 
-        🛡️ &nbsp;
+    <div
+        id="message"
+        class="message"
+    ></div>
 
-        <strong>
-            Secure.
-        </strong>
 
-        Reliable. Smart Learning.
+
+    <div class="footer">
+
+        © 2026 Pavan Educator
 
     </div>
+
+
+</section>
 
 
 </div>
 
 
+
 <script>
 
+/* =====================================================
+   SUPABASE CONFIGURATION
+===================================================== */
 
-/* ================= ROLE ================= */
+const SUPABASE_URL =
+    "https://jlrmmkgcjckkayearlca.supabase.co";
 
-let selectedRole = "Admin";
+
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_eEPceWmh6MUHLwZmAQMEdQ_uk1Gp1EH";
 
 
-/* ================= SELECT ROLE ================= */
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
 
-function selectRole(element, role) {
+
+/* =====================================================
+   CURRENT ROLE
+===================================================== */
+
+let selectedRole =
+    "Student";
+
+
+/* =====================================================
+   SELECT ROLE
+===================================================== */
+
+function selectRole(role){
+
+    selectedRole =
+        role;
+
 
     document
-        .querySelectorAll(".role")
-        .forEach(function(item) {
+        .getElementById("studentRole")
+        .classList
+        .remove("selected");
 
-            item.classList.remove("active");
 
-        });
+    document
+        .getElementById("adminRole")
+        .classList
+        .remove("selected");
 
-    element.classList.add("active");
 
-    selectedRole = role;
+    if(role === "Student"){
+
+        document
+            .getElementById("studentRole")
+            .classList
+            .add("selected");
+
+
+        document
+            .getElementById("username")
+            .placeholder =
+            "Enter your username";
+
+    }
+
+
+    if(role === "Admin"){
+
+        document
+            .getElementById("adminRole")
+            .classList
+            .add("selected");
+
+
+        document
+            .getElementById("username")
+            .placeholder =
+            "Enter admin username";
+
+    }
 
 }
 
 
-/* ================= PASSWORD ================= */
+/* =====================================================
+   MESSAGE
+===================================================== */
 
-function togglePassword() {
+function showMessage(
+    text,
+    type
+){
 
-    const password =
-        document.getElementById("password");
-
-    const button =
-        document.querySelector(
-            ".password-toggle"
+    const message =
+        document.getElementById(
+            "message"
         );
 
-    if (
-        password.type === "password"
-    ) {
 
-        password.type = "text";
+    message.textContent =
+        text;
 
-        button.textContent = "🙈";
 
-    }
-
-    else {
-
-        password.type = "password";
-
-        button.textContent = "👁";
-
-    }
+    message.className =
+        "message " + type;
 
 }
 
 
-/* ================= STUDENT LOGIN TRACKING ================= */
+/* =====================================================
+   STUDENT LOGIN
+===================================================== */
 
-function recordStudentLogin(username) {
+async function studentLogin(
+    username,
+    password
+){
 
-    let loginData =
-        JSON.parse(
-            localStorage.getItem(
-                "pavanStudentLogins"
-            )
-        ) || [];
+    /*
+       Your students table currently
+       contains usernames.
+
+       Supabase Auth uses EMAIL.
+
+       We therefore find the student
+       profile first.
+    */
 
 
-    const now =
-        new Date();
+    const {
+        data: student,
+        error: studentError
+    } =
+        await supabaseClient
+        .from("students")
+        .select("*")
+        .eq("username", username)
+        .maybeSingle();
 
 
-    const existing =
-        loginData.find(
-            function(item) {
+    if(studentError){
 
-                return item.username === username;
-
-            }
+        console.error(
+            studentError
         );
 
-
-    if (existing) {
-
-        existing.loginCount++;
-
-        existing.lastLogin =
-            now.toLocaleString();
+        throw new Error(
+            "Unable to find student account."
+        );
 
     }
 
-    else {
 
-        loginData.push({
+    if(!student){
 
-            username: username,
+        throw new Error(
+            "Student account not found."
+        );
 
-            loginCount: 1,
+    }
 
-            firstLogin:
-                now.toLocaleString(),
 
-            lastLogin:
-                now.toLocaleString()
+    /*
+       We need the student's Auth email.
+
+       The current table does not yet
+       contain an email column.
+
+       For the first setup we use:
+
+       username + @pavaneducator.local
+
+       This is only a temporary bridge.
+
+       We will add a real email field
+       in the next step.
+    */
+
+    const authEmail =
+        username +
+        "@pavaneducator.local";
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient.auth.signInWithPassword({
+
+            email:
+                authEmail,
+
+            password:
+                password
 
         });
 
+
+    if(error){
+
+        throw new Error(
+            "Invalid student username or password."
+        );
+
     }
 
 
-    localStorage.setItem(
+    /*
+       Save current student
+       locally for the dashboard.
+    */
 
-        "pavanStudentLogins",
+    sessionStorage.setItem(
+        "currentRole",
+        "Student"
+    );
 
-        JSON.stringify(loginData)
 
+    sessionStorage.setItem(
+        "currentUser",
+        student.username
+    );
+
+
+    sessionStorage.setItem(
+        "studentName",
+        student.name
+    );
+
+
+    sessionStorage.setItem(
+        "studentClass",
+        student.class || ""
+    );
+
+
+    sessionStorage.setItem(
+        "studentAge",
+        student.age || ""
+    );
+
+
+    sessionStorage.setItem(
+        "studentLocation",
+        student.location || ""
+    );
+
+
+    /*
+       Update login count.
+    */
+
+    const newCount =
+        Number(
+            student.login_count || 0
+        ) + 1;
+
+
+    await supabaseClient
+        .from("students")
+        .update({
+            login_count:
+                newCount
+        })
+        .eq(
+            "id",
+            student.id
+        );
+
+
+    /*
+       Remember username.
+    */
+
+    if(
+        document.getElementById(
+            "remember"
+        ).checked
+    ){
+
+        localStorage.setItem(
+            "pavanRememberedUser",
+            username
+        );
+
+    }
+    else{
+
+        localStorage.removeItem(
+            "pavanRememberedUser"
+        );
+
+    }
+
+
+    showMessage(
+        "Login successful. Opening dashboard...",
+        "success"
+    );
+
+
+    setTimeout(
+        function(){
+
+            window.location.href =
+                "student-dashboard.html";
+
+        },
+        700
     );
 
 }
 
 
-/* ================= LOGIN ================= */
+/* =====================================================
+   ADMIN LOGIN
+===================================================== */
 
-function login(event) {
+function adminLogin(
+    username,
+    password
+){
+
+    /*
+       KEEP YOUR EXISTING ADMIN
+       CREDENTIAL CHECK HERE.
+
+       Replace these values with
+       your existing admin credentials
+       if your current login uses
+       different ones.
+    */
+
+
+    const ADMIN_USERNAME =
+        "admin";
+
+
+    const ADMIN_PASSWORD =
+        "admin123";
+
+
+    if(
+        username === ADMIN_USERNAME &&
+        password === ADMIN_PASSWORD
+    ){
+
+        sessionStorage.setItem(
+            "currentRole",
+            "Admin"
+        );
+
+
+        sessionStorage.setItem(
+            "currentUser",
+            username
+        );
+
+
+        showMessage(
+            "Admin login successful...",
+            "success"
+        );
+
+
+        setTimeout(
+            function(){
+
+                window.location.href =
+                    "admin-dashboard.html";
+
+            },
+            700
+        );
+
+
+        return true;
+
+    }
+
+
+    return false;
+
+}
+
+
+/* =====================================================
+   MAIN LOGIN
+===================================================== */
+
+async function login(event){
 
     event.preventDefault();
 
@@ -705,23 +1083,23 @@ function login(event) {
     const password =
         document
         .getElementById("password")
-        .value
-        .trim();
+        .value;
 
 
-    const remember =
-        document
-        .getElementById("remember")
-        .checked;
+    const button =
+        document.getElementById(
+            "loginButton"
+        );
 
 
-    if (
-        username === "" ||
-        password === ""
-    ) {
+    if(
+        !username ||
+        !password
+    ){
 
-        alert(
-            "Please enter username and password."
+        showMessage(
+            "Please enter username and password.",
+            "error"
         );
 
         return;
@@ -729,254 +1107,140 @@ function login(event) {
     }
 
 
-    /* ================= ADMIN ================= */
-
-    if (
-        selectedRole === "Admin"
-    ) {
-
-        if (
-            username === "admin" &&
-            password === "admin123"
-        ) {
-
-            sessionStorage.setItem(
-                "currentRole",
-                "Admin"
-            );
-
-            sessionStorage.setItem(
-                "currentUser",
-                username
-            );
+    button.disabled =
+        true;
 
 
-            if (remember) {
+    button.textContent =
+        "LOGINNING...";
 
-                localStorage.setItem(
-                    "pavanLogin",
-                    "Admin"
+
+    try{
+
+
+        /* =================
+           ADMIN
+        ================= */
+
+        if(
+            selectedRole ===
+            "Admin"
+        ){
+
+            const success =
+                adminLogin(
+                    username,
+                    password
+                );
+
+
+            if(!success){
+
+                throw new Error(
+                    "Invalid admin username or password."
                 );
 
             }
 
 
-            window.location.href =
-                "admin-dashboard.html";
+            return;
 
         }
 
-        else {
 
-            alert(
-                "Invalid Admin username or password."
-            );
+        /* =================
+           STUDENT
+        ================= */
 
-        }
+        await studentLogin(
+            username,
+            password
+        );
+
 
     }
+    catch(error){
 
-
- /* ================= STUDENT ================= */
-
-else if (selectedRole === "Student") {
-
-    /*
-       Get students created from
-       Admin → Students
-    */
-    const students =
-        JSON.parse(
-            localStorage.getItem("pavanStudents")
-        ) || [];
-
-
-    /*
-       Find matching username + password
-    */
-    const student =
-        students.find(function(item) {
-
-            return (
-                item.username === username &&
-                item.password === password
-            );
-
-        });
-
-
-    if (student) {
-
-        /* Record the login */
-
-        recordStudentLogin(
-            student.username
+        console.error(
+            error
         );
 
 
-        /* Save current student */
-
-        sessionStorage.setItem(
-            "currentRole",
-            "Student"
-        );
-
-        sessionStorage.setItem(
-            "currentUser",
-            student.username
+        showMessage(
+            error.message ||
+            "Login failed.",
+            "error"
         );
 
 
-        /*
-           Save student information
-           for the Student Dashboard
-        */
-
-        sessionStorage.setItem(
-            "studentName",
-            student.name
-        );
-
-        sessionStorage.setItem(
-            "studentClass",
-            student.studentClass
-        );
-
-        sessionStorage.setItem(
-            "studentAge",
-            student.age
-        );
-
-        sessionStorage.setItem(
-            "studentLocation",
-            student.location
-        );
+        button.disabled =
+            false;
 
 
-        /* Remember login */
-
-        if (remember) {
-
-            localStorage.setItem(
-                "pavanLogin",
-                "Student"
-            );
-
-            localStorage.setItem(
-                "pavanUsername",
-                student.username
-            );
-
-        }
-
-
-        /* Open Student Dashboard */
-
-        window.location.href =
-            "student-dashboard.html";
-
-    }
-
-    else {
-
-        alert(
-            "Invalid Student username or password."
-        );
+        button.textContent =
+            "LOGIN";
 
     }
 
 }
 
-    else if (
-        selectedRole === "Student"
-    ) {
 
-        if (
-            username === "student" &&
-            password === "student123"
-        ) {
+/* =====================================================
+   REMEMBERED USER
+===================================================== */
 
-
-            /* RECORD LOGIN */
-
-            recordStudentLogin(username);
+const rememberedUser =
+    localStorage.getItem(
+        "pavanRememberedUser"
+    );
 
 
-            /* SAVE CURRENT SESSION */
+if(rememberedUser){
 
-            sessionStorage.setItem(
-                "currentRole",
-                "Student"
+    document.getElementById(
+        "username"
+    ).value =
+        rememberedUser;
+
+}
+
+
+/* =====================================================
+   CHECK EXISTING SESSION
+===================================================== */
+
+async function checkSession(){
+
+    const {
+        data
+    } =
+        await supabaseClient.auth.getSession();
+
+
+    if(
+        data &&
+        data.session
+    ){
+
+        const role =
+            sessionStorage.getItem(
+                "currentRole"
             );
 
-            sessionStorage.setItem(
-                "currentUser",
-                username
-            );
 
-
-            if (remember) {
-
-                localStorage.setItem(
-                    "pavanLogin",
-                    "Student"
-                );
-
-            }
-
+        if(role === "Student"){
 
             window.location.href =
                 "student-dashboard.html";
 
         }
 
-        else {
-
-            alert(
-                "Invalid Student username or password."
-            );
-
-        }
-
-    }
-
-
-    /* ================= VISITOR ================= */
-
-    else if (
-        selectedRole === "Visitor"
-    ) {
-
-        sessionStorage.setItem(
-            "currentRole",
-            "Visitor"
-        );
-
-        sessionStorage.setItem(
-            "currentUser",
-            username
-        );
-
-
-        window.location.href =
-            "visitor.html";
-
     }
 
 }
 
 
-/* ================= FORGOT PASSWORD ================= */
-
-function forgotPassword(event) {
-
-    event.preventDefault();
-
-    alert(
-        "Password recovery will be added later."
-    );
-
-}
+checkSession();
 
 </script>
 

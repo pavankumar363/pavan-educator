@@ -5,18 +5,12 @@
 
 <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Pavan Educator | Login</title>
 
-
-<!-- SUPABASE -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 
 <style>
 
@@ -28,7 +22,6 @@
 
 body{
     font-family:Arial,Helvetica,sans-serif;
-
     min-height:100vh;
 
     background:
@@ -39,22 +32,16 @@ body{
         );
 
     display:flex;
-
     align-items:center;
     justify-content:center;
 
     padding:20px;
 }
 
-
-/* LOGIN CONTAINER */
-
 .login-container{
 
     width:100%;
-
     max-width:1000px;
-
     min-height:600px;
 
     background:white;
@@ -65,17 +52,15 @@ body{
 
     display:grid;
 
-    grid-template-columns:
-        1fr 1fr;
+    grid-template-columns:1fr 1fr;
 
     box-shadow:
         0 25px 60px
         rgba(0,0,0,.25);
-
 }
 
 
-/* LEFT */
+/* LEFT SIDE */
 
 .left{
 
@@ -91,23 +76,19 @@ body{
     padding:60px 50px;
 
     display:flex;
-
     flex-direction:column;
-
     justify-content:center;
 }
 
 .logo{
 
     font-size:32px;
-
     font-weight:800;
 
     margin-bottom:60px;
 }
 
 .logo span{
-
     color:#dbe8ff;
 }
 
@@ -170,7 +151,7 @@ body{
 }
 
 
-/* RIGHT */
+/* RIGHT SIDE */
 
 .right{
 
@@ -215,8 +196,7 @@ body{
 
     display:grid;
 
-    grid-template-columns:
-        1fr 1fr;
+    grid-template-columns:1fr 1fr;
 
     gap:10px;
 
@@ -320,7 +300,7 @@ body{
 }
 
 
-/* LOGIN */
+/* LOGIN BUTTON */
 
 .login-btn{
 
@@ -427,11 +407,6 @@ body{
         font-size:32px;
     }
 
-    .features{
-
-        margin-top:25px;
-    }
-
     .right{
 
         padding:40px 30px;
@@ -450,10 +425,9 @@ body{
 <div class="login-container">
 
 
-<!-- ================= LEFT ================= -->
+<!-- LEFT -->
 
 <section class="left">
-
 
     <div class="logo">
 
@@ -518,12 +492,11 @@ body{
 
     </div>
 
-
 </section>
 
 
 
-<!-- ================= RIGHT ================= -->
+<!-- RIGHT -->
 
 <section class="right">
 
@@ -538,8 +511,6 @@ body{
     </p>
 
 
-
-    <!-- ROLE -->
 
     <div class="role-title">
         Login as
@@ -575,8 +546,6 @@ body{
 
 
 
-    <!-- FORM -->
-
     <form
         id="loginForm"
         onsubmit="login(event)"
@@ -585,20 +554,17 @@ body{
 
         <div class="form-group">
 
-
             <label>
-                Email / Username
+                Username
             </label>
-
 
             <input
                 type="text"
                 id="username"
-                placeholder="Enter your username"
+                placeholder="Enter username"
                 autocomplete="username"
                 required
             >
-
 
         </div>
 
@@ -606,20 +572,17 @@ body{
 
         <div class="form-group">
 
-
             <label>
                 Password
             </label>
 
-
             <input
                 type="password"
                 id="password"
-                placeholder="Enter your password"
+                placeholder="Enter password"
                 autocomplete="current-password"
                 required
             >
-
 
         </div>
 
@@ -627,15 +590,12 @@ body{
 
         <label class="remember">
 
-
             <input
                 type="checkbox"
                 id="remember"
             >
 
-
             Remember me
-
 
         </label>
 
@@ -662,7 +622,6 @@ body{
     ></div>
 
 
-
     <div class="footer">
 
         © 2026 Pavan Educator
@@ -672,48 +631,45 @@ body{
 
 </section>
 
-
 </div>
 
 
 
 <script>
 
-/* =====================================================
-   SUPABASE CONFIGURATION
-===================================================== */
+/* =========================================
+   SUPABASE
+========================================= */
 
 const SUPABASE_URL =
     "https://jlrmmkgcjckkayearlca.supabase.co";
 
 
-const SUPABASE_PUBLISHABLE_KEY =
+const SUPABASE_KEY =
     "sb_publishable_eEPceWmh6MUHLwZmAQMEdQ_uk1Gp1EH";
 
 
 const supabaseClient =
     window.supabase.createClient(
         SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
+        SUPABASE_KEY
     );
 
 
-/* =====================================================
+/* =========================================
    CURRENT ROLE
-===================================================== */
+========================================= */
 
-let selectedRole =
-    "Student";
+let selectedRole = "Student";
 
 
-/* =====================================================
+/* =========================================
    SELECT ROLE
-===================================================== */
+========================================= */
 
 function selectRole(role){
 
-    selectedRole =
-        role;
+    selectedRole = role;
 
 
     document
@@ -735,12 +691,6 @@ function selectRole(role){
             .classList
             .add("selected");
 
-
-        document
-            .getElementById("username")
-            .placeholder =
-            "Enter your username";
-
     }
 
 
@@ -751,45 +701,37 @@ function selectRole(role){
             .classList
             .add("selected");
 
-
-        document
-            .getElementById("username")
-            .placeholder =
-            "Enter admin username";
-
     }
 
 }
 
 
-/* =====================================================
-   MESSAGE
-===================================================== */
+/* =========================================
+   SHOW MESSAGE
+========================================= */
 
-function showMessage(
-    text,
-    type
-){
+function showMessage(text,type){
 
     const message =
-        document.getElementById(
-            "message"
-        );
+        document.getElementById("message");
 
 
-    message.textContent =
-        text;
+    message.textContent = text;
 
 
     message.className =
         "message " + type;
 
+
+    message.style.display =
+        "block";
+
 }
 
 
-/* =====================================================
+/* =========================================
    STUDENT LOGIN
-===================================================== */
+========================================= */
 
 async function studentLogin(
     username,
@@ -797,81 +739,32 @@ async function studentLogin(
 ){
 
     /*
-       Your students table currently
-       contains usernames.
-
-       Supabase Auth uses EMAIL.
-
-       We therefore find the student
-       profile first.
+       Student username is converted
+       to the internal Auth email.
     */
 
-
-    const {
-        data: student,
-        error: studentError
-    } =
-        await supabaseClient
-        .from("students")
-        .select("*")
-        .eq("username", username)
-        .maybeSingle();
-
-
-    if(studentError){
-
-        console.error(
-            studentError
-        );
-
-        throw new Error(
-            "Unable to find student account."
-        );
-
-    }
-
-
-    if(!student){
-
-        throw new Error(
-            "Student account not found."
-        );
-
-    }
+    const email =
+        username
+            .trim()
+            .toLowerCase()
+        +
+        "@pavaneducator.local";
 
 
     /*
-       We need the student's Auth email.
-
-       The current table does not yet
-       contain an email column.
-
-       For the first setup we use:
-
-       username + @pavaneducator.local
-
-       This is only a temporary bridge.
-
-       We will add a real email field
-       in the next step.
+       First authenticate with Supabase.
     */
-
-    const authEmail =
-        username +
-        "@pavaneducator.local";
-
 
     const {
         data,
         error
     } =
-        await supabaseClient.auth.signInWithPassword({
+        await supabaseClient.auth
+        .signInWithPassword({
 
-            email:
-                authEmail,
+            email: email,
 
-            password:
-                password
+            password: password
 
         });
 
@@ -886,8 +779,51 @@ async function studentLogin(
 
 
     /*
-       Save current student
-       locally for the dashboard.
+       Now get the student's profile.
+    */
+
+    const {
+        data: student,
+        error: studentError
+    } =
+        await supabaseClient
+        .from("students")
+        .select("*")
+        .eq(
+            "auth_user_id",
+            data.user.id
+        )
+        .maybeSingle();
+
+
+    if(studentError){
+
+        console.error(
+            studentError
+        );
+
+        await supabaseClient.auth.signOut();
+
+        throw new Error(
+            "Unable to load student profile."
+        );
+
+    }
+
+
+    if(!student){
+
+        await supabaseClient.auth.signOut();
+
+        throw new Error(
+            "Student profile not found."
+        );
+
+    }
+
+
+    /*
+       Save student information.
     */
 
     sessionStorage.setItem(
@@ -904,7 +840,7 @@ async function studentLogin(
 
     sessionStorage.setItem(
         "studentName",
-        student.name
+        student.name || ""
     );
 
 
@@ -930,47 +866,24 @@ async function studentLogin(
        Update login count.
     */
 
-    const newCount =
+    const currentCount =
         Number(
             student.login_count || 0
-        ) + 1;
+        );
 
 
     await supabaseClient
         .from("students")
         .update({
+
             login_count:
-                newCount
+                currentCount + 1
+
         })
         .eq(
-            "id",
-            student.id
+            "auth_user_id",
+            data.user.id
         );
-
-
-    /*
-       Remember username.
-    */
-
-    if(
-        document.getElementById(
-            "remember"
-        ).checked
-    ){
-
-        localStorage.setItem(
-            "pavanRememberedUser",
-            username
-        );
-
-    }
-    else{
-
-        localStorage.removeItem(
-            "pavanRememberedUser"
-        );
-
-    }
 
 
     showMessage(
@@ -992,81 +905,95 @@ async function studentLogin(
 }
 
 
-/* =====================================================
+/* =========================================
    ADMIN LOGIN
-===================================================== */
+========================================= */
 
-function adminLogin(
+async function adminLogin(
     username,
     password
 ){
 
     /*
-       KEEP YOUR EXISTING ADMIN
-       CREDENTIAL CHECK HERE.
+       Admin username:
+       admin
 
-       Replace these values with
-       your existing admin credentials
-       if your current login uses
-       different ones.
+       Internal Auth email:
+       admin@pavaneducator.local
     */
 
-
-    const ADMIN_USERNAME =
-        "admin";
-
-
-    const ADMIN_PASSWORD =
-        "admin123";
-
-
     if(
-        username === ADMIN_USERNAME &&
-        password === ADMIN_PASSWORD
+        username.trim().toLowerCase()
+        !==
+        "admin"
     ){
 
-        sessionStorage.setItem(
-            "currentRole",
-            "Admin"
+        throw new Error(
+            "Invalid admin username or password."
         );
-
-
-        sessionStorage.setItem(
-            "currentUser",
-            username
-        );
-
-
-        showMessage(
-            "Admin login successful...",
-            "success"
-        );
-
-
-        setTimeout(
-            function(){
-
-                window.location.href =
-                    "admin-dashboard.html";
-
-            },
-            700
-        );
-
-
-        return true;
 
     }
 
 
-    return false;
+    const {
+        data,
+        error
+    } =
+        await supabaseClient.auth
+        .signInWithPassword({
+
+            email:
+                "admin@pavaneducator.local",
+
+            password:
+                password
+
+        });
+
+
+    if(error){
+
+        throw new Error(
+            "Invalid admin username or password."
+        );
+
+    }
+
+
+    sessionStorage.setItem(
+        "currentRole",
+        "Admin"
+    );
+
+
+    sessionStorage.setItem(
+        "currentUser",
+        "admin"
+    );
+
+
+    showMessage(
+        "Admin login successful. Opening dashboard...",
+        "success"
+    );
+
+
+    setTimeout(
+        function(){
+
+            window.location.href =
+                "admin-dashboard.html";
+
+        },
+        700
+    );
 
 }
 
 
-/* =====================================================
+/* =========================================
    MAIN LOGIN
-===================================================== */
+========================================= */
 
 async function login(event){
 
@@ -1107,63 +1034,38 @@ async function login(event){
     }
 
 
-    button.disabled =
-        true;
-
+    button.disabled = true;
 
     button.textContent =
-        "LOGINNING...";
+        "LOGGING IN...";
 
 
     try{
 
-
-        /* =================
-           ADMIN
-        ================= */
-
         if(
-            selectedRole ===
-            "Admin"
+            selectedRole === "Admin"
         ){
 
-            const success =
-                adminLogin(
-                    username,
-                    password
-                );
-
-
-            if(!success){
-
-                throw new Error(
-                    "Invalid admin username or password."
-                );
-
-            }
-
-
-            return;
+            await adminLogin(
+                username,
+                password
+            );
 
         }
+        else{
 
+            await studentLogin(
+                username,
+                password
+            );
 
-        /* =================
-           STUDENT
-        ================= */
-
-        await studentLogin(
-            username,
-            password
-        );
+        }
 
 
     }
     catch(error){
 
-        console.error(
-            error
-        );
+        console.error(error);
 
 
         showMessage(
@@ -1185,9 +1087,9 @@ async function login(event){
 }
 
 
-/* =====================================================
-   REMEMBERED USER
-===================================================== */
+/* =========================================
+   REMEMBER USERNAME
+========================================= */
 
 const rememberedUser =
     localStorage.getItem(
@@ -1205,45 +1107,48 @@ if(rememberedUser){
 }
 
 
-/* =====================================================
-   CHECK EXISTING SESSION
-===================================================== */
+/* =========================================
+   SAVE REMEMBERED USER
+========================================= */
 
-async function checkSession(){
+document
+.getElementById("loginForm")
+.addEventListener(
+    "submit",
+    function(){
 
-    const {
-        data
-    } =
-        await supabaseClient.auth.getSession();
+        const remember =
+            document.getElementById(
+                "remember"
+            ).checked;
 
 
-    if(
-        data &&
-        data.session
-    ){
+        const username =
+            document.getElementById(
+                "username"
+            ).value.trim();
 
-        const role =
-            sessionStorage.getItem(
-                "currentRole"
+
+        if(remember){
+
+            localStorage.setItem(
+                "pavanRememberedUser",
+                username
             );
 
+        }
+        else{
 
-        if(role === "Student"){
-
-            window.location.href =
-                "student-dashboard.html";
+            localStorage.removeItem(
+                "pavanRememberedUser"
+            );
 
         }
 
     }
-
-}
-
-
-checkSession();
+);
 
 </script>
-
 
 </body>
 

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,511 +11,673 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f4f7fc;
-    color: #14213d;
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f7fc;
+    color:#172033;
 }
 
 /* SIDEBAR */
 
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 258px;
-    height: 100vh;
-    background: #0b1b36;
-    color: white;
-    padding: 38px 20px;
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+    background:#111a2e;
+    color:white;
+    padding:25px 18px;
 }
 
-.logo {
-    font-size: 28px;
-    font-weight: bold;
-    padding-left: 10px;
-    line-height: 1.2;
+.logo{
+    padding:10px 12px 30px;
+    font-size:23px;
+    font-weight:800;
 }
 
-.logo span {
-    color: #2878ff;
+.logo span{
+    color:#4d8dff;
 }
 
-.panel-title {
-    margin-top: 52px;
-    margin-bottom: 22px;
-    padding-left: 10px;
-    color: #9db0d0;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 1px;
+.admin-label{
+    color:#8e9bb3;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1px;
+    padding:0 12px 12px;
 }
 
-.nav a {
-    display: block;
-    text-decoration: none;
-    color: white;
-    padding: 15px 20px;
-    margin-bottom: 8px;
-    border-radius: 10px;
-    font-weight: bold;
+.menu{
+    list-style:none;
 }
 
-.nav a:hover {
-    background: #18345e;
+.menu li{
+    margin-bottom:7px;
 }
 
-.nav a.active {
-    background: #2878ff;
+.menu a{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:13px 14px;
+    color:#c9d2e3;
+    text-decoration:none;
+    border-radius:9px;
+    font-size:14px;
+    font-weight:600;
 }
 
-.logout {
-    position: absolute;
-    left: 20px;
-    right: 20px;
-    bottom: 25px;
+.menu a:hover,
+.menu a.active{
+    background:#2563eb;
+    color:white;
 }
 
-.logout a {
-    display: block;
-    background: #182f52;
-    color: #ff5b5b;
-    padding: 15px;
-    text-align: center;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: bold;
+.menu-icon{
+    width:24px;
+    text-align:center;
 }
+
+.logout{
+    position:absolute;
+    left:18px;
+    right:18px;
+    bottom:20px;
+}
+
+.logout a{
+    display:block;
+    text-align:center;
+    padding:12px;
+    border-radius:9px;
+    background:#1c2944;
+    color:#c9d2e3;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:700;
+}
+
+.logout a:hover{
+    background:#dc3545;
+    color:white;
+}
+
 
 /* MAIN */
 
-.main {
-    margin-left: 258px;
-    min-height: 100vh;
+.main{
+    margin-left:250px;
+    min-height:100vh;
 }
 
-.topbar {
-    height: 110px;
-    background: white;
-    border-bottom: 1px solid #dce3ef;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 35px;
+
+/* TOPBAR */
+
+.topbar{
+    height:75px;
+    background:white;
+    border-bottom:1px solid #e2e8f2;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 35px;
 }
 
-.topbar h1 {
-    font-size: 30px;
+.topbar h1{
+    font-size:23px;
 }
 
-.topbar a {
-    color: #216cff;
-    text-decoration: none;
-    font-weight: bold;
+.admin-user{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:700;
+    font-size:14px;
 }
 
-.content {
-    padding: 35px;
+.admin-avatar{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:#2563eb;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-.heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
+
+/* CONTENT */
+
+.content{
+    padding:35px;
 }
 
-.heading h2 {
-    font-size: 30px;
+.heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
 }
 
-.heading p {
-    margin-top: 8px;
-    color: #71809a;
+.heading h2{
+    font-size:28px;
 }
 
-.add-btn {
-    border: none;
-    background: #2878ff;
-    color: white;
-    padding: 14px 22px;
-    border-radius: 10px;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
+.heading p{
+    color:#718096;
+    margin-top:6px;
+    font-size:14px;
 }
 
-.add-btn:hover {
-    background: #155fd8;
+
+/* ADD BUTTON */
+
+.add-btn{
+    border:none;
+    background:#2563eb;
+    color:white;
+    padding:13px 20px;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:700;
+    font-size:14px;
 }
 
-/* STAT CARDS */
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-    margin-bottom: 28px;
+.add-btn:hover{
+    background:#155bd4;
 }
 
-.stat {
-    background: white;
-    border: 1px solid #dce3ef;
-    border-radius: 15px;
-    padding: 25px;
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:25px;
 }
 
-.stat .number {
-    font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 8px;
+.stat{
+    background:white;
+    border:1px solid #e1e7f2;
+    border-radius:14px;
+    padding:22px;
 }
 
-.stat .label {
-    color: #71809a;
+.stat-number{
+    font-size:28px;
+    font-weight:800;
+    margin-bottom:6px;
 }
+
+.stat-label{
+    color:#718096;
+    font-size:13px;
+}
+
 
 /* SEARCH */
 
-.search-box {
-    background: white;
-    border: 1px solid #dce3ef;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 20px;
+.search{
+    background:white;
+    border:1px solid #e1e7f2;
+    border-radius:12px;
+    padding:14px 17px;
+    margin-bottom:18px;
 }
 
-.search-box input {
-    width: 100%;
-    border: none;
-    outline: none;
-    font-size: 16px;
+.search input{
+    width:100%;
+    border:none;
+    outline:none;
+    font-size:14px;
 }
+
 
 /* TABLE */
 
-.table-box {
-    background: white;
-    border: 1px solid #dce3ef;
-    border-radius: 15px;
-    overflow-x: auto;
+.table-box{
+    background:white;
+    border:1px solid #e1e7f2;
+    border-radius:14px;
+    overflow:auto;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:850px;
 }
 
-th {
-    text-align: left;
-    padding: 18px;
-    color: #52627b;
-    font-size: 13px;
-    border-bottom: 1px solid #e2e8f2;
+th{
+    background:#f7f9fd;
+    text-align:left;
+    padding:15px;
+    color:#687389;
+    font-size:11px;
+    letter-spacing:.5px;
 }
 
-td {
-    padding: 18px;
-    border-bottom: 1px solid #edf1f7;
+td{
+    padding:15px;
+    border-top:1px solid #edf0f5;
+    font-size:13px;
 }
 
-.status {
-    background: #dff7e7;
-    color: #159447;
-    padding: 7px 12px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: bold;
+.status{
+    background:#e7f8ee;
+    color:#16834b;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:700;
 }
 
-.delete-btn {
-    border: none;
-    background: #ffe7e7;
-    color: #e53939;
-    padding: 9px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-}
 
 /* MODAL */
 
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.55);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    z-index:1000;
+    align-items:center;
+    justify-content:center;
 }
 
-.modal-box {
-    background: white;
-    width: 520px;
-    max-width: 92%;
-    border-radius: 18px;
-    padding: 30px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+.modal-box{
+    width:520px;
+    max-width:92%;
+    background:white;
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 25px 60px rgba(0,0,0,.25);
 }
 
-.modal-box h2 {
-    margin-bottom: 8px;
+.modal-box h2{
+    font-size:23px;
+    margin-bottom:6px;
 }
 
-.modal-box p {
-    color: #71809a;
-    margin-bottom: 25px;
+.modal-box > p{
+    color:#718096;
+    font-size:13px;
+    margin-bottom:22px;
 }
 
-.form-group {
-    margin-bottom: 16px;
+.form-group{
+    margin-bottom:15px;
 }
 
-.form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 7px;
+.form-group label{
+    display:block;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:6px;
 }
 
-.form-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #d4dce9;
-    border-radius: 8px;
-    outline: none;
-    font-size: 15px;
+.form-group input{
+    width:100%;
+    height:44px;
+    border:1px solid #d5deec;
+    border-radius:8px;
+    padding:0 12px;
+    outline:none;
+    font-size:13px;
 }
 
-.form-group input:focus {
-    border-color: #2878ff;
+.form-group input:focus{
+    border-color:#2563eb;
 }
 
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
 }
 
-.modal-buttons {
-    display: flex;
-    gap: 12px;
-    margin-top: 22px;
+.modal-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
 }
 
-.cancel-btn {
-    flex: 1;
-    border: none;
-    background: #e9eef6;
-    color: #24344d;
-    padding: 13px;
-    border-radius: 9px;
-    cursor: pointer;
-    font-weight: bold;
+.cancel-btn,
+.create-btn{
+    flex:1;
+    height:45px;
+    border:none;
+    border-radius:8px;
+    font-weight:700;
+    cursor:pointer;
 }
 
-.create-btn {
-    flex: 1;
-    border: none;
-    background: #2878ff;
-    color: white;
-    padding: 13px;
-    border-radius: 9px;
-    cursor: pointer;
-    font-weight: bold;
+.cancel-btn{
+    background:#e9eef6;
+    color:#24344d;
 }
 
-.create-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+.create-btn{
+    background:#2563eb;
+    color:white;
 }
+
+.create-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
 
 /* MESSAGE */
 
-.message {
-    display: none;
-    padding: 13px;
-    border-radius: 9px;
-    margin-bottom: 15px;
-    font-weight: bold;
+.message{
+    display:none;
+    padding:11px;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:15px;
 }
 
-.success {
-    background: #e0f7e8;
-    color: #168a43;
+.message.success{
+    display:block;
+    background:#e7f8ee;
+    color:#16834b;
 }
 
-.error {
-    background: #ffe5e5;
-    color: #c62828;
+.message.error{
+    display:block;
+    background:#fff0f0;
+    color:#c62828;
 }
+
 
 /* MOBILE */
 
-@media(max-width: 900px) {
+@media(max-width:1000px){
 
-    .sidebar {
-        width: 210px;
+    .stats{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .main {
-        margin-left: 210px;
-    }
-
-    .stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
 }
 
-@media(max-width: 650px) {
+@media(max-width:700px){
 
-    .sidebar {
-        position: relative;
-        width: 100%;
-        height: auto;
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
     }
 
-    .main {
-        margin-left: 0;
+    .main{
+        margin-left:0;
     }
 
-    .logout {
-        position: relative;
-        left: auto;
-        right: auto;
-        bottom: auto;
-        margin-top: 20px;
+    .logout{
+        position:relative;
+        left:auto;
+        right:auto;
+        bottom:auto;
+        margin-top:20px;
     }
 
-    .stats {
-        grid-template-columns: 1fr;
+    .topbar{
+        padding:0 20px;
     }
 
-    .form-row {
-        grid-template-columns: 1fr;
+    .content{
+        padding:20px;
     }
+
+    .heading{
+        align-items:flex-start;
+        gap:15px;
+        flex-direction:column;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .form-row{
+        grid-template-columns:1fr;
+    }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <!-- SIDEBAR -->
 
-<div class="sidebar">
+<aside class="sidebar">
 
     <div class="logo">
-        Pavan<br>
-        <span>Educator</span>
+        Pavan <span>Educator</span>
     </div>
 
-    <div class="panel-title">
+    <div class="admin-label">
         ADMIN PANEL
     </div>
 
-    <div class="nav">
+    <ul class="menu">
 
-        <a href="admin-dashboard.html">
-            🏠 &nbsp; Dashboard
-        </a>
+        <li>
+            <a href="admin-dashboard.html">
+                <span class="menu-icon">🏠</span>
+                Dashboard
+            </a>
+        </li>
 
-        <a href="admin-courses.html">
-            📚 &nbsp; Courses
-        </a>
+        <li>
+            <a href="admin-courses.html">
+                <span class="menu-icon">📚</span>
+                Courses
+            </a>
+        </li>
 
-        <a href="admin-projects.html">
-            💻 &nbsp; Projects
-        </a>
+        <li>
+            <a href="admin-projects.html">
+                <span class="menu-icon">💻</span>
+                Projects
+            </a>
+        </li>
 
-        <a href="admin-videos.html">
-            🎥 &nbsp; Videos
-        </a>
+        <li>
+            <a href="admin-videos.html">
+                <span class="menu-icon">🎥</span>
+                Videos
+            </a>
+        </li>
 
-        <a href="admin-students.html" class="active">
-            🎓 &nbsp; Students
-        </a>
+        <li>
+            <a
+                href="admin-students.html"
+                class="active"
+            >
+                <span class="menu-icon">🎓</span>
+                Students
+            </a>
+        </li>
 
-        <a href="admin-settings.html">
-            ⚙️ &nbsp; Settings
-        </a>
+        <li>
+            <a href="admin-settings.html">
+                <span class="menu-icon">⚙️</span>
+                Settings
+            </a>
+        </li>
 
-    </div>
+    </ul>
+
 
     <div class="logout">
-        <a href="login.html" onclick="logout()">
-            🚪 &nbsp; Logout
+
+        <a
+            href="login.html"
+            onclick="logout()"
+        >
+            🚪 Logout
         </a>
+
     </div>
 
-</div>
+</aside>
+
 
 
 <!-- MAIN -->
 
-<div class="main">
+<main class="main">
 
-    <div class="topbar">
 
-        <h1>Students</h1>
+    <!-- TOPBAR -->
 
-        <a href="admin-dashboard.html">
-            ← Dashboard
-        </a>
+    <header class="topbar">
 
-    </div>
+        <h1>
+            Student Management
+        </h1>
 
+        <div class="admin-user">
+
+            <div class="admin-avatar">
+                A
+            </div>
+
+            Admin
+
+        </div>
+
+    </header>
+
+
+
+    <!-- CONTENT -->
 
     <div class="content">
+
+
+        <!-- HEADING -->
 
         <div class="heading">
 
             <div>
-                <h2>Students</h2>
-                <p>Add, edit and manage student accounts.</p>
+
+                <h2>
+                    Students
+                </h2>
+
+                <p>
+                    Create and manage your
+                    student accounts.
+                </p>
+
             </div>
 
-            <button class="add-btn" onclick="openModal()">
+
+            <button
+                class="add-btn"
+                onclick="openModal()"
+            >
                 + Add Student
             </button>
 
         </div>
 
 
+
         <!-- STATS -->
 
         <div class="stats">
 
-            <div class="stat">
-                <div class="number" id="totalStudents">0</div>
-                <div class="label">Total Students</div>
-            </div>
 
             <div class="stat">
-                <div class="number" id="totalLogins">0</div>
-                <div class="label">Total Logins</div>
+
+                <div
+                    class="stat-number"
+                    id="totalStudents"
+                >
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Total Students
+                </div>
+
             </div>
 
-            <div class="stat">
-                <div class="number" id="studentsLogged">0</div>
-                <div class="label">Students Logged In</div>
-            </div>
 
             <div class="stat">
-                <div class="number" id="todayLogins">0</div>
-                <div class="label">Today's Logins</div>
+
+                <div
+                    class="stat-number"
+                    id="totalLogins"
+                >
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Total Logins
+                </div>
+
             </div>
+
+
+            <div class="stat">
+
+                <div
+                    class="stat-number"
+                    id="loggedStudents"
+                >
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Students Logged In
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div
+                    class="stat-number"
+                    id="remainingStudents"
+                >
+                    20
+                </div>
+
+                <div class="stat-label">
+                    Student Slots Remaining
+                </div>
+
+            </div>
+
 
         </div>
 
 
+
         <!-- SEARCH -->
 
-        <div class="search-box">
+        <div class="search">
 
             🔍
 
@@ -527,6 +691,7 @@ td {
         </div>
 
 
+
         <!-- TABLE -->
 
         <div class="table-box">
@@ -536,24 +701,43 @@ td {
                 <thead>
 
                     <tr>
-                        <th>NAME</th>
-                        <th>USERNAME</th>
-                        <th>CLASS</th>
-                        <th>AGE</th>
-                        <th>LOCATION</th>
-                        <th>LOGINS</th>
-                        <th>STATUS</th>
+
+                        <th>
+                            NAME
+                        </th>
+
+                        <th>
+                            USERNAME
+                        </th>
+
+                        <th>
+                            CLASS
+                        </th>
+
+                        <th>
+                            AGE
+                        </th>
+
+                        <th>
+                            LOCATION
+                        </th>
+
+                        <th>
+                            LOGINS
+                        </th>
+
+                        <th>
+                            STATUS
+                        </th>
+
                     </tr>
 
                 </thead>
 
-                <tbody id="studentsBody">
 
-                    <tr>
-                        <td colspan="7" style="text-align:center;">
-                            Loading students...
-                        </td>
-                    </tr>
+                <tbody
+                    id="studentsBody"
+                >
 
                 </tbody>
 
@@ -561,29 +745,47 @@ td {
 
         </div>
 
+
     </div>
 
-</div>
+</main>
+
 
 
 <!-- ADD STUDENT MODAL -->
 
-<div class="modal" id="studentModal">
+<div
+    class="modal"
+    id="studentModal"
+>
+
 
     <div class="modal-box">
 
-        <h2>Add New Student</h2>
+
+        <h2>
+            Add New Student
+        </h2>
+
 
         <p>
-            Create a student login account.
+            Create a student account.
+            Maximum 20 students.
         </p>
 
-        <div id="message" class="message"></div>
+
+        <div
+            id="message"
+            class="message"
+        ></div>
+
 
 
         <div class="form-group">
 
-            <label>Student Name</label>
+            <label>
+                Student Name
+            </label>
 
             <input
                 type="text"
@@ -594,9 +796,12 @@ td {
         </div>
 
 
+
         <div class="form-group">
 
-            <label>Username</label>
+            <label>
+                Username
+            </label>
 
             <input
                 type="text"
@@ -607,29 +812,36 @@ td {
         </div>
 
 
+
         <div class="form-group">
 
-            <label>Password</label>
+            <label>
+                Password
+            </label>
 
             <input
                 type="password"
                 id="studentPassword"
-                placeholder="Enter password"
+                placeholder="Minimum 6 characters"
             >
 
         </div>
 
 
+
         <div class="form-row">
+
 
             <div class="form-group">
 
-                <label>Class</label>
+                <label>
+                    Class
+                </label>
 
                 <input
                     type="text"
                     id="studentClass"
-                    placeholder="Example: 10th class"
+                    placeholder="Example: 10th"
                 >
 
             </div>
@@ -637,7 +849,9 @@ td {
 
             <div class="form-group">
 
-                <label>Age</label>
+                <label>
+                    Age
+                </label>
 
                 <input
                     type="number"
@@ -647,12 +861,16 @@ td {
 
             </div>
 
+
         </div>
+
 
 
         <div class="form-group">
 
-            <label>Location</label>
+            <label>
+                Location
+            </label>
 
             <input
                 type="text"
@@ -663,7 +881,9 @@ td {
         </div>
 
 
+
         <div class="modal-buttons">
+
 
             <button
                 class="cancel-btn"
@@ -671,6 +891,7 @@ td {
             >
                 Cancel
             </button>
+
 
             <button
                 class="create-btn"
@@ -680,24 +901,29 @@ td {
                 Create Student
             </button>
 
+
         </div>
+
 
     </div>
 
 </div>
 
 
+
 <script>
 
 /* =========================================
-   SUPABASE CONFIGURATION
+   SUPABASE
 ========================================= */
 
 const SUPABASE_URL =
     "https://jlrmmkgcjckkayearlca.supabase.co";
 
+
 const SUPABASE_KEY =
     "sb_publishable_eEPceWmh6MUHLwZmAQMEdQ_uk1Gp1EH";
+
 
 const supabaseClient =
     window.supabase.createClient(
@@ -707,25 +933,36 @@ const supabaseClient =
 
 
 /* =========================================
-   STUDENT DATA
+   CONSTANT
 ========================================= */
 
-let allStudents = [];
+const MAX_STUDENTS = 20;
 
 
 /* =========================================
-   CHECK ADMIN LOGIN
+   DATA
 ========================================= */
 
-async function checkAdmin() {
+let students = [];
+
+
+/* =========================================
+   CHECK ADMIN
+========================================= */
+
+async function checkAdmin(){
 
     const {
         data: {
             session
         }
-    } = await supabaseClient.auth.getSession();
+    } =
+        await supabaseClient
+        .auth
+        .getSession();
 
-    if (!session) {
+
+    if(!session){
 
         window.location.href =
             "login.html";
@@ -733,7 +970,9 @@ async function checkAdmin() {
         return false;
     }
 
+
     return true;
+
 }
 
 
@@ -741,43 +980,61 @@ async function checkAdmin() {
    LOAD STUDENTS
 ========================================= */
 
-async function loadStudents() {
+async function loadStudents(){
 
     const {
         data,
         error
-    } = await supabaseClient
+    } =
+        await supabaseClient
         .from("students")
         .select("*")
-        .order("created_at", {
-            ascending: false
-        });
+        .order(
+            "created_at",
+            {
+                ascending:false
+            }
+        );
 
 
-    if (error) {
+    if(error){
 
         console.error(error);
 
         document.getElementById(
             "studentsBody"
         ).innerHTML = `
+
             <tr>
-                <td colspan="7"
-                    style="text-align:center;color:#c62828;">
+
+                <td
+                    colspan="7"
+                    style="text-align:center;color:#c62828;padding:30px;"
+                >
+
                     Unable to load students.
+
                 </td>
+
             </tr>
+
         `;
 
         return;
     }
 
 
-    allStudents = data || [];
+    students =
+        data || [];
 
-    displayStudents(allStudents);
 
-    updateStatistics(allStudents);
+    displayStudents(
+        students
+    );
+
+
+    updateStatistics();
+
 }
 
 
@@ -785,7 +1042,7 @@ async function loadStudents() {
    DISPLAY STUDENTS
 ========================================= */
 
-function displayStudents(students) {
+function displayStudents(list){
 
     const body =
         document.getElementById(
@@ -793,74 +1050,100 @@ function displayStudents(students) {
         );
 
 
-    if (!students.length) {
+    if(!list.length){
 
         body.innerHTML = `
+
             <tr>
-                <td colspan="7"
-                    style="text-align:center;padding:30px;">
+
+                <td
+                    colspan="7"
+                    style="text-align:center;padding:35px;color:#718096;"
+                >
+
                     No students found.
+
                 </td>
+
             </tr>
+
         `;
 
         return;
     }
 
 
-    body.innerHTML = students.map(student => {
+    body.innerHTML =
+        list.map(
+            student => {
 
-        const loginCount =
-            Number(student.login_count || 0);
-
-
-        const status =
-            loginCount > 0
-                ? "Logged In"
-                : "Not Logged In";
+                const logins =
+                    Number(
+                        student.login_count || 0
+                    );
 
 
-        return `
+                const status =
+                    logins > 0
+                        ? "Active"
+                        : "Not Logged In";
 
-            <tr>
 
-                <td>
-                    <strong>
-                        ${escapeHTML(student.name || "")}
-                    </strong>
-                </td>
+                return `
 
-                <td>
-                    ${escapeHTML(student.username || "")}
-                </td>
+                    <tr>
 
-                <td>
-                    ${escapeHTML(student.class || "")}
-                </td>
+                        <td>
+                            <strong>
+                                ${escapeHTML(
+                                    student.name
+                                )}
+                            </strong>
+                        </td>
 
-                <td>
-                    ${student.age ?? ""}
-                </td>
+                        <td>
+                            ${escapeHTML(
+                                student.username
+                            )}
+                        </td>
 
-                <td>
-                    ${escapeHTML(student.location || "")}
-                </td>
+                        <td>
+                            ${escapeHTML(
+                                student.class
+                            )}
+                        </td>
 
-                <td>
-                    ${loginCount}
-                </td>
+                        <td>
+                            ${student.age ?? "-"}
+                        </td>
 
-                <td>
-                    <span class="status">
-                        ${status}
-                    </span>
-                </td>
+                        <td>
+                            ${escapeHTML(
+                                student.location || "-"
+                            )}
+                        </td>
 
-            </tr>
+                        <td>
+                            ${logins}
+                        </td>
 
-        `;
+                        <td>
 
-    }).join("");
+                            <span class="status">
+
+                                ${status}
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+        ).join("");
+
 }
 
 
@@ -868,7 +1151,7 @@ function displayStudents(students) {
    STATISTICS
 ========================================= */
 
-function updateStatistics(students) {
+function updateStatistics(){
 
     const total =
         students.length;
@@ -876,16 +1159,22 @@ function updateStatistics(students) {
 
     const totalLogins =
         students.reduce(
-            (sum, student) =>
-                sum +
-                Number(
-                    student.login_count || 0
-                ),
+            (
+                total,
+                student
+            ) => {
+
+                return total +
+                    Number(
+                        student.login_count || 0
+                    );
+
+            },
             0
         );
 
 
-    const loggedStudents =
+    const logged =
         students.filter(
             student =>
                 Number(
@@ -894,89 +1183,36 @@ function updateStatistics(students) {
         ).length;
 
 
+    const remaining =
+        Math.max(
+            0,
+            MAX_STUDENTS - total
+        );
+
+
     document.getElementById(
         "totalStudents"
-    ).textContent = total;
+    ).textContent =
+        total;
 
 
     document.getElementById(
         "totalLogins"
-    ).textContent = totalLogins;
+    ).textContent =
+        totalLogins;
 
 
     document.getElementById(
-        "studentsLogged"
-    ).textContent = loggedStudents;
+        "loggedStudents"
+    ).textContent =
+        logged;
 
-
-    /*
-       Today's login count will be added
-       when we add a login-history table.
-    */
 
     document.getElementById(
-        "todayLogins"
-    ).textContent = "0";
-}
+        "remainingStudents"
+    ).textContent =
+        remaining;
 
-
-/* =========================================
-   SEARCH
-========================================= */
-
-function searchStudents() {
-
-    const value =
-        document.getElementById(
-            "searchInput"
-        ).value
-        .toLowerCase()
-        .trim();
-
-
-    if (!value) {
-
-        displayStudents(
-            allStudents
-        );
-
-        return;
-    }
-
-
-    const filtered =
-        allStudents.filter(student => {
-
-            return (
-
-                String(
-                    student.name || ""
-                ).toLowerCase().includes(value)
-
-                ||
-
-                String(
-                    student.username || ""
-                ).toLowerCase().includes(value)
-
-                ||
-
-                String(
-                    student.class || ""
-                ).toLowerCase().includes(value)
-
-                ||
-
-                String(
-                    student.location || ""
-                ).toLowerCase().includes(value)
-
-            );
-
-        });
-
-
-    displayStudents(filtered);
 }
 
 
@@ -984,11 +1220,25 @@ function searchStudents() {
    OPEN MODAL
 ========================================= */
 
-function openModal() {
+function openModal(){
+
+    if(
+        students.length >=
+        MAX_STUDENTS
+    ){
+
+        alert(
+            "Maximum 20 students are already registered."
+        );
+
+        return;
+    }
+
 
     document.getElementById(
         "studentModal"
-    ).style.display = "flex";
+    ).style.display =
+        "flex";
 
 }
 
@@ -997,11 +1247,12 @@ function openModal() {
    CLOSE MODAL
 ========================================= */
 
-function closeModal() {
+function closeModal(){
 
     document.getElementById(
         "studentModal"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
 
     clearForm();
@@ -1013,7 +1264,7 @@ function closeModal() {
    CLEAR FORM
 ========================================= */
 
-function clearForm() {
+function clearForm(){
 
     document.getElementById(
         "studentName"
@@ -1047,7 +1298,9 @@ function clearForm() {
 
     document.getElementById(
         "message"
-    ).style.display = "none";
+    ).style.display =
+        "none";
+
 }
 
 
@@ -1055,7 +1308,23 @@ function clearForm() {
    CREATE STUDENT
 ========================================= */
 
-async function createStudent() {
+async function createStudent(){
+
+    /* CHECK 20 LIMIT */
+
+    if(
+        students.length >=
+        MAX_STUDENTS
+    ){
+
+        showMessage(
+            "Maximum 20 students allowed.",
+            "error"
+        );
+
+        return;
+    }
+
 
     const name =
         document.getElementById(
@@ -1066,7 +1335,8 @@ async function createStudent() {
     const username =
         document.getElementById(
             "studentUsername"
-        ).value.trim();
+        ).value.trim()
+        .toLowerCase();
 
 
     const password =
@@ -1093,15 +1363,17 @@ async function createStudent() {
         ).value.trim();
 
 
-    if (
+    /* VALIDATION */
+
+    if(
         !name ||
         !username ||
         !password ||
         !studentClass
-    ) {
+    ){
 
         showMessage(
-            "Please fill Name, Username, Password and Class.",
+            "Please fill all required fields.",
             "error"
         );
 
@@ -1109,7 +1381,9 @@ async function createStudent() {
     }
 
 
-    if (password.length < 6) {
+    if(
+        password.length < 6
+    ){
 
         showMessage(
             "Password must contain at least 6 characters.",
@@ -1120,101 +1394,127 @@ async function createStudent() {
     }
 
 
-    const createBtn =
+    if(
+        students.some(
+            student =>
+                student.username
+                    .toLowerCase()
+                ===
+                username
+        )
+    ){
+
+        showMessage(
+            "This username already exists.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    /* BUTTON */
+
+    const button =
         document.getElementById(
             "createBtn"
         );
 
 
-    createBtn.disabled = true;
+    button.disabled =
+        true;
 
-    createBtn.textContent =
+
+    button.textContent =
         "Creating...";
 
 
-    try {
+    try{
 
-        /*
-           Make sure admin is logged in.
-        */
+
+        /* CHECK SESSION */
 
         const {
             data: {
                 session
             }
         } =
-            await supabaseClient.auth.getSession();
+            await supabaseClient
+            .auth
+            .getSession();
 
 
-        if (!session) {
+        if(!session){
 
             throw new Error(
                 "Admin session expired. Please login again."
             );
+
         }
 
 
-        /*
-           Call Supabase Edge Function.
-        */
+        /* CALL EDGE FUNCTION */
 
         const {
             data,
             error
         } =
             await supabaseClient
-                .functions
-                .invoke(
-                    "create-student",
-                    {
-                        body: {
+            .functions
+            .invoke(
+                "create-student",
+                {
 
-                            name:
-                                name,
+                    body: {
 
-                            username:
-                                username,
+                        name:
+                            name,
 
-                            password:
-                                password,
+                        username:
+                            username,
 
-                            studentClass:
-                                studentClass,
+                        password:
+                            password,
 
-                            age:
-                                age,
+                        studentClass:
+                            studentClass,
 
-                            location:
-                                location
+                        age:
+                            age,
 
-                        }
+                        location:
+                            location
+
                     }
-                );
+
+                }
+            );
 
 
-        if (error) {
+        if(error){
 
             console.error(
-                "Function error:",
                 error
             );
 
             throw new Error(
                 error.message ||
-                "Unable to create student."
+                "Student creation failed."
             );
+
         }
 
 
-        if (
+        if(
             !data ||
             data.success !== true
-        ) {
+        ){
 
             throw new Error(
                 data?.error ||
-                "Student could not be created."
+                "Student creation failed."
             );
+
         }
 
 
@@ -1224,53 +1524,11 @@ async function createStudent() {
         );
 
 
-        /*
-           Clear form.
-        */
-
-        document.getElementById(
-            "studentName"
-        ).value = "";
-
-
-        document.getElementById(
-            "studentUsername"
-        ).value = "";
-
-
-        document.getElementById(
-            "studentPassword"
-        ).value = "";
-
-
-        document.getElementById(
-            "studentClass"
-        ).value = "";
-
-
-        document.getElementById(
-            "studentAge"
-        ).value = "";
-
-
-        document.getElementById(
-            "studentLocation"
-        ).value = "";
-
-
-        /*
-           Reload student list.
-        */
-
         await loadStudents();
 
 
-        /*
-           Close after short delay.
-        */
-
         setTimeout(
-            () => {
+            function(){
 
                 closeModal();
 
@@ -1279,67 +1537,131 @@ async function createStudent() {
         );
 
 
-    } catch (error) {
+    }
+    catch(error){
 
-        console.error(error);
+        console.error(
+            error
+        );
+
 
         showMessage(
             error.message ||
-            "Something went wrong.",
+            "Unable to create student.",
             "error"
         );
 
-    } finally {
+    }
+    finally{
 
-        createBtn.disabled =
+        button.disabled =
             false;
 
-        createBtn.textContent =
+        button.textContent =
             "Create Student";
+
     }
+
 }
 
 
 /* =========================================
-   MESSAGE
+   SEARCH
 ========================================= */
 
-function showMessage(
-    text,
-    type
-) {
+function searchStudents(){
 
-    const message =
+    const value =
         document.getElementById(
-            "message"
+            "searchInput"
+        ).value
+        .toLowerCase()
+        .trim();
+
+
+    if(!value){
+
+        displayStudents(
+            students
+        );
+
+        return;
+    }
+
+
+    const filtered =
+        students.filter(
+            student =>
+
+                String(
+                    student.name || ""
+                )
+                .toLowerCase()
+                .includes(value)
+
+                ||
+
+                String(
+                    student.username || ""
+                )
+                .toLowerCase()
+                .includes(value)
+
+                ||
+
+                String(
+                    student.class || ""
+                )
+                .toLowerCase()
+                .includes(value)
+
+                ||
+
+                String(
+                    student.location || ""
+                )
+                .toLowerCase()
+                .includes(value)
         );
 
 
-    message.textContent =
-        text;
+    displayStudents(
+        filtered
+    );
 
-
-    message.className =
-        "message " + type;
-
-
-    message.style.display =
-        "block";
 }
 
 
 /* =========================================
-   HTML SECURITY
+   ESCAPE HTML
 ========================================= */
 
-function escapeHTML(value) {
+function escapeHTML(value){
 
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
 }
 
 
@@ -1347,9 +1669,11 @@ function escapeHTML(value) {
    LOGOUT
 ========================================= */
 
-async function logout() {
+async function logout(){
 
-    await supabaseClient.auth.signOut();
+    await supabaseClient
+        .auth
+        .signOut();
 
 }
 
@@ -1358,13 +1682,13 @@ async function logout() {
    START
 ========================================= */
 
-(async function () {
+(async function(){
 
     const allowed =
         await checkAdmin();
 
 
-    if (allowed) {
+    if(allowed){
 
         await loadStudents();
 
@@ -1375,4 +1699,5 @@ async function logout() {
 </script>
 
 </body>
+
 </html>

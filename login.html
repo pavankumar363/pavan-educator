@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Pavan Educator | Login</title>
 
@@ -25,21 +22,16 @@ body{
     min-height:100vh;
 
     background:
-        linear-gradient(
-            135deg,
-            #071a33,
-            #123c73
-        );
+        linear-gradient(135deg,#071a33,#123c73);
 
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
 
     padding:20px;
 }
 
 .login-container{
-
     width:100%;
     max-width:1000px;
     min-height:600px;
@@ -47,29 +39,21 @@ body{
     background:white;
 
     border-radius:22px;
-
     overflow:hidden;
 
     display:grid;
-
     grid-template-columns:1fr 1fr;
 
     box-shadow:
-        0 25px 60px
-        rgba(0,0,0,.25);
+        0 25px 60px rgba(0,0,0,.25);
 }
 
 
-/* LEFT SIDE */
+/* LEFT */
 
 .left{
-
     background:
-        linear-gradient(
-            145deg,
-            #126df3,
-            #5546f4
-        );
+        linear-gradient(145deg,#126df3,#5546f4);
 
     color:white;
 
@@ -81,10 +65,8 @@ body{
 }
 
 .logo{
-
     font-size:32px;
     font-weight:800;
-
     margin-bottom:60px;
 }
 
@@ -93,49 +75,34 @@ body{
 }
 
 .left h1{
-
     font-size:42px;
-
     line-height:1.15;
-
     margin-bottom:20px;
 }
 
 .left p{
-
     font-size:17px;
-
     line-height:1.7;
-
     opacity:.9;
-
     max-width:420px;
 }
 
 .features{
-
     margin-top:40px;
 
     display:flex;
-
     flex-direction:column;
-
     gap:15px;
 }
 
 .feature{
-
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
     font-size:15px;
 }
 
 .feature-icon{
-
     width:35px;
     height:35px;
 
@@ -145,38 +112,29 @@ body{
         rgba(255,255,255,.18);
 
     display:flex;
-
     align-items:center;
     justify-content:center;
 }
 
 
-/* RIGHT SIDE */
+/* RIGHT */
 
 .right{
-
     padding:55px 50px;
 
     display:flex;
-
     flex-direction:column;
-
     justify-content:center;
 }
 
 .right h2{
-
     font-size:30px;
-
     margin-bottom:8px;
 }
 
 .subtitle{
-
     color:#718096;
-
     font-size:14px;
-
     margin-bottom:30px;
 }
 
@@ -184,27 +142,19 @@ body{
 /* ROLE */
 
 .role-title{
-
     font-size:13px;
-
     font-weight:700;
-
     margin-bottom:10px;
 }
 
 .roles{
-
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
     gap:10px;
-
     margin-bottom:25px;
 }
 
 .role{
-
     border:1px solid #d9e2ef;
 
     border-radius:9px;
@@ -216,23 +166,18 @@ body{
     cursor:pointer;
 
     font-weight:700;
-
     font-size:13px;
 
     transition:.2s;
 }
 
 .role:hover{
-
     border-color:#2474ff;
 }
 
 .role.selected{
-
     background:#2474ff;
-
     color:white;
-
     border-color:#2474ff;
 }
 
@@ -240,25 +185,20 @@ body{
 /* FORM */
 
 .form-group{
-
     margin-bottom:18px;
 }
 
 .form-group label{
-
     display:block;
 
     font-size:13px;
-
     font-weight:700;
 
     margin-bottom:7px;
 }
 
 .form-group input{
-
     width:100%;
-
     height:48px;
 
     padding:0 14px;
@@ -273,7 +213,6 @@ body{
 }
 
 .form-group input:focus{
-
     border-color:#2474ff;
 
     box-shadow:
@@ -285,11 +224,8 @@ body{
 /* REMEMBER */
 
 .remember{
-
     display:flex;
-
     align-items:center;
-
     gap:8px;
 
     margin-bottom:22px;
@@ -300,16 +236,13 @@ body{
 }
 
 
-/* LOGIN BUTTON */
+/* BUTTON */
 
 .login-btn{
-
     width:100%;
-
     height:50px;
 
     border:none;
-
     border-radius:9px;
 
     background:#2474ff;
@@ -317,23 +250,17 @@ body{
     color:white;
 
     font-size:15px;
-
     font-weight:700;
 
     cursor:pointer;
-
-    transition:.2s;
 }
 
 .login-btn:hover{
-
     background:#155bd4;
 }
 
 .login-btn:disabled{
-
     opacity:.6;
-
     cursor:not-allowed;
 }
 
@@ -341,7 +268,6 @@ body{
 /* MESSAGE */
 
 .message{
-
     display:none;
 
     margin-top:15px;
@@ -356,20 +282,16 @@ body{
 }
 
 .message.error{
-
     display:block;
 
     background:#fff0f0;
-
     color:#c62828;
 }
 
 .message.success{
-
     display:block;
 
     background:#eaf8ef;
-
     color:#16834b;
 }
 
@@ -377,7 +299,6 @@ body{
 /* FOOTER */
 
 .footer{
-
     text-align:center;
 
     color:#9aa5b6;
@@ -393,22 +314,18 @@ body{
 @media(max-width:750px){
 
     .login-container{
-
         grid-template-columns:1fr;
     }
 
     .left{
-
         padding:40px 30px;
     }
 
     .left h1{
-
         font-size:32px;
     }
 
     .right{
-
         padding:40px 30px;
     }
 
@@ -430,32 +347,25 @@ body{
 <section class="left">
 
     <div class="logo">
-
         Pavan <span>Educator</span>
-
     </div>
 
 
     <h1>
-
         Learn.<br>
         Build.<br>
         Grow.
-
     </h1>
 
 
     <p>
-
         Welcome to your learning platform.
         Access projects, courses and your
         personal student space.
-
     </p>
 
 
     <div class="features">
-
 
         <div class="feature">
 
@@ -489,7 +399,6 @@ body{
 
         </div>
 
-
     </div>
 
 </section>
@@ -500,16 +409,13 @@ body{
 
 <section class="right">
 
-
     <h2>
         Welcome Back
     </h2>
 
-
     <p class="subtitle">
         Login to continue to Pavan Educator
     </p>
-
 
 
     <div class="role-title">
@@ -525,9 +431,7 @@ body{
             id="studentRole"
             onclick="selectRole('Student')"
         >
-
             🎓 Student
-
         </div>
 
 
@@ -536,14 +440,11 @@ body{
             id="adminRole"
             onclick="selectRole('Admin')"
         >
-
             🛡️ Admin
-
         </div>
 
 
     </div>
-
 
 
     <form
@@ -562,12 +463,10 @@ body{
                 type="text"
                 id="username"
                 placeholder="Enter username"
-                autocomplete="username"
                 required
             >
 
         </div>
-
 
 
         <div class="form-group">
@@ -580,12 +479,10 @@ body{
                 type="password"
                 id="password"
                 placeholder="Enter password"
-                autocomplete="current-password"
                 required
             >
 
         </div>
-
 
 
         <label class="remember">
@@ -600,20 +497,16 @@ body{
         </label>
 
 
-
         <button
             type="submit"
             class="login-btn"
             id="loginButton"
         >
-
             LOGIN
-
         </button>
 
 
     </form>
-
 
 
     <div
@@ -623,13 +516,12 @@ body{
 
 
     <div class="footer">
-
         © 2026 Pavan Educator
-
     </div>
 
 
 </section>
+
 
 </div>
 
@@ -644,10 +536,8 @@ body{
 const SUPABASE_URL =
     "https://jlrmmkgcjckkayearlca.supabase.co";
 
-
 const SUPABASE_KEY =
     "sb_publishable_eEPceWmh6MUHLwZmAQMEdQ_uk1Gp1EH";
-
 
 const supabaseClient =
     window.supabase.createClient(
@@ -657,15 +547,11 @@ const supabaseClient =
 
 
 /* =========================================
-   CURRENT ROLE
+   ROLE
 ========================================= */
 
 let selectedRole = "Student";
 
-
-/* =========================================
-   SELECT ROLE
-========================================= */
 
 function selectRole(role){
 
@@ -684,223 +570,40 @@ function selectRole(role){
         .remove("selected");
 
 
-    if(role === "Student"){
-
-        document
-            .getElementById("studentRole")
-            .classList
-            .add("selected");
-
-    }
-
-
-    if(role === "Admin"){
-
-        document
-            .getElementById("adminRole")
-            .classList
-            .add("selected");
-
-    }
+    document
+        .getElementById(
+            role === "Student"
+                ? "studentRole"
+                : "adminRole"
+        )
+        .classList
+        .add("selected");
 
 }
 
 
 /* =========================================
-   SHOW MESSAGE
+   MESSAGE
 ========================================= */
 
-function showMessage(text,type){
+function showMessage(
+    text,
+    type
+){
 
     const message =
-        document.getElementById("message");
+        document.getElementById(
+            "message"
+        );
 
-
-    message.textContent = text;
-
+    message.textContent =
+        text;
 
     message.className =
         "message " + type;
 
-
     message.style.display =
         "block";
-
-}
-
-
-/* =========================================
-   STUDENT LOGIN
-========================================= */
-
-async function studentLogin(
-    username,
-    password
-){
-
-    /*
-       Student username is converted
-       to the internal Auth email.
-    */
-
-    const email =
-        username
-            .trim()
-            .toLowerCase()
-        +
-        "@pavaneducator.local";
-
-
-    /*
-       First authenticate with Supabase.
-    */
-
-    const {
-        data,
-        error
-    } =
-        await supabaseClient.auth
-        .signInWithPassword({
-
-            email: email,
-
-            password: password
-
-        });
-
-
-    if(error){
-
-        throw new Error(
-            "Invalid student username or password."
-        );
-
-    }
-
-
-    /*
-       Now get the student's profile.
-    */
-
-    const {
-        data: student,
-        error: studentError
-    } =
-        await supabaseClient
-        .from("students")
-        .select("*")
-        .eq(
-            "auth_user_id",
-            data.user.id
-        )
-        .maybeSingle();
-
-
-    if(studentError){
-
-        console.error(
-            studentError
-        );
-
-        await supabaseClient.auth.signOut();
-
-        throw new Error(
-            "Unable to load student profile."
-        );
-
-    }
-
-
-    if(!student){
-
-        await supabaseClient.auth.signOut();
-
-        throw new Error(
-            "Student profile not found."
-        );
-
-    }
-
-
-    /*
-       Save student information.
-    */
-
-    sessionStorage.setItem(
-        "currentRole",
-        "Student"
-    );
-
-
-    sessionStorage.setItem(
-        "currentUser",
-        student.username
-    );
-
-
-    sessionStorage.setItem(
-        "studentName",
-        student.name || ""
-    );
-
-
-    sessionStorage.setItem(
-        "studentClass",
-        student.class || ""
-    );
-
-
-    sessionStorage.setItem(
-        "studentAge",
-        student.age || ""
-    );
-
-
-    sessionStorage.setItem(
-        "studentLocation",
-        student.location || ""
-    );
-
-
-    /*
-       Update login count.
-    */
-
-    const currentCount =
-        Number(
-            student.login_count || 0
-        );
-
-
-    await supabaseClient
-        .from("students")
-        .update({
-
-            login_count:
-                currentCount + 1
-
-        })
-        .eq(
-            "auth_user_id",
-            data.user.id
-        );
-
-
-    showMessage(
-        "Login successful. Opening dashboard...",
-        "success"
-    );
-
-
-    setTimeout(
-        function(){
-
-            window.location.href =
-                "student-dashboard.html";
-
-        },
-        700
-    );
 
 }
 
@@ -913,14 +616,6 @@ async function adminLogin(
     username,
     password
 ){
-
-    /*
-       Admin username:
-       admin
-
-       Internal Auth email:
-       admin@pavaneducator.local
-    */
 
     if(
         username.trim().toLowerCase()
@@ -973,7 +668,7 @@ async function adminLogin(
 
 
     showMessage(
-        "Admin login successful. Opening dashboard...",
+        "Admin login successful...",
         "success"
     );
 
@@ -983,6 +678,126 @@ async function adminLogin(
 
             window.location.href =
                 "admin-dashboard.html";
+
+        },
+        700
+    );
+
+}
+
+
+/* =========================================
+   STUDENT LOGIN
+========================================= */
+
+async function studentLogin(
+    username,
+    password
+){
+
+    const email =
+        username
+            .trim()
+            .toLowerCase()
+        +
+        "@pavaneducator.local";
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient.auth
+        .signInWithPassword({
+
+            email:
+                email,
+
+            password:
+                password
+
+        });
+
+
+    if(error){
+
+        throw new Error(
+            "Invalid student username or password."
+        );
+
+    }
+
+
+    /*
+       Student profile will be connected
+       after we create the student system.
+    */
+
+    const {
+        data: student,
+        error: profileError
+    } =
+        await supabaseClient
+        .from("students")
+        .select("*")
+        .eq(
+            "auth_user_id",
+            data.user.id
+        )
+        .maybeSingle();
+
+
+    if(profileError){
+
+        await supabaseClient.auth.signOut();
+
+        throw new Error(
+            "Unable to load student profile."
+        );
+
+    }
+
+
+    if(!student){
+
+        await supabaseClient.auth.signOut();
+
+        throw new Error(
+            "Student profile not found."
+        );
+
+    }
+
+
+    sessionStorage.setItem(
+        "currentRole",
+        "Student"
+    );
+
+
+    sessionStorage.setItem(
+        "currentUser",
+        student.username
+    );
+
+
+    sessionStorage.setItem(
+        "studentName",
+        student.name || ""
+    );
+
+
+    showMessage(
+        "Login successful...",
+        "success"
+    );
+
+
+    setTimeout(
+        function(){
+
+            window.location.href =
+                "student-dashboard.html";
 
         },
         700
@@ -1019,22 +834,8 @@ async function login(event){
         );
 
 
-    if(
-        !username ||
-        !password
-    ){
-
-        showMessage(
-            "Please enter username and password.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    button.disabled = true;
+    button.disabled =
+        true;
 
     button.textContent =
         "LOGGING IN...";
@@ -1043,7 +844,8 @@ async function login(event){
     try{
 
         if(
-            selectedRole === "Admin"
+            selectedRole ===
+            "Admin"
         ){
 
             await adminLogin(
@@ -1061,12 +863,10 @@ async function login(event){
 
         }
 
-
     }
     catch(error){
 
         console.error(error);
-
 
         showMessage(
             error.message ||
@@ -1074,10 +874,8 @@ async function login(event){
             "error"
         );
 
-
         button.disabled =
             false;
-
 
         button.textContent =
             "LOGIN";
@@ -1086,69 +884,8 @@ async function login(event){
 
 }
 
-
-/* =========================================
-   REMEMBER USERNAME
-========================================= */
-
-const rememberedUser =
-    localStorage.getItem(
-        "pavanRememberedUser"
-    );
-
-
-if(rememberedUser){
-
-    document.getElementById(
-        "username"
-    ).value =
-        rememberedUser;
-
-}
-
-
-/* =========================================
-   SAVE REMEMBERED USER
-========================================= */
-
-document
-.getElementById("loginForm")
-.addEventListener(
-    "submit",
-    function(){
-
-        const remember =
-            document.getElementById(
-                "remember"
-            ).checked;
-
-
-        const username =
-            document.getElementById(
-                "username"
-            ).value.trim();
-
-
-        if(remember){
-
-            localStorage.setItem(
-                "pavanRememberedUser",
-                username
-            );
-
-        }
-        else{
-
-            localStorage.removeItem(
-                "pavanRememberedUser"
-            );
-
-        }
-
-    }
-);
-
 </script>
+
 
 </body>
 

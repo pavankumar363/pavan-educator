@@ -1,0 +1,9 @@
+/* Pavan Educator Phase 1 shared polish */
+:root{--pe-blue:#2563eb;--pe-blue-dark:#1d4ed8;--pe-bg:#f5f8ff;--pe-text:#172033;--pe-muted:#667085;--pe-border:#e5eaf3}
+body{background:var(--pe-bg);color:var(--pe-text)}
+.logo,.brand-logo{display:inline-flex;align-items:center;gap:9px}
+.logo img,.brand-logo img{width:42px;height:42px;object-fit:contain;vertical-align:middle}
+button,a{transition:.2s ease}
+.nav-links a:hover{color:var(--pe-blue)!important}
+img{max-width:100%}
+@media(max-width:700px){.logo img,.brand-logo img{width:36px;height:36px}}

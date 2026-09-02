@@ -45,9 +45,11 @@
         return s;
       }catch(e){return null;}
     },
-    logout:function(){
+    logout: async function(){
+      const s=JSON.parse(sessionStorage.getItem('pavanDemoStudent')||'null');
       if(heartbeatTimer) clearInterval(heartbeatTimer);
       heartbeatTimer=null;
+      if(s && s.username) await rpc('student_logout',s.username);
       sessionStorage.removeItem('pavanDemoStudent');
       sessionStorage.removeItem('currentRole');
       sessionStorage.removeItem('currentUser');

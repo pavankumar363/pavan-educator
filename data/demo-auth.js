@@ -9,14 +9,14 @@
     const result=await crypto.subtle.digest('SHA-256',bytes);
     return Array.from(new Uint8Array(result)).map(b=>b.toString(16).padStart(2,'0')).join('');
   }
-  async function rpc(name,username){
+  async function rpc(name,username,keepalive=false){
     try{
-      await fetch(SUPABASE_URL+'/rest/v1/rpc/'+name,{
-        method:'POST',
+      return await fetch(SUPABASE_URL+'/rest/v1/rpc/'+name,{
+        method:'POST',keepalive,
         headers:{'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY,'Content-Type':'application/json'},
         body:JSON.stringify({p_username:username})
       });
-    }catch(e){ console.warn('Student presence tracking unavailable',e); }
+    }catch(e){ console.warn('Student presence tracking unavailable',e); return null; }
   }
   function startHeartbeat(username){
     if(heartbeatTimer) clearInterval(heartbeatTimer);
@@ -45,11 +45,12 @@
         return s;
       }catch(e){return null;}
     },
-    logout: async function(){
-      const s=JSON.parse(sessionStorage.getItem('pavanDemoStudent')||'null');
+    logout:function(){
+      let s=null;
+      try{s=JSON.parse(sessionStorage.getItem('pavanDemoStudent')||'null');}catch(e){}
       if(heartbeatTimer) clearInterval(heartbeatTimer);
       heartbeatTimer=null;
-      if(s && s.username) await rpc('student_logout',s.username);
+      if(s && s.username) rpc('student_logout',s.username,true);
       sessionStorage.removeItem('pavanDemoStudent');
       sessionStorage.removeItem('currentRole');
       sessionStorage.removeItem('currentUser');

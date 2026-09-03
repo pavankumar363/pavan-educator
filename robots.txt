@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /admin-dashboard.html
+Disallow: /admin-courses.html
+Disallow: /admin-projects.html
+Disallow: /admin-videos.html
+Disallow: /admin-students.html
+Disallow: /admin-student-chat.html
+Disallow: /admin-settings.html
+Disallow: /student-dashboard.html
+Disallow: /student-profile.html
+Disallow: /student-projects.html
+Disallow: /student-chat.html
+Sitemap: https://pavankumar363.github.io/pavan-educator/sitemap.xml

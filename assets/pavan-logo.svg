@@ -1,1 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><rect width="128" height="128" rx="28" fill="#2563eb"/><path fill="#fff" d="M34 28h38c14 0 24 8 24 21 0 14-10 22-24 22H52v29H34V28zm18 15v14h18c5 0 8-3 8-7s-3-7-8-7H52z"/><circle cx="89" cy="92" r="9" fill="#fff"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+<title>Pavan Educator logo</title>
+<desc>Blue graduation cap above a bold P and an open book</desc>
+<defs>
+<linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#172554"/><stop offset="1" stop-color="#2563eb"/></linearGradient>
+</defs>
+<rect width="256" height="256" rx="52" fill="#f8fbff"/>
+<path d="M36 92 128 42l92 50-92 50z" fill="url(#blue)"/>
+<path d="M61 103v38c36 24 98 24 134 0v-38l-67 36z" fill="#1d4ed8" opacity=".95"/>
+<path d="M128 42v105" stroke="#fff" stroke-width="7" opacity=".9"/>
+<path d="M184 77v40" stroke="#172554" stroke-width="7"/>
+<circle cx="184" cy="126" r="9" fill="#2563eb"/>
+<path d="M76 151h104v58H76z" fill="#fff"/>
+<path d="M92 164h30c17 0 27 9 27 23s-10 23-27 23h-14v-20h14c5 0 8-2 8-5s-3-5-8-5H92z" fill="#172554"/>
+<path d="M55 209c28 18 58 22 73 22s45-4 73-22c-23 3-45 7-73 7s-50-4-73-7z" fill="#2563eb"/>
+<path d="M55 209c20 3 43 7 73 7v15c-18 0-48-5-73-22z" fill="#60a5fa"/>
+</svg>

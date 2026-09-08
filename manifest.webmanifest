@@ -1,0 +1,19 @@
+{
+  "name": "Pavan Educator",
+  "short_name": "Pavan Educator",
+  "description": "Learn technology, study materials, educational videos and practical projects with Pavan Educator.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f8ff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/pavan-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

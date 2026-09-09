@@ -8,37 +8,52 @@
 <link rel="icon" type="image/svg+xml" href="assets/pavan-logo.svg">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,Helvetica,sans-serif;background:#f5f8ff;color:#172033}
-.navbar{height:74px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 7%;border-bottom:1px solid #e6ebf5}
-.logo{display:flex;align-items:center;gap:10px;font-size:23px;font-weight:800;color:#172033;text-decoration:none}.logo img{width:42px;height:42px}.logo span{color:#2563eb}
-.back{color:#2563eb;text-decoration:none;font-weight:700}
-.founder-page{min-height:calc(100vh - 74px);display:flex;align-items:center;justify-content:center;padding:70px 8%}
-.founder-card{width:100%;max-width:1000px;background:#fff;border:1px solid #e1e7f2;border-radius:24px;padding:55px;display:flex;align-items:center;gap:55px;box-shadow:0 18px 45px rgba(30,70,140,.08)}
-.founder-photo{width:300px;height:390px;flex:0 0 300px;object-fit:cover;object-position:center top;border-radius:18px;border:5px solid #fff;box-shadow:0 15px 35px rgba(37,99,235,.16);display:block}
-.label{color:#2563eb;font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
-h1{font-size:48px;margin:12px 0 8px}.title{font-size:21px;font-weight:800;color:#2563eb;margin-bottom:20px}.text{font-size:17px;line-height:1.8;color:#687389}.signature{margin-top:25px;font-weight:700;color:#172033}
-footer{text-align:center;background:#0e1525;color:#fff;padding:28px}footer p{color:#929caf;margin-top:7px;font-size:14px}
-@media(max-width:800px){.founder-page{padding:45px 6%}.founder-card{flex-direction:column;text-align:center;padding:35px 25px;gap:30px}.founder-photo{width:240px;height:320px;flex-basis:320px}h1{font-size:38px}.text{font-size:15px}.navbar{padding:0 5%}}
+body{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#18345b}
+a{text-decoration:none}
+.navbar{height:66px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 6%;border-bottom:1px solid #edf1f7;position:sticky;top:0;z-index:10}
+.logo{display:flex;align-items:center;gap:10px;font-size:23px;font-weight:800;color:#2563eb}.logo img{width:42px;height:42px}.home{color:#2563eb;font-weight:700;font-size:17px}
+.why{padding:22px 6% 24px;text-align:center;background:#fff}.why h2{font-size:30px;margin-bottom:14px;color:#19385f}.line{width:46px;height:3px;background:#2563eb;margin:0 auto 22px;border-radius:3px}
+.cards{max-width:1180px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}.card{background:#fff;border:1px solid #e7edf6;border-radius:10px;padding:17px 14px 18px;box-shadow:0 6px 20px rgba(30,70,140,.06)}.icon{width:72px;height:72px;margin:0 auto 12px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;background:#e8f0ff}.card:nth-child(2) .icon{background:#e4fbf7}.card:nth-child(3) .icon{background:#ffe8ef}.card:nth-child(4) .icon{background:#eee9ff}.card h3{font-size:19px;margin-bottom:9px;color:#18345b}.card p{font-size:16px;line-height:1.45;color:#344b6d}
+.quote{max-width:840px;margin:18px auto 0;background:#f5f9ff;border-radius:10px;padding:18px 25px;font-size:17px;font-weight:600;color:#18345b}.quote small{display:block;text-align:right;margin-top:10px;font-size:14px;font-weight:400;color:#405574}
+.founder-section{background:#edf6ff;padding:0 6%;margin-top:0;overflow:hidden}.founder-inner{max-width:1180px;margin:auto;min-height:390px;display:grid;grid-template-columns:46% 54%;align-items:end}.photo-wrap{height:390px;display:flex;align-items:flex-end;justify-content:center}.founder-photo{width:330px;height:440px;object-fit:cover;object-position:center top;display:block;filter:saturate(.98)}.founder-info{padding:28px 20px 28px 20px;align-self:center}.eyebrow{font-size:16px;letter-spacing:.5px;font-weight:800;color:#2563eb;text-transform:uppercase}.founder-info h1{font-size:43px;line-height:1.1;margin:10px 0 7px;color:#18345b}.title{font-size:21px;font-weight:700;color:#2563eb;margin-bottom:13px}.mini-line{width:45px;height:3px;background:#2563eb;margin-bottom:16px}.founder-info p{font-size:16px;line-height:1.48;color:#344b6d;margin-bottom:12px;max-width:650px}.signature{font-size:29px;font-family:cursive;font-style:italic;color:#18345b;margin-top:12px}.tagline{font-size:16px;font-weight:700;color:#2563eb;margin-top:3px}
+footer{background:#183a68;color:#fff;min-height:74px;padding:18px 6%;display:flex;align-items:center;justify-content:space-between;font-size:14px}footer .social{display:flex;gap:26px;font-size:23px}footer .right{font-size:14px}
+@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}.founder-inner{grid-template-columns:1fr}.photo-wrap{height:340px}.founder-photo{width:260px;height:345px}.founder-info{text-align:center;padding:24px 8px 30px}.mini-line{margin-left:auto;margin-right:auto}.founder-info p{margin-left:auto;margin-right:auto}.signature{font-size:25px}footer{flex-direction:column;gap:12px;text-align:center}}
+@media(max-width:560px){.navbar{padding:0 5%;height:62px}.logo{font-size:19px}.logo img{width:36px;height:36px}.home{font-size:15px}.why{padding:25px 5% 20px}.why h2{font-size:25px}.cards{grid-template-columns:1fr;gap:14px}.quote{font-size:15px}.founder-section{padding:0 5%}.photo-wrap{height:310px}.founder-photo{width:225px;height:300px}.founder-info h1{font-size:34px}.title{font-size:18px}.founder-info p{font-size:15px}}
 </style>
 </head>
 <body>
 <header class="navbar">
 <a href="index.html" class="logo"><img src="assets/pavan-logo.svg" alt="Pavan Educator logo"><span>Pavan Educator</span></a>
-<a href="index.html" class="back">← Home</a>
+<a href="index.html" class="home">← Home</a>
 </header>
-<main class="founder-page">
-<section class="founder-card">
-<img class="founder-photo" src="assets/founder-photo.jpg" alt="Pavan Kumar - Founder of Pavan Educator">
-<div>
-<div class="label">Pavan Educator</div>
+<main>
+<section class="why">
+<h2>Why Choose Pavan Educator?</h2>
+<div class="line"></div>
+<div class="cards">
+<div class="card"><div class="icon">📖</div><h3>Quality Learning</h3><p>Well-structured notes<br>and clear explanations</p></div>
+<div class="card"><div class="icon">💻</div><h3>Practical Projects</h3><p>Hands-on real world<br>projects</p></div>
+<div class="card"><div class="icon">▶</div><h3>Video Tutorials</h3><p>Step-by-step video<br>lectures</p></div>
+<div class="card"><div class="icon">👥</div><h3>Student Support</h3><p>Helping you at<br>every step</p></div>
+</div>
+<div class="quote">“Education is not just about learning, but about creating opportunities.”<small>— Pavan Educator</small></div>
+</section>
+<section class="founder-section">
+<div class="founder-inner">
+<div class="photo-wrap"><img class="founder-photo" src="assets/founder-photo.jpg" alt="Pavan Kumar - Founder of Pavan Educator"></div>
+<div class="founder-info">
+<div class="eyebrow">Meet the Founder</div>
 <h1>Pavan Kumar</h1>
 <div class="title">Founder of Pavan Educator</div>
-<p class="text">Welcome to Pavan Educator. I created this platform to bring practical education, technology learning, study materials and useful projects together in one simple place for students.</p>
-<p class="text" style="margin-top:14px">The goal is simple: learn useful skills, practice them through real projects and keep growing every day.</p>
-<div class="signature">Pavan Educator • Learn • Build • Grow</div>
+<div class="mini-line"></div>
+<p>Pavan Kumar is the founder of Pavan Educator, an initiative to make quality education simple, practical and accessible for every learner. With a passion for teaching and technology, he aims to help students gain real skills, build projects and prepare for a brighter future.</p>
+<p>Through this platform, he shares learning materials, project ideas and video tutorials to support students in their academic and professional journey.</p>
+<div class="signature">Pavan Kumar</div>
+<div class="tagline">“Learn Today, Build Tomorrow”</div>
+</div>
 </div>
 </section>
 </main>
-<footer><strong>Pavan Educator</strong><p>Learn • Build • Grow<br>© 2026 Pavan Educator. All Rights Reserved.</p></footer>
+<footer><div>© 2026 Pavan Educator. All rights reserved.</div><div class="social">▶ &nbsp;in &nbsp;◉</div><div class="right">Education for a Brighter Tomorrow 🎓</div></footer>
 </body>
 </html>

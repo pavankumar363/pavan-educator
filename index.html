@@ -25,9 +25,22 @@
 <section class="section"><div class="section-heading"><small>LEARN SOMETHING NEW</small><h2>Popular Courses</h2></div><div class="grid"><div class="card"><div class="card-label">PROGRAMMING</div><h3>Java Programming</h3><p>Learn Java from fundamentals through object-oriented programming.</p><a href="courses.html" class="card-link">View Course →</a></div><div class="card"><div class="card-label">WEB DEVELOPMENT</div><h3>Web Development</h3><p>Learn HTML, CSS and JavaScript and create modern websites.</p><a href="courses.html" class="card-link">View Course →</a></div><div class="card"><div class="card-label">DATABASE</div><h3>MySQL</h3><p>Learn SQL, database concepts and practical development.</p><a href="courses.html" class="card-link">View Course →</a></div></div></section>
 <section class="section"><div class="section-heading"><small>BUILD SOMETHING</small><h2>Featured Projects</h2></div><div class="grid"><div class="card"><div class="card-label">PROJECT</div><h3>Attendance Management</h3><p>A professional attendance management system with dashboard and reports.</p><a href="projects.html" class="card-link">View Project →</a></div><div class="card"><div class="card-label">PROJECT</div><h3>Student Result System</h3><p>Manage marks, results and academic performance.</p><a href="projects.html" class="card-link">View Project →</a></div><div class="card"><div class="card-label">PROJECT</div><h3>Student Management</h3><p>A complete system for managing student information.</p><a href="projects.html" class="card-link">View Projects →</a></div></div></section>
 <section class="about"><h2>Learn. Build. Grow.</h2><p>Pavan Educator brings learning resources, practical projects and technology education together in one professional platform.</p><br><a href="about.html" class="primary-btn">Learn More →</a></section>
-<section class="founder-section"><div class="founder-card"><img class="founder-photo" src="assets/founder-photo.jpg" alt="Founder of Pavan Educator"><div><div class="founder-label">Pavan Educator</div><h2>Pavan Kumar</h2><div class="founder-title">Founder of Pavan Educator</div><p>Creating a professional learning platform focused on practical education, technology, projects and useful resources for students.</p><div class="founder-signature">Pavan Educator • Learn • Build • Grow</div></div></div></section>
+<section class="founder-section"><div class="founder-card"><img id="homepageFounderPhoto" class="founder-photo" src="assets/founder-photo.jpg" alt="Founder of Pavan Educator"><div><div class="founder-label">Pavan Educator</div><h2>Pavan Kumar</h2><div class="founder-title">Founder of Pavan Educator</div><p>Creating a professional learning platform focused on practical education, technology, projects and useful resources for students.</p><div class="founder-signature">Pavan Educator • Learn • Build • Grow</div></div></div></section>
 <footer><strong>Pavan Educator</strong><p>Learn • Build • Grow<br>© 2026 Pavan Educator. All Rights Reserved.</p></footer>
 <nav class="app-nav"><a href="index.html" class="active"><b>⌂</b>Home</a><a href="courses.html"><b>📚</b>Courses</a><a href="materials.html"><b>📄</b>Materials</a><a href="projects.html"><b>💻</b>Projects</a><a href="login.html"><b>👤</b>Login</a></nav>
-<script>document.querySelectorAll('a').forEach(function(a){a.removeAttribute('target');a.removeAttribute('rel')});window.addEventListener('load',function(){setTimeout(function(){var s=document.getElementById('appSplash');if(s){s.style.opacity='0';setTimeout(function(){s.remove()},350)}},650)});if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('./service-worker.js').catch(function(){})})}</script>
+<script>
+/* Restore the original Founder portrait without changing the Version 1 layout. */
+(function(){
+  var img=document.getElementById('homepageFounderPhoto');
+  if(!img)return;
+  fetch('https://raw.githubusercontent.com/pavankumar363/pavan-educator/9c7e7d19915579eac35239275495db46da13e91f/index.html')
+    .then(function(r){return r.text()})
+    .then(function(t){var m=t.match(/data:image\/jpeg;base64,[A-Za-z0-9+/=]+/);if(m)img.src=m[0]})
+    .catch(function(){});
+})();
+document.querySelectorAll('a').forEach(function(a){a.removeAttribute('target');a.removeAttribute('rel')});
+window.addEventListener('load',function(){setTimeout(function(){var s=document.getElementById('appSplash');if(s){s.style.opacity='0';setTimeout(function(){s.remove()},350)}},650)});
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('./service-worker.js').catch(function(){})})}
+</script>
 </body>
 </html>

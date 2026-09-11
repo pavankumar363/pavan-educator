@@ -28,16 +28,9 @@
 <section class="founder-section"><div class="founder-card"><img id="homepageFounderPhoto" class="founder-photo" src="assets/founder-photo.jpg" alt="Founder of Pavan Educator"><div><div class="founder-label">Pavan Educator</div><h2>Pavan Kumar</h2><div class="founder-title">Founder of Pavan Educator</div><p>Creating a professional learning platform focused on practical education, technology, projects and useful resources for students.</p><div class="founder-signature">Pavan Educator • Learn • Build • Grow</div></div></div></section>
 <footer><strong>Pavan Educator</strong><p>Learn • Build • Grow<br>© 2026 Pavan Educator. All Rights Reserved.</p></footer>
 <nav class="app-nav"><a href="index.html" class="active"><b>⌂</b>Home</a><a href="courses.html"><b>📚</b>Courses</a><a href="materials.html"><b>📄</b>Materials</a><a href="projects.html"><b>💻</b>Projects</a><a href="login.html"><b>👤</b>Login</a></nav>
+<script src="assets/page-transition.js?v=20260911"></script>
 <script>
-/* Restore the original Founder portrait without changing the Version 1 layout. */
-(function(){
-  var img=document.getElementById('homepageFounderPhoto');
-  if(!img)return;
-  fetch('https://raw.githubusercontent.com/pavankumar363/pavan-educator/9c7e7d19915579eac35239275495db46da13e91f/index.html')
-    .then(function(r){return r.text()})
-    .then(function(t){var m=t.match(/data:image\/jpeg;base64,[A-Za-z0-9+/=]+/);if(m)img.src=m[0]})
-    .catch(function(){});
-})();
+(function(){var img=document.getElementById('homepageFounderPhoto');if(!img)return;fetch('https://raw.githubusercontent.com/pavankumar363/pavan-educator/9c7e7d19915579eac35239275495db46da13e91f/index.html').then(function(r){return r.text()}).then(function(t){var m=t.match(/data:image\/jpeg;base64,[A-Za-z0-9+/=]+/);if(m)img.src=m[0]}).catch(function(){});})();
 document.querySelectorAll('a').forEach(function(a){a.removeAttribute('target');a.removeAttribute('rel')});
 window.addEventListener('load',function(){setTimeout(function(){var s=document.getElementById('appSplash');if(s){s.style.opacity='0';setTimeout(function(){s.remove()},350)}},650)});
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('./service-worker.js').catch(function(){})})}

@@ -1,5 +1,10 @@
 /* Pavan Educator - smooth page transitions */
 (function(){
+  var founder=document.getElementById('founderPhoto');
+  if(founder){
+    founder.style.mixBlendMode='multiply';
+    founder.style.filter='brightness(1.10) contrast(1.04) saturate(1.08) drop-shadow(0 20px 28px rgba(14,69,135,.16))';
+  }
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduce)return;
   var overlay=document.createElement('div');

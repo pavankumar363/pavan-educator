@@ -186,7 +186,7 @@ render();if(!fromVerify){setVerify('Student accounts refreshed.',true);toast('Ac
 }
 function render(){
 const q=$('searchInput').value.trim().toLowerCase();const om=new Map(overrides.map(function(x){return[Number(x.demo_student_id),x]}));let list=[];
-demoStudents.forEach(function(s){const o=om.get(Number(s.id));list.push({type:'demo',id:s.id,name:s.name,username:o&&o.current_username||s.username,studentClass:o&&o.student_class||s.studentClass,age:o&&o.age??s.age,location:o&&o.location||s.location})});
+demoStudents.forEach(function(s){const o=om.get(Number(s.id));list.push({type:'demo',id:s.id,name:s.name,username:o&&o.current_username||s.username,studentClass:o&&o.student_class||s.studentClass,age:(o&&o.age!=null)?o.age:s.age,location:o&&o.location||s.location})});
 realStudents.forEach(function(s){list.push({type:'real',id:s.id,name:s.name,username:s.username,studentClass:s.studentClass,age:s.age,location:s.location})});
 list=list.filter(function(s){return !q||[s.name,s.username,s.studentClass,s.location].some(function(v){return String(v||'').toLowerCase().includes(q)})});
 if(!list.length){$('tableWrap').innerHTML='<div class="empty"><div class="empty-icon">🔎</div>No matching students found.</div>';return}

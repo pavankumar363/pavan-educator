@@ -114,7 +114,7 @@ body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);
 <div class="tools-right"><span>✎</span><span>Choose a student to change login details</span></div>
 </div>
 <div id="tableWrap" class="table-wrap"><div class="empty"><div class="empty-icon">🔒</div>Verify administrator access to load student accounts.</div></div>
-<div class="info"><b>Note:</b> Passwords are never displayed. Username changes are applied through the server-side student login management service. Existing activity and attendance references are handled by the application when a username changes.</div>
+<div class="info"><b>Real-account mode:</b> This page manages only active Supabase Auth student accounts. Passwords are never displayed. Username changes update the real authentication email, student profile, attendance references and activity references.</div>
 </section>
 </div>
 </main>
@@ -142,8 +142,8 @@ body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);
 
 <script>
 const FUNCTION_URL='https://jlrmmkgcjckkayearlca.supabase.co/functions/v1/admin-student-login';
-let selected=null,realStudents=[],overrides=[],adminUsername='',adminPassword='',verified=false;
-const demoStudents=window.PAVAN_DEMO_STUDENTS||[];
+let selected=null,realStudents=[],adminUsername='',adminPassword='',verified=false;
+
 const $=id=>document.getElementById(id);
 
 function esc(v){return String(v??'').replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])})}
@@ -172,32 +172,38 @@ try{await loadData(true);verified=true;setVerify('Administrator verified success
 finally{$('verifyBtn').disabled=false;$('verifyBtn').textContent='Verify & Unlock'}
 }
 function clearVerification(){
-verified=false;adminPassword='';$('adminPassword').value='';$('tableWrap').innerHTML='<div class="empty"><div class="empty-icon">🔒</div>Verify administrator access to load student accounts.</div>';$('accountSummary').textContent='Verify admin to load accounts';$('searchInput').value='';overrides=[];realStudents=[];setVerify('Student account controls are locked until verification succeeds.',false)
+verified=false;adminPassword='';$('adminPassword').value='';$('tableWrap').innerHTML='<div class="empty"><div class="empty-icon">🔒</div>Verify administrator access to load student accounts.</div>';$('accountSummary').textContent='Verify admin to load accounts';$('searchInput').value='';realStudents=[];setVerify('Student account controls are locked until verification succeeds.',false)
 }
 async function loadData(fromVerify){
 if(!adminPassword){if(!fromVerify)setVerify('Verify administrator access first.',false);return}
 $('tableWrap').innerHTML='<div class="empty"><div class="empty-icon">⏳</div>Loading student accounts…</div>';
 try{
 const d=await api({action:'list',adminUsername:adminUsername,adminPassword:adminPassword});
-overrides=d.demoOverrides||[];realStudents=d.realStudents||[];
-$('totalCount').textContent=demoStudents.length+realStudents.length;$('demoCount').textContent=demoStudents.length;$('realCount').textContent=realStudents.length;$('accountSummary').textContent=(verified?demoStudents.length+realStudents.length:demoStudents.length)+' accounts available';
+realStudents=d.realStudents||[];
+$('totalCount').textContent=realStudents.length;$('demoCount').textContent=0;$('realCount').textContent=realStudents.length;$('accountSummary').textContent=realStudents.length+' real Supabase Auth accounts';
 render();if(!fromVerify){setVerify('Student accounts refreshed.',true);toast('Accounts refreshed','Latest student account information is loaded.')}
 }catch(e){$('tableWrap').innerHTML='<div class="empty"><div class="empty-icon">⚠️</div>'+esc(e.message)+'</div>';throw e}
 }
 function render(){
-const q=$('searchInput').value.trim().toLowerCase();const om=new Map(overrides.map(function(x){return[Number(x.demo_student_id),x]}));let list=[];
-demoStudents.forEach(function(s){const o=om.get(Number(s.id));list.push({type:'demo',id:s.id,name:s.name,username:o&&o.current_username||s.username,studentClass:o&&o.student_class||s.studentClass,age:(o&&o.age!=null)?o.age:s.age,location:o&&o.location||s.location})});
-realStudents.forEach(function(s){list.push({type:'real',id:s.id,name:s.name,username:s.username,studentClass:s.studentClass,age:s.age,location:s.location})});
-list=list.filter(function(s){return !q||[s.name,s.username,s.studentClass,s.location].some(function(v){return String(v||'').toLowerCase().includes(q)})});
-if(!list.length){$('tableWrap').innerHTML='<div class="empty"><div class="empty-icon">🔎</div>No matching students found.</div>';return}
+const q=$('searchInput').value.trim().toLowerCase();
+let list=realStudents.filter(function(s){return !q||[s.name,s.username,s.studentClass,s.location].some(function(v){return String(v||'').toLowerCase().includes(q)})});
+if(!list.length){
+  if(realStudents.length===0){
+    $('tableWrap').innerHTML='<div class="empty"><div class="empty-icon">🔐</div><div style="font-weight:800;color:#172033;margin-bottom:7px">No real student accounts loaded</div><div style="margin-bottom:14px">Run the one-time Real Account Setup to create the 20 Supabase Auth student accounts.</div><button class="btn" onclick="location.href=\'admin-real-accounts.html\'">🚀 Open Real Account Setup</button></div>';
+  }else{
+    $('tableWrap').innerHTML='<div class="empty"><div class="empty-icon">🔎</div>No matching students found.</div>';
+  }
+  return;
+}
 let html='<table class="table"><thead><tr><th>STUDENT</th><th>USERNAME</th><th>CLASS</th><th>AGE</th><th>ACCOUNT TYPE</th><th>ACTION</th></tr></thead><tbody>';
 list.forEach(function(s){
 html+='<tr><td><div class="student-cell"><div class="avatar">'+esc(initials(s.name))+'</div><div><div class="student-name">'+esc(s.name)+'</div><div class="student-meta">'+esc(s.location||'')+'</div></div></div></td>';
 html+='<td><span class="username">'+esc(s.username)+'</span></td><td><span class="class-text">'+esc(s.studentClass)+'</span></td><td>'+esc(s.age??'—')+'</td>';
-html+='<td><span class="type '+(s.type==='real'?'real':'demo')+'">'+(s.type==='real'?'REAL':'DEMO')+'</span></td>';
-html+='<td><button class="smallbtn" '+(verified?'':'disabled title="Verify administrator access first"')+' onclick=\'openModal('+JSON.stringify(s)+')\'>✎ '+(verified?'Change Login':'Unlock to Change')+'</button></td></tr>';
+html+='<td><span class="type real">REAL</span></td>';
+html+='<td><button class="smallbtn" '+(verified?'':'disabled title="Verify administrator access first"')+' onclick=\'openModal('+JSON.stringify({...s,type:"real"})+')\'>✎ '+(verified?'Change Login':'Unlock to Change')+'</button></td></tr>';
 });
-html+='</tbody></table>'; $('tableWrap').innerHTML=html
+html+='</tbody></table>';
+$('tableWrap').innerHTML=html
 }
 function openModal(data){
 if(!verified){toast('Verification required','Verify administrator access before changing student credentials.',true);return}selected=data;$('studentInfo').textContent='Update username and password for this student';
@@ -224,7 +230,7 @@ setTimeout(async function(){closeModal();await loadData(true)},900);
 finally{btn.disabled=false;btn.textContent='Save Changes'}
 }
 function logout(){sessionStorage.removeItem('adminLoggedIn');sessionStorage.removeItem('currentRole');sessionStorage.removeItem('currentUser')}
-if(!adminAllowed())location.href='login.html';else{setVerify('Verify administrator access to unlock credential changes.',false);$('totalCount').textContent=demoStudents.length;$('demoCount').textContent=demoStudents.length;$('realCount').textContent='0';$('accountSummary').textContent=demoStudents.length+' demo accounts visible • verify to load real accounts';render();}
+if(!adminAllowed())location.href='login.html';else{setVerify('Verify administrator access to unlock credential changes.',false);$('totalCount').textContent='0';$('demoCount').textContent='0';$('realCount').textContent='0';$('accountSummary').textContent='Verify admin to load real accounts';render();}
 </script>
 </body>
 </html>

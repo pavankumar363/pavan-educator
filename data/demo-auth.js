@@ -1,5 +1,4 @@
-/* Pavan Educator — student authentication helper.
-   Real Supabase Auth accounts and persistent managed demo accounts are supported. */
+/* Pavan Educator — real Supabase Auth student authentication helper. */
 (function(){
   const SUPABASE_URL='https://jlrmmkgcjckkayearlca.supabase.co';
   const SUPABASE_KEY='sb_publishable_eEPceWmh6MUHLwZmAQMEdQ_uk1Gp1EH';

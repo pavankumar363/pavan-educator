@@ -38,7 +38,7 @@ body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);
 .table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;min-width:970px}.table th{background:#f8faff;color:#6a778b;text-align:left;padding:14px 16px;font-size:10px;letter-spacing:.45px;text-transform:uppercase}.table td{padding:15px 16px;border-top:1px solid #edf0f5;font-size:12px;vertical-align:middle}.table tr:hover td{background:#fbfdff}
 .student-cell{display:flex;align-items:center;gap:10px}.avatar{width:34px;height:34px;border-radius:10px;background:#edf3ff;color:var(--blue);display:grid;place-items:center;font-size:11px;font-weight:900}.student-name{font-weight:800}.student-meta{color:var(--muted);font-size:10px;margin-top:3px}
 .type{display:inline-flex;align-items:center;padding:5px 8px;border-radius:999px;font-size:10px;font-weight:900}.demo{background:#edf3ff;color:var(--blue)}.real{background:#e9f8ef;color:var(--green)}
-.username{font-weight:800;color:#344054}.class-text{color:#4f5e73}.smallbtn{border:1px solid #cfdaea;background:#fff;color:var(--blue);border-radius:8px;padding:8px 11px;font-size:11px;font-weight:900;cursor:pointer}.smallbtn:hover{background:#eef4ff;border-color:#bdd0f6}
+.username{font-weight:800;color:#344054}.class-text{color:#4f5e73}.smallbtn{border:1px solid #cfdaea;background:#fff;color:var(--blue);border-radius:8px;padding:8px 11px;font-size:11px;font-weight:900;cursor:pointer}.smallbtn:hover{background:#eef4ff;border-color:#bdd0f6}.smallbtn:disabled{opacity:.55;cursor:not-allowed;background:#f3f5f8;color:#738096}
 .empty{padding:42px 20px;text-align:center;color:var(--muted);font-size:12px}.empty-icon{font-size:30px;margin-bottom:9px}
 .info{padding:18px 20px;background:#f8faff;border-top:1px solid var(--line);color:var(--muted);font-size:11px;line-height:1.6}.info b{color:var(--text)}
 .modal-bg{position:fixed;inset:0;background:rgba(7,19,38,.58);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:20px;z-index:20}
@@ -142,7 +142,7 @@ body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);
 
 <script>
 const FUNCTION_URL='https://jlrmmkgcjckkayearlca.supabase.co/functions/v1/admin-student-login';
-let selected=null,realStudents=[],overrides=[],adminUsername='',adminPassword='';
+let selected=null,realStudents=[],overrides=[],adminUsername='',adminPassword='',verified=false;
 const demoStudents=window.PAVAN_DEMO_STUDENTS||[];
 const $=id=>document.getElementById(id);
 
@@ -168,11 +168,11 @@ async function verify(){
 adminUsername=$('adminUsername').value.trim().toLowerCase();adminPassword=$('adminPassword').value;
 if(!adminUsername||!adminPassword){setVerify('Enter admin username and password.',false);return}
 $('verifyBtn').disabled=true;$('verifyBtn').textContent='Checking…';
-try{await loadData(true);setVerify('Administrator verified successfully. Student controls are unlocked.',true);toast('Access verified','Student login management is now unlocked.')}catch(e){adminPassword='';setVerify(e.message,false);toast('Verification failed',e.message,true)}
+try{await loadData(true);verified=true;setVerify('Administrator verified successfully. Student controls are unlocked.',true);render();toast('Access verified','Student login management is now unlocked.')}catch(e){adminPassword='';setVerify(e.message,false);toast('Verification failed',e.message,true)}
 finally{$('verifyBtn').disabled=false;$('verifyBtn').textContent='Verify & Unlock'}
 }
 function clearVerification(){
-adminPassword='';$('adminPassword').value='';$('tableWrap').innerHTML='<div class="empty"><div class="empty-icon">🔒</div>Verify administrator access to load student accounts.</div>';$('accountSummary').textContent='Verify admin to load accounts';$('searchInput').value='';overrides=[];realStudents=[];setVerify('Student account controls are locked until verification succeeds.',false)
+verified=false;adminPassword='';$('adminPassword').value='';$('tableWrap').innerHTML='<div class="empty"><div class="empty-icon">🔒</div>Verify administrator access to load student accounts.</div>';$('accountSummary').textContent='Verify admin to load accounts';$('searchInput').value='';overrides=[];realStudents=[];setVerify('Student account controls are locked until verification succeeds.',false)
 }
 async function loadData(fromVerify){
 if(!adminPassword){if(!fromVerify)setVerify('Verify administrator access first.',false);return}
@@ -180,7 +180,7 @@ $('tableWrap').innerHTML='<div class="empty"><div class="empty-icon">⏳</div>Lo
 try{
 const d=await api({action:'list',adminUsername:adminUsername,adminPassword:adminPassword});
 overrides=d.demoOverrides||[];realStudents=d.realStudents||[];
-$('totalCount').textContent=demoStudents.length+realStudents.length;$('demoCount').textContent=demoStudents.length;$('realCount').textContent=realStudents.length;$('accountSummary').textContent=(demoStudents.length+realStudents.length)+' accounts available';
+$('totalCount').textContent=demoStudents.length+realStudents.length;$('demoCount').textContent=demoStudents.length;$('realCount').textContent=realStudents.length;$('accountSummary').textContent=(verified?demoStudents.length+realStudents.length:demoStudents.length)+' accounts available';
 render();if(!fromVerify){setVerify('Student accounts refreshed.',true);toast('Accounts refreshed','Latest student account information is loaded.')}
 }catch(e){$('tableWrap').innerHTML='<div class="empty"><div class="empty-icon">⚠️</div>'+esc(e.message)+'</div>';throw e}
 }
@@ -195,12 +195,12 @@ list.forEach(function(s){
 html+='<tr><td><div class="student-cell"><div class="avatar">'+esc(initials(s.name))+'</div><div><div class="student-name">'+esc(s.name)+'</div><div class="student-meta">'+esc(s.location||'')+'</div></div></div></td>';
 html+='<td><span class="username">'+esc(s.username)+'</span></td><td><span class="class-text">'+esc(s.studentClass)+'</span></td><td>'+esc(s.age??'—')+'</td>';
 html+='<td><span class="type '+(s.type==='real'?'real':'demo')+'">'+(s.type==='real'?'REAL':'DEMO')+'</span></td>';
-html+='<td><button class="smallbtn" onclick=\'openModal('+JSON.stringify(s)+')\'>✎ Change Login</button></td></tr>';
+html+='<td><button class="smallbtn" '+(verified?'':'disabled title="Verify administrator access first"')+' onclick=\'openModal('+JSON.stringify(s)+')\'>✎ '+(verified?'Change Login':'Unlock to Change')+'</button></td></tr>';
 });
 html+='</tbody></table>'; $('tableWrap').innerHTML=html
 }
 function openModal(data){
-selected=data;$('studentInfo').textContent='Update username and password for this student';
+if(!verified){toast('Verification required','Verify administrator access before changing student credentials.',true);return}selected=data;$('studentInfo').textContent='Update username and password for this student';
 $('modalAvatar').textContent=initials(data.name);$('modalName').textContent=data.name;$('modalSub').textContent=data.username+' • '+(data.type==='real'?'Real account':'Demo account');
 $('newUsername').value=data.username||'';$('newPassword').value='';$('strength').textContent='';$('error').style.display='none';$('success').style.display='none';$('modalBg').style.display='flex';setTimeout(function(){$('newUsername').focus()},60)
 }
@@ -224,7 +224,7 @@ setTimeout(async function(){closeModal();await loadData(true)},900);
 finally{btn.disabled=false;btn.textContent='Save Changes'}
 }
 function logout(){sessionStorage.removeItem('adminLoggedIn');sessionStorage.removeItem('currentRole');sessionStorage.removeItem('currentUser')}
-if(!adminAllowed())location.href='login.html';else setVerify('Student account controls are locked until verification succeeds.',false);
+if(!adminAllowed())location.href='login.html';else{setVerify('Verify administrator access to unlock credential changes.',false);$('totalCount').textContent=demoStudents.length;$('demoCount').textContent=demoStudents.length;$('realCount').textContent='0';$('accountSummary').textContent=demoStudents.length+' demo accounts visible • verify to load real accounts';render();}
 </script>
 </body>
 </html>

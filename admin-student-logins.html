@@ -1,24 +1,230 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><link rel="icon" href="assets/pavan-logo.svg"><title>Pavan Educator | Student Login Manager</title><script src="data/demo-students.js?v=20260917b"></script><style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f7fc;color:#172033}.sidebar{position:fixed;left:0;top:0;width:250px;height:100vh;background:#111a2e;color:#fff;padding:25px 18px;display:flex;flex-direction:column}.logo{padding:10px 12px 30px;font-size:23px;font-weight:800}.logo span{color:#4d8dff}.label{color:#8e9bb3;font-size:11px;font-weight:700;letter-spacing:1px;padding:0 12px 12px}.menu{list-style:none;margin:0;padding:0}.menu li{margin-bottom:7px}.menu a{display:flex;align-items:center;gap:13px;padding:13px 14px;color:#c9d2e3;text-decoration:none;border-radius:9px;font-size:14px;font-weight:600}.menu a:hover,.menu a.active{background:#2563eb;color:#fff}.icon{width:24px;text-align:center}.logout{margin-top:auto}.logout a{display:block;text-align:center;padding:12px;border-radius:9px;background:#1c2944;color:#c9d2e3;text-decoration:none;font-size:13px;font-weight:700}.logout a:hover{background:#dc3545;color:#fff}.main{margin-left:250px;min-height:100vh}.top{height:75px;background:#fff;border-bottom:1px solid #e2e8f2;display:flex;align-items:center;justify-content:space-between;padding:0 35px}.top h1{font-size:23px}.admin{font-weight:700;font-size:14px}.content{padding:30px 35px}.heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.heading h2{margin:0;font-size:28px}.heading p{margin:7px 0 0;color:#718096;font-size:13px}.btn{border:0;border-radius:9px;background:#2563eb;color:#fff;padding:11px 16px;font-weight:700;cursor:pointer}.btn:disabled{opacity:.6;cursor:wait}.secondary{background:#eef1f6;color:#344054}.verify{background:#fff;border:1px solid #e1e7f2;border-radius:14px;padding:18px;margin-bottom:18px}.verify-grid{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:end}.field label{display:block;font-size:11px;font-weight:700;margin-bottom:6px}.field input{width:100%;height:43px;border:1px solid #d3dce8;border-radius:8px;padding:0 11px;font-size:13px;outline:0}.field input:focus{border-color:#2563eb}.verify-status{font-size:12px;color:#687389;margin-top:10px}.ok{color:#167645}.bad{color:#b42318}.panel{background:#fff;border:1px solid #e1e7f2;border-radius:14px;padding:20px;margin-bottom:20px}.note{background:#eef5ff;border:1px solid #d7e6ff;border-radius:10px;padding:13px 15px;color:#4b6180;font-size:12px;line-height:1.5;margin-bottom:18px}.table{overflow:auto;border:1px solid #e1e7f2;border-radius:12px}.table table{width:100%;border-collapse:collapse;min-width:900px}.table th{background:#f7f9fd;color:#687389;text-align:left;padding:14px;font-size:10px;text-transform:uppercase}.table td{padding:14px;border-top:1px solid #edf0f5;font-size:12px}.type{display:inline-block;padding:5px 8px;border-radius:999px;font-size:10px;font-weight:700}.demo{background:#eef4ff;color:#2563eb}.real{background:#e8f8ef;color:#16834b}.smallbtn{border:1px solid #d6deea;background:#fff;color:#2563eb;border-radius:8px;padding:8px 11px;font-size:11px;font-weight:700;cursor:pointer}.muted{color:#718096}.empty{text-align:center;padding:30px;color:#718096}.modal-bg{position:fixed;inset:0;background:#0b1730aa;display:none;align-items:center;justify-content:center;padding:20px;z-index:10}.modal{width:min(520px,100%);background:#fff;border-radius:16px;padding:25px;box-shadow:0 25px 65px #0004}.modal h3{margin:0 0 7px;font-size:21px}.modal p{color:#718096;font-size:12px;margin:0 0 18px}.group{margin-bottom:14px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.actions{display:flex;justify-content:flex-end;gap:9px;margin-top:17px}.success{background:#ebf8ef;color:#167645;border:1px solid #cfead8;padding:10px 12px;border-radius:8px;font-size:12px;display:none;margin-bottom:12px}.error{background:#fff0f0;color:#b42318;border:1px solid #ffd0d0;padding:10px 12px;border-radius:8px;font-size:12px;display:none;margin-bottom:12px}@media(max-width:700px){.sidebar{position:relative;width:auto;height:auto}.logout{position:relative;margin-top:20px}.main{margin-left:0}.top{padding:0 20px}.content{padding:20px}.heading{align-items:flex-start;gap:15px;flex-direction:column}.verify-grid,.grid2{grid-template-columns:1fr}}
-</style></head><body>
-<aside class="sidebar"><div class="logo">Pavan <span>Educator</span></div><div class="label">ADMIN PANEL</div><ul class="menu"><li><a href="admin-dashboard.html"><span class="icon">🏠</span>Dashboard</a></li><li><a href="admin-courses.html"><span class="icon">📚</span>Courses</a></li><li><a href="admin-projects.html"><span class="icon">💻</span>Projects</a></li><li><a href="admin-videos.html"><span class="icon">🎥</span>Videos</a></li><li><a href="admin-students.html" class="active"><span class="icon">🎓</span>Students</a></li><li><a href="admin-attendance.html"><span class="icon">📋</span>Attendance</a></li><li><a href="admin-settings.html"><span class="icon">⚙️</span>Settings</a></li></ul><div class="logout"><a href="login.html" onclick="logout()">🚪 Logout</a></div></aside>
-<main class="main"><header class="top"><h1>Student Login Manager</h1><div class="admin">🛡️ Admin</div></header><div class="content"><div class="heading"><div><h2>Manage Student Login</h2><p>Change a student's username and password from one place.</p></div><button class="btn secondary" onclick="loadData()">↻ Refresh</button></div>
-<section class="verify"><div class="verify-grid"><div class="field"><label>Admin Username</label><input id="adminUsername" value="pavan" autocomplete="username"></div><div class="field"><label>Admin Password</label><input id="adminPassword" type="password" autocomplete="current-password" placeholder="Enter admin password"></div><button class="btn" id="verifyBtn" onclick="verify()">Verify & Load</button></div><div id="verifyStatus" class="verify-status">Verify once to load student accounts.</div></section>
-<section class="panel"><div class="note"><b>Login control:</b> choose a student and change the username or password. Existing attendance and activity records follow a changed username.</div><div id="table" class="table"><div class="empty">Verify admin to load student accounts.</div></div></section></div></main>
-<div class="modal-bg" id="modalBg"><div class="modal"><h3>🔐 Change Student Login</h3><p id="studentInfo">Student</p><div id="error" class="error"></div><div id="success" class="success"></div><div class="grid2"><div class="group"><label>New Username</label><input id="newUsername" autocomplete="off"></div><div class="group"><label>New Password</label><input id="newPassword" type="password" autocomplete="new-password" placeholder="Minimum 6 characters"></div></div><div class="actions"><button class="btn secondary" onclick="closeModal()">Cancel</button><button class="btn" id="saveBtn" onclick="saveLogin()">Save Changes</button></div></div></div>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="icon" href="assets/pavan-logo.svg">
+<title>Pavan Educator | Student Login Management</title>
+<style>
+*{box-sizing:border-box}
+:root{--navy:#0b1b33;--navy2:#102747;--blue:#2563eb;--blue2:#1d4ed8;--bg:#f4f7fb;--card:#fff;--line:#e3e9f2;--text:#172033;--muted:#718096;--green:#16834b;--red:#b42318;--shadow:0 12px 34px rgba(17,42,82,.07)}
+body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
+.sidebar{position:fixed;inset:0 auto 0 0;width:252px;background:linear-gradient(180deg,#0a1d37,#0b1930);color:#fff;padding:25px 18px;display:flex;flex-direction:column}
+.logo{padding:9px 12px 30px;font-size:25px;font-weight:800;letter-spacing:-.5px}.logo span{color:#4d8dff}
+.label{color:#8797af;font-size:11px;font-weight:800;letter-spacing:1.3px;padding:0 12px 14px}
+.menu{list-style:none;margin:0;padding:0}.menu li{margin-bottom:7px}
+.menu a{display:flex;align-items:center;gap:13px;padding:13px 14px;color:#cad4e4;text-decoration:none;border-radius:10px;font-size:14px;font-weight:700;transition:.18s}
+.menu a:hover{background:#173255;color:#fff}.menu a.active{background:linear-gradient(135deg,#2c70f4,#235ee8);color:#fff;box-shadow:0 8px 22px rgba(37,99,235,.22)}
+.icon{width:24px;text-align:center;font-size:18px}
+.logout{margin-top:auto}.logout a{display:block;text-align:center;padding:12px;border-radius:10px;background:#142b4a;color:#c9d2e3;text-decoration:none;font-size:13px;font-weight:800}.logout a:hover{background:#cf3f4c;color:#fff}
+.main{margin-left:252px;min-height:100vh}
+.top{height:78px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 34px;position:sticky;top:0;z-index:4}
+.top-left{display:flex;align-items:center;gap:12px}.top-title{font-size:23px;font-weight:800}.top-sub{font-size:12px;color:var(--muted);margin-top:2px}
+.admin{display:flex;align-items:center;gap:9px;font-weight:800;font-size:13px}.admin-badge{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#eaf1ff;color:var(--blue)}
+.content{padding:30px 34px 45px;max-width:1500px}
+.breadcrumb{display:flex;align-items:center;gap:7px;color:#8190a6;font-size:11px;margin-bottom:10px}.breadcrumb b{color:var(--blue)}
+.heading{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:20px}.heading h1{margin:0;font-size:30px;letter-spacing:-.6px}.heading p{margin:7px 0 0;color:var(--muted);font-size:13px}.heading-actions{display:flex;gap:10px}
+.btn{border:0;border-radius:10px;background:var(--blue);color:#fff;padding:11px 16px;font-weight:800;cursor:pointer;transition:.18s}.btn:hover{background:var(--blue2);transform:translateY(-1px)}.btn:disabled{opacity:.6;cursor:wait;transform:none}.secondary{background:#eef2f7;color:#344054}.secondary:hover{background:#e5eaf1;color:#172033}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:18px}.stat{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:18px;box-shadow:var(--shadow)}.stat-top{display:flex;justify-content:space-between;align-items:center}.stat-icon{width:43px;height:43px;border-radius:11px;background:#edf3ff;display:grid;place-items:center;font-size:20px}.stat-num{font-size:25px;font-weight:900;margin-top:13px}.stat-label{color:var(--muted);font-size:12px;margin-top:4px}.stat-note{font-size:10px;font-weight:800;margin-top:8px;color:var(--green)}
+.verify{background:linear-gradient(135deg,#ffffff,#f8fbff);border:1px solid #dbe5f3;border-radius:16px;padding:20px;box-shadow:var(--shadow);margin-bottom:18px}
+.verify-head{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;margin-bottom:16px}.verify-title{display:flex;gap:12px;align-items:flex-start}.lock{width:40px;height:40px;border-radius:12px;background:#eef4ff;color:var(--blue);display:grid;place-items:center;font-size:18px}.verify h2{margin:0;font-size:17px}.verify p{margin:4px 0 0;color:var(--muted);font-size:12px;line-height:1.5}
+.status-pill{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border-radius:999px;background:#f1f4f8;color:#69778b;font-size:10px;font-weight:900}.status-dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+.status-pill.ok{background:#eaf8ef;color:var(--green)}.status-pill.bad{background:#fff0f0;color:var(--red)}
+.verify-grid{display:grid;grid-template-columns:1.1fr 1.1fr auto;gap:12px;align-items:end}.field label{display:block;font-size:11px;font-weight:800;margin-bottom:6px;color:#4b5870}.field input{width:100%;height:44px;border:1px solid #ced8e5;border-radius:9px;padding:0 12px;font-size:13px;outline:0;background:#fff}.field input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.08)}
+.verify-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px}.verify-status{font-size:11px;color:var(--muted)}.verify-status.ok{color:var(--green)}.verify-status.bad{color:var(--red)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.panel-head{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px}.panel-head h2{margin:0;font-size:17px}.panel-head span{font-size:11px;color:var(--muted)}
+.tools{padding:14px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px}.search{flex:1;max-width:460px;display:flex;align-items:center;gap:9px;border:1px solid #d7dfeb;border-radius:10px;padding:0 12px;background:#fff}.search span{font-size:16px}.search input{width:100%;height:42px;border:0;outline:0;font-size:13px}.tools-right{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:11px}
+.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;min-width:970px}.table th{background:#f8faff;color:#6a778b;text-align:left;padding:14px 16px;font-size:10px;letter-spacing:.45px;text-transform:uppercase}.table td{padding:15px 16px;border-top:1px solid #edf0f5;font-size:12px;vertical-align:middle}.table tr:hover td{background:#fbfdff}
+.student-cell{display:flex;align-items:center;gap:10px}.avatar{width:34px;height:34px;border-radius:10px;background:#edf3ff;color:var(--blue);display:grid;place-items:center;font-size:11px;font-weight:900}.student-name{font-weight:800}.student-meta{color:var(--muted);font-size:10px;margin-top:3px}
+.type{display:inline-flex;align-items:center;padding:5px 8px;border-radius:999px;font-size:10px;font-weight:900}.demo{background:#edf3ff;color:var(--blue)}.real{background:#e9f8ef;color:var(--green)}
+.username{font-weight:800;color:#344054}.class-text{color:#4f5e73}.smallbtn{border:1px solid #cfdaea;background:#fff;color:var(--blue);border-radius:8px;padding:8px 11px;font-size:11px;font-weight:900;cursor:pointer}.smallbtn:hover{background:#eef4ff;border-color:#bdd0f6}
+.empty{padding:42px 20px;text-align:center;color:var(--muted);font-size:12px}.empty-icon{font-size:30px;margin-bottom:9px}
+.info{padding:18px 20px;background:#f8faff;border-top:1px solid var(--line);color:var(--muted);font-size:11px;line-height:1.6}.info b{color:var(--text)}
+.modal-bg{position:fixed;inset:0;background:rgba(7,19,38,.58);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:20px;z-index:20}
+.modal{width:min(560px,100%);background:#fff;border-radius:18px;box-shadow:0 28px 80px rgba(5,20,45,.28);overflow:hidden}.modal-head{padding:20px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-start}.modal-head h3{margin:0;font-size:20px}.modal-head p{margin:5px 0 0;color:var(--muted);font-size:11px}.close{border:0;background:#f2f5f9;width:34px;height:34px;border-radius:9px;cursor:pointer;font-size:17px;color:#536074}.modal-body{padding:20px 22px}.student-summary{display:flex;align-items:center;gap:11px;padding:12px;border:1px solid var(--line);background:#f8faff;border-radius:12px;margin-bottom:18px}.student-summary .avatar{width:38px;height:38px}.summary-name{font-weight:900}.summary-sub{font-size:10px;color:var(--muted);margin-top:3px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.modal-foot{padding:16px 22px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:9px}.password-wrap{position:relative}.password-wrap input{padding-right:42px}.eye{position:absolute;right:8px;top:7px;width:30px;height:30px;border:0;background:transparent;color:#687389;cursor:pointer}.hint{font-size:10px;color:var(--muted);margin-top:6px}.strength{margin-top:7px;font-size:10px;font-weight:900}.strength.weak{color:#b42318}.strength.mid{color:#b26b00}.strength.good{color:#16834b}
+.toast{position:fixed;right:24px;bottom:24px;min-width:280px;max-width:380px;background:#0f233f;color:#fff;border-radius:12px;padding:13px 15px;display:none;z-index:30;box-shadow:0 18px 40px rgba(0,0,0,.2);font-size:12px}.toast b{display:block;margin-bottom:3px;font-size:13px}.toast.error{background:#7d201a}
+@media(max-width:1100px){.stats{grid-template-columns:repeat(2,1fr)}.verify-grid{grid-template-columns:1fr 1fr}.verify-grid .btn{grid-column:1/-1;width:max-content}.tools{align-items:flex-start;flex-direction:column}.search{max-width:none;width:100%}}
+@media(max-width:700px){.sidebar{position:relative;width:auto;height:auto}.logout{margin-top:20px}.main{margin-left:0}.top{padding:0 18px}.content{padding:20px 14px 35px}.heading{align-items:flex-start;flex-direction:column}.heading-actions{width:100%}.heading-actions .btn{flex:1}.stats{grid-template-columns:1fr 1fr}.verify-grid,.grid2{grid-template-columns:1fr}.verify-grid .btn{grid-column:auto;width:100%}.verify-foot{align-items:flex-start;flex-direction:column}.table td,.table th{padding:12px}.modal-body{padding:18px}.modal-head,.modal-foot{padding-left:18px;padding-right:18px}}
+@media(max-width:460px){.stats{grid-template-columns:1fr}.top-title{font-size:20px}.top-sub{display:none}}
+</style>
+</head>
+<body>
+<aside class="sidebar">
+<div class="logo">Pavan <span>Educator</span></div>
+<div class="label">ADMIN PANEL</div>
+<ul class="menu">
+<li><a href="admin-dashboard.html"><span class="icon">🏠</span>Dashboard</a></li>
+<li><a href="admin-courses.html"><span class="icon">📚</span>Courses</a></li>
+<li><a href="admin-projects.html"><span class="icon">💻</span>Projects</a></li>
+<li><a href="admin-videos.html"><span class="icon">🎥</span>Videos</a></li>
+<li><a href="admin-students.html" class="active"><span class="icon">🎓</span>Students</a></li>
+<li><a href="admin-attendance.html"><span class="icon">📋</span>Attendance</a></li>
+<li><a href="admin-settings.html"><span class="icon">⚙️</span>Settings</a></li>
+</ul>
+<div class="logout"><a href="login.html" onclick="logout()">🚪 Logout</a></div>
+</aside>
+
+<main class="main">
+<header class="top">
+<div class="top-left">
+<div>
+<div class="top-title">Student Login Management</div>
+<div class="top-sub">Secure account credential administration</div>
+</div>
+</div>
+<div class="admin"><div class="admin-badge">🛡️</div><span>Admin</span></div>
+</header>
+
+<div class="content">
+<div class="breadcrumb"><span>Admin</span><span>›</span><b>Students</b><span>›</span><b>Login Management</b></div>
+<div class="heading">
+<div>
+<h1>Manage Student Accounts</h1>
+<p>Update student usernames and passwords from one professional control panel.</p>
+</div>
+<div class="heading-actions"><button class="btn secondary" onclick="location.href='admin-students.html'">← Back to Students</button><button class="btn" onclick="loadData()">↻ Refresh</button></div>
+</div>
+
+<section class="stats">
+<div class="stat"><div class="stat-top"><div class="stat-icon">🎓</div><span class="status-pill"><span class="status-dot"></span>Accounts</span></div><div class="stat-num" id="totalCount">0</div><div class="stat-label">Total student accounts</div><div class="stat-note">Ready for management</div></div>
+<div class="stat"><div class="stat-top"><div class="stat-icon">🧪</div><span class="status-pill"><span class="status-dot"></span>Demo</span></div><div class="stat-num" id="demoCount">0</div><div class="stat-label">Demo student accounts</div><div class="stat-note">Server-managed credentials</div></div>
+<div class="stat"><div class="stat-top"><div class="stat-icon">🔐</div><span class="status-pill"><span class="status-dot"></span>Real</span></div><div class="stat-num" id="realCount">0</div><div class="stat-label">Real student accounts</div><div class="stat-note">Supabase Auth accounts</div></div>
+<div class="stat"><div class="stat-top"><div class="stat-icon">✅</div><span id="verifyPill" class="status-pill"><span class="status-dot"></span>Not verified</span></div><div class="stat-num" id="readyText" style="font-size:19px">Locked</div><div class="stat-label">Management status</div><div class="stat-note">Verify admin access below</div></div>
+</section>
+
+<section class="verify">
+<div class="verify-head">
+<div class="verify-title"><div class="lock">🔑</div><div><h2>Administrator Verification</h2><p>Verify your administrator credentials once to unlock student login management.</p></div></div>
+<span id="topVerify" class="status-pill"><span class="status-dot"></span>Verification required</span>
+</div>
+<div class="verify-grid">
+<div class="field"><label>ADMIN USERNAME</label><input id="adminUsername" value="pavan" autocomplete="username"></div>
+<div class="field"><label>ADMIN PASSWORD</label><input id="adminPassword" type="password" autocomplete="current-password" placeholder="Enter admin password"></div>
+<button class="btn" id="verifyBtn" onclick="verify()">Verify & Unlock</button>
+</div>
+<div class="verify-foot"><div id="verifyStatus" class="verify-status">Student account controls are locked until verification succeeds.</div><button class="btn secondary" type="button" onclick="clearVerification()">Clear</button></div>
+</section>
+
+<section class="panel">
+<div class="panel-head"><div><h2>Student Accounts</h2></div><span id="accountSummary">Verify admin to load accounts</span></div>
+<div class="tools">
+<div class="search"><span>🔎</span><input id="searchInput" placeholder="Search by name, username or class…" oninput="render()"></div>
+<div class="tools-right"><span>✎</span><span>Choose a student to change login details</span></div>
+</div>
+<div id="tableWrap" class="table-wrap"><div class="empty"><div class="empty-icon">🔒</div>Verify administrator access to load student accounts.</div></div>
+<div class="info"><b>Note:</b> Passwords are never displayed. Username changes are applied through the server-side student login management service. Existing activity and attendance references are handled by the application when a username changes.</div>
+</section>
+</div>
+</main>
+
+<div class="modal-bg" id="modalBg">
+<div class="modal">
+<div class="modal-head">
+<div><h3>🔐 Change Student Login</h3><p id="studentInfo">Student account</p></div>
+<button class="close" onclick="closeModal()">×</button>
+</div>
+<div class="modal-body">
+<div class="student-summary"><div class="avatar" id="modalAvatar">ST</div><div><div class="summary-name" id="modalName">Student</div><div class="summary-sub" id="modalSub">Username • Type</div></div></div>
+<div id="error" class="error" style="display:none"></div>
+<div id="success" class="success" style="display:none"></div>
+<div class="grid2">
+<div class="group"><div class="field"><label>NEW USERNAME</label><input id="newUsername" autocomplete="off" placeholder="Enter new username"></div><div class="hint">Use a unique username.</div></div>
+<div class="group"><div class="field"><label>NEW PASSWORD</label><div class="password-wrap"><input id="newPassword" type="password" autocomplete="new-password" placeholder="Minimum 6 characters"><button class="eye" type="button" onclick="togglePassword()">👁</button></div><div id="strength" class="strength"></div></div></div>
+</div>
+</div>
+<div class="modal-foot"><button class="btn secondary" onclick="closeModal()">Cancel</button><button class="btn" id="saveBtn" onclick="saveLogin()">Save Changes</button></div>
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
 <script>
-const FUNCTION_URL='https://jlrmmkgcjckkayearlca.supabase.co/functions/v1/admin-student-login';let selected=null,realStudents=[],overrides=[],adminUsername='',adminPassword='';const demoStudents=window.PAVAN_DEMO_STUDENTS||[];const $=id=>document.getElementById(id);
-function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+const FUNCTION_URL='https://jlrmmkgcjckkayearlca.supabase.co/functions/v1/admin-student-login';
+let selected=null,realStudents=[],overrides=[],adminUsername='',adminPassword='';
+const demoStudents=window.PAVAN_DEMO_STUDENTS||[];
+const $=id=>document.getElementById(id);
+
+function esc(v){return String(v??'').replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])})}
+function initials(name){return String(name||'ST').split(/\s+/).slice(0,2).map(function(x){return x.charAt(0)}).join('').toUpperCase()||'ST'}
 function adminAllowed(){return sessionStorage.getItem('adminLoggedIn')==='true'&&sessionStorage.getItem('currentRole')==='Admin'}
-function setVerify(text,ok){$('verifyStatus').textContent=text;$('verifyStatus').className='verify-status '+(ok?'ok':'bad')}
-async function api(body){const r=await fetch(FUNCTION_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.error||'Login management service error.');return d}
-async function verify(){adminUsername=$('adminUsername').value.trim().toLowerCase();adminPassword=$('adminPassword').value;if(!adminUsername||!adminPassword){setVerify('Enter admin username and password.',false);return}$('verifyBtn').disabled=true;$('verifyBtn').textContent='Checking…';try{await loadData(true);setVerify('Admin verified. Student login management is ready.',true)}catch(e){adminPassword='';setVerify(e.message,false)}finally{$('verifyBtn').disabled=false;$('verifyBtn').textContent='Verify & Load'}}
-async function loadData(fromVerify=false){if(!adminPassword){if(!fromVerify)setVerify('Verify admin first.',false);return}$('table').innerHTML='<div class="empty">Loading student accounts…</div>';try{const d=await api({action:'list',adminUsername,adminPassword});overrides=d.demoOverrides||[];realStudents=d.realStudents||[];render();if(!fromVerify)setVerify('Student accounts refreshed.',true)}catch(e){$('table').innerHTML='<div class="empty">'+esc(e.message)+'</div>';throw e}}
-function render(){const om=new Map(overrides.map(x=>[Number(x.demo_student_id),x]));let html='<table><thead><tr><th>NAME</th><th>CURRENT USERNAME</th><th>CLASS</th><th>TYPE</th><th>ACTION</th></tr></thead><tbody>';demoStudents.forEach(s=>{const o=om.get(Number(s.id));html+=`<tr><td><strong>${esc(s.name)}</strong></td><td>${esc(o?.current_username||s.username)}</td><td>${esc(o?.student_class||s.studentClass)}</td><td><span class="type demo">Demo</span></td><td><button class="smallbtn" onclick='openModal(${JSON.stringify({type:"demo",id:s.id,name:s.name,username:o?.current_username||s.username,studentClass:o?.student_class||s.studentClass,age:o?.age??s.age,location:o?.location||s.location})})'>✎ Change Login</button></td></tr>`});realStudents.forEach(s=>{html+=`<tr><td><strong>${esc(s.name)}</strong></td><td>${esc(s.username)}</td><td>${esc(s.studentClass)}</td><td><span class="type real">Real</span></td><td><button class="smallbtn" onclick='openModal(${JSON.stringify({type:"real",id:s.id,name:s.name,username:s.username,studentClass:s.studentClass,age:s.age,location:s.location})})'>✎ Change Login</button></td></tr>`});html+='</tbody></table>';$('table').innerHTML=html}
-function openModal(data){selected=data;$('studentInfo').textContent=data.name+' • '+(data.type==='real'?'Real account':'Demo account');$('newUsername').value=data.username||'';$('newPassword').value='';$('error').style.display='none';$('success').style.display='none';$('modalBg').style.display='flex'}
+function setVerify(text,ok){
+$('verifyStatus').textContent=text;$('verifyStatus').className='verify-status '+(ok?'ok':'bad');
+$('topVerify').innerHTML='<span class="status-dot"></span>'+(ok?'Verified and unlocked':'Verification required');
+$('topVerify').className='status-pill '+(ok?'ok':'');
+$('verifyPill').innerHTML='<span class="status-dot"></span>'+(ok?'Verified':'Not verified');
+$('verifyPill').className='status-pill '+(ok?'ok':'');
+$('readyText').textContent=ok?'Unlocked':'Locked';
+}
+function toast(title,text,error){
+const t=$('toast');t.className='toast'+(error?' error':'');t.innerHTML='<b>'+esc(title)+'</b><span>'+esc(text)+'</span>';t.style.display='block';clearTimeout(window.__toastTimer);window.__toastTimer=setTimeout(function(){t.style.display='none'},3500)
+}
+async function api(body){
+const r=await fetch(FUNCTION_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+const d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.error||'Login management service error.');return d
+}
+async function verify(){
+adminUsername=$('adminUsername').value.trim().toLowerCase();adminPassword=$('adminPassword').value;
+if(!adminUsername||!adminPassword){setVerify('Enter admin username and password.',false);return}
+$('verifyBtn').disabled=true;$('verifyBtn').textContent='Checking…';
+try{await loadData(true);setVerify('Administrator verified successfully. Student controls are unlocked.',true);toast('Access verified','Student login management is now unlocked.')}catch(e){adminPassword='';setVerify(e.message,false);toast('Verification failed',e.message,true)}
+finally{$('verifyBtn').disabled=false;$('verifyBtn').textContent='Verify & Unlock'}
+}
+function clearVerification(){
+adminPassword='';$('adminPassword').value='';$('tableWrap').innerHTML='<div class="empty"><div class="empty-icon">🔒</div>Verify administrator access to load student accounts.</div>';$('accountSummary').textContent='Verify admin to load accounts';$('searchInput').value='';overrides=[];realStudents=[];setVerify('Student account controls are locked until verification succeeds.',false)
+}
+async function loadData(fromVerify){
+if(!adminPassword){if(!fromVerify)setVerify('Verify administrator access first.',false);return}
+$('tableWrap').innerHTML='<div class="empty"><div class="empty-icon">⏳</div>Loading student accounts…</div>';
+try{
+const d=await api({action:'list',adminUsername:adminUsername,adminPassword:adminPassword});
+overrides=d.demoOverrides||[];realStudents=d.realStudents||[];
+$('totalCount').textContent=demoStudents.length+realStudents.length;$('demoCount').textContent=demoStudents.length;$('realCount').textContent=realStudents.length;$('accountSummary').textContent=(demoStudents.length+realStudents.length)+' accounts available';
+render();if(!fromVerify){setVerify('Student accounts refreshed.',true);toast('Accounts refreshed','Latest student account information is loaded.')}
+}catch(e){$('tableWrap').innerHTML='<div class="empty"><div class="empty-icon">⚠️</div>'+esc(e.message)+'</div>';throw e}
+}
+function render(){
+const q=$('searchInput').value.trim().toLowerCase();const om=new Map(overrides.map(function(x){return[Number(x.demo_student_id),x]}));let list=[];
+demoStudents.forEach(function(s){const o=om.get(Number(s.id));list.push({type:'demo',id:s.id,name:s.name,username:o&&o.current_username||s.username,studentClass:o&&o.student_class||s.studentClass,age:o&&o.age??s.age,location:o&&o.location||s.location})});
+realStudents.forEach(function(s){list.push({type:'real',id:s.id,name:s.name,username:s.username,studentClass:s.studentClass,age:s.age,location:s.location})});
+list=list.filter(function(s){return !q||[s.name,s.username,s.studentClass,s.location].some(function(v){return String(v||'').toLowerCase().includes(q)})});
+if(!list.length){$('tableWrap').innerHTML='<div class="empty"><div class="empty-icon">🔎</div>No matching students found.</div>';return}
+let html='<table class="table"><thead><tr><th>STUDENT</th><th>USERNAME</th><th>CLASS</th><th>AGE</th><th>ACCOUNT TYPE</th><th>ACTION</th></tr></thead><tbody>';
+list.forEach(function(s){
+html+='<tr><td><div class="student-cell"><div class="avatar">'+esc(initials(s.name))+'</div><div><div class="student-name">'+esc(s.name)+'</div><div class="student-meta">'+esc(s.location||'')+'</div></div></div></td>';
+html+='<td><span class="username">'+esc(s.username)+'</span></td><td><span class="class-text">'+esc(s.studentClass)+'</span></td><td>'+esc(s.age??'—')+'</td>';
+html+='<td><span class="type '+(s.type==='real'?'real':'demo')+'">'+(s.type==='real'?'REAL':'DEMO')+'</span></td>';
+html+='<td><button class="smallbtn" onclick=\'openModal('+JSON.stringify(s)+')\'>✎ Change Login</button></td></tr>';
+});
+html+='</tbody></table>'; $('tableWrap').innerHTML=html
+}
+function openModal(data){
+selected=data;$('studentInfo').textContent='Update username and password for this student';
+$('modalAvatar').textContent=initials(data.name);$('modalName').textContent=data.name;$('modalSub').textContent=data.username+' • '+(data.type==='real'?'Real account':'Demo account');
+$('newUsername').value=data.username||'';$('newPassword').value='';$('strength').textContent='';$('error').style.display='none';$('success').style.display='none';$('modalBg').style.display='flex';setTimeout(function(){$('newUsername').focus()},60)
+}
 function closeModal(){$('modalBg').style.display='none';selected=null}
-async function saveLogin(){if(!selected||!adminPassword)return;const newUsername=$('newUsername').value.trim();const newPassword=$('newPassword').value;const err=$('error'),ok=$('success'),btn=$('saveBtn');err.style.display='none';ok.style.display='none';btn.disabled=true;btn.textContent='Saving…';try{const d=await api({studentType:selected.type,studentId:selected.id,name:selected.name,studentClass:selected.studentClass,age:selected.age,location:selected.location,adminUsername,adminPassword,newUsername,newPassword});ok.textContent='✓ '+d.message+' New username: '+d.username;ok.style.display='block';setTimeout(async()=>{closeModal();await loadData(true)},700)}catch(e){err.textContent=e.message;err.style.display='block'}finally{btn.disabled=false;btn.textContent='Save Changes'}}
+function togglePassword(){const input=$('newPassword');input.type=input.type==='password'?'text':'password'}
+$('newPassword').addEventListener('input',function(){
+const v=this.value;const s=$('strength');if(!v){s.textContent='';s.className='strength';return}let score=0;if(v.length>=6)score++;if(/[A-Z]/.test(v))score++;if(/[0-9]/.test(v))score++;if(/[^A-Za-z0-9]/.test(v))score++;s.textContent=score<2?'Weak password':score<4?'Moderate password':'Strong password';s.className='strength '+(score<2?'weak':score<4?'mid':'good')
+});
+async function saveLogin(){
+if(!selected||!adminPassword)return;
+const newUsername=$('newUsername').value.trim().toLowerCase();const newPassword=$('newPassword').value;const err=$('error'),ok=$('success'),btn=$('saveBtn');
+err.style.display='none';ok.style.display='none';
+if(!newUsername||newPassword.length<6){err.textContent='Enter a username and a password with at least 6 characters.';err.style.display='block';return}
+btn.disabled=true;btn.textContent='Saving…';
+try{
+const d=await api({studentType:selected.type,studentId:selected.id,name:selected.name,studentClass:selected.studentClass,age:selected.age,location:selected.location,adminUsername:adminUsername,adminPassword:adminPassword,newUsername:newUsername,newPassword:newPassword});
+ok.textContent='✓ '+d.message+' New username: '+d.username;ok.style.display='block';
+toast('Login updated','The student login was changed successfully.');
+setTimeout(async function(){closeModal();await loadData(true)},900);
+}catch(e){err.textContent=e.message;err.style.display='block';toast('Update failed',e.message,true)}
+finally{btn.disabled=false;btn.textContent='Save Changes'}
+}
 function logout(){sessionStorage.removeItem('adminLoggedIn');sessionStorage.removeItem('currentRole');sessionStorage.removeItem('currentUser')}
-if(!adminAllowed())location.href='login.html';
-</script></body></html>
+if(!adminAllowed())location.href='login.html';else setVerify('Student account controls are locked until verification succeeds.',false);
+</script>
+</body>
+</html>

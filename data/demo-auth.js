@@ -6,7 +6,7 @@
   const PROFILE_URL=SUPABASE_URL+'/functions/v1/student-profile';
   let heartbeatTimer=null;
   async function rpc(name,username,keepalive=false){
-    try{return await fetch(SUPABASE_URL+'/rest/v1/rpc/'+name,{method:'POST',keepalive,headers:{'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify({p_username:username})})}catch(e){console.warn('Student presence tracking unavailable',e);return null}
+    try{return await fetch(SUPABASE_URL+'/rest/v1/rpc/'+name,{method:'POST',keepalive,headers:{'apikey':SUPABASE_KEY,'Authorization':'Bearer '+(sessionStorage.getItem('pavanAuthAccessToken')||SUPABASE_KEY),'Content-Type':'application/json'},body:JSON.stringify({p_username:username})})}catch(e){console.warn('Student presence tracking unavailable',e);return null}
   }
   function startHeartbeat(username){if(heartbeatTimer)clearInterval(heartbeatTimer);heartbeatTimer=setInterval(()=>rpc('student_heartbeat',username),30000);rpc('student_heartbeat',username)}
   async function backendLogin(username,password){

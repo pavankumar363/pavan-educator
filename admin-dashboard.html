@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="data/admin-auth.js?v=20260919" data-guard="true"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script src="data/admin-auth.js?v=20260919" data-guard="true"></script>
@@ -70,6 +71,6 @@ const loginPct=students.length?Math.round(online.length/students.length*100):0;c
 document.getElementById('notificationBox').innerHTML=online.length?'<strong>'+online.length+' student'+(online.length===1?' is':'s are')+' online.</strong><br>Live student activity is available.':'<strong>No students currently online.</strong><br>The dashboard will update automatically when students log in.';
 const body=document.getElementById('activityBody');body.innerHTML=presence.length?presence.slice(0,10).map(x=>{const s=students.find(a=>a.username.toLowerCase()===x.username.toLowerCase());const on=now-new Date(x.last_seen).getTime()<=ONLINE_MS;return '<tr><td><strong>'+esc(s?s.name:x.username)+'</strong></td><td>'+esc(x.username)+'</td><td>'+Number(x.login_count||0)+'</td><td>'+new Date(x.last_seen).toLocaleString()+'</td><td><span class="status '+(on?'online':'offline')+'">'+(on?'Online':'Offline')+'</span></td></tr>'}).join(''):'<tr><td colspan="5" class="no-data">No student login activity yet.</td></tr>';
 }catch(e){console.error(e);document.getElementById('notificationBox').innerHTML='<strong>Live activity unavailable.</strong><br>Check the Supabase connection.';document.getElementById('activityBody').innerHTML='<tr><td colspan="5" class="no-data">Unable to load live student activity.</td></tr>'}}
-function logout(){sessionStorage.clear()}updateDashboard();setInterval(updateDashboard,10000);
+function logout(){if(window.PavanAdminAuth)PavanAdminAuth.logout();else sessionStorage.clear()}updateDashboard();setInterval(updateDashboard,10000);
 </script>
 </body></html>

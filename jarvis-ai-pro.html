@@ -31,7 +31,32 @@ body{background:#fff;color:#202123;overflow:hidden}
 .memory{left:275px;bottom:90px;box-shadow:0 10px 35px #0002}
 .chatgpt-extra{display:block;margin:2px 0 8px}.chatgpt-extra button{width:100%;border:0;background:transparent;text-align:left;border-radius:8px;padding:10px 12px;font-size:13px;color:#444;cursor:pointer}.chatgpt-extra button:hover{background:#ececec}
 @media(max-width:760px){.side{display:none}.workspace{padding-left:16px;padding-right:16px}.composer-wrap{left:0}.memory{left:12px}}
-<style id="project-buttons-style">.project-toggle{display:flex!important;align-items:center;justify-content:space-between;width:100%}.project-menu{display:none;padding:2px 0 7px 28px}.project-menu.show{display:block}.project-menu button{display:block!important;width:100%;font-size:12px!important;font-weight:500!important;color:#666!important;padding:8px 10px!important;margin:1px 0!important;border-radius:7px!important}.project-menu button:hover{background:#ececec!important;color:#202123!important}</style></style></head>
+<style id="project-buttons-style">.project-toggle{display:flex!important;align-items:center;justify-content:space-between;width:100%}.project-menu{display:none;padding:2px 0 7px 28px}.project-menu.show{display:block}.project-menu button{display:block!important;width:100%;font-size:12px!important;font-weight:500!important;color:#666!important;padding:8px 10px!important;margin:1px 0!important;border-radius:7px!important}.project-menu button:hover{background:#ececec!important;color:#202123!important}</style><style id="premium-white-blue">
+body{background:#f5f9ff;color:#132d4f}
+.app{background:#f5f9ff}
+.side{background:linear-gradient(180deg,#ffffff 0%,#f7fbff 100%);border-right:1px solid #dceafb;box-shadow:4px 0 20px rgba(27,92,160,.05)}
+.brand{color:#0d5fd3;letter-spacing:-.4px}.brand span{color:#163d68}
+.side button,.side a{color:#315675}.side button:hover,.side a:hover,.side .active{background:#e8f2ff;color:#075fd4}
+.side .status{background:#edf6ff;border:1px solid #d5e9ff;color:#52728f}
+.dot{background:#19a66a}
+.main{background:#fff}
+.top{background:rgba(255,255,255,.96);border-bottom:1px solid #dce9f7;box-shadow:0 1px 8px rgba(20,80,140,.04)}
+.top h1{color:#12365d}.top button{background:#f4f9ff;border:1px solid #cfe2f7;color:#1264c8}
+.workspace{background:#fff}
+.hero .orb{background:linear-gradient(145deg,#075ed1,#3f9bff);box-shadow:0 10px 30px rgba(24,111,224,.25)}
+.hero h2{color:#12365d}.hero p{color:#6b8298}
+.messages .empty{color:#66809a}
+.msg .bubble{color:#1c3d5e}.msg.user .bubble{color:#123b67}
+.composer{background:#fff;border:1px solid #c8def4;box-shadow:0 8px 30px rgba(31,104,177,.10)}
+.input{color:#153b62}.input::placeholder{color:#8aa0b5}
+.action{background:#f2f8ff;border-color:#d3e6fa;color:#1264c8}.action:hover{background:#e6f2ff}
+.send{background:linear-gradient(135deg,#075ed1,#2489f5)!important;color:#fff!important;box-shadow:0 5px 14px rgba(7,94,209,.22)}
+.tools{border-top:1px solid #edf4fb}.tools span{color:#66839b}
+.project-toggle,.chatgpt-extra button{color:#315675!important}.project-toggle:hover,.chatgpt-extra button:hover{background:#e8f2ff!important;color:#075fd4!important}
+.project-menu button{color:#58728b!important}.project-menu button:hover{background:#e8f2ff!important;color:#075fd4!important}
+.memory{background:#fff;border:1px solid #cfe2f5;box-shadow:0 15px 45px rgba(28,91,150,.16)}
+.memory h3{color:#163d68}.memory p{color:#6d859a}.memory input{border-color:#c9deef}.memory button{background:#126bdc;color:#fff;border:0}
+</style></style></head>
 <body><div class="app">
 <aside class="side"><div class="brand">JARVIS <span>AI</span></div><button class="active" onclick="newChatUI()">＋ New chat</button><div class="chatgpt-extra"><button onclick="focusSearch()">⌕ Search chats</button><button onclick="toggleMemory()">🧠 Memory</button><button class="project-toggle" onclick="toggleProjects()">📁 Projects <span id="projectArrow">⌄</span></button><div id="projectMenu" class="project-menu"><button onclick="openProject('My Projects')">My Projects</button><button onclick="openProject('Attendance Management System')">Attendance Management</button><button onclick="openProject('Quiz World')">Quiz World</button><button onclick="openProject('Pavan Educator')">Pavan Educator</button></div><a href="student-dashboard.html">← Dashboard</a></div><div class="status"><span class="dot"></span><b>JARVIS-AI</b><br><span>Ready</span></div></aside>
 <main class="main"><header class="top"><div><h1>JARVIS-AI <span style="font-size:12px;color:#888;font-weight:400">⌄</span></h1></div><div><button id="voiceBtn" onclick="toggleVoice()">🎙️</button></div></header>

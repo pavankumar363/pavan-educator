@@ -58,9 +58,27 @@ body{background:#f5f9ff;color:#132d4f}
 .memory h3{color:#163d68}.memory p{color:#6d859a}.memory input{border-color:#c9deef}.memory button{background:#126bdc;color:#fff;border:0}
 </style><style id="jarvis-all-features">
 .feature-bar{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:18px auto 0;max-width:820px}.feature-chip{border:1px solid #cfe2f5;background:#fff;color:#1764b4;border-radius:20px;padding:8px 12px;font-size:12px;font-weight:600;cursor:pointer}.feature-chip:hover{background:#eaf4ff;border-color:#9fc8f2}.feature-panel{display:none;margin:15px auto;padding:14px;background:#f7fbff;border:1px solid #d7e8f7;border-radius:14px;max-width:820px}.feature-panel.show{display:block}.feature-panel h3{margin:0 0 8px;color:#163d68;font-size:15px}.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.feature-grid button{border:1px solid #d5e6f6;background:#fff;border-radius:9px;padding:9px;text-align:left;color:#315675;cursor:pointer;font-size:12px}.feature-grid button:hover{background:#e8f2ff;color:#075fd4}@media(max-width:650px){.feature-grid{grid-template-columns:1fr 1fr}}
-</style></style></head>
+</style></style><style id="sidebar-15-features">
+.jarvis-feature-sidebar{display:flex;flex-direction:column;gap:5px;margin-top:10px;padding-top:10px;border-top:1px solid #dceaf7}.jarvis-feature-sidebar button{width:100%;border:0;background:transparent;color:#315675;text-align:left;padding:9px 11px;border-radius:9px;cursor:pointer;font-size:13px}.jarvis-feature-sidebar button:hover{background:#eaf4ff;color:#075fd4}.side{overflow-y:auto}
+</style></head>
 <body><div class="app">
-<aside class="side"><div class="brand">JARVIS <span>AI</span></div><button class="active" onclick="newChatUI()">＋ New chat</button><div class="chatgpt-extra"><button onclick="focusSearch()">⌕ Search chats</button><button onclick="toggleMemory()">🧠 Memory</button><button class="project-toggle" onclick="toggleProjects()">📁 Projects <span id="projectArrow">⌄</span></button><div id="projectMenu" class="project-menu"><button onclick="openProject('My Projects')">My Projects</button><button onclick="openProject('Attendance Management System')">Attendance Management</button><button onclick="openProject('Quiz World')">Quiz World</button><button onclick="openProject('Pavan Educator')">Pavan Educator</button></div><a href="student-dashboard.html">← Dashboard</a></div><div class="status"><span class="dot"></span><b>JARVIS-AI</b><br><span>Ready</span></div></aside>
+<aside class="side"><div class="brand">JARVIS <span>AI</span></div><button class="active" onclick="newChatUI()">＋ New chat</button><div class="chatgpt-extra"><div id="jarvisFeatureSidebar" class="jarvis-feature-sidebar">
+<button onclick="jarvisFeature('New Chat')">＋ New Chat</button>
+<button onclick="jarvisFeature('Search Chats')">⌕ Search Chats</button>
+<button onclick="jarvisFeature('Chat History')">🕘 Chat History</button>
+<button onclick="jarvisFeature('Projects')">📁 Projects</button>
+<button onclick="document.getElementById('files').click()">📎 File Upload</button>
+<button onclick="jarvisFeature('Web Search')">🌐 Web Search</button>
+<button onclick="startVoice()">🎙️ Voice Input</button>
+<button onclick="toggleMemory()">🧠 Memory</button>
+<button onclick="jarvisFeature('Image Understanding')">🖼️ Image Understanding</button>
+<button onclick="jarvisFeature('Document Analysis')">📄 Document Analysis</button>
+<button onclick="quickFeature('Help me write, debug, and explain code')">💻 Coding Assistant</button>
+<button onclick="quickFeature('Solve my mathematics problem step by step')">🧮 Mathematics Solver</button>
+<button onclick="jarvisFeature('Student Personalization')">🎓 Student Personalization</button>
+<button onclick="showCreatorTools()">✨ AI Creator</button>
+<button onclick="jarvisFeature('General AI Assistant')">🤖 General AI</button>
+</div><button onclick="focusSearch()">⌕ Search chats</button><button onclick="toggleMemory()">🧠 Memory</button><button class="project-toggle" onclick="toggleProjects()">📁 Projects <span id="projectArrow">⌄</span></button><div id="projectMenu" class="project-menu"><button onclick="openProject('My Projects')">My Projects</button><button onclick="openProject('Attendance Management System')">Attendance Management</button><button onclick="openProject('Quiz World')">Quiz World</button><button onclick="openProject('Pavan Educator')">Pavan Educator</button></div><a href="student-dashboard.html">← Dashboard</a></div><div class="status"><span class="dot"></span><b>JARVIS-AI</b><br><span>Ready</span></div></aside>
 <main class="main"><header class="top"><div><h1>JARVIS-AI <span style="font-size:12px;color:#888;font-weight:400">⌄</span></h1></div><div><button id="voiceBtn" onclick="toggleVoice()">🎙️</button></div></header>
 <div class="workspace"><section class="hero"><div class="orb"><b>JARVIS</b></div><h2 id="greeting">How can I help you today?</h2><p>Ask JARVIS-AI anything — learn, solve, create, code, search, or analyze files.</p><div class="feature-bar"><button class="feature-chip" onclick="quickFeature('Explain this topic simply')">🎓 Study</button><button class="feature-chip" onclick="quickFeature('Solve this mathematics problem step by step')">🧮 Math</button><button class="feature-chip" onclick="quickFeature('Help me write code')">💻 Coding</button><button class="feature-chip" onclick="document.getElementById('files').click()">📎 Files</button><button class="feature-chip" onclick="startVoice()">🎙️ Voice</button><button class="feature-chip" onclick="toggleMemory()">🧠 Memory</button><button class="feature-chip" onclick="quickFeature('Search the web for the latest information about ')">🌐 Web</button><button class="feature-chip" onclick="showCreatorTools()">✨ Create</button></div><div id="creatorPanel" class="feature-panel"><h3>✨ AI Creator Tools</h3><div class="feature-grid"><button onclick="quickFeature('Create detailed study notes about ')">📝 Notes</button><button onclick="quickFeature('Create 20 MCQs with answers about ')">❓ MCQs</button><button onclick="quickFeature('Create an assignment about ')">📚 Assignment</button><button onclick="quickFeature('Create a quiz about ')">🧠 Quiz</button><button onclick="quickFeature('Create PPT content about ')">📊 PPT Content</button><button onclick="quickFeature('Create a programming exercise about ')">💻 Coding Exercise</button></div></div></section>
 <section id="messages" class="messages"><div class="empty">👋 <b>Welcome to JARVIS-AI</b><br><br>How can I help you today?</div></section>
@@ -89,4 +107,16 @@ function focusSearch(){const q=prompt('Search your JARVIS conversations:');if(q)
 </script><script>function toggleProjects(){const m=document.getElementById('projectMenu'),a=document.getElementById('projectArrow');m.classList.toggle('show');a.textContent=m.classList.contains('show')?'⌃':'⌄'}function openProject(name){if(name==='My Projects'){location.href='student-projects.html';return}alert(name+' project workspace is ready to connect to JARVIS-AI.');}</script><script>
 function quickFeature(text){const i=document.getElementById('input');i.value=text;i.focus();if(text.endsWith(' '))return;send()}
 function showCreatorTools(){document.getElementById('creatorPanel').classList.toggle('show')}
+</script><script>
+function jarvisFeature(name){
+ if(name==='New Chat'){newChatUI();return}
+ if(name==='Search Chats'){const q=prompt('Search chats:');if(q) alert('Chat search is ready. Matching history will appear here as chat history grows.');return}
+ if(name==='Chat History'){alert('Chat History is available in this JARVIS session. Your recent conversations remain in the chat area.');return}
+ if(name==='Projects'){if(typeof toggleProjects==='function')toggleProjects();return}
+ if(name==='Web Search'){quickFeature('Search the web for the latest information about ');return}
+ if(name==='Image Understanding'){document.getElementById('files').click();return}
+ if(name==='Document Analysis'){document.getElementById('files').click();return}
+ if(name==='Student Personalization'){quickFeature('Use my student profile to personalize this answer: ');return}
+ if(name==='General AI Assistant'){quickFeature('Help me with: ');return}
+}
 </script></body></html>

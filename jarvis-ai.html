@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<link rel="icon" href="assets/pavan-logo.svg"><title>JARVIS-AI | Pavan Educator</title>
+<link rel="icon" href="assets/pavan-logo.svg"><title>JARVIS-AI Pro | Pavan Educator</title>
 <style>
 *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f9ff;color:#17324d}.app{min-height:100vh;display:flex}.side{width:250px;background:#fff;border-right:1px solid #d9e8f3;padding:22px 16px;display:flex;flex-direction:column}.brand{font-size:25px;font-weight:800;color:#126df3;padding:8px 10px 28px}.brand span{color:#17324d}.side button,.side a{border:0;background:transparent;text-align:left;text-decoration:none;color:#365b76;padding:12px 13px;border-radius:10px;font-weight:700;cursor:pointer;margin-bottom:5px}.side button:hover,.side a:hover,.side .active{background:#eaf4ff;color:#126df3}.status{margin-top:auto;background:#f2f8fd;border:1px solid #d7e8f4;border-radius:12px;padding:12px;font-size:12px;color:#55758e}.dot{display:inline-block;width:8px;height:8px;background:#20a464;border-radius:50%;margin-right:6px}.main{flex:1;min-width:0}.top{height:72px;background:#fff;border-bottom:1px solid #dce9f2;display:flex;align-items:center;justify-content:space-between;padding:0 25px}.top h1{font-size:21px;margin:0}.top small{display:block;color:#7892a5;font-size:11px;margin-top:3px}.top button{border:1px solid #c9deef;background:#f7fbff;color:#1769a8;border-radius:9px;padding:9px 11px;cursor:pointer}.workspace{max-width:1050px;margin:auto;padding:24px}.hero{text-align:center;padding:25px 10px 10px}.orb{width:82px;height:82px;margin:auto;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#126df3,#69b7ff);color:#fff;box-shadow:0 12px 35px #2474ff33}.orb b{font-size:12px}.hero h2{margin:15px 0 6px}.hero p{color:#6b879d;margin:0}.messages{min-height:300px;max-height:52vh;overflow:auto;padding:10px}.empty{text-align:center;color:#7892a5;padding:60px 15px}.msg{display:flex;margin:12px 0}.bubble{max-width:80%;padding:12px 15px;border-radius:14px;line-height:1.55;white-space:pre-wrap}.user{justify-content:flex-end}.user .bubble{background:#126df3;color:#fff;border-bottom-right-radius:4px}.assistant .bubble{background:#fff;border:1px solid #d7e7f1;color:#24465e;border-bottom-left-radius:4px}.composer{background:#fff;border:1px solid #cfe2ee;border-radius:15px;padding:10px;box-shadow:0 8px 25px #1c5b8710}.row{display:flex;gap:8px}.input{flex:1;min-height:52px;max-height:150px;border:0;outline:0;resize:vertical;padding:12px;color:#17324d;font:inherit}.action{border:1px solid #c9deef;background:#f6fbff;color:#1769a8;border-radius:10px;padding:9px 12px;cursor:pointer}.send{background:#126df3;color:#fff;border:0}.tools{display:flex;gap:7px;align-items:center;border-top:1px solid #edf3f7;padding-top:8px}.tools span{font-size:11px;color:#66839b}.file{font-size:11px;background:#eef7ff;padding:5px 8px;border-radius:8px}.search{font-size:11px;color:#1769a8;margin:8px 0}.memory{display:none;position:fixed;right:20px;top:82px;width:350px;max-width:calc(100% - 40px);background:#fff;border:1px solid #cfe2ee;border-radius:14px;padding:16px;box-shadow:0 15px 45px #1a55752b;z-index:10}.memory.show{display:block}.memory h3{margin:0 0 8px}.memory p{font-size:12px;color:#6b879d}.memory input{width:100%;padding:9px;border:1px solid #c9deef;border-radius:8px;color:#17324d}.memory button{margin-top:8px;border:1px solid #c9deef;background:#f7fbff;color:#1769a8;border-radius:8px;padding:7px;cursor:pointer}.typing{opacity:.65}@media(max-width:760px){.side{display:none}.workspace{padding:12px}.bubble{max-width:90%}.top{padding:0 14px}}
 </style><style id="jarvis-chatgpt-style">
@@ -31,9 +31,34 @@ body{background:#fff;color:#202123;overflow:hidden}
 .memory{left:275px;bottom:90px;box-shadow:0 10px 35px #0002}
 .chatgpt-extra{display:block;margin:2px 0 8px}.chatgpt-extra button{width:100%;border:0;background:transparent;text-align:left;border-radius:8px;padding:10px 12px;font-size:13px;color:#444;cursor:pointer}.chatgpt-extra button:hover{background:#ececec}
 @media(max-width:760px){.side{display:none}.workspace{padding-left:16px;padding-right:16px}.composer-wrap{left:0}.memory{left:12px}}
-</style></head>
+<style id="project-buttons-style">.project-toggle{display:flex!important;align-items:center;justify-content:space-between;width:100%}.project-menu{display:none;padding:2px 0 7px 28px}.project-menu.show{display:block}.project-menu button{display:block!important;width:100%;font-size:12px!important;font-weight:500!important;color:#666!important;padding:8px 10px!important;margin:1px 0!important;border-radius:7px!important}.project-menu button:hover{background:#ececec!important;color:#202123!important}</style><style id="premium-white-blue">
+body{background:#f5f9ff;color:#132d4f}
+.app{background:#f5f9ff}
+.side{background:linear-gradient(180deg,#ffffff 0%,#f7fbff 100%);border-right:1px solid #dceafb;box-shadow:4px 0 20px rgba(27,92,160,.05)}
+.brand{color:#0d5fd3;letter-spacing:-.4px}.brand span{color:#163d68}
+.side button,.side a{color:#315675}.side button:hover,.side a:hover,.side .active{background:#e8f2ff;color:#075fd4}
+.side .status{background:#edf6ff;border:1px solid #d5e9ff;color:#52728f}
+.dot{background:#19a66a}
+.main{background:#fff}
+.top{background:rgba(255,255,255,.96);border-bottom:1px solid #dce9f7;box-shadow:0 1px 8px rgba(20,80,140,.04)}
+.top h1{color:#12365d}.top button{background:#f4f9ff;border:1px solid #cfe2f7;color:#1264c8}
+.workspace{background:#fff}
+.hero .orb{background:linear-gradient(145deg,#075ed1,#3f9bff);box-shadow:0 10px 30px rgba(24,111,224,.25)}
+.hero h2{color:#12365d}.hero p{color:#6b8298}
+.messages .empty{color:#66809a}
+.msg .bubble{color:#1c3d5e}.msg.user .bubble{color:#123b67}
+.composer{background:#fff;border:1px solid #c8def4;box-shadow:0 8px 30px rgba(31,104,177,.10)}
+.input{color:#153b62}.input::placeholder{color:#8aa0b5}
+.action{background:#f2f8ff;border-color:#d3e6fa;color:#1264c8}.action:hover{background:#e6f2ff}
+.send{background:linear-gradient(135deg,#075ed1,#2489f5)!important;color:#fff!important;box-shadow:0 5px 14px rgba(7,94,209,.22)}
+.tools{border-top:1px solid #edf4fb}.tools span{color:#66839b}
+.project-toggle,.chatgpt-extra button{color:#315675!important}.project-toggle:hover,.chatgpt-extra button:hover{background:#e8f2ff!important;color:#075fd4!important}
+.project-menu button{color:#58728b!important}.project-menu button:hover{background:#e8f2ff!important;color:#075fd4!important}
+.memory{background:#fff;border:1px solid #cfe2f5;box-shadow:0 15px 45px rgba(28,91,150,.16)}
+.memory h3{color:#163d68}.memory p{color:#6d859a}.memory input{border-color:#c9deef}.memory button{background:#126bdc;color:#fff;border:0}
+</style></style></head>
 <body><div class="app">
-<aside class="side"><div class="brand">JARVIS <span>AI</span></div><button class="active" onclick="newChatUI()">＋ New chat</button><div class="chatgpt-extra"><button onclick="focusSearch()">⌕ Search chats</button><button onclick="toggleMemory()">🧠 Memory</button><a href="student-projects.html">📁 Projects</a><a href="student-dashboard.html">← Dashboard</a></div><div class="status"><span class="dot"></span><b>JARVIS-AI</b><br><span>Ready</span></div></aside>
+<aside class="side"><div class="brand">JARVIS <span>AI</span></div><button class="active" onclick="newChatUI()">＋ New chat</button><div class="chatgpt-extra"><button onclick="focusSearch()">⌕ Search chats</button><button onclick="toggleMemory()">🧠 Memory</button><button class="project-toggle" onclick="toggleProjects()">📁 Projects <span id="projectArrow">⌄</span></button><div id="projectMenu" class="project-menu"><button onclick="openProject('My Projects')">My Projects</button><button onclick="openProject('Attendance Management System')">Attendance Management</button><button onclick="openProject('Quiz World')">Quiz World</button><button onclick="openProject('Pavan Educator')">Pavan Educator</button></div><a href="student-dashboard.html">← Dashboard</a></div><div class="status"><span class="dot"></span><b>JARVIS-AI</b><br><span>Ready</span></div></aside>
 <main class="main"><header class="top"><div><h1>JARVIS-AI <span style="font-size:12px;color:#888;font-weight:400">⌄</span></h1></div><div><button id="voiceBtn" onclick="toggleVoice()">🎙️</button></div></header>
 <div class="workspace"><section class="hero"><div class="orb"><b>JARVIS</b></div><h2 id="greeting">How can I help you today?</h2><p>Ask JARVIS-AI anything — learn, solve, create, code, or analyze files.</p></section>
 <section id="messages" class="messages"><div class="empty">👋 <b>Welcome to JARVIS-AI</b><br><br>How can I help you today?</div></section>
@@ -59,4 +84,4 @@ function delMemory(i){const a=JSON.parse(localStorage.getItem('jarvisMemory')||'
 </script><script>
 function newChatUI(){messages=[];render();document.getElementById('input').focus()}
 function focusSearch(){const q=prompt('Search your JARVIS conversations:');if(q)alert('Conversation search will be available in the next JARVIS update.')}
-</script></body></html>
+</script><script>function toggleProjects(){const m=document.getElementById('projectMenu'),a=document.getElementById('projectArrow');m.classList.toggle('show');a.textContent=m.classList.contains('show')?'⌃':'⌄'}function openProject(name){if(name==='My Projects'){location.href='student-projects.html';return}alert(name+' project workspace is ready to connect to JARVIS-AI.');}</script></body></html>

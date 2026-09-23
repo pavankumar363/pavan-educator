@@ -71,4 +71,5 @@ const body=document.getElementById('activityBody');body.innerHTML=presence.lengt
 }catch(e){console.error(e);document.getElementById('notificationBox').innerHTML='<strong>Live activity unavailable.</strong><br>Check the Supabase connection.';document.getElementById('activityBody').innerHTML='<tr><td colspan="5" class="no-data">Unable to load live student activity.</td></tr>'}}
 function logout(){sessionStorage.clear()}updateDashboard();setInterval(updateDashboard,10000);
 </script>
+<script src="assets/page-transition.js?v=20260923"></script>
 </body></html>

@@ -13,4 +13,5 @@ function filterAttendance(){const q=(document.getElementById('attSearch')?.value
 async function save(){const s=document.getElementById('student').value,d=document.getElementById('date').value,sub=document.getElementById('subject').value.trim(),st=document.getElementById('status').value;if(!s||!d||!sub){alert('Please select a student, date and subject.');return}const btn=document.querySelector('.save');btn.disabled=true;btn.textContent='Saving...';try{await api('student_attendance',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify({username:s,attendance_date:d,subject:sub,status:st})});document.getElementById('msg').textContent='Attendance saved successfully.';document.getElementById('msg').style.display='block';document.getElementById('subject').value='';await load()}catch(e){alert('Unable to save attendance. '+e.message);console.error(e)}finally{btn.disabled=false;btn.textContent='Save Attendance'}}
 function init(){const list=window.PAVAN_DEMO_STUDENTS||[];document.getElementById('student').innerHTML=list.map(s=>'<option value="'+esc(s.username)+'">'+esc(s.name)+' — '+esc(s.username)+'</option>').join('');document.getElementById('date').value=new Date().toISOString().slice(0,10);load()}
 if(guard())init();
-</script></body></html>
+</script><script src="assets/page-transition.js?v=20260923"></script>
+</body></html>

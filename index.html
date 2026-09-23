@@ -18,7 +18,24 @@
 </style>
 <style id="homepage-upgrade">
 .home-settings{position:fixed;right:22px;top:88px;z-index:20;border:1px solid #cfe1f4;background:#fff;color:#126df3;border-radius:13px;padding:10px 14px;font-weight:700;box-shadow:0 10px 28px #1c5b8715;cursor:pointer}.home-settings-panel{position:fixed;right:22px;top:140px;width:290px;z-index:1001;background:#fff;border:1px solid #d8e6f3;border-radius:16px;padding:18px;box-shadow:0 18px 45px #1c5b8728;display:none}.home-settings-backdrop{position:fixed;inset:0;background:#0b1f3a12;z-index:1000;display:none}.home-settings-backdrop.show{display:block}.home-settings-panel.show{display:block}.setting-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #edf3f8;font-size:13px}.setting-row button{border:1px solid #cfe1f4;background:#f7fbff;color:#126df3;border-radius:8px;padding:6px 10px}@media(max-width:700px){.home-settings{right:12px;top:75px}.home-settings-panel{right:12px;top:125px;width:calc(100% - 24px)}}
-</style></head>
+<style id="premium-home-animations">
+@keyframes heroFadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes softFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes glowPulse{0%,100%{box-shadow:0 18px 45px #2563eb18}50%{box-shadow:0 22px 55px #2563eb30}}
+@keyframes badgeIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+@keyframes navIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.navbar{animation:navIn .7s ease both}
+.hero-content{animation:heroFadeUp .9s ease .15s both}
+.hero .hero-card{animation:heroFadeUp .9s ease .35s both,softFloat 4s ease-in-out 1.4s infinite}
+.hero .badge{animation:badgeIn .7s ease .35s both}
+.hero .primary-btn,.hero .secondary-btn{transition:transform .25s ease,box-shadow .25s ease}
+.hero .primary-btn:hover,.hero .secondary-btn:hover{transform:translateY(-3px)}
+.home-settings{transition:transform .2s ease,box-shadow .2s ease}
+.home-settings:hover{transform:translateY(-2px);box-shadow:0 12px 30px #2563eb25}
+.about,.founder-section,.course-card,.project-card,.video-card{transition:transform .3s ease,box-shadow .3s ease}
+.about:hover,.founder-section:hover,.course-card:hover,.project-card:hover,.video-card:hover{transform:translateY(-5px)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}}
+</style></style></head>
 <body>
 <div id="appSplash"><div class="splashBox"><img src="assets/pavan-logo.svg" alt="Pavan Educator"><h2>Pavan <span>Educator</span></h2><p>Learn • Build • Grow</p><div class="loader"></div></div></div>
 <header class="navbar"><a href="index.html" class="logo"><img src="assets/pavan-logo.svg" alt="Pavan Educator logo"><span>Pavan Educator</span></a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="courses.html">Courses</a></li><li><a href="projects.html">Projects</a></li><li><a href="videos.html">Videos</a></li><li><a href="about.html">About</a></li><li></li></ul><a href="login.html" class="login-btn">Login</a></header>

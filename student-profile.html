@@ -169,4 +169,5 @@ const student=loadProfile();if(student)loadAttendance(student);
 function openEdit(){const s=window.PavanDemoAuth?.current?.();if(!s)return;document.getElementById('editName').value=s.name||'';document.getElementById('editLocation').value=s.location||'';document.getElementById('editProfile').classList.add('show')}
 function closeEdit(){document.getElementById('editProfile').classList.remove('show')}
 function saveEdit(){const s=window.PavanDemoAuth?.current?.();if(!s)return;const name=document.getElementById('editName').value.trim();const location=document.getElementById('editLocation').value.trim();if(!name){alert('Name cannot be empty.');return}s.name=name;s.location=location;sessionStorage.setItem('pavanCurrentStudent',JSON.stringify(s));loadProfile();closeEdit()}
-</script></body></html>
+</script><script src="assets/page-transition.js?v=20260923"></script>
+</body></html>

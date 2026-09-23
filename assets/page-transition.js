@@ -1,21 +1,41 @@
-/* Pavan Educator - smooth page transitions */
+/* Pavan Educator - global animated splash + page transitions */
 (function(){
-  var founder=document.getElementById('founderPhoto');
-  if(founder){
-    founder.style.mixBlendMode='multiply';
-    founder.style.filter='brightness(1.10) contrast(1.04) saturate(1.08) drop-shadow(0 20px 28px rgba(14,69,135,.16))';
-  }
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduce)return;
-  var overlay=document.createElement('div');
-  overlay.id='pageTransition';
-  overlay.innerHTML='<div class="ptLogo"><img src="assets/pavan-logo.svg" alt=""><span>Pavan Educator</span></div>';
-  overlay.style.cssText='position:fixed;inset:0;background:#f5f8ff;z-index:999999;display:flex;align-items:center;justify-content:center;opacity:1;transition:opacity .32s ease;pointer-events:none;';
-  var style=document.createElement('style');
-  style.textContent='#pageTransition .ptLogo{display:flex;align-items:center;gap:10px;font:800 22px Arial,sans-serif;color:#172033;transform:translateY(8px);opacity:.92}#pageTransition .ptLogo img{width:42px;height:42px}#pageTransition .ptLogo span{color:#2563eb}@media(prefers-reduced-motion:reduce){#pageTransition{display:none!important}}';
-  document.head.appendChild(style);document.body.appendChild(overlay);
-  requestAnimationFrame(function(){requestAnimationFrame(function(){overlay.style.opacity='0';});});
-  setTimeout(function(){if(overlay.parentNode)overlay.remove();},450);
+  var splash=document.getElementById('appSplash');
+  var overlay=null;
+
+  function build(){
+    if(splash) return splash;
+    overlay=document.getElementById('pageTransition');
+    if(overlay) return overlay;
+    overlay=document.createElement('div');
+    overlay.id='pageTransition';
+    overlay.innerHTML='<div class="ptBox"><img src="assets/pavan-logo.svg" alt="Pavan Educator"><h2>Pavan <span>Educator</span></h2><p>Learn • Build • Grow</p><div class="ptLoader"><i></i></div></div>';
+    document.body.appendChild(overlay);
+    return overlay;
+  }
+
+  function styles(){
+    if(document.getElementById('pavanTransitionStyles')) return;
+    var s=document.createElement('style');
+    s.id='pavanTransitionStyles';
+    s.textContent='#pageTransition{position:fixed;inset:0;background:#fff;z-index:999999;display:flex;align-items:center;justify-content:center;opacity:1;transition:opacity .38s ease;pointer-events:none}#pageTransition .ptBox,#appSplash .splashBox{text-align:center}#pageTransition .ptBox img{width:82px;height:82px;display:block;margin:auto}#pageTransition .ptBox h2{font:800 27px Arial,sans-serif;margin:16px 0 0;color:#172033}#pageTransition .ptBox h2 span{color:#2563eb}#pageTransition .ptBox p{font:14px Arial,sans-serif;color:#687389;margin:7px 0 20px}.ptLoader{width:52px;height:4px;background:#e5eaf3;margin:auto;overflow:hidden;border-radius:5px}.ptLoader i{display:block;width:45%;height:100%;background:#2563eb;animation:ptLoad 1s ease-in-out infinite}@keyframes ptLoad{0%{transform:translateX(-110%)}100%{transform:translateX(230%)}}@media(prefers-reduced-motion:reduce){#pageTransition{display:none!important}.ptLoader i{animation:none}}';
+    document.head.appendChild(s);
+  }
+
+  styles();
+
+  if(splash){
+    setTimeout(function(){
+      splash.style.opacity='0';
+      setTimeout(function(){if(splash.parentNode)splash.remove()},380);
+    },700);
+  }else if(!reduce){
+    var initial=build();
+    requestAnimationFrame(function(){requestAnimationFrame(function(){initial.style.opacity='0'})});
+    setTimeout(function(){if(initial&&initial.parentNode)initial.remove()},850);
+  }
+
   document.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('a[href]');
     if(!a||e.defaultPrevented)return;
@@ -24,7 +44,8 @@
     var url=new URL(href,location.href);
     if(url.origin!==location.origin)return;
     e.preventDefault();
-    overlay.style.pointerEvents='auto';overlay.style.opacity='1';
-    setTimeout(function(){location.href=url.href;},300);
+    if(splash)splash.style.opacity='1';
+    else {var o=build();o.style.pointerEvents='auto';o.style.opacity='1';}
+    setTimeout(function(){location.href=url.href},420);
   });
 })();

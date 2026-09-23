@@ -35,7 +35,7 @@
 (function(){var img=document.getElementById('homepageFounderPhoto');if(!img)return;fetch('https://raw.githubusercontent.com/pavankumar363/pavan-educator/9c7e7d19915579eac35239275495db46da13e91f/index.html').then(function(r){return r.text()}).then(function(t){var m=t.match(/data:image\/jpeg;base64,[A-Za-z0-9+/=]+/);if(m)img.src=m[0]}).catch(function(){});})();
 document.querySelectorAll('a').forEach(function(a){a.removeAttribute('target');a.removeAttribute('rel')});
 window.addEventListener('load',function(){setTimeout(function(){var s=document.getElementById('appSplash');if(s){s.style.opacity='0';setTimeout(function(){s.remove()},350)}},650)});
-if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('./service-worker.js').catch(function(){})})}
+if('serviceWorker' in navigator){window.addEventListener('load',function(){var resetKey='pavan-home-cache-reset-v3';if(!sessionStorage.getItem(resetKey)){sessionStorage.setItem(resetKey,'1');Promise.all([navigator.serviceWorker.getRegistrations().then(function(rs){return Promise.all(rs.map(function(r){return r.unregister()})}) ,caches.keys().then(function(keys){return Promise.all(keys.map(function(k){return caches.delete(k)})})]).then(function(){location.reload(true)}).catch(function(){navigator.serviceWorker.register('./service-worker.js?v=3').catch(function(){})})}else{navigator.serviceWorker.register('./service-worker.js?v=3').catch(function(){})}})}
 </script>
 <script>function toggleHomeSetting(b,k){const off=localStorage.getItem("home_"+k)==="off";localStorage.setItem("home_"+k,off?"on":"off");b.textContent=off?"ON":"OFF";document.documentElement.classList.toggle("reduced-motion",!off)}</script></body>
 </html>

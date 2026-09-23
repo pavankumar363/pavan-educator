@@ -145,18 +145,22 @@ function loadProfile(){
 }
 async function loadAttendance(s){
  try{
-  const url=SUPABASE_URL+'/rest/v1/student_attendance?select=attendance_date,subject,status&username=eq.'+encodeURIComponent(s.username)+'&order=attendance_date.desc,created_at.desc&limit=1000';
-  const r=await fetch(url,{headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY}});
-  if(!r.ok)throw Error('attendance request failed');
-  const rows=await r.json();
-  const total=rows.length,present=rows.filter(x=>String(x.status).toLowerCase()==='present').length;
-  const pct=total?Math.round(present/total*100):0;
+  const mineUrl=SUPABASE_URL+'/rest/v1/student_attendance?select=attendance_date,subject,status&username=eq.'+encodeURIComponent(s.username)+'&subject=eq.Portal%20Login&order=attendance_date.desc&limit=1000';
+  const allUrl=SUPABASE_URL+'/rest/v1/student_attendance?select=attendance_date,username,status&subject=eq.Portal%20Login&limit=5000';
+  const headers={apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY};
+  const [mr,ar]=await Promise.all([fetch(mineUrl,{headers}),fetch(allUrl,{headers})]);
+  if(!mr.ok||!ar.ok)throw Error('attendance request failed');
+  const rows=await mr.json(), all=await ar.json();
+  const workingDays=[...new Set(all.map(x=>x.attendance_date))];
+  const presentDays=[...new Set(rows.filter(x=>String(x.status).toLowerCase()==='present').map(x=>x.attendance_date))];
+  const total=workingDays.length,present=presentDays.length;
+  const pct=total?Math.min(100,Math.round(present/total*100)):0;
   setText('totalClasses',total);setText('presentClasses',present);setText('attendancePercent',pct+'%');setText('attendanceLabel',pct+'%');
   document.getElementById('attendanceBar').style.width=pct+'%';
-  setText('attendanceStatus',total?total+' recorded classes':'No records yet');
+  setText('attendanceStatus',total?present+' / '+total+' working days':'No working days recorded');
   const box=document.getElementById('recentAttendance');
-  if(!rows.length){box.innerHTML='<div class="empty">No attendance records yet. Your attendance will appear here after records are added.</div>';return}
-  box.innerHTML=rows.slice(0,10).map(function(x){const present=String(x.status).toLowerCase()==='present';return '<div class="recent-row"><span>'+esc(x.attendance_date)+'</span><span>'+esc(x.subject||'—')+'</span><span class="'+(present?'present':'absent')+'">'+esc(x.status)+'</span></div>'}).join('');
+  if(!rows.length){box.innerHTML='<div class="empty">No login attendance records yet.</div>';return}
+  box.innerHTML=rows.slice(0,10).map(function(x){return '<div class="recent-row"><span>'+esc(x.attendance_date)+'</span><span>Portal Login</span><span class="present">Present</span></div>'}).join('');
  }catch(e){
   setText('attendanceStatus','Attendance unavailable');
   document.getElementById('recentAttendance').innerHTML='<div class="empty">Attendance data could not be loaded right now.</div>';

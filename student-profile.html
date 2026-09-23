@@ -39,7 +39,7 @@ body{font-family:Inter,Arial,Helvetica,sans-serif;background:#f4f7fb;color:#1720
 @media(max-width:750px){.sidebar{position:relative;width:100%;height:auto}.main{margin-left:0}.logo{padding-bottom:25px}.logout{margin-top:20px}.topbar{padding:0 20px}.content{padding:20px}.info-grid,.stats{grid-template-columns:1fr 1fr}.hero-actions{width:100%}}
 @media(max-width:520px){.info-grid,.stats{grid-template-columns:1fr}.hero-top{align-items:flex-start}.hero-info h2{font-size:24px}.hero-actions{display:grid;grid-template-columns:1fr 1fr}.recent-row{grid-template-columns:1fr}.topbar h1{font-size:21px}}
 </style>
-</head>
+<style id="profile-upgrade">.profile-extra{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}.profile-extra .mini{background:#fff;border:1px solid #dce8f3;border-radius:14px;padding:16px;box-shadow:0 7px 20px rgba(25,75,125,.05)}.mini small{display:block;color:#7690a7;margin-bottom:7px}.mini b{font-size:18px;color:#123968}.edit-profile{position:fixed;inset:0;background:#0b2d4d66;display:none;place-items:center;z-index:30}.edit-profile.show{display:grid}.edit-box{width:min(520px,calc(100% - 30px));background:#fff;border-radius:18px;padding:22px;box-shadow:0 20px 60px #092d4a44}.edit-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.edit-grid label{font-size:12px;font-weight:700;color:#496b87}.edit-grid input{width:100%;padding:10px;border:1px solid #cfe0ee;border-radius:9px;margin-top:5px}.edit-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}.edit-actions button{border:1px solid #cfe0ee;background:#f7fbff;color:#1769a8;border-radius:9px;padding:9px 13px}.edit-actions .save{background:#126df3;color:#fff;border-color:#126df3}@media(max-width:800px){.profile-extra{grid-template-columns:1fr}.edit-grid{grid-template-columns:1fr}}</style></head>
 <body>
 <aside class="sidebar">
 <div class="logo">Pavan <span>Educator</span></div>
@@ -61,7 +61,7 @@ body{font-family:Inter,Arial,Helvetica,sans-serif;background:#f4f7fb;color:#1720
 <div class="hero-top">
 <div class="avatar" id="avatar">S</div>
 <div class="hero-info"><h2 id="profileName">Student</h2><p>Student Account · Pavan Educator</p><div class="hero-meta"><span class="pill" id="classPill">Class —</span><span class="pill" id="usernamePill">ID —</span><span class="pill">● Active</span></div></div>
-<div class="hero-actions"><button class="hero-btn" onclick="window.print()">🖨 Print Profile</button><button class="hero-btn secondary" onclick="location.href='student-dashboard.html'">← Dashboard</button></div>
+<div class="hero-actions"><button class="hero-btn" onclick="openEdit()">✏️ Edit Profile</button><button class="hero-btn" onclick="window.print()">🖨 Print Profile</button><button class="hero-btn secondary" onclick="location.href='student-dashboard.html'">← Dashboard</button></div>
 </div>
 </section>
 
@@ -119,7 +119,12 @@ body{font-family:Inter,Arial,Helvetica,sans-serif;background:#f4f7fb;color:#1720
 </section>
 </aside>
 </div>
-<footer class="footer">© 2026 Pavan Educator · Student Profile</footer>
+<div class="profile-extra">
+<div class="mini"><small>🎯 Learning Status</small><b id="learningStatus">Active Learner</b></div>
+<div class="mini"><small>🧠 JARVIS</small><b>AI Ready</b></div>
+<div class="mini"><small>📁 Projects</small><b id="projectCount">Available</b></div>
+</div>
+<div class="edit-profile" id="editProfile"><div class="edit-box"><h3>✏️ Edit Profile</h3><p style="color:#71879a;font-size:13px;margin:6px 0 16px">Update the editable profile fields stored for this browser session.</p><div class="edit-grid"><label>Full Name<input id="editName"></label><label>Location<input id="editLocation"></label></div><div class="edit-actions"><button onclick="closeEdit()">Cancel</button><button class="save" onclick="saveEdit()">Save Changes</button></div></div></div><footer class="footer">© 2026 Pavan Educator · Student Profile</footer>
 </div>
 </main>
 
@@ -160,4 +165,8 @@ async function loadAttendance(s){
 function logout(){if(window.PavanDemoAuth)PavanDemoAuth.logout()}
 const student=loadProfile();if(student)loadAttendance(student);
 </script>
-</body></html>
+<script>
+function openEdit(){const s=window.PavanDemoAuth?.current?.();if(!s)return;document.getElementById('editName').value=s.name||'';document.getElementById('editLocation').value=s.location||'';document.getElementById('editProfile').classList.add('show')}
+function closeEdit(){document.getElementById('editProfile').classList.remove('show')}
+function saveEdit(){const s=window.PavanDemoAuth?.current?.();if(!s)return;const name=document.getElementById('editName').value.trim();const location=document.getElementById('editLocation').value.trim();if(!name){alert('Name cannot be empty.');return}s.name=name;s.location=location;sessionStorage.setItem('pavanCurrentStudent',JSON.stringify(s));loadProfile();closeEdit()}
+</script></body></html>

@@ -49,4 +49,5 @@ function resetPreferences(){localStorage.removeItem('adminNotifications');localS
 const systemKeys=['studentAccess','facultyAccess','sessionProtection','attendanceAlerts','attendanceEditing','jarvisAccess','jarvisMemory','announcementAlerts','quizAlerts'];
 systemKeys.forEach(k=>{const e=document.getElementById(k);if(e&&localStorage.getItem('sys_'+k)==='off')e.classList.add('off')});
 function saveSystemSettings(){localStorage.setItem('systemAcademicYear',document.getElementById('academicYear').value);localStorage.setItem('systemSemester',document.getElementById('semester').value);localStorage.setItem('attendanceShortage',document.getElementById('shortage').value);localStorage.setItem('systemDensity',document.getElementById('density').value);document.getElementById('status').textContent='✓ System settings saved'}
-</script></body></html>
+</script><script src="assets/page-transition.js?v=20260923"></script>
+</body></html>

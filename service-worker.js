@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pavan-educator-v2';
+const CACHE_NAME = 'pavan-educator-v3';
 const APP_SHELL = [
   './',
   './index.html',

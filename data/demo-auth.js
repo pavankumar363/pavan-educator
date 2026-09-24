@@ -27,7 +27,7 @@
     login: async function(username,secret){
       const u=(username||'').trim().toLowerCase();
       const hash=await digest(secret);
-      const s=students().find(x=>String(x.username).toLowerCase()===u && x.passwordHash===hash);
+      let s=students().find(x=>String(x.username).toLowerCase()===u && x.passwordHash===hash); try{const cr=await fetch(SUPABASE_URL+'/rest/v1/student_credentials?select=username,password_hash,active&username=eq.'+encodeURIComponent(username.trim())+'&limit=1',{headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY}});if(cr.ok){const rows=await cr.json();if(rows[0]&&rows[0].active===false)return null;if(rows[0]&&rows[0].password_hash===hash){const base=s||students().find(x=>String(x.username).toLowerCase()===u);if(base)s={...base,username:rows[0].username}}}}catch(e){console.warn('Credential service unavailable',e)}
       if(!s) return null;
       const session={...s,demo:true,loginAt:new Date().toISOString()};
       sessionStorage.setItem('pavanDemoStudent',JSON.stringify(session));

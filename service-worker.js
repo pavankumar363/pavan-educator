@@ -1,16 +1,22 @@
-const CACHE_NAME = 'pavan-educator-v4';
+const CACHE_NAME = 'pavan-educator-v5';
 const APP_SHELL = [
   './',
   './index.html',
-  './style.css',
-  './script.js',
   './manifest.webmanifest',
-  './assets/pavan-logo.svg'
+  './assets/pavan-logo.svg',
+  './courses.html',
+  './projects.html',
+  './videos.html',
+  './about.html',
+  './login.html',
+  './materials.html'
 ];
 
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)).then(() => self.skipWaiting())
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(APP_SHELL))
+      .then(() => self.skipWaiting())
   );
 });
 
@@ -24,12 +30,18 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
+  const requestURL = new URL(event.request.url);
+
+  if (requestURL.origin !== self.location.origin) return;
 
   event.respondWith(
     caches.match(event.request).then(cached => {
-      return cached || fetch(event.request).then(response => {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
+      if (cached) return cached;
+      return fetch(event.request).then(response => {
+        if (response && response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
+        }
         return response;
       }).catch(() => caches.match('./index.html'));
     })

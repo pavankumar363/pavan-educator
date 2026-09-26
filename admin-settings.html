@@ -32,6 +32,7 @@
 <div class="setting-control"><div><b>Announcements</b><small>Enable admin announcement notifications.</small></div><button class="switch" id="announcementAlerts" onclick="toggle(this,'announcementAlerts')"></button></div>
 <div class="setting-control"><div><b>Quiz Notifications</b><small>Notify students about new quizzes.</small></div><button class="switch" id="quizAlerts" onclick="toggle(this,'quizAlerts')"></button></div></div>
 <div class="settings-section"><h3>🎨 Appearance</h3>
+<div class="setting-control"><div><b>Website Animations</b><small>Enable hero motion, page transitions and loading animations across the website.</small></div><button class="switch off" id="siteAnimations" onclick="toggleSiteAnimations(this)" aria-label="Toggle website animations"></button></div>
 <div class="setting-control"><div><b>Portal Theme</b><small>Pavan Educator default visual theme.</small></div><span class="value">Blue & White</span></div>
 <div class="setting-control"><div><b>Density</b><small>Choose the management layout density.</small></div><select id="density"><option>Comfortable</option><option>Compact</option></select></div></div>
 </div><button class="settings-save" onclick="saveSystemSettings()">💾 Save System Settings</button><div class="note"><b>Demo security:</b> This GitHub Pages version uses client-side demo authentication. Do not use it for sensitive production credentials. A production deployment should use secure server-side authentication.</div>
@@ -46,6 +47,8 @@ function resetPreferences(){localStorage.removeItem('adminNotifications');localS
 <script>
 const systemKeys=['studentAccess','facultyAccess','sessionProtection','attendanceAlerts','attendanceEditing','jarvisAccess','jarvisMemory','announcementAlerts','quizAlerts'];
 systemKeys.forEach(k=>{const e=document.getElementById(k);if(e&&localStorage.getItem('sys_'+k)==='off')e.classList.add('off')});
+function toggleSiteAnimations(b){const on=b.classList.toggle('off')===false;localStorage.setItem('siteAnimations',on?'on':'off');document.documentElement.classList.toggle('site-animations-off',!on);document.getElementById('status').textContent=on?'✓ Website animations enabled':'✓ Website animations disabled'}
+(function(){const b=document.getElementById('siteAnimations');if(localStorage.getItem('siteAnimations')==='on')b.classList.remove('off');else b.classList.add('off')})();
 function saveSystemSettings(){localStorage.setItem('systemAcademicYear',document.getElementById('academicYear').value);localStorage.setItem('systemSemester',document.getElementById('semester').value);localStorage.setItem('attendanceShortage',document.getElementById('shortage').value);localStorage.setItem('systemDensity',document.getElementById('density').value);document.getElementById('status').textContent='✓ System settings saved'}
 </script><script src="assets/page-transition.js?v=20260923"></script>
 </body></html>

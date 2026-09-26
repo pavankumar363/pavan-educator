@@ -154,4 +154,173 @@ function jarvisFeature(name){
 </script><script>
 document.addEventListener('DOMContentLoaded',()=>{document.title='JARVIS-AI | Pavan Educator';});
 </script><script src="assets/page-transition.js?v=20260923"></script>
+
+<style id="jarvis-v3-upgrade">
+.jarvis-v3-tools{display:flex;align-items:center;gap:8px}
+.jarvis-model{border:1px solid #cfe0f2;background:#f7fbff;color:#244f78;border-radius:10px;padding:8px 10px;font-size:12px;font-weight:700;outline:none}
+.jarvis-stop{display:none!important;background:#fff1f1!important;color:#c43d3d!important;border:1px solid #f0bcbc!important}
+.jarvis-stop.show{display:inline-flex!important}
+.jarvis-history{margin:12px 0 0;padding:10px 0 4px;border-top:1px solid #dceaf7}
+.jarvis-history-title{font-size:11px;font-weight:800;color:#7a93a9;text-transform:uppercase;letter-spacing:.6px;padding:5px 10px}
+.jarvis-history-item{width:100%;display:block;border:0;background:transparent;text-align:left;color:#315675;padding:9px 10px;border-radius:9px;font-size:12px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.jarvis-history-item:hover{background:#eaf4ff;color:#075fd4}
+.jarvis-history-item.active{background:#e8f2ff;color:#075fd4;font-weight:700}
+.jarvis-msg-actions{display:flex;gap:6px;margin-top:8px;opacity:.7}
+.jarvis-msg-actions button{border:1px solid #d7e6f4;background:#f8fbff;color:#52718e;border-radius:8px;padding:5px 8px;font-size:11px;cursor:pointer}
+.jarvis-msg-actions button:hover{background:#eaf4ff;color:#075fd4}
+.jarvis-code{background:#f5f8fc;border:1px solid #dbe7f2;border-radius:10px;padding:12px;display:block;overflow:auto;font-family:Consolas,monospace;font-size:13px}
+.jarvis-typing{display:inline-flex;gap:4px;align-items:center;color:#7892a5;font-size:13px}
+.jarvis-typing i{width:6px;height:6px;border-radius:50%;background:#7aa9d8;animation:jarvisBounce 1s infinite ease-in-out}
+.jarvis-typing i:nth-child(2){animation-delay:.15s}.jarvis-typing i:nth-child(3){animation-delay:.3s}
+@keyframes jarvisBounce{0%,80%,100%{transform:translateY(0);opacity:.35}40%{transform:translateY(-4px);opacity:1}}
+@media(max-width:760px){.jarvis-v3-tools .jarvis-model{display:none}.jarvis-history{display:none}}
+</style>
+<script id="jarvis-v3-upgrade-script">
+(function(){
+let activeSessionId=null,abortController=null,isGenerating=false;
+const SKEY='jarvisChatSessionsV3';
+function readSessions(){try{return JSON.parse(localStorage.getItem(SKEY)||'[]')}catch{return[]}}
+function writeSessions(a){localStorage.setItem(SKEY,JSON.stringify(a.slice(0,50)));}
+function sessionTitle(){const m=messages.find(x=>x.role==='user');return (m?.content||'New conversation').replace(/\s+/g,' ').trim().slice(0,48)||'New conversation'}
+function saveSession(){
+ if(!messages.length)return;
+ const a=readSessions(),now=new Date().toISOString(),id=activeSessionId||('j_'+Date.now());
+ activeSessionId=id;
+ const item={id,title:sessionTitle(),messages:messages.map(x=>({role:x.role,content:x.content})),updatedAt:now};
+ const i=a.findIndex(x=>x.id===id);if(i>=0)a[i]=item;else a.unshift(item);
+ writeSessions(a);renderHistory();
+}
+function loadSession(id){
+ const s=readSessions().find(x=>x.id===id);if(!s)return;
+ if(messages.length)saveSession();
+ activeSessionId=s.id;messages=s.messages||[];render();renderHistory();
+ document.getElementById('input').focus();
+}
+function renderHistory(filter=''){
+ const side=document.querySelector('.chatgpt-extra');if(!side)return;
+ let box=document.getElementById('jarvisHistory');
+ if(!box){box=document.createElement('div');box.id='jarvisHistory';box.className='jarvis-history';side.appendChild(box);}
+ const q=(filter||'').toLowerCase(),arr=readSessions().filter(s=>!q||s.title.toLowerCase().includes(q)||(s.messages||[]).some(m=>(m.content||'').toLowerCase().includes(q))).slice(0,12);
+ box.innerHTML='<div class="jarvis-history-title">Recent chats</div>'+(arr.length?arr.map(s=>'<button class="jarvis-history-item '+(s.id===activeSessionId?'active':'')+'" onclick="jarvisLoadSession(\''+s.id+'\')">💬 '+esc(s.title)+'</button>').join(''):'<div style="padding:7px 10px;font-size:11px;color:#8aa0b5">No saved chats yet.</div>');
+}
+window.jarvisLoadSession=loadSession;
+window.jarvisSearchChats=function(){
+ const q=prompt('Search your JARVIS chats:','');
+ if(q!==null)renderHistory(q.trim());
+};
+window.jarvisClearHistory=function(){
+ if(confirm('Delete all saved JARVIS chat history on this device?')){localStorage.removeItem(SKEY);activeSessionId=null;renderHistory();}
+};
+function addTopTools(){
+ const top=document.querySelector('.top');if(!top||document.getElementById('jarvisModel'))return;
+ const right=top.lastElementChild;
+ const wrap=document.createElement('div');wrap.className='jarvis-v3-tools';
+ const sel=document.createElement('select');sel.id='jarvisModel';sel.className='jarvis-model';sel.title='Choose JARVIS mode';
+ [['General','JARVIS Core'],['Study','JARVIS Study'],['Coding','JARVIS Code'],['Creative','JARVIS Creative']].forEach(x=>{const o=document.createElement('option');o.value=x[0];o.textContent=x[1];sel.appendChild(o)});
+ const stop=document.createElement('button');stop.id='jarvisStop';stop.className='jarvis-stop';stop.textContent='■ Stop';stop.onclick=()=>abortController?.abort();
+ const voice=document.getElementById('voiceBtn');if(voice)wrap.appendChild(voice);
+ wrap.appendChild(sel);wrap.appendChild(stop);
+ right.innerHTML='';right.appendChild(wrap);
+}
+function md3(s){
+ let x=esc(s);
+ x=x.replace(/\`\`\`([\s\S]*?)\`\`\`/g,function(_,c){return '<pre class="jarvis-code">'+c.trim()+'</pre>'});
+ x=x.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+ x=x.replace(/\`([^\`]+)\`/g,'<code>$1</code>');
+ x=x.replace(/^### (.+)$/gm,'<h4>$1</h4>').replace(/^## (.+)$/gm,'<h3>$1</h3>').replace(/^# (.+)$/gm,'<h2>$1</h2>');
+ x=x.replace(/^[-*] (.+)$/gm,'• $1');
+ return x.replace(/\n/g,'<br>');
+}
+function actionHtml(index){
+ return '<div class="jarvis-msg-actions"><button onclick="jarvisCopy('+index+')">Copy</button><button onclick="jarvisRegenerate('+index+')">Regenerate</button></div>';
+}
+window.jarvisCopy=async function(i){
+ const t=messages[i]?.content||'';try{await navigator.clipboard.writeText(t);toast('Copied to clipboard');}catch{prompt('Copy JARVIS response:',t);}
+};
+function toast(t){let x=document.getElementById('jarvisToast');if(!x){x=document.createElement('div');x.id='jarvisToast';x.style='position:fixed;right:20px;bottom:25px;background:#123968;color:#fff;padding:9px 13px;border-radius:9px;font-size:12px;z-index:99;box-shadow:0 8px 24px #12396833';document.body.appendChild(x)}x.textContent=t;x.style.display='block';clearTimeout(x._t);x._t=setTimeout(()=>x.style.display='none',1600)}
+window.jarvisRegenerate=async function(i){
+ if(isGenerating||i!==messages.length-1)return;
+ if(messages[i]?.role==='assistant')messages.pop();
+ render();
+ const input=document.getElementById('input');input.value='';
+ await send(true);
+};
+window.jarvisNewChat=function(){if(messages.length)saveSession();activeSessionId=null;messages=[];render();renderHistory();document.getElementById('input').focus();};
+window.jarvisSetSearch=function(){jarvisSearchChats()};
+window.newChatUI=window.jarvisNewChat;
+window.focusSearch=window.jarvisSetSearch;
+window.jarvisFeature=function(name){
+ if(name==='New Chat'){jarvisNewChat();return}
+ if(name==='Search Chats'){jarvisSearchChats();return}
+ if(name==='Chat History'){renderHistory();return}
+ if(name==='Projects'){if(typeof toggleProjects==='function')toggleProjects();return}
+ if(name==='Web Search'){quickFeature('Search the web for the latest information about ');return}
+ if(name==='Image Understanding'||name==='Document Analysis'){document.getElementById('files').click();return}
+ if(name==='Student Personalization'){quickFeature('Use my student profile to personalize this answer: ');return}
+ if(name==='General AI Assistant'){quickFeature('Help me with: ');return}
+};
+window.render=function(){
+ const box=document.getElementById('messages');
+ if(!messages.length){box.innerHTML='<div class="empty">👋 <b>Welcome to JARVIS-AI</b><br><br>How can I help you today?</div>';return}
+ box.innerHTML=messages.map((m,i)=>{
+   const content=m.role==='assistant'?(m.content?md3(m.content):'<span class="jarvis-typing"><i></i><i></i><i></i> Thinking…</span>'):esc(m.content);
+   return '<div class="msg '+m.role+'"><div class="bubble">'+content+(m.role==='assistant'&&m.content?actionHtml(i):'')+'</div></div>';
+ }).join('');
+ box.scrollTop=box.scrollHeight;renderHistory();
+};
+async function askAI(){
+ const user=student(),mode=document.getElementById('jarvisModel')?.value||'General';
+ const savedMemories=JSON.parse(localStorage.getItem('jarvisMemory')||'[]');
+ const body={messages:messages.slice(0,-1).map(m=>({role:m.role,content:m.content})),student:user?{name:user.name,username:user.username,class:user.class}:null,memories:savedMemories.slice(-20),creator:'Veeresh',mode,files:window.__jarvisFiles||[]};
+ window.__jarvisFiles=[];
+ abortController=new AbortController();isGenerating=true;
+ document.getElementById('jarvisStop')?.classList.add('show');
+ try{
+   const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:abortController.signal});
+   if(!r.ok){let j={};try{j=await r.json()}catch{}throw new Error(j.error||('AI service returned '+r.status))}
+   const ct=r.headers.get('content-type')||'';
+   if(!ct.includes('text/event-stream')){const j=await r.json();messages[messages.length-1].content=j.output_text||j.text||j.message||j.answer||JSON.stringify(j);render();return}
+   const reader=r.body.getReader(),decoder=new TextDecoder();let buffer='',full='',seen=new Set();
+   while(true){
+    const {value,done}=await reader.read();if(done)break;
+    buffer+=decoder.decode(value,{stream:true});const events=buffer.split(/\n\n/);buffer=events.pop()||'';
+    for(const event of events)for(const line of event.split(/\n/)){
+      if(!line.startsWith('data:'))continue;const raw=line.slice(5).trim();if(!raw||raw==='[DONE]')continue;
+      try{const j=JSON.parse(raw);if(j.type==='response.output_text.delta'&&typeof j.delta==='string'){
+        const key=j.sequence_number!==undefined?String(j.sequence_number):j.delta+'|'+full.length;
+        if(seen.has(key))continue;seen.add(key);full+=j.delta;messages[messages.length-1].content=full;render();
+      }}catch{}
+    }
+   }
+   if(!full)messages[messages.length-1].content='JARVIS received the request but returned no text.';
+ }catch(e){
+   if(e.name==='AbortError'){messages[messages.length-1].content='Generation stopped.'}
+   else messages[messages.length-1].content='JARVIS connection error: '+e.message;
+ }finally{
+   isGenerating=false;abortController=null;document.getElementById('jarvisStop')?.classList.remove('show');render();saveSession();
+ }
+}
+window.send=async function(regenerate){
+ const input=document.getElementById('input'),text=input.value.trim();
+ if(isGenerating&&!regenerate)return;
+ if(!regenerate){
+   if(!text&&!selectedFiles.length)return;
+   messages.push({role:'user',content:text||'Please analyze the attached file(s).'});
+   input.value='';
+   let files=[];try{files=await Promise.all(selectedFiles.slice(0,4).map(fileData));}catch{}
+   selectedFiles=[];document.getElementById('files').value='';showFiles();window.__jarvisFiles=files;
+ }else{
+   const last=messages[messages.length-1];if(last?.role==='assistant')messages.pop();
+   const lastUser=messages[messages.length-1]?.content||'';
+   if(!lastUser)return;
+ }
+ const ai={role:'assistant',content:''};messages.push(ai);render();await askAI();
+};
+document.addEventListener('DOMContentLoaded',()=>{
+ addTopTools();renderHistory();
+ const input=document.getElementById('input');
+ if(input){input.addEventListener('input',()=>{input.style.height='auto';input.style.height=Math.min(input.scrollHeight,150)+'px'});}
+});
+})();
+</script>
 </body></html>

@@ -1,6 +1,6 @@
 {
   "name": "Pavan Educator",
-  "short_name": "Pavan Educator",
+  "short_name": "Pavan",
   "description": "Learn technology, study materials, educational videos and practical projects with Pavan Educator.",
   "start_url": "./index.html",
   "scope": "./",
@@ -8,12 +8,33 @@
   "background_color": "#f5f8ff",
   "theme_color": "#2563eb",
   "orientation": "portrait-primary",
+  "categories": ["education", "productivity"],
   "icons": [
     {
       "src": "assets/pavan-logo.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Courses",
+      "short_name": "Courses",
+      "url": "./courses.html",
+      "icons": [{ "src": "assets/pavan-logo.svg", "sizes": "any", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "Projects",
+      "short_name": "Projects",
+      "url": "./projects.html",
+      "icons": [{ "src": "assets/pavan-logo.svg", "sizes": "any", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "Login",
+      "short_name": "Login",
+      "url": "./login.html",
+      "icons": [{ "src": "assets/pavan-logo.svg", "sizes": "any", "type": "image/svg+xml" }]
     }
   ]
 }

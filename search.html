@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Search courses, lessons, study materials, videos and projects on Pavan Educator.">
+<link rel="icon" type="image/svg+xml" href="assets/pavan-logo.svg">
+<title>Pavan Educator | Search</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f8ff;color:#172033}.nav{height:74px;background:#fff;border-bottom:1px solid #e5eaf2;display:flex;align-items:center;justify-content:space-between;padding:0 7%;position:sticky;top:0;z-index:20}.logo{font-size:23px;font-weight:800;text-decoration:none;color:#172033}.logo span{color:#2563eb}.links{display:flex;gap:22px;list-style:none}.links a{color:#4d5870;text-decoration:none;font-size:14px;font-weight:700}.links a:hover,.links a.active{color:#2563eb}.login{background:#2563eb;color:#fff!important;padding:11px 20px;border-radius:8px}.hero{text-align:center;padding:70px 20px 85px;background:linear-gradient(135deg,#eef4ff,#fff)}.badge{display:inline-block;padding:8px 15px;border-radius:30px;background:#e5edff;color:#2563eb;font-size:11px;font-weight:800;letter-spacing:1px}.hero h1{font-size:48px;margin:20px 0 12px}.hero h1 span{color:#2563eb}.hero p{max-width:680px;margin:auto;color:#68758a;font-size:17px;line-height:1.7}.searchbox{max-width:950px;margin:-31px auto 25px;padding:0 20px;position:relative;z-index:2}.searchbox input{width:100%;height:64px;border:1px solid #d4deee;border-radius:14px;padding:0 22px;font-size:17px;outline:0;box-shadow:0 14px 35px rgba(30,70,140,.12);background:#fff}.searchbox input:focus{border-color:#2563eb;box-shadow:0 14px 35px rgba(37,99,235,.16)}.filters{max-width:1100px;margin:0 auto 30px;padding:0 20px;display:flex;gap:9px;justify-content:center;flex-wrap:wrap}.filter{border:1px solid #d4deee;background:#fff;color:#4d5870;border-radius:20px;padding:9px 16px;font-weight:700;font-size:12px;cursor:pointer}.filter.active,.filter:hover{background:#2563eb;color:#fff;border-color:#2563eb}.wrap{max-width:1150px;margin:auto;padding:0 20px 90px}.status{text-align:center;color:#687389;font-size:14px;margin:20px 0 25px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.result{background:#fff;border:1px solid #e1e7f2;border-radius:15px;padding:23px;transition:.2s}.result:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(30,70,140,.08)}.type{color:#2563eb;font-size:10px;font-weight:800;letter-spacing:1.2px}.result h2{font-size:20px;margin:10px 0}.result p{color:#687389;font-size:14px;line-height:1.6}.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.tag{background:#edf3ff;color:#2563eb;padding:5px 8px;border-radius:6px;font-size:10px;font-weight:700}.open{display:block;text-align:center;text-decoration:none;background:#2563eb;color:#fff;padding:11px;border-radius:8px;margin-top:18px;font-weight:700;font-size:13px}.empty{text-align:center;background:#fff;border:1px solid #e1e7f2;border-radius:15px;padding:45px;color:#687389}.empty strong{display:block;color:#172033;font-size:20px;margin-bottom:8px}footer{text-align:center;background:#0e1525;color:#fff;padding:35px}footer p{color:#929caf;font-size:14px}@media(max-width:900px){.links{display:none}.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.grid{grid-template-columns:1fr}.hero h1{font-size:38px}.nav{padding:0 5%}}
+</style>
+</head>
+<body>
+<header class="nav"><a href="index.html" class="logo">Pavan <span>Educator</span></a><ul class="links"><li><a href="index.html">Home</a></li><li><a href="courses.html">Courses</a></li><li><a href="materials.html">Materials</a></li><li><a href="projects.html">Projects</a></li><li><a href="videos.html">Videos</a></li><li><a href="search.html" class="active">Search</a></li><li><a href="about.html">About</a></li></ul><a href="login.html" class="login">Login</a></header>
+<section class="hero"><div class="badge">FIND WHAT YOU NEED</div><h1>Search <span>Pavan Educator</span></h1><p>Find courses, lessons, study resources, videos and projects from one search box.</p></section>
+<div class="searchbox"><input id="searchInput" type="search" autocomplete="off" placeholder="🔎  Search Python, Java, HTML, projects, lessons..."></div>
+<div class="filters" id="filters"><button class="filter active" data-type="all">All</button><button class="filter" data-type="course">Courses</button><button class="filter" data-type="lesson">Lessons</button><button class="filter" data-type="material">Materials</button><button class="filter" data-type="video">Videos</button><button class="filter" data-type="project">Projects</button></div>
+<main class="wrap"><div class="status" id="status">Loading searchable content...</div><div class="grid" id="results"></div></main>
+<footer><strong>Pavan Educator</strong><p>Learn • Build • Grow</p><p>© 2026 Pavan Educator. All Rights Reserved.</p></footer>
+<script>
+const SUPABASE_URL='https://jlrmmkgcjckkayearlca.supabase.co';
+const SUPABASE_KEY='sb_publishable_eEPceWmh6MUHLwZmAQMEdQ_uk1Gp1EH';
+const staticItems=[
+ {type:'material',title:'Python Study Materials',description:'Python tutorial, syntax, data structures, functions and programming fundamentals.',url:'materials.html',tags:'python programming study'},
+ {type:'material',title:'Java Study Materials',description:'Java programming and object-oriented programming learning resources.',url:'materials.html',tags:'java oop programming'},
+ {type:'material',title:'Web Development Materials',description:'HTML, CSS and JavaScript learning resources.',url:'materials.html',tags:'html css javascript web'},
+ {type:'material',title:'MySQL Study Materials',description:'SQL, databases, tables, queries and database concepts.',url:'materials.html',tags:'mysql sql database'},
+ {type:'material',title:'AI & Machine Learning',description:'Structured learning opportunities through SWAYAM.',url:'materials.html',tags:'ai machine learning'},
+ {type:'material',title:'Engineering Resources',description:'Engineering courses and lectures through NPTEL.',url:'materials.html',tags:'engineering nptel'},
+ {type:'video',title:'Java Programming Basics',description:'Java fundamentals and object-oriented programming.',url:'videos.html',tags:'java programming video'},
+ {type:'video',title:'HTML & CSS Basics',description:'Foundations of modern webpage development.',url:'videos.html',tags:'html css web video'},
+ {type:'video',title:'JavaScript',description:'JavaScript concepts for interactive websites.',url:'videos.html',tags:'javascript web video'},
+ {type:'video',title:'Python Programming',description:'Beginner-friendly Python lessons and practical learning.',url:'videos.html',tags:'python programming video'},
+ {type:'video',title:'MySQL Database Basics',description:'Databases, SQL queries and database concepts.',url:'videos.html',tags:'mysql sql database video'},
+ {type:'project',title:'Attendance Management System',description:'Student records, attendance entry, reports and dashboard concepts.',url:'attendance-project.html',tags:'attendance student web'},
+ {type:'project',title:'Student Result System',description:'Marks, grades and academic performance management concepts.',url:'result-project.html',tags:'result marks student'},
+ {type:'project',title:'Student Management System',description:'Organize student profiles and academic information.',url:'student-management-project.html',tags:'student management web'},
+ {type:'project',title:'Educational Website',description:'Responsive platform for courses, materials and learning resources.',url:'educational-project.html',tags:'education web website'},
+ {type:'project',title:'Student Utility App',description:'Useful tools for everyday student productivity.',url:'utility-project.html',tags:'student app utility'}
+];
+let items=[...staticItems], activeType='all';
+const headers={'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY};
+async function loadCourses(){
+ try{
+  const [c,l]=await Promise.all([
+   fetch(SUPABASE_URL+'/rest/v1/course_catalog?select=id,course_name,category,level,description,published&published=eq.true&order=id',{headers}),
+   fetch(SUPABASE_URL+'/rest/v1/course_lessons?select=id,course_id,lesson_no,title,content,published&published=eq.true&order=course_id,lesson_no',{headers})
+  ]);
+  const courses=await c.json(), lessons=await l.json();
+  const courseItems=(Array.isArray(courses)?courses:[]).map(x=>({type:'course',title:x.course_name,description:x.description||'Explore this course and its lessons.',url:'course.html?id='+x.id,tags:(x.category+' '+x.level).toLowerCase()}));
+  const lessonItems=(Array.isArray(lessons)?lessons:[]).map(x=>{const parent=(Array.isArray(courses)?courses:[]).find(c=>String(c.id)===String(x.course_id));return {type:'lesson',title:x.title,description:(x.content||'').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim().slice(0,180)||'Course lesson',url:'course.html?id='+x.course_id,tags:((parent&&parent.course_name)||'lesson')+' lesson '+x.lesson_no}});
+  items=[...courseItems,...lessonItems,...staticItems];
+ }catch(e){items=[...staticItems]}
+ render();
+}
+function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function render(){
+ const q=document.getElementById('searchInput').value.trim().toLowerCase();
+ const out=items.filter(x=>(activeType==='all'||x.type===activeType)&&(!q||(x.title+' '+x.description+' '+x.tags).toLowerCase().includes(q)));
+ document.getElementById('status').textContent=q?(out.length+' result'+(out.length===1?'':'s')+' found for “'+q+'”'):(out.length+' learning resources available');
+ document.getElementById('results').innerHTML=out.length?out.map(x=>'<article class="result"><div class="type">'+esc(x.type)+'</div><h2>'+esc(x.title)+'</h2><p>'+esc(x.description)+'</p><div class="meta"><span class="tag">'+esc(x.type.toUpperCase())+'</span><span class="tag">PAVAN EDUCATOR</span></div><a class="open" href="'+esc(x.url)+'">Open →</a></article>').join(''):'<div class="empty" style="grid-column:1/-1"><strong>No results found</strong>Try another keyword or choose a different category.</div>';
+}
+document.getElementById('searchInput').addEventListener('input',render);
+document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',function(){document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));this.classList.add('active');activeType=this.dataset.type;render()}));
+loadCourses();
+</script>
+</body></html>

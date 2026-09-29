@@ -1,86 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="assets/pavan-logo.svg">
-<title>Pavan Educator | Student Monitoring</title>
-<script src="data/demo-students.js?v=20260902c"></script>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><link rel="icon" type="image/svg+xml" href="assets/pavan-logo.svg"><title>Pavan Educator | Student Management</title>
+<script src="data/demo-students.js?v=20260929"></script>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,Helvetica,sans-serif;background:#f4f7fc;color:#172033}.sidebar{position:fixed;left:0;top:0;width:250px;height:100vh;background:#111a2e;color:#fff;padding:25px 18px}.logo{padding:10px 12px 30px;font-size:23px;font-weight:800}.logo span{color:#4d8dff}.admin-label{color:#8e9bb3;font-size:11px;font-weight:700;letter-spacing:1px;padding:0 12px 12px}.menu{list-style:none}.menu li{margin-bottom:7px}.menu a{display:flex;align-items:center;gap:13px;padding:13px 14px;color:#c9d2e3;text-decoration:none;border-radius:9px;font-size:14px;font-weight:600}.menu a:hover,.menu a.active{background:#2563eb;color:#fff}.menu-icon{width:24px;text-align:center}.logout{position:absolute;left:18px;right:18px;bottom:20px}.logout a{display:block;text-align:center;padding:12px;border-radius:9px;background:#1c2944;color:#c9d2e3;text-decoration:none;font-size:13px;font-weight:700}.logout a:hover{background:#dc3545;color:#fff}.main{margin-left:250px;min-height:100vh}.topbar{height:75px;background:#fff;border-bottom:1px solid #e2e8f2;display:flex;align-items:center;justify-content:space-between;padding:0 35px}.topbar h1{font-size:23px}.admin-user{display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px}.admin-avatar{width:38px;height:38px;border-radius:50%;background:#2563eb;color:#fff;display:flex;align-items:center;justify-content:center}.content{padding:35px}.heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}.heading h2{font-size:28px}.heading p{color:#718096;margin-top:6px;font-size:14px}.refresh{border:0;background:#2563eb;color:#fff;padding:12px 18px;border-radius:9px;font-weight:700;cursor:pointer}.refresh:hover{background:#155bd4}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:25px}.stat{background:#fff;border:1px solid #e1e7f2;border-radius:14px;padding:22px}.stat-number{font-size:30px;font-weight:800;margin-bottom:6px}.stat-label{color:#718096;font-size:13px}.notice{background:#eef5ff;border:1px solid #d7e6ff;border-radius:12px;padding:14px 17px;margin-bottom:18px;color:#425675;font-size:13px}.search{background:#fff;border:1px solid #e1e7f2;border-radius:12px;padding:14px 17px;margin-bottom:18px}.search input{width:100%;border:0;outline:0;font-size:14px}.table-box{background:#fff;border:1px solid #e1e7f2;border-radius:14px;overflow:auto}table{width:100%;border-collapse:collapse;min-width:980px}th{background:#f7f9fd;text-align:left;padding:15px;color:#687389;font-size:11px;letter-spacing:.5px}td{padding:15px;border-top:1px solid #edf0f5;font-size:13px}.status{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:20px;font-size:10px;font-weight:700}.online{background:#e7f8ee;color:#16834b}.offline{background:#eef1f5;color:#687389}.dot{width:7px;height:7px;border-radius:50%;background:currentColor}.empty{text-align:center;padding:35px;color:#718096}.footer-note{margin-top:14px;color:#8793a7;font-size:11px}@media(max-width:1000px){.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:700px){.sidebar{position:relative;width:100%;height:auto}.main{margin-left:0}.logout{position:relative;left:auto;right:auto;bottom:auto;margin-top:20px}.topbar{padding:0 20px}.content{padding:20px}.heading{align-items:flex-start;gap:15px;flex-direction:column}.stats{grid-template-columns:1fr}}
-</style>
-</head>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f7fc;color:#172033}.sidebar{position:fixed;left:0;top:0;width:250px;height:100vh;background:#111a2e;color:#fff;padding:25px 18px}.logo{padding:10px 12px 30px;font-size:23px;font-weight:800}.logo span{color:#4d8dff}.admin-label{color:#8e9bb3;font-size:11px;font-weight:700;letter-spacing:1px;padding:0 12px 12px}.menu{list-style:none;padding:0}.menu li{margin-bottom:7px}.menu a{display:flex;align-items:center;gap:13px;padding:13px 14px;color:#c9d2e3;text-decoration:none;border-radius:9px;font-size:14px;font-weight:600}.menu a:hover,.menu a.active{background:#2563eb;color:#fff}.menu-icon{width:24px;text-align:center}.logout{position:absolute;left:18px;right:18px;bottom:20px}.logout a{display:block;text-align:center;padding:12px;border-radius:9px;background:#1c2944;color:#c9d2e3;text-decoration:none;font-size:13px;font-weight:700}.main{margin-left:250px;min-height:100vh}.topbar{height:75px;background:#fff;border-bottom:1px solid #e2e8f2;display:flex;align-items:center;justify-content:space-between;padding:0 35px}.topbar h1{font-size:23px}.admin-user{font-weight:700;font-size:14px}.content{padding:30px}.heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.heading h2{font-size:28px}.heading p{color:#718096;margin-top:6px;font-size:14px}.btn{border:0;background:#2563eb;color:#fff;padding:11px 17px;border-radius:9px;font-weight:800;cursor:pointer}.panel{background:#fff;border:1px solid #e1e7f2;border-radius:14px;padding:20px;margin-bottom:20px}.panel h3{margin:0 0 15px}.form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.field label{display:block;font-size:11px;font-weight:800;color:#687389;margin-bottom:6px}.field input{width:100%;height:43px;border:1px solid #d6dfec;border-radius:8px;padding:0 12px;outline:0}.form-actions{display:flex;gap:10px;align-items:center;margin-top:14px}.secondary{background:#fff;color:#172033;border:1px solid #cbd5e1}.message{font-size:12px;font-weight:700;color:#16834b}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:20px}.stat{background:#fff;border:1px solid #e1e7f2;border-radius:14px;padding:20px}.stat-number{font-size:29px;font-weight:800}.stat-label{color:#718096;font-size:12px;margin-top:5px}.search{background:#fff;border:1px solid #e1e7f2;border-radius:12px;padding:13px 17px;margin-bottom:18px}.search input{width:100%;border:0;outline:0;font-size:14px}.table-box{background:#fff;border:1px solid #e1e7f2;border-radius:14px;overflow:auto}table{width:100%;border-collapse:collapse;min-width:900px}th{background:#f7f9fd;text-align:left;padding:14px;color:#687389;font-size:11px}td{padding:13px;border-top:1px solid #edf0f5;font-size:13px}.status{display:inline-block;padding:5px 9px;border-radius:15px;font-size:10px;font-weight:800}.online{background:#e7f8ee;color:#16834b}.offline{background:#eef1f5;color:#687389}.footer-note{margin-top:12px;color:#8793a7;font-size:11px}@media(max-width:900px){.form-grid{grid-template-columns:1fr 1fr}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:700px){.sidebar{position:relative;width:100%;height:auto}.main{margin-left:0}.logout{position:relative;left:auto;right:auto;bottom:auto;margin-top:20px}.topbar{padding:0 20px}.content{padding:18px}.heading{align-items:flex-start;gap:12px;flex-direction:column}.form-grid,.stats{grid-template-columns:1fr}}
+</style></head>
 <body>
-<aside class="sidebar">
-<div class="logo">Pavan <span>Educator</span></div>
-<div class="admin-label">ADMIN PANEL</div>
-<ul class="menu">
-<li><a href="admin-dashboard.html"><span class="menu-icon">🏠</span>Dashboard</a></li>
-<li><a href="admin-courses.html"><span class="menu-icon">📚</span>Courses</a></li>
-<li><a href="admin-projects.html"><span class="menu-icon">💻</span>Projects</a></li>
-<li><a href="admin-videos.html"><span class="menu-icon">🎥</span>Videos</a></li>
-<li><a href="admin-students.html" class="active"><span class="menu-icon">🎓</span>Students</a></li>
-<li><a href="admin-settings.html"><span class="menu-icon">⚙️</span>Settings</a></li>
-</ul>
-<div class="logout"><a href="login.html" onclick="logout()">🚪 Logout</a></div>
-</aside>
-<main class="main">
-<header class="topbar"><h1>Student Monitoring</h1><div class="admin-user"><div class="admin-avatar">A</div>Admin</div></header>
-<div class="content">
-<div class="heading"><div><h2>Student Activity</h2><p>See how many students are currently logged in.</p></div><button class="refresh" onclick="loadActivity()">↻ Refresh</button></div>
-<div class="stats">
-<div class="stat"><div class="stat-number" id="totalStudents">20</div><div class="stat-label">Total Students</div></div>
-<div class="stat"><div class="stat-number" id="totalLogins">0</div><div class="stat-label">Total Logins</div></div>
-<div class="stat"><div class="stat-number" id="loggedStudents">0</div><div class="stat-label">Students Logged In</div></div>
-<div class="stat"><div class="stat-number" id="remainingStudents">0</div><div class="stat-label">Student Slots Remaining</div></div>
-</div>
-<div class="notice">🟢 <b>Online</b> means the student has been active within the last 90 seconds. The page refreshes automatically every 15 seconds.</div>
+<aside class="sidebar"><div class="logo">Pavan <span>Educator</span></div><div class="admin-label">ADMIN PANEL</div><ul class="menu">
+<li><a href="admin-dashboard.html">🏠 Dashboard</a></li><li><a href="admin-courses.html">📚 Courses</a></li><li><a href="admin-projects.html">💻 Projects</a></li><li><a href="admin-videos.html">🎥 Videos</a></li><li><a href="admin-students.html" class="active">🎓 Students</a></li><li><a href="admin-attendance.html">📋 Attendance</a></li><li><a href="admin-analytics.html">📊 Analytics</a></li><li><a href="admin-settings.html">⚙️ Settings</a></li></ul><div class="logout"><a href="login.html" onclick="logout()">🚪 Logout</a></div></aside>
+<main class="main"><header class="topbar"><h1>Student Management</h1><div class="admin-user">🛡️ <span id="adminUser">Admin</span></div></header><div class="content">
+<div class="heading"><div><h2>Students</h2><p>Monitor existing students and add new student accounts.</p></div><button class="btn" onclick="toggleForm()">＋ Add Student</button></div>
+<section class="panel" id="addPanel" style="display:none"><h3>➕ Add New Student</h3><div class="form-grid">
+<div class="field"><label>STUDENT NAME</label><input id="newName" placeholder="Full name"></div><div class="field"><label>USERNAME</label><input id="newUsername" placeholder="Login username"></div><div class="field"><label>PASSWORD</label><input id="newPassword" type="password" placeholder="Login password"></div>
+<div class="field"><label>CLASS</label><input id="newClass" value="9th"></div><div class="field"><label>AGE</label><input id="newAge" type="number" value="14"></div><div class="field"><label>LOCATION</label><input id="newLocation" value="Kurnool"></div>
+</div><div class="form-actions"><button class="btn" onclick="addStudent()">Save Student</button><button class="btn secondary" onclick="toggleForm()">Cancel</button><span class="message" id="formMessage"></span></div></section>
+<div class="stats"><div class="stat"><div class="stat-number" id="totalStudents">0</div><div class="stat-label">Total Students</div></div><div class="stat"><div class="stat-number" id="totalLogins">0</div><div class="stat-label">Total Logins</div></div><div class="stat"><div class="stat-number" id="loggedStudents">0</div><div class="stat-label">Students Online</div></div><div class="stat"><div class="stat-number" id="remainingStudents">100</div><div class="stat-label">Student Slots Remaining</div></div></div>
 <div class="search">🔍 <input id="searchInput" placeholder="Search students..." oninput="render()"></div>
 <div class="table-box"><table><thead><tr><th>NAME</th><th>USERNAME</th><th>CLASS</th><th>AGE</th><th>LOCATION</th><th>LOGINS</th><th>LAST SEEN</th><th>STATUS</th></tr></thead><tbody id="studentsBody"></tbody></table></div>
-<div class="footer-note" id="updated">Waiting for activity data...</div>
+<div class="footer-note">New students are stored in the Supabase student profile/credential tables and can log in through the Student login.</div>
 </div></main>
 <script>
-const SUPABASE_URL='https://jlrmmkgcjckkayearlca.supabase.co';
-const SUPABASE_KEY='sb_publishable_eEPceWmh6MUHLwZmAQMEdQ_uk1Gp1EH';
-const ONLINE_MS=90000;
+const SUPABASE_URL='https://jlrmmkgcjckkayearlca.supabase.co',SUPABASE_KEY='sb_publishable_eEPceWmh6MUHLwZmAQMEdQ_uk1Gp1EH',H={apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY,'Content-Type':'application/json'},ONLINE_MS=90000,CAPACITY=100;
 let activity=[];
-function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\"/g,'&quot;').replace(/'/g,'&#039;')}
+function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;')}
 function adminAllowed(){return sessionStorage.getItem('adminLoggedIn')==='true'&&sessionStorage.getItem('currentRole')==='Admin'}
-async function getPresence(){
- const r=await fetch(SUPABASE_URL+'/rest/v1/student_presence?select=username,last_seen,login_count',{headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY}});
- if(!r.ok)throw new Error('Unable to read activity');
- return await r.json();
+function toggleForm(){const p=document.getElementById('addPanel');p.style.display=p.style.display==='none'?'block':'none'}
+async function hash(v){const b=new TextEncoder().encode(v);const d=await crypto.subtle.digest('SHA-256',b);return Array.from(new Uint8Array(d)).map(x=>x.toString(16).padStart(2,'0')).join('')}
+async function addStudent(){
+ const name=document.getElementById('newName').value.trim(),username=document.getElementById('newUsername').value.trim(),password=document.getElementById('newPassword').value,studentClass=document.getElementById('newClass').value.trim()||'9th',age=Number(document.getElementById('newAge').value)||null,location=document.getElementById('newLocation').value.trim();
+ const msg=document.getElementById('formMessage');
+ if(!name||!username||!password){msg.textContent='Name, username and password are required.';msg.style.color='#c62828';return}
+ try{
+  const h=await hash(password);
+  const pr=await fetch(SUPABASE_URL+'/rest/v1/student_profiles?on_conflict=username',{method:'POST',headers:{...H,Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify({username,name,student_class:studentClass,age,location,active:true,updated_at:new Date().toISOString()})});
+  if(!pr.ok)throw new Error(await pr.text());
+  const cr=await fetch(SUPABASE_URL+'/rest/v1/student_credentials?on_conflict=username',{method:'POST',headers:{...H,Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify({username,password_hash:h,login_hash:h,active:true,updated_at:new Date().toISOString()})});
+  if(!cr.ok)throw new Error(await cr.text());
+  msg.textContent='✓ Student added successfully.';msg.style.color='#16834b';
+  ['newName','newUsername','newPassword'].forEach(id=>document.getElementById(id).value='');
+  await loadActivity();
+ }catch(e){console.error(e);msg.textContent='Could not save student. Check username or database access.';msg.style.color='#c62828'}
 }
+async function get(path){const r=await fetch(SUPABASE_URL+'/rest/v1/'+path,{headers:H});if(!r.ok)throw Error(await r.text());return r.json()}
 function render(){
  const q=document.getElementById('searchInput').value.trim().toLowerCase();
  const list=activity.filter(s=>!q||[s.name,s.username,s.studentClass,s.location].some(v=>String(v).toLowerCase().includes(q)));
- const body=document.getElementById('studentsBody');
- if(!list.length){body.innerHTML='<tr><td colspan="8" class="empty">No students found.</td></tr>';return}
- body.innerHTML=list.map(s=>{
-   const p=s.presence;
-   const seen=p?.last_seen?new Date(p.last_seen):null;
-   const online=seen&&Date.now()-seen.getTime()<ONLINE_MS;
-   const logins=Number(p?.login_count||0);
-   return `<tr><td><strong>${esc(s.name)}</strong></td><td>${esc(s.username)}</td><td>${esc(s.studentClass)}</td><td>${s.age}</td><td>${esc(s.location)}</td><td>${logins}</td><td>${seen?seen.toLocaleString():'Never'}</td><td><span class="status ${online?'online':'offline'}"><span class="dot"></span>${online?'Online':'Offline'}</span></td></tr>`;
- }).join('');
+ document.getElementById('studentsBody').innerHTML=list.length?list.map(s=>{const p=s.presence,seen=p?.last_seen?new Date(p.last_seen):null,online=seen&&Date.now()-seen.getTime()<ONLINE_MS,logins=Number(p?.login_count||0);return '<tr><td><strong>'+esc(s.name)+'</strong></td><td>'+esc(s.username)+'</td><td>'+esc(s.studentClass)+'</td><td>'+esc(s.age??'—')+'</td><td>'+esc(s.location??'—')+'</td><td>'+logins+'</td><td>'+esc(seen?seen.toLocaleString():'Never')+'</td><td><span class="status '+(online?'online':'offline')+'">'+(online?'● Online':'Offline')+'</span></td></tr>'}).join(''):'<tr><td colspan="8" style="text-align:center;padding:30px;color:#718096">No students found.</td></tr>';
 }
 async function loadActivity(){
  try{
-   const rows=await getPresence();
-   const map=new Map(rows.map(x=>[String(x.username).toLowerCase(),x]));
-   activity=(window.PAVAN_DEMO_STUDENTS||[]).map(s=>({...s,presence:map.get(String(s.username).toLowerCase())||null}));
-   const totalLogins=activity.reduce((n,s)=>n+Number(s.presence?.login_count||0),0);
-   const logged=activity.filter(s=>s.presence?.last_seen&&Date.now()-new Date(s.presence.last_seen).getTime()<ONLINE_MS).length;
-   document.getElementById('totalStudents').textContent=activity.length;
-   document.getElementById('totalLogins').textContent=totalLogins;
-   document.getElementById('loggedStudents').textContent=logged;
-   document.getElementById('remainingStudents').textContent=Math.max(0,20-activity.length);
-   document.getElementById('updated').textContent='Last updated: '+new Date().toLocaleTimeString();
-   render();
- }catch(e){console.error(e);document.getElementById('updated').textContent='Activity service is temporarily unavailable. Refresh to try again.';render()}
+  const [profiles,presence]=await Promise.all([get('student_profiles?select=username,name,student_class,age,location,active&order=id.asc'),get('student_presence?select=username,last_seen,login_count')]);
+  const map=new Map((presence||[]).map(x=>[String(x.username).toLowerCase(),x]));
+  const db=(profiles||[]).map(s=>({...s,presence:map.get(String(s.username).toLowerCase())||null}));
+  const demo=(window.PAVAN_DEMO_STUDENTS||[]).map(s=>({...s,presence:map.get(String(s.username).toLowerCase())||null}));
+  const merged=new Map();demo.concat(db).forEach(s=>merged.set(String(s.username).toLowerCase(),s));activity=[...merged.values()];
+  const totalLogins=activity.reduce((n,s)=>n+Number(s.presence?.login_count||0),0),logged=activity.filter(s=>s.presence?.last_seen&&Date.now()-new Date(s.presence.last_seen).getTime()<ONLINE_MS).length;
+  document.getElementById('totalStudents').textContent=activity.length;document.getElementById('totalLogins').textContent=totalLogins;document.getElementById('loggedStudents').textContent=logged;document.getElementById('remainingStudents').textContent=Math.max(0,CAPACITY-activity.length);render();
+ }catch(e){console.error(e);const demo=window.PAVAN_DEMO_STUDENTS||[];activity=demo;document.getElementById('totalStudents').textContent=demo.length;document.getElementById('remainingStudents').textContent=Math.max(0,CAPACITY-demo.length);render()}
 }
 function logout(){sessionStorage.removeItem('adminLoggedIn');sessionStorage.removeItem('currentRole');sessionStorage.removeItem('currentUser')}
-if(!adminAllowed())location.href='login.html';else{loadActivity();setInterval(loadActivity,15000)}
+if(!adminAllowed())location.href='login.html';else{document.getElementById('adminUser').textContent=sessionStorage.getItem('currentUser')||'Admin';loadActivity()}
 </script>
-</body>
-</html>
+<script src="assets/page-transition.js?v=20260929"></script>
+</body></html>

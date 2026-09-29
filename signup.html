@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Sign Up | Pavan Educator</title>
+<link rel="icon" type="image/svg+xml" href="assets/pavan-logo.svg">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#eef4ff,#fff);min-height:100vh;color:#172033}.top{height:72px;background:#fff;border-bottom:1px solid #e5eaf3;display:flex;align-items:center;padding:0 7%}.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#172033;font-size:22px;font-weight:800}.logo img{width:40px}.logo span{color:#2563eb}.wrap{min-height:calc(100vh - 72px);display:flex;align-items:center;justify-content:center;padding:45px 20px}.box{width:100%;max-width:470px;background:#fff;border:1px solid #e1e7f2;border-radius:20px;padding:38px;box-shadow:0 20px 55px rgba(37,99,235,.12)}.head{text-align:center;margin-bottom:28px}.head img{width:62px;margin-bottom:12px}.head h1{font-size:29px}.head p{color:#687389;margin-top:8px;font-size:14px}.field{margin-bottom:17px}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:7px}.field input{width:100%;padding:13px 14px;border:1px solid #d7dfec;border-radius:9px;font-size:14px;outline:none}.field input:focus{border-color:#2563eb;box-shadow:0 0 0 3px #eaf0ff}.btn{width:100%;border:0;background:#2563eb;color:#fff;padding:14px;border-radius:9px;font-size:15px;font-weight:800;cursor:pointer;margin-top:5px}.btn:disabled{opacity:.6;cursor:not-allowed}.msg{display:none;margin-top:16px;padding:12px;border-radius:8px;font-size:13px;line-height:1.5}.success{display:block;background:#ecfdf3;color:#087443}.error{display:block;background:#fff1f2;color:#b42318}.bottom{text-align:center;margin-top:20px;color:#687389;font-size:14px}.bottom a{color:#2563eb;text-decoration:none;font-weight:700}.note{font-size:11px;color:#8a94a6;margin-top:15px;text-align:center;line-height:1.5}
+</style>
+</head>
+<body>
+<header class="top"><a class="logo" href="index.html"><img src="assets/pavan-logo.svg" alt="Pavan Educator"><span>Pavan Educator</span></a></header>
+<main class="wrap"><div class="box">
+<div class="head"><img src="assets/pavan-logo.svg" alt="Pavan Educator"><h1>Create Your Account</h1><p>Join Pavan Educator and start your learning journey.</p></div>
+<form id="signupForm">
+<div class="field"><label for="name">Full Name</label><input id="name" required maxlength="80" placeholder="Enter your full name"></div>
+<div class="field"><label for="username">Username</label><input id="username" required maxlength="40" autocomplete="username" placeholder="Choose a username"></div>
+<div class="field"><label for="email">Email Address</label><input id="email" type="email" required maxlength="120" autocomplete="email" placeholder="Enter your email"></div>
+<div class="field"><label for="password">Password</label><input id="password" type="password" required minlength="6" maxlength="100" autocomplete="new-password" placeholder="Create a password"></div>
+<div class="field"><label for="confirm">Confirm Password</label><input id="confirm" type="password" required minlength="6" maxlength="100" autocomplete="new-password" placeholder="Confirm your password"></div>
+<button class="btn" id="submitBtn" type="submit">Create Account</button>
+<div id="message" class="msg"></div>
+</form>
+<div class="bottom">Already have an account? <a href="login.html">Login</a></div>
+<div class="note">Your account details are used to provide access to the Pavan Educator student portal.</div>
+</div></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function(){
+const client=window.supabase.createClient('https://jlrmmkgcjckkayearlca.supabase.co','sb_publishable_eEPceWmh6MUHLwZmAQMEdQ_uk1Gp1EH');
+const form=document.getElementById('signupForm'),btn=document.getElementById('submitBtn'),msg=document.getElementById('message');
+function show(text,type){msg.textContent=text;msg.className='msg '+type}
+form.addEventListener('submit',async function(e){
+e.preventDefault();
+const name=document.getElementById('name').value.trim();
+const username=document.getElementById('username').value.trim().toLowerCase();
+const email=document.getElementById('email').value.trim().toLowerCase();
+const password=document.getElementById('password').value;
+const confirm=document.getElementById('confirm').value;
+if(password!==confirm){show('Passwords do not match.','error');return}
+if(!/^[a-z0-9._-]{3,40}$/.test(username)){show('Username must contain only letters, numbers, dot, underscore or hyphen.','error');return}
+btn.disabled=true;btn.textContent='Creating Account...';
+try{
+const exists=await client.from('student_profiles').select('username').ilike('username',username).limit(1);
+if(exists.error)throw exists.error;
+if(exists.data&&exists.data.length){show('This username is already taken. Please choose another.','error');return}
+const encoder=new TextEncoder();
+async function hash(value){const data=await crypto.subtle.digest('SHA-256',encoder.encode(value));return Array.from(new Uint8Array(data)).map(b=>b.toString(16).padStart(2,'0')).join('')}
+const hashValue=await hash(password);
+const insert=await client.from('student_profiles').insert({username:username,password_hash:hashValue,login_hash:hashValue,active:true});
+if(insert.error)throw insert.error;
+show('Account created successfully. You can now log in.','success');
+form.reset();
+setTimeout(function(){window.location.href='login.html'},1400);
+}catch(err){
+show(err&&err.message?err.message:'Unable to create the account. Please try again.','error');
+}finally{btn.disabled=false;btn.textContent='Create Account'}
+});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="assets/pavan-logo.svg">
+<title>Pavan Educator | My Results</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033}
+.wrap{max-width:1150px;margin:auto;padding:25px}.top{display:flex;align-items:center;justify-content:space-between;gap:15px;background:linear-gradient(110deg,#126df3,#5645f4);color:#fff;border-radius:18px;padding:25px 30px;margin-bottom:20px}
+.top h1{margin:0 0 7px}.top p{margin:0;opacity:.9}.back{background:#fff;color:#2474ff;text-decoration:none;padding:10px 15px;border-radius:9px;font-weight:700;white-space:nowrap}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:20px}.stat{background:#fff;border:1px solid #e0e7f2;border-radius:14px;padding:20px}.stat b{display:block;font-size:28px;color:#2474ff;margin-bottom:5px}.stat span{color:#718096;font-size:12px}
+.panel{background:#fff;border:1px solid #e0e7f2;border-radius:15px;overflow:hidden}.panel-head{padding:20px 22px;border-bottom:1px solid #edf0f5}.panel-head h2{margin:0;font-size:19px}.status{padding:35px;text-align:center;color:#718096}
+.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:650px}th,td{text-align:left;padding:14px 16px;border-bottom:1px solid #edf0f5;font-size:13px}th{background:#f7f9fd;color:#52627a;font-size:12px}td strong{font-size:13px}.score{font-weight:800;color:#2474ff}.empty{padding:50px;text-align:center;color:#718096}.empty b{display:block;color:#172033;font-size:18px;margin-bottom:7px}
+@media(max-width:650px){.top{align-items:flex-start;flex-direction:column}.stats{grid-template-columns:1fr}.wrap{padding:15px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<section class="top"><div><h1>📊 My Results</h1><p>Review your quiz attempts, marks and performance.</p></div><a class="back" href="student-dashboard.html">← Dashboard</a></section>
+<section class="stats">
+<div class="stat"><b id="attemptCount">0</b><span>Total Attempts</span></div>
+<div class="stat"><b id="averageScore">0%</b><span>Average Score</span></div>
+<div class="stat"><b id="bestScore">0%</b><span>Best Score</span></div>
+</section>
+<section class="panel">
+<div class="panel-head"><h2>Quiz History</h2></div>
+<div id="status" class="status">Loading your results...</div>
+<div class="table-wrap" id="tableWrap" style="display:none"><table><thead><tr><th>Quiz</th><th>Score</th><th>Percentage</th><th>Time</th><th>Date</th></tr></thead><tbody id="resultBody"></tbody></table></div>
+</section>
+</main>
+<script>
+const API='https://jlrmmkgcjckkayearlca.supabase.co/rest/v1/';
+const KEY='sb_publishable_eEPceWmh6MUHLwZmAQMEdQ_uk1Gp1EH';
+function headers(){return {apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'application/json'};}
+async function api(path){const r=await fetch(API+path,{headers:headers()});if(!r.ok)throw new Error(await r.text());return r.json();}
+function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function pct(score,total){return total?Math.round((Number(score)/Number(total))*100):0;}
+function time(sec){sec=Number(sec)||0;return Math.floor(sec/60)+'m '+(sec%60)+'s';}
+async function load(){
+ const student=JSON.parse(sessionStorage.getItem('pavanDemoStudent')||'null');
+ if(!student){location.href='login.html?next=student-results.html';return;}
+ try{
+   const [attempts,quizzes]=await Promise.all([
+     api('quiz_attempts?username=eq.'+encodeURIComponent(student.username)+'&select=*&order=submitted_at.desc'),
+     api('quizzes?select=id,title')
+   ]);
+   const names={};quizzes.forEach(q=>names[q.id]=q.title);
+   const rows=attempts.map(a=>({...a,percent:pct(a.score,a.total_marks)}));
+   document.getElementById('attemptCount').textContent=rows.length;
+   const avg=rows.length?Math.round(rows.reduce((s,r)=>s+r.percent,0)/rows.length):0;
+   const best=rows.length?Math.max(...rows.map(r=>r.percent)):0;
+   document.getElementById('averageScore').textContent=avg+'%';
+   document.getElementById('bestScore').textContent=best+'%';
+   const status=document.getElementById('status'),table=document.getElementById('tableWrap'),body=document.getElementById('resultBody');
+   if(!rows.length){status.innerHTML='<div class="empty"><b>No quiz results yet</b>Complete a published quiz and your result will appear here.</div>';return;}
+   status.style.display='none';table.style.display='block';
+   body.innerHTML=rows.map(r=>{
+     const date=r.submitted_at?new Date(r.submitted_at).toLocaleString(): '—';
+     return '<tr><td><strong>'+esc(names[r.quiz_id]||('Quiz #'+r.quiz_id))+'</strong></td><td>'+esc(r.score)+' / '+esc(r.total_marks)+'</td><td class="score">'+r.percent+'%</td><td>'+time(r.time_seconds)+'</td><td>'+esc(date)+'</td></tr>';
+   }).join('');
+ }catch(e){
+   document.getElementById('status').innerHTML='<div class="empty"><b>Results are temporarily unavailable</b>Please refresh the page and try again.</div>';
+   console.error(e);
+ }
+}
+load();
+</script>
+<script src="assets/page-transition.js?v=20260930"></script>
+</body>
+</html>

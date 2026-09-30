@@ -47,6 +47,7 @@
       if(!s) return null;
       const session={...s,demo:true,loginAt:new Date().toISOString()};
       sessionStorage.setItem('pavanDemoStudent',JSON.stringify(session));
+      localStorage.setItem('pavanDemoStudent',JSON.stringify(session));
       sessionStorage.setItem('currentRole','Student');
       sessionStorage.setItem('currentUser',s.username);
       sessionStorage.setItem('studentName',s.name);
@@ -57,8 +58,8 @@
     },
     current:function(){
       try{
-        const s=JSON.parse(sessionStorage.getItem('pavanDemoStudent')||'null');
-        if(s && s.username) startHeartbeat(s.username);
+        const s=JSON.parse(sessionStorage.getItem('pavanDemoStudent')||localStorage.getItem('pavanDemoStudent')||'null');
+        if(s && s.username){ sessionStorage.setItem('pavanDemoStudent',JSON.stringify(s)); startHeartbeat(s.username); }
         return s;
       }catch(e){return null;}
     },
@@ -72,6 +73,7 @@
       sessionStorage.removeItem('currentRole');
       sessionStorage.removeItem('currentUser');
       sessionStorage.removeItem('studentName');
+      localStorage.removeItem('pavanDemoStudent');
     }
   };
 })();

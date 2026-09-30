@@ -8,7 +8,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#172033}
-.sidebar{position:fixed;inset:0 auto 0 0;width:270px;background:#071a33;color:#fff;padding:28px 22px;display:flex;flex-direction:column}
+.sidebar{position:fixed;inset:0 auto 0 0;width:270px;height:100vh;max-height:100vh;overflow-y:auto;overflow-x:hidden;background:#071a33;color:#fff;padding:28px 22px;display:flex;flex-direction:column;scrollbar-width:thin;scrollbar-color:#31557f #071a33}
 .logo{font-size:29px;font-weight:800;padding:5px 5px 42px}.logo span{color:#2474ff}
 .panel-title{color:#aeb9cb;font-size:13px;font-weight:800;letter-spacing:1px;margin-bottom:20px}
 .menu{list-style:none}.menu li{margin-bottom:8px}
@@ -37,7 +37,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#172033}
 @media(max-width:1100px){.stats{grid-template-columns:repeat(2,1fr)}.quick{grid-template-columns:repeat(3,1fr)}.dashboard-grid{grid-template-columns:1fr}}
 @media(max-width:750px){.sidebar{position:relative;width:100%;height:auto}.main{margin-left:0}.logo{padding-bottom:25px}.logout{margin-top:20px}.topbar{padding:0 20px}.content{padding:20px}.welcome{padding:25px}.graduation{display:none}.stats,.quick{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.stats,.quick{grid-template-columns:1fr}.welcome h1{font-size:31px}.topbar h1{font-size:21px}}
-</style>
+ .sidebar::-webkit-scrollbar{width:7px}.sidebar::-webkit-scrollbar-track{background:#071a33}.sidebar::-webkit-scrollbar-thumb{background:#31557f;border-radius:10px}.sidebar::-webkit-scrollbar-thumb:hover{background:#4674a8}</style>
 </head>
 <body>
 <aside class="sidebar">

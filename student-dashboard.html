@@ -139,9 +139,8 @@ body{font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#172033}
   activity.innerHTML=[
     ['<span class="pro-icon lock-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>','Student session active','Active now'],
     ['<span class="pro-icon courses-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 5.5v15M8 7h8M8 11h8"/></svg></span>','Learning dashboard opened','Today'],
-    [projects.length?'<span class="pro-icon projects-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M8 6V4h8v2M8 12h8M10 15h4"/></svg></span>':'<span class="pro-icon folder-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h7l2 2h9v10H3z"/></svg></span>',projects.length?projects.length+' project(s) in My Projects':'Project workspace ready','Student area'],
-    ['<span class="pro-icon target-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="m12 12 7-7M16 5h3v3"/></svg></span>']+'</small></div></li>').join('');
-})();
+    [projects.length?'<span class="pro-icon projects-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M8 6V4h8v2M8 12h8M10 15h4"/></svg></span>':'<span class="pro-icon folder-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h7l2 2h9v10H3z"/></svg></span>',projects.length?projects.length+' project(s) in My Projects':'Project workspace ready','Student area']
+  ].map(x=>'<li><div class="activity-icon">'+x[0]+'</div><div><strong>'+x[1]+'</strong><small>'+x[2]+'</small></div></li>').join('');})();
 function logout(){if(window.PavanDemoAuth)PavanDemoAuth.logout();}
 </script>
 <script src="assets/page-transition.js?v=20260930"></script>

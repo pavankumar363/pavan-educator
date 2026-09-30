@@ -48,7 +48,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#172033}
     <li><a href="student-courses.html"><span class="menu-icon">📚</span>Courses</a></li>
     <li><a href="student-videos.html"><span class="menu-icon">🎥</span>Videos</a></li>
     <li><a href="student-materials.html"><span class="menu-icon">📖</span>Study Materials</a></li>
-    <li><a href="student-quiz.html"><span class="menu-icon">📝</span>Quizzes</a></li>
+    
     <li><a href="student-results.html"><span class="menu-icon">📊</span>My Results</a></li>
     <li><a href="student-projects.html"><span class="menu-icon">💻</span>My Projects</a></li>
     <li><a href="student-profile.html"><span class="menu-icon">👤</span>My Profile</a></li>
@@ -79,7 +79,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#172033}
 <div class="stat"><div class="stat-icon">📚</div><div><h3 id="courseCount">6</h3><p>Available Courses</p></div></div>
 <div class="stat"><div class="stat-icon">💻</div><div><h3 id="projectCount">0</h3><p>My Projects</p></div></div>
 <div class="stat"><div class="stat-icon">🎥</div><div><h3>5</h3><p>Learning Videos</p></div></div>
-<div class="stat"><div class="stat-icon">📝</div><div><h3 id="quizCount">0</h3><p>Quiz Attempts</p></div></div>
+
 </section>
 
 <div class="section-title"><h2>Performance & Activity</h2></div>
@@ -88,7 +88,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#172033}
 <h3>📈 Learning Progress</h3>
 <div class="progress-row"><div class="progress-head"><span>Course Progress</span><span id="courseProgressText">0%</span></div><div class="bar"><div class="fill" id="courseProgress" style="width:0%"></div></div></div>
 <div class="progress-row"><div class="progress-head"><span>Project Progress</span><span id="projectProgressText">0%</span></div><div class="bar"><div class="fill" id="projectProgress" style="width:0%"></div></div></div>
-<div class="progress-row"><div class="progress-head"><span>Quiz Performance</span><span id="quizProgressText">0%</span></div><div class="bar"><div class="fill" id="quizProgress" style="width:0%"></div></div></div>
+
 </div>
 <div class="panel"><h3>🕐 Recent Activity</h3><ul class="activity-list" id="activityList"></ul></div>
 </section>
@@ -96,13 +96,13 @@ body{font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#172033}
 <div class="section-title"><h2>🔔 Notifications</h2></div>
 <section class="panel">
 <div class="notification"><div class="notice-dot"></div><div><b>Your learning area is ready</b><span>Open courses, videos and study materials from the sidebar.</span></div></div>
-<div class="notification"><div class="notice-dot"></div><div><b>Take a quiz</b><span>Complete published quizzes and check your marks in My Results.</span></div></div>
+
 <div class="notification"><div class="notice-dot"></div><div><b>Build your portfolio</b><span>Add projects to My Projects to showcase your work.</span></div></div>
 </section>
 
 <div class="section-title"><h2>⚡ Quick Access</h2></div>
 <section class="quick">
-<a class="quick-card" href="student-quiz.html"><div class="quick-icon">📝</div><h3>Quizzes</h3><p>Take published quizzes and view your scores.</p></a>
+
 <a class="quick-card" href="courses.html"><div class="quick-icon">📚</div><h3>Courses</h3><p>Explore available learning courses.</p></a>
 <a class="quick-card" href="student-videos.html"><div class="quick-icon">🎥</div><h3>Videos</h3><p>Watch educational videos.</p></a>
 <a class="quick-card" href="student-materials.html"><div class="quick-icon">📖</div><h3>Study Materials</h3><p>Access useful learning resources.</p></a>
@@ -132,9 +132,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#172033}
   let attempts=[];
   try{attempts=JSON.parse(localStorage.getItem('pavanQuizAttempts_'+student.username)||'[]');if(!Array.isArray(attempts))attempts=[];}catch(e){attempts=[];}
   document.getElementById('quizCount').textContent=attempts.length;
-  const quizProgress=attempts.length?Math.min(100,Math.round(attempts.reduce((a,x)=>a+(Number(x.percent)||0),0)/attempts.length)):0;
-  document.getElementById('quizProgress').style.width=quizProgress+'%';
-  document.getElementById('quizProgressText').textContent=quizProgress+'%';
+  
 
   const courseProgress=0;
   document.getElementById('courseProgress').style.width=courseProgress+'%';

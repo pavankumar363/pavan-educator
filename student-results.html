@@ -42,8 +42,8 @@ function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&l
 function pct(score,total){return total?Math.round((Number(score)/Number(total))*100):0;}
 function time(sec){sec=Number(sec)||0;return Math.floor(sec/60)+'m '+(sec%60)+'s';}
 async function load(){
- const student=JSON.parse(sessionStorage.getItem('pavanDemoStudent')||'null');
- if(!student){location.href='login.html?next=student-results.html';return;}
+ const student=window.PavanDemoAuth&&PavanDemoAuth.current();
+ if(!student){location.href='login.html?next=student-results.html';return;} document.getElementById('studentPortalName').textContent=student.name||'Student';
  try{
    const [attempts,quizzes]=await Promise.all([
      api('quiz_attempts?username=eq.'+encodeURIComponent(student.username)+'&select=*&order=submitted_at.desc'),
@@ -71,5 +71,5 @@ async function load(){
 load();
 </script>
 <script src="assets/page-transition.js?v=20260930"></script>
-</div></main></body>
+</div></main><script src="data/demo-auth.js?v=20260930"></script></body>
 </html>

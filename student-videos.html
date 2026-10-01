@@ -10,23 +10,23 @@ body{background:#f5f7fb!important}.student-page-main{margin-left:270px;min-heigh
 @media(max-width:750px){.student-sidebar{position:relative;width:100%;height:auto;max-height:none}.student-page-main{margin-left:0}.student-page-topbar{padding:0 20px}.student-page-content{padding:18px}}
 </style><aside class="student-sidebar"><div class="student-logo">Pavan <span>Educator</span></div><div class="student-panel-title">STUDENT PANEL</div><ul class="student-menu"><li><a href="student-dashboard.html" class=""><span class="student-icon">🏠</span>Dashboard</a></li><li><a href="student-courses.html" class=""><span class="student-icon">📚</span>Courses</a></li><li><a href="student-videos.html" class="active"><span class="student-icon">🎥</span>Videos</a></li><li><a href="student-materials.html" class=""><span class="student-icon">📖</span>Study Materials</a></li><li><a href="student-projects.html" class=""><span class="student-icon">💻</span>My Projects</a></li><li><a href="student-profile.html" class=""><span class="student-icon">👤</span>My Profile</a></li></ul><div class="student-separator"></div><div class="student-logout"><a href="login.html" onclick="if(window.PavanDemoAuth)PavanDemoAuth.logout()">🚪 Logout</a></div></aside><main class="student-page-main"><header class="student-page-topbar"><h1>Videos</h1><div class="student-page-user"><div class="student-page-user-icon">👤</div><span id="studentPortalName">Student</span></div></header><div class="student-page-content">
 
-<section class="hero"><div class="badge">LEARN BY WATCHING</div><h1>Video <span>Learning</span></h1><p>Watch course videos, follow practical lessons and track the videos you have completed.</p></section>
+<section class="hero"><div class="badge">LEARN BY WATCHING • <span id="classBadge"></span></div><h1>Video <span>Learning</span></h1><p>Watch course videos, follow practical lessons and track the videos you have completed.</p></section>
 <div class="controls"><input id="search" class="search" placeholder="🔎 Search videos by title, course or topic..."><div class="filters" id="filters"><button class="filter active" data-course="all">All Videos</button></div></div>
 <main class="wrap"><div id="status" class="status">Loading video library...</div><div id="grid" class="grid"></div></main>
 <footer><strong>Pavan Educator</strong><p>Learn • Build • Grow</p><p>© 2026 Pavan Educator. All Rights Reserved.</p></footer>
 <script>
 const URL='https://jlrmmkgcjckkayearlca.supabase.co',KEY='sb_publishable_eEPceWmh6MUHLwZmAQMEdQ_uk1Gp1EH',H={'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json'};
-let videos=[],courses=[],active='all',username='';
+let videos=[],courses=[],active='all',username='',selectedClass='';
 function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-async function getUser(){try{if(window.PavanDemoAuth){const u=window.PavanDemoAuth.current();username=u&&u.username||u&&u.user||''}}catch(e){}}
+async function getUser(){try{if(window.PavanDemoAuth){const u=window.PavanDemoAuth.current();username=u&&u.username||u&&u.user||'';selectedClass=u&&u.selectedClass||u&&u.studentClass||''}}catch(e){}}
 async function load(){
  await getUser();
  try{
-  const [cr,vr]=await Promise.all([fetch(URL+'/rest/v1/course_catalog?select=id,course_name&published=eq.true&order=id',{headers:H}),fetch(URL+'/rest/v1/course_videos?select=id,course_id,title,description,video_url,thumbnail_url,duration,lesson_no&published=eq.true&order=course_id,lesson_no,id',{headers:H})]);
-  courses=await cr.json(); videos=await vr.json();
+  const [cr,vr]=await Promise.all([fetch(URL+'/rest/v1/course_catalog?select=id,course_name,class_name&published=eq.true&order=id',{headers:H}),fetch(URL+'/rest/v1/course_videos?select=id,course_id,title,description,video_url,thumbnail_url,duration,lesson_no&published=eq.true&order=course_id,lesson_no,id',{headers:H})]);
+  courses=await cr.json(); videos=await vr.json();courses=Array.isArray(courses)?courses.filter(c=>!selectedClass||c.class_name==='All Classes'||c.class_name===selectedClass):[];const allowed=new Set(courses.map(c=>String(c.id)));videos=Array.isArray(videos)?videos.filter(v=>allowed.has(String(v.course_id))):[];
   if(!Array.isArray(courses))courses=[]; if(!Array.isArray(videos))videos=[];
   const p=document.getElementById('filters');courses.forEach(c=>{const b=document.createElement('button');b.className='filter';b.dataset.course=c.id;b.textContent=c.course_name;b.onclick=()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');active=String(c.id);render()};p.appendChild(b)});
-  render();
+  const badge=document.getElementById('classBadge');if(badge)badge.textContent=selectedClass?' '+selectedClass:'';render();
  }catch(e){document.getElementById('status').textContent='Video library is ready. Videos can be added from the course system.';render()}
 }
 function render(){

@@ -51,7 +51,7 @@ async function deleteStudent(username){
   const tables=[
    'student_credentials','student_profiles','student_presence','student_attendance',
    'student_chat_messages','student_learning_progress','student_video_progress',
-   'student_certificates','quiz_attempts','students'
+   'student_certificates','students'
   ];
   for(const table of tables){
    const r=await fetch(SUPABASE_URL+'/rest/v1/'+table+'?username=eq.'+encodeURIComponent(clean),{method:'DELETE',headers:H});

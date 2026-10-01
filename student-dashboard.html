@@ -1,148 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="assets/pavan-logo.svg">
 <title>Pavan Educator | Student Dashboard</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#172033}
-.sidebar{position:fixed;inset:0 auto 0 0;width:270px;height:100vh;max-height:100vh;overflow-y:auto;overflow-x:hidden;background:#071a33;color:#fff;padding:28px 22px;display:flex;flex-direction:column;scrollbar-width:thin;scrollbar-color:#31557f #071a33}
-.logo{font-size:29px;font-weight:800;padding:5px 5px 42px}.logo span{color:#2474ff}
-.panel-title{color:#aeb9cb;font-size:13px;font-weight:800;letter-spacing:1px;margin-bottom:20px}
-.menu{list-style:none}.menu li{margin-bottom:8px}
-.menu a,.logout a{display:flex;align-items:center;gap:13px;padding:13px 15px;border-radius:10px;color:#fff;text-decoration:none;font-weight:700;font-size:14px}
-.menu a:hover,.menu a.active{background:#2474ff}.menu-icon{width:25px;height:25px;display:grid;place-items:center;flex:none}
-.separator{height:1px;background:#28405f;margin-top:12px}.logout{margin-top:auto}
-.logout a{background:#142b4a;color:#ff6868}.logout a:hover{background:#ff5252;color:#fff}
-.main{margin-left:270px;min-height:100vh}.topbar{height:82px;background:#fff;border-bottom:1px solid #e4e9f1;display:flex;align-items:center;justify-content:space-between;padding:0 35px}
-.topbar h1{font-size:25px}.user-top{display:flex;align-items:center;gap:10px;font-weight:700}
-.user-icon{width:40px;height:40px;border-radius:50%;background:#2474ff;color:#fff;display:flex;align-items:center;justify-content:center}
-.content{padding:30px}.welcome{border-radius:18px;padding:30px 35px;color:#fff;background:linear-gradient(110deg,#126df3,#5645f4);display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
-.welcome h2{font-size:21px;margin-bottom:6px}.welcome h1{font-size:38px;margin-bottom:8px}.welcome p{font-size:15px;opacity:.92}
-.graduation{width:105px;height:105px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:53px;margin-right:15px}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#172033}
+.sidebar{position:fixed;inset:0 auto 0 0;width:270px;height:100vh;overflow-y:auto;background:#071a33;color:#fff;padding:28px 22px;display:flex;flex-direction:column;scrollbar-width:thin;scrollbar-color:#31557f #071a33}.sidebar::-webkit-scrollbar{width:7px}.sidebar::-webkit-scrollbar-track{background:#071a33}.sidebar::-webkit-scrollbar-thumb{background:#31557f;border-radius:10px}
+.logo{font-size:29px;font-weight:800;padding:5px 5px 42px}.logo span{color:#2474ff}.panel-title{color:#aeb9cb;font-size:13px;font-weight:800;letter-spacing:1px;margin-bottom:20px}.menu{list-style:none}.menu li{margin-bottom:8px}.menu a,.logout a{display:flex;align-items:center;gap:13px;padding:13px 15px;border-radius:10px;color:#fff;text-decoration:none;font-weight:700;font-size:14px}.menu a:hover,.menu a.active{background:#2474ff}.menu-icon{width:25px;text-align:center;font-size:19px}.separator{height:1px;background:#28405f;margin-top:12px}.logout{margin-top:auto}.logout a{background:#142b4a;color:#ff6868}.logout a:hover{background:#ff5252;color:#fff}
+.main{margin-left:270px;min-height:100vh}.topbar{height:82px;background:#fff;border-bottom:1px solid #e4e9f1;display:flex;align-items:center;justify-content:space-between;padding:0 35px}.topbar h1{font-size:25px}.user-top{display:flex;align-items:center;gap:10px;font-weight:700}.user-icon{width:40px;height:40px;border-radius:50%;background:#2474ff;color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px}
+.content{padding:30px;max-width:1450px}.welcome{border-radius:18px;padding:30px 35px;color:#fff;background:linear-gradient(110deg,#126df3,#5645f4);display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}.welcome h2{font-size:21px;margin-bottom:6px}.welcome h1{font-size:38px;margin-bottom:8px}.welcome p{font-size:15px;opacity:.92}.graduation{width:105px;height:105px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:53px;margin-right:15px}
 .section-title{display:flex;align-items:center;justify-content:space-between;margin:25px 0 13px}.section-title h2{font-size:20px}.section-title p{color:#718096;font-size:13px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.stat{background:#fff;border:1px solid #e0e7f2;border-radius:14px;padding:19px;display:flex;align-items:center;gap:15px}
-.stat-icon{width:47px;height:47px;border-radius:12px;background:#eef4ff;display:flex;align-items:center;justify-content:center;font-size:24px}.stat h3{font-size:24px}.stat p{font-size:12px;color:#718096;margin-top:3px}
-.dashboard-grid{display:grid;grid-template-columns:1.4fr .9fr;gap:18px}.panel{background:#fff;border:1px solid #e0e7f2;border-radius:15px;padding:22px}.panel h3{font-size:18px;margin-bottom:17px}
-.progress-row{margin-bottom:18px}.progress-head{display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:7px}.bar{height:9px;background:#edf1f7;border-radius:20px;overflow:hidden}.fill{height:100%;border-radius:20px;background:#2474ff}
-.activity-list{list-style:none}.activity-list li{display:flex;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #edf0f5}.activity-list li:last-child{border-bottom:0}
-.activity-icon{width:36px;height:36px;border-radius:10px;background:#f0f4ff;display:flex;align-items:center;justify-content:center}.activity-list strong{font-size:13px}.activity-list small{display:block;color:#718096;margin-top:3px}
-.quick{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}.quick-card{background:#fff;border:1px solid #e0e7f2;border-radius:14px;padding:19px;text-decoration:none;color:#172033;transition:.2s}
-.quick-card:hover{transform:translateY(-3px);border-color:#2474ff;box-shadow:0 10px 25px rgba(30,70,140,.08)}.quick-icon{font-size:28px;margin-bottom:12px}.quick-card h3{font-size:15px;margin-bottom:6px}.quick-card p{font-size:11px;color:#718096;line-height:1.5}
-.notification{display:flex;gap:12px;align-items:flex-start;padding:13px;border-radius:10px;background:#f7f9fd;margin-bottom:9px}.notification:last-child{margin-bottom:0}
-.notification b{font-size:13px}.notification span{display:block;font-size:11px;color:#718096;margin-top:4px}.notice-dot{width:8px;height:8px;border-radius:50%;background:#2474ff;margin-top:5px;flex:none}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.stat{background:#fff;border:1px solid #e0e7f2;border-radius:14px;padding:19px;display:flex;align-items:center;gap:15px}.stat-icon{width:47px;height:47px;border-radius:12px;background:#eef4ff;display:flex;align-items:center;justify-content:center;font-size:24px}.stat h3{font-size:24px}.stat p{font-size:12px;color:#718096;margin-top:3px}
+.grid-2{display:grid;grid-template-columns:1.3fr .7fr;gap:18px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.panel{background:#fff;border:1px solid #e0e7f2;border-radius:15px;padding:22px}.panel h3{font-size:18px;margin-bottom:17px}
+.progress-row{margin-bottom:18px}.progress-row:last-child{margin-bottom:0}.progress-head{display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:7px}.bar{height:9px;background:#edf1f7;border-radius:20px;overflow:hidden}.fill{height:100%;border-radius:20px;background:#2474ff}.muted{color:#718096;font-size:12px;line-height:1.6}
+.profile-box{display:flex;gap:15px;align-items:center}.avatar{width:65px;height:65px;border-radius:50%;background:#eaf1ff;color:#2474ff;display:flex;align-items:center;justify-content:center;font-size:29px}.profile-box h3{margin:0 0 5px}.profile-box p{font-size:12px;color:#718096}.profile-link{display:inline-block;margin-top:10px;color:#2474ff;font-size:12px;font-weight:800;text-decoration:none}
+.attendance-number{font-size:36px;font-weight:800;color:#2474ff}.attendance-label{font-size:12px;color:#718096;margin-top:3px}.attendance-mini{margin-top:15px;display:flex;justify-content:space-between;font-size:12px}.good{color:#16834b;font-weight:800}
+.activity-list{list-style:none}.activity-list li{display:flex;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #edf0f5}.activity-list li:last-child{border-bottom:0}.activity-icon{width:36px;height:36px;border-radius:10px;background:#f0f4ff;display:flex;align-items:center;justify-content:center}.activity-list strong{font-size:13px}.activity-list small{display:block;color:#718096;margin-top:3px}
+.notification{display:flex;gap:12px;align-items:flex-start;padding:13px;border-radius:10px;background:#f7f9fd;margin-bottom:9px}.notification:last-child{margin-bottom:0}.notification b{font-size:13px}.notification span{display:block;font-size:11px;color:#718096;margin-top:4px}.notice-dot{width:8px;height:8px;border-radius:50%;background:#2474ff;margin-top:5px;flex:none}
+.learning-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.learning-card{border:1px solid #e5eaf3;background:#f8faff;border-radius:12px;padding:16px;text-decoration:none;color:#172033}.learning-card:hover{border-color:#2474ff}.learning-card b{display:block;font-size:15px;margin-bottom:5px}.learning-card span{font-size:11px;color:#718096}
+.quick{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.quick-card{background:#fff;border:1px solid #e0e7f2;border-radius:14px;padding:19px;text-decoration:none;color:#172033;transition:.2s}.quick-card:hover{transform:translateY(-3px);border-color:#2474ff;box-shadow:0 10px 25px rgba(30,70,140,.08)}.quick-icon{font-size:28px;margin-bottom:12px}.quick-card h3{font-size:15px;margin-bottom:6px}.quick-card p{font-size:11px;color:#718096;line-height:1.5}
 .footer{text-align:center;color:#69758a;font-size:12px;padding:30px 20px}
-@media(max-width:1100px){.stats{grid-template-columns:repeat(2,1fr)}.quick{grid-template-columns:repeat(3,1fr)}.dashboard-grid{grid-template-columns:1fr}}
-@media(max-width:750px){.sidebar{position:relative;width:100%;height:auto}.main{margin-left:0}.logo{padding-bottom:25px}.logout{margin-top:20px}.topbar{padding:0 20px}.content{padding:20px}.welcome{padding:25px}.graduation{display:none}.stats,.quick{grid-template-columns:1fr 1fr}}
-@media(max-width:480px){.stats,.quick{grid-template-columns:1fr}.welcome h1{font-size:31px}.topbar h1{font-size:21px}}
- .sidebar::-webkit-scrollbar{width:7px}.sidebar::-webkit-scrollbar-track{background:#071a33}.sidebar::-webkit-scrollbar-thumb{background:#31557f;border-radius:10px}.sidebar::-webkit-scrollbar-thumb:hover{background:#4674a8}</style>
+@media(max-width:1100px){.stats{grid-template-columns:repeat(2,1fr)}.quick{grid-template-columns:repeat(3,1fr)}.grid-2,.grid-3{grid-template-columns:1fr}.learning-cards{grid-template-columns:repeat(3,1fr)}}@media(max-width:750px){.sidebar{position:relative;width:100%;height:auto}.main{margin-left:0}.logo{padding-bottom:25px}.logout{margin-top:20px}.topbar{padding:0 20px}.content{padding:20px}.welcome{padding:25px}.graduation{display:none}.stats,.quick,.learning-cards{grid-template-columns:1fr 1fr}}@media(max-width:480px){.stats,.quick,.learning-cards{grid-template-columns:1fr}.welcome h1{font-size:31px}}
+</style>
 </head>
 <body>
 <aside class="sidebar">
-  <div class="logo">Pavan <span>Educator</span></div>
-  <div class="panel-title">STUDENT PANEL</div>
-  <ul class="menu">
-    <li><a href="student-dashboard.html" class="active"><span class="menu-icon">🏠</span>Dashboard</a></li>
-    <li><a href="student-courses.html"><span class="menu-icon">📚</span>Courses</a></li>
-    <li><a href="student-videos.html"><span class="menu-icon">🎥</span>Videos</a></li>
-    <li><a href="student-materials.html"><span class="menu-icon">📖</span>Study Materials</a></li>
-    
-    <li><a href="student-results.html"><span class="menu-icon">📊</span>My Results</a></li>
-    <li><a href="student-projects.html"><span class="menu-icon">💻</span>My Projects</a></li>
-    <li><a href="student-profile.html"><span class="menu-icon">👤</span>My Profile</a></li>
-  </ul>
-  <div class="separator"></div>
-  <div class="logout"><a href="login.html" onclick="logout()">🚪 Logout</a></div>
+<div class="logo">Pavan <span>Educator</span></div><div class="panel-title">STUDENT PANEL</div>
+<ul class="menu">
+<li><a href="student-dashboard.html" class="active"><span class="menu-icon">🏠</span>Dashboard</a></li>
+<li><a href="student-courses.html"><span class="menu-icon">📚</span>Courses</a></li>
+<li><a href="student-videos.html"><span class="menu-icon">🎥</span>Videos</a></li>
+<li><a href="student-materials.html"><span class="menu-icon">📖</span>Study Materials</a></li>
+<li><a href="student-results.html"><span class="menu-icon">📊</span>My Results</a></li>
+<li><a href="student-projects.html"><span class="menu-icon">💻</span>My Projects</a></li>
+<li><a href="student-profile.html"><span class="menu-icon">👤</span>My Profile</a></li>
+</ul><div class="separator"></div><div class="logout"><a href="login.html" onclick="logout()">🚪 Logout</a></div>
 </aside>
 
 <main class="main">
-<header class="topbar"><h1>Student Dashboard</h1><div class="user-top"><div class="user-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4 3.4-6 8-6s7.2 2 8 6"/></svg></div><span id="topName">Student</span></div></header>
+<header class="topbar"><h1>Student Dashboard</h1><div class="user-top"><div class="user-icon">👤</div><span id="topName">Student</span></div></header>
 <div class="content">
-<section class="welcome"><div><h2>Welcome back,</h2><h1><span id="welcomeName">Student</span>! 👋</h1><p>Track your learning, projects, quizzes and progress in one place.</p></div><div class="graduation">🎓</div></section>
 
-<div class="section-title"><div><h2>My Learning Overview</h2><p>Your personal learning summary</p></div></div>
-<section class="panel" style="margin-bottom:20px">
-  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px">
-    <div><h3 style="margin-bottom:4px">🎓 Continue Learning</h3><p style="color:#718096;font-size:13px">Open your courses and continue from the student portal.</p></div>
-    <a href="student-courses.html" style="color:#2474ff;font-weight:700;text-decoration:none;font-size:13px">View Courses →</a>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
-    <a href="student-courses.html" style="text-decoration:none;color:#172033;background:#f7f9fd;padding:15px;border-radius:11px"><b>📚 Courses</b><span style="display:block;color:#718096;font-size:12px;margin-top:5px">Learn new topics</span></a>
-    <a href="student-videos.html" style="text-decoration:none;color:#172033;background:#f7f9fd;padding:15px;border-radius:11px"><b>🎥 Videos</b><span style="display:block;color:#718096;font-size:12px;margin-top:5px">Watch lessons</span></a>
-    <a href="student-materials.html" style="text-decoration:none;color:#172033;background:#f7f9fd;padding:15px;border-radius:11px"><b>📖 Materials</b><span style="display:block;color:#718096;font-size:12px;margin-top:5px">Study resources</span></a>
-  </div>
-</section>
+<section class="welcome"><div><h2>Welcome back,</h2><h1><span id="welcomeName">Student</span>! 👋</h1><p>Your complete learning space for courses, videos, materials, projects and progress.</p></div><div class="graduation">🎓</div></section>
 
+<div class="section-title"><div><h2>My Learning Overview</h2><p>Everything important about your learning journey.</p></div></div>
 <section class="stats">
-<div class="stat"><div class="stat-icon">📚</div><div><h3 id="courseCount">6</h3><p>Available Courses</p></div></div>
+<div class="stat"><div class="stat-icon">📚</div><div><h3 id="courseCount">0</h3><p>Courses</p></div></div>
+<div class="stat"><div class="stat-icon">🎥</div><div><h3 id="videoCount">0</h3><p>Learning Videos</p></div></div>
+<div class="stat"><div class="stat-icon">📖</div><div><h3 id="materialCount">0</h3><p>Study Materials</p></div></div>
 <div class="stat"><div class="stat-icon">💻</div><div><h3 id="projectCount">0</h3><p>My Projects</p></div></div>
-<div class="stat"><div class="stat-icon">🎥</div><div><h3>5</h3><p>Learning Videos</p></div></div>
-
 </section>
 
-<div class="section-title"><h2>Performance & Activity</h2></div>
-<section class="dashboard-grid">
-<div class="panel">
-<h3>📈 Learning Progress</h3>
-<div class="progress-row"><div class="progress-head"><span>Course Progress</span><span id="courseProgressText">0%</span></div><div class="bar"><div class="fill" id="courseProgress" style="width:0%"></div></div></div>
-<div class="progress-row"><div class="progress-head"><span>Project Progress</span><span id="projectProgressText">0%</span></div><div class="bar"><div class="fill" id="projectProgress" style="width:0%"></div></div></div>
-
+<div class="section-title"><div><h2>Continue Learning</h2><p>Jump directly into your learning resources.</p></div><a href="student-courses.html" style="color:#2474ff;font-weight:700;text-decoration:none;font-size:13px">View Courses →</a></div>
+<section class="panel">
+<div class="learning-cards">
+<a class="learning-card" href="student-courses.html"><b>📚 Courses</b><span>Explore and continue your courses.</span></a>
+<a class="learning-card" href="student-videos.html"><b>🎥 Videos</b><span>Watch lessons and practical explanations.</span></a>
+<a class="learning-card" href="student-materials.html"><b>📖 Materials</b><span>Open notes, PDFs and study resources.</span></a>
 </div>
-<div class="panel"><h3>🕐 Recent Activity</h3><ul class="activity-list" id="activityList"></ul></div>
 </section>
+
+<div class="section-title"><h2>My Performance</h2></div>
+<section class="grid-2">
+<div class="panel"><h3>📈 Learning Progress</h3>
+<div id="courseProgressArea"><div class="progress-row"><div class="progress-head"><span>Overall Course Progress</span><span id="overallProgressText">0%</span></div><div class="bar"><div class="fill" id="overallProgress" style="width:0%"></div></div></div></div>
+<div id="courseProgressList"></div>
+</div>
+<div class="panel"><h3>📅 Attendance</h3><div class="attendance-number" id="attendancePercent">0%</div><div class="attendance-label">Overall attendance</div><div class="attendance-mini"><span>Working Days</span><b id="workingDays">0</b></div><div class="attendance-mini"><span>Present Days</span><b class="good" id="presentDays">0</b></div><p class="muted" id="attendanceNote" style="margin-top:13px">Loading attendance details…</p></div>
+</section>
+
+<div class="section-title"><h2>👤 My Account</h2></div>
+<section class="grid-3">
+<div class="panel"><div class="profile-box"><div class="avatar">👤</div><div><h3 id="profileName">Student</h3><p id="profileClass">Class / Section</p><a class="profile-link" href="student-profile.html">View Profile →</a></div></div></div>
+<div class="panel"><h3>💻 Projects</h3><div style="font-size:28px;font-weight:800;color:#2474ff" id="projectTotal">0</div><p class="muted">Projects in your workspace.</p><a class="profile-link" href="student-projects.html">Open My Projects →</a></div>
+<div class="panel"><h3>📊 Results</h3><p class="muted">View your saved assessment results and performance records.</p><a class="profile-link" href="student-results.html">View My Results →</a></div>
+</section>
+
+<div class="section-title"><h2>🕐 Recent Activity</h2></div>
+<section class="panel"><ul class="activity-list" id="activityList"></ul></section>
 
 <div class="section-title"><h2>🔔 Notifications</h2></div>
 <section class="panel">
-<div class="notification"><div class="notice-dot"></div><div><b>Your learning area is ready</b><span>Open courses, videos and study materials from the sidebar.</span></div></div>
-
-<div class="notification"><div class="notice-dot"></div><div><b>Build your portfolio</b><span>Add projects to My Projects to showcase your work.</span></div></div>
+<div class="notification"><div class="notice-dot"></div><div><b>Your student learning area is ready</b><span>Courses, videos and study materials are available from your Student Panel.</span></div></div>
+<div class="notification"><div class="notice-dot"></div><div><b>Keep your profile updated</b><span>Open My Profile to review your student information and learning progress.</span></div></div>
+<div class="notification"><div class="notice-dot"></div><div><b>Build your project portfolio</b><span>Add and manage your academic work from My Projects.</span></div></div>
 </section>
 
-<div class="section-title"><h2>🎯 Quick Access</h2></div>
+<div class="section-title"><h2>⚡ Quick Access</h2></div>
 <section class="quick">
-
 <a class="quick-card" href="student-courses.html"><div class="quick-icon">📚</div><h3>Courses</h3><p>Explore available learning courses.</p></a>
-<a class="quick-card" href="student-videos.html"><div class="quick-icon">🎥</div><h3>Videos</h3><p>Watch educational videos.</p></a>
-<a class="quick-card" href="student-materials.html"><div class="quick-icon">📖</div><h3>Study Materials</h3><p>Access useful learning resources.</p></a>
-<a class="quick-card" href="student-results.html"><div class="quick-icon">📊</div><h3>My Results</h3><p>Review quiz marks and attempts.</p></a>
-<a class="quick-card" href="student-projects.html"><div class="quick-icon">💻</div><h3>My Projects</h3><p>Create and manage your projects.</p></a>
+<a class="quick-card" href="student-videos.html"><div class="quick-icon">🎥</div><h3>Videos</h3><p>Watch educational lessons.</p></a>
+<a class="quick-card" href="student-materials.html"><div class="quick-icon">📖</div><h3>Materials</h3><p>Access your study resources.</p></a>
+<a class="quick-card" href="student-results.html"><div class="quick-icon">📊</div><h3>Results</h3><p>Review your saved results.</p></a>
+<a class="quick-card" href="student-profile.html"><div class="quick-icon">👤</div><h3>Profile</h3><p>View your personal details.</p></a>
 </section>
-<footer class="footer">© 2026 Pavan Educator. All rights reserved.</footer>
+
+<footer class="footer">© 2026 Pavan Educator • Student Learning Portal</footer>
 </div></main>
 
 <script src="data/demo-students.js?v=20260930"></script>
 <script src="data/demo-auth.js?v=20260930"></script>
 <script>
-(function(){
-  const student=window.PavanDemoAuth&&PavanDemoAuth.current();
-  if(!student){location.href='login.html?next=student-dashboard.html';return;}
-  document.getElementById('welcomeName').textContent=student.name||'Student';
-  document.getElementById('topName').textContent=student.name||'Student';
+const SUPABASE_URL='https://jlrmmkgcjckkayearlca.supabase.co';
+const SUPABASE_KEY='sb_publishable_eEPceWmh6MUHLwZmAQMEdQ_uk1Gp1EH';
+const HEAD={apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY};
+function esc(v){return String(v??'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])}
+function setText(id,v){const e=document.getElementById(id);if(e)e.textContent=v??'—'}
 
-  const projectKey='pavanStudentProjects_'+student.username;
-  let projects=[];
-  try{projects=JSON.parse(localStorage.getItem(projectKey)||'[]');if(!Array.isArray(projects))projects=[];}catch(e){projects=[];}
-  document.getElementById('projectCount').textContent=projects.length;
-  const projectProgress=Math.min(100,projects.length*20);
-  document.getElementById('projectProgress').style.width=projectProgress+'%';
-  document.getElementById('projectProgressText').textContent=projectProgress+'%';
+async function loadDashboard(){
+ const s=window.PavanDemoAuth&&PavanDemoAuth.current();
+ if(!s){location.href='login.html?next=student-dashboard.html';return}
+ setText('welcomeName',s.name||'Student');setText('topName',s.name||'Student');setText('profileName',s.name||'Student');setText('profileClass',s.studentClass||'Student');
+ const projects=getProjects(s), attempts=getAttempts(s);
+ setText('projectCount',projects.length);setText('projectTotal',projects.length);
+ const projectProgress=Math.min(100,projects.length*20);
+ setProgress('projectProgress',projectProgress);setText('projectProgressText',projectProgress+'%');
+ const activity=[
+  ['🔐','Student session active','Active now'],
+  ['📚','Learning dashboard opened','Today'],
+  ['💻',projects.length?projects.length+' project(s) in My Projects':'Project workspace ready','Student area'],
+  ['📖','Study materials area ready','Student area']
+ ];
+ document.getElementById('activityList').innerHTML=activity.map(x=>'<li><div class="activity-icon">'+x[0]+'</div><div><strong>'+x[1]+'</strong><small>'+x[2]+'</small></div></li>').join('');
+ await Promise.all([loadProgress(s),loadAttendance(s)]);
+}
+function getProjects(s){try{const x=JSON.parse(localStorage.getItem('pavanStudentProjects_'+s.username)||'[]');return Array.isArray(x)?x:[]}catch(e){return[]}}
+function getAttempts(s){try{const x=JSON.parse(localStorage.getItem('pavanQuizAttempts_'+s.username)||'[]');return Array.isArray(x)?x:[]}catch(e){return[]}}
+function setProgress(id,n){const e=document.getElementById(id);if(e)e.style.width=Math.max(0,Math.min(100,n))+'%';}
 
-  let attempts=[];
-  try{attempts=JSON.parse(localStorage.getItem('pavanQuizAttempts_'+student.username)||'[]');if(!Array.isArray(attempts))attempts=[];}catch(e){attempts=[];}
-  const courseProgress=0;
-  document.getElementById('courseProgress').style.width=courseProgress+'%';
-  document.getElementById('courseProgressText').textContent=courseProgress+'%';
-
-  const activity=document.getElementById('activityList');
-  activity.innerHTML=[
-    ['🔐','Student session active','Active now'],
-    ['📚','Learning dashboard opened','Today'],
-    [projects.length?'💻':'📁',projects.length?projects.length+' project(s) in My Projects':'Project workspace ready','Student area']
-  ].map(x=>'<li><div class="activity-icon">'+x[0]+'</div><div><strong>'+x[1]+'</strong><small>'+x[2]+'</small></div></li>').join('');
-})();
-function logout(){if(window.PavanDemoAuth)PavanDemoAuth.logout();}
+async function loadProgress(s){
+ try{
+  const r=await fetch(SUPABASE_URL+'/rest/v1/student_learning_progress?username=eq.'+encodeURIComponent(s.username)+'&select=course_name,completed_lessons,total_lessons,percent,last_activity&order=last_activity.desc',{headers:HEAD});
+  const rows=r.ok?await r.json():[];
+  if(!rows.length){
+   setText('courseCount','0');setText('videoCount','0');setText('materialCount','0');
+   document.getElementById('courseProgressList').innerHTML='<div class="muted" style="margin-top:10px">No course progress recorded yet. Start learning from Courses to build your progress.</div>';
+   return;
+  }
+  setText('courseCount',rows.length);
+  setText('videoCount',rows.length);
+  setText('materialCount',rows.length);
+  const total=rows.reduce((a,x)=>a+(Number(x.total_lessons)||0),0),done=rows.reduce((a,x)=>a+(Number(x.completed_lessons)||0),0);
+  const overall=total?Math.round(done/total*100):Math.round(rows.reduce((a,x)=>a+(Number(x.percent)||0),0)/rows.length);
+  setText('overallProgressText',overall+'%');setProgress('overallProgress',overall);
+  document.getElementById('courseProgressList').innerHTML=rows.slice(0,6).map(x=>'<div class="progress-row"><div class="progress-head"><span>'+esc(x.course_name)+'</span><span>'+Number(x.percent||0)+'%</span></div><div class="bar"><div class="fill" style="width:'+Math.min(100,Math.max(0,Number(x.percent)||0))+'%"></div></div></div>').join('');
+ }catch(e){document.getElementById('courseProgressList').innerHTML='<div class="muted">Learning progress is temporarily unavailable.</div>'}
+}
+async function loadAttendance(s){
+ try{
+  const [w,a]=await Promise.all([
+   fetch(SUPABASE_URL+'/rest/v1/attendance_working_days?status=eq.Working&select=attendance_date',{headers:HEAD}),
+   fetch(SUPABASE_URL+'/rest/v1/student_attendance?username=eq.'+encodeURIComponent(s.username)+'&subject=eq.Portal%20Login&status=eq.Present&select=attendance_date',{headers:HEAD})
+  ]);
+  const working=w.ok?await w.json():[],rows=a.ok?await a.json():[];
+  const dates=new Set(rows.map(x=>x.attendance_date));
+  setText('workingDays',working.length);setText('presentDays',dates.size);
+  const pct=working.length?Math.round(dates.size/working.length*100):0;
+  setText('attendancePercent',pct+'%');
+  setText('attendanceNote',working.length?'Based on '+working.length+' official working days.':'No official working days have been configured yet.');
+ }catch(e){setText('attendanceNote','Attendance data is temporarily unavailable.')}
+}
+function logout(){if(window.PavanDemoAuth)PavanDemoAuth.logout()}
+loadDashboard();
 </script>
 <script src="assets/page-transition.js?v=20260930"></script>
 </body>

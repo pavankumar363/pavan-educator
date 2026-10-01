@@ -32,7 +32,6 @@
 <li><a href="student-courses.html"><span class="menu-icon">📚</span>Courses</a></li>
 <li><a href="student-videos.html"><span class="menu-icon">🎥</span>Videos</a></li>
 <li><a href="student-materials.html"><span class="menu-icon">📖</span>Study Materials</a></li>
-<li><a href="student-results.html"><span class="menu-icon">📊</span>My Results</a></li>
 <li><a href="student-projects.html"><span class="menu-icon">💻</span>My Projects</a></li>
 <li><a href="student-profile.html"><span class="menu-icon">👤</span>My Profile</a></li>
 </ul><div class="separator"></div><div class="logout"><a href="login.html" onclick="logout()">🚪 Logout</a></div>
@@ -74,7 +73,6 @@
 <section class="grid-3">
 <div class="panel"><div class="profile-box"><div class="avatar">👤</div><div><h3 id="profileName">Student</h3><p id="profileClass">Class / Section</p><a class="profile-link" href="student-profile.html">View Profile →</a></div></div></div>
 <div class="panel"><h3>💻 Projects</h3><div style="font-size:28px;font-weight:800;color:#2474ff" id="projectTotal">0</div><p class="muted">Projects in your workspace.</p><a class="profile-link" href="student-projects.html">Open My Projects →</a></div>
-<div class="panel"><h3>📊 Results</h3><p class="muted">View your saved assessment results and performance records.</p><a class="profile-link" href="student-results.html">View My Results →</a></div>
 </section>
 
 <div class="section-title"><h2>🕐 Recent Activity</h2></div>
@@ -92,7 +90,6 @@
 <a class="quick-card" href="student-courses.html"><div class="quick-icon">📚</div><h3>Courses</h3><p>Explore available learning courses.</p></a>
 <a class="quick-card" href="student-videos.html"><div class="quick-icon">🎥</div><h3>Videos</h3><p>Watch educational lessons.</p></a>
 <a class="quick-card" href="student-materials.html"><div class="quick-icon">📖</div><h3>Materials</h3><p>Access your study resources.</p></a>
-<a class="quick-card" href="student-results.html"><div class="quick-icon">📊</div><h3>Results</h3><p>Review your saved results.</p></a>
 <a class="quick-card" href="student-profile.html"><div class="quick-icon">👤</div><h3>Profile</h3><p>View your personal details.</p></a>
 </section>
 
@@ -112,7 +109,7 @@ async function loadDashboard(){
  const s=window.PavanDemoAuth&&PavanDemoAuth.current();
  if(!s){location.href='login.html?next=student-dashboard.html';return}
  setText('welcomeName',s.name||'Student');setText('topName',s.name||'Student');setText('profileName',s.name||'Student');setText('profileClass',s.studentClass||'Student');
- const projects=getProjects(s), attempts=getAttempts(s);
+ const projects=getProjects(s);
  setText('projectCount',projects.length);setText('projectTotal',projects.length);
  const projectProgress=Math.min(100,projects.length*20);
  setProgress('projectProgress',projectProgress);setText('projectProgressText',projectProgress+'%');

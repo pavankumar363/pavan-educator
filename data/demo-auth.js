@@ -39,13 +39,13 @@
     heartbeatTimer=setInterval(()=>rpc('student_heartbeat',username),30000);
   }
   window.PavanDemoAuth = {
-    login: async function(username,secret){
+    login: async function(username,secret,selectedClass){
       const u=(username||'').trim().toLowerCase();
       const hash=await digest(secret);
       let s=students().find(x=>String(x.username).toLowerCase()===u && x.passwordHash===hash);
       if(!s) s=await dbStudent(u,hash);
       if(!s) return null;
-      const session={...s,demo:true,loginAt:new Date().toISOString()};
+      const session={...s,selectedClass:selectedClass||s.studentClass||'',demo:true,loginAt:new Date().toISOString()};
       sessionStorage.setItem('pavanDemoStudent',JSON.stringify(session));
       localStorage.setItem('pavanDemoStudent',JSON.stringify(session));
       sessionStorage.setItem('currentRole','Student');

@@ -51,7 +51,8 @@
       sessionStorage.setItem('currentRole','Student');
       sessionStorage.setItem('currentUser',s.username);
       sessionStorage.setItem('studentName',s.name);
-      const attendanceResponse=await rpc('record_portal_login_attendance',s.username);\n      if(attendanceResponse && attendanceResponse.ok){try{const attendanceResult=await attendanceResponse.json();if(!attendanceResult.ok) console.warn('Attendance not recorded:',attendanceResult.message)}catch(e){}}
+      const attendanceResponse=await rpc('record_portal_login_attendance',s.username);
+      if(attendanceResponse && attendanceResponse.ok){try{const attendanceResult=await attendanceResponse.json();if(!attendanceResult.ok) console.warn('Attendance not recorded:',attendanceResult.message)}catch(e){}}
       await rpc('record_student_login',s.username);
       startHeartbeat(s.username);
       return session;

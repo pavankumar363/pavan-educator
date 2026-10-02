@@ -1,1 +1,177 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="description" content="Pavan Educator Digital Library - study notes, PDFs, reference resources and learning documents."><link rel="icon" type="image/svg+xml" href="assets/pavan-logo.svg"><title>Pavan Educator | Digital Library</title><style>*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f8ff;color:#172033}.nav{height:74px;background:#fff;border-bottom:1px solid #e5eaf2;display:flex;align-items:center;justify-content:space-between;padding:0 7%;position:sticky;top:0;z-index:20}.logo{font-size:23px;font-weight:800;text-decoration:none;color:#172033}.logo span{color:#2563eb}.links{display:flex;gap:20px;list-style:none}.links a{color:#4d5870;text-decoration:none;font-size:14px;font-weight:700}.links a:hover,.links a.active{color:#2563eb}.login{background:#2563eb;color:#fff!important;padding:11px 20px;border-radius:8px}.hero{text-align:center;padding:70px 20px 82px;background:linear-gradient(135deg,#eef4ff,#fff)}.badge{display:inline-block;padding:8px 15px;border-radius:30px;background:#e5edff;color:#2563eb;font-size:11px;font-weight:800;letter-spacing:1px}.hero h1{font-size:48px;margin:20px 0 12px}.hero h1 span{color:#2563eb}.hero p{max-width:700px;margin:auto;color:#68758a;font-size:17px;line-height:1.7}.controls{max-width:1100px;margin:-30px auto 35px;padding:0 20px;position:relative}.search{width:100%;height:58px;border:1px solid #d5dfef;border-radius:12px;padding:0 20px;font-size:16px;outline:0;box-shadow:0 12px 30px rgba(30,70,140,.1)}.filters{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:15px}.filter{border:1px solid #d5dfef;background:#fff;color:#4d5870;border-radius:20px;padding:8px 15px;font-size:12px;font-weight:700;cursor:pointer}.filter.active,.filter:hover{background:#2563eb;color:#fff;border-color:#2563eb}.wrap{max-width:1200px;margin:auto;padding:0 25px 90px}.status{text-align:center;color:#687389;font-size:14px;margin-bottom:25px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.card{background:#fff;border:1px solid #e1e7f2;border-radius:16px;padding:25px;transition:.2s}.card:hover{transform:translateY(-5px);box-shadow:0 16px 35px rgba(30,70,140,.08)}.icon{width:56px;height:56px;border-radius:14px;background:#edf3ff;display:grid;place-items:center;font-size:27px;margin-bottom:18px}.type{color:#2563eb;font-size:10px;font-weight:800;letter-spacing:1px}.card h2{font-size:20px;margin:10px 0}.card p{color:#687389;font-size:14px;line-height:1.6;min-height:45px}.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.tag{background:#edf3ff;color:#2563eb;padding:5px 8px;border-radius:6px;font-size:10px;font-weight:700}.btn{display:block;text-align:center;text-decoration:none;background:#2563eb;color:#fff;padding:11px;border-radius:8px;margin-top:18px;font-weight:700;font-size:13px}.empty{text-align:center;background:#fff;border:1px solid #e1e7f2;border-radius:15px;padding:45px;color:#687389}.empty strong{display:block;color:#172033;font-size:20px;margin-bottom:8px}footer{text-align:center;background:#0e1525;color:#fff;padding:35px}footer p{color:#929caf;font-size:14px}@media(max-width:900px){.links{display:none}.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.grid{grid-template-columns:1fr}.hero h1{font-size:38px}.nav{padding:0 5%}}.auth-buttons{display:flex;align-items:center;gap:10px}.auth-buttons .signup{border:1px solid #2563eb;color:#2563eb;background:#fff;padding:10px 21px;border-radius:8px;text-decoration:none;font-weight:700}.auth-buttons .signup:hover{background:#eef4ff}.nav .logo img{width:42px;height:42px;vertical-align:middle}.nav .logo{display:flex;align-items:center;gap:10px}.nav .auth-buttons .login{display:inline-block}.navbar .auth-buttons .login{display:inline-block}@media(max-width:600px){.auth-buttons{gap:6px}.auth-buttons .signup{padding:8px 12px}.nav .logo img{width:38px;height:38px}}</style><script src="data/demo-students.js?v=20260929"></script><script src="data/demo-auth.js?v=20260929"></script><script src="assets/student-access.js?v=20260929"></script><script src="assets/page-transition.js?v=20260929"></script></head><body><header class="nav"><a href="index.html" class="logo"><img src="assets/pavan-logo.svg" alt="Pavan Educator logo"><span>Pavan Educator</span></a><ul class="links"><li><a href="index.html">Home</a></li><li><a href="what-we-have.html">What We Have</a></li><li><a href="search.html">Search</a></li><li><a href="digital-library.html" class="active">Library</a></li><li><a href="about.html">About</a></li></ul><div class="auth-buttons"><a href="login.html" class="login">Login</a><a href="signup.html" class="signup">Sign Up</a></div></header><section class="hero"><div class="badge">DIGITAL LEARNING RESOURCE CENTER</div><h1>Digital <span>Library</span></h1><p>Find study notes, PDFs, reference documents and learning resources in one organized library.</p></section><div class="controls"><input id="search" class="search" placeholder="🔎 Search books, notes, PDFs or subjects..."><div id="filters" class="filters"><button class="filter active" data-cat="all">All Resources</button></div></div><main class="wrap"><div id="status" class="status">Loading library...</div><div id="grid" class="grid"></div></main><footer><strong>Pavan Educator</strong><p>Learn • Build • Grow</p><p>© 2026 Pavan Educator. All Rights Reserved.</p></footer><script>const URL='https://jlrmmkgcjckkayearlca.supabase.co',KEY='sb_publishable_eEPceWmh6MUHLwZmAQMEdQ_uk1Gp1EH',H={'apikey':KEY,'Authorization':'Bearer '+KEY};let items=[],cat='all';function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}async function load(){try{const r=await fetch(URL+'/rest/v1/digital_library?select=id,title,description,category,file_url,file_type&published=eq.true&order=created_at.desc',{headers:H});items=await r.json();if(!Array.isArray(items))items=[];const cats=[...new Set(items.map(x=>x.category).filter(Boolean))];const f=document.getElementById('filters');cats.forEach(x=>{const b=document.createElement('button');b.className='filter';b.dataset.cat=x;b.textContent=x;b.onclick=()=>{document.querySelectorAll('.filter').forEach(y=>y.classList.remove('active'));b.classList.add('active');cat=x;render()};f.appendChild(b)});render()}catch(e){items=[];render()}}function render(){const q=document.getElementById('search').value.toLowerCase().trim(),out=items.filter(x=>(cat==='all'||x.category===cat)&&(!q||(x.title+' '+x.description+' '+x.category).toLowerCase().includes(q)));document.getElementById('status').textContent=out.length+' resource'+(out.length===1?'':'s')+' available';document.getElementById('grid').innerHTML=out.length?out.map(x=>'<article class="card"><div class="icon">📄</div><div class="type">'+esc(x.category)+'</div><h2>'+esc(x.title)+'</h2><p>'+esc(x.description)+'</p><div class="meta"><span class="tag">'+esc(x.file_type)+'</span><span class="tag">DIGITAL RESOURCE</span></div><a class="btn" href="'+esc(x.file_url)+'" target="_blank" rel="noopener">Open Resource →</a></article>').join(''):'<div class="empty" style="grid-column:1/-1"><strong>No resources available yet</strong>Library resources can be added from the digital library database.</div>'}document.getElementById('search').addEventListener('input',render);load();</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Pavan Educator school study library for Classes 6 to 10 with downloadable subject PDFs.">
+<link rel="icon" type="image/svg+xml" href="assets/pavan-logo.svg">
+<title>Pavan Educator | School PDF Library</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:#f5f8ff;color:#172033}
+.nav{height:74px;background:#fff;border-bottom:1px solid #e5eaf2;display:flex;align-items:center;justify-content:space-between;padding:0 7%;position:sticky;top:0;z-index:50}
+.logo{display:flex;align-items:center;gap:10px;font-size:23px;font-weight:800;text-decoration:none;color:#172033}.logo img{width:42px;height:42px}.logo span{color:#2563eb}
+.links{display:flex;gap:28px;list-style:none}.links a{color:#4d5870;text-decoration:none;font-size:14px;font-weight:700}.links a:hover,.links a.active{color:#2563eb}
+.auth{display:flex;gap:9px;align-items:center}.login,.signup{padding:10px 19px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px}.login{background:#2563eb;color:#fff}.signup{border:1px solid #2563eb;color:#2563eb;background:#fff}
+.hero{text-align:center;padding:78px 20px 88px;background:linear-gradient(135deg,#eaf1ff,#fff);position:relative;overflow:hidden}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;pointer-events:none}.hero:before{width:430px;height:430px;right:-180px;top:-220px;background:radial-gradient(circle,rgba(37,99,235,.16),transparent 68%)}.hero:after{width:360px;height:360px;left:-180px;bottom:-210px;background:radial-gradient(circle,rgba(96,165,250,.14),transparent 68%)}
+.badge{display:inline-block;padding:8px 15px;border-radius:30px;background:#e1ebff;color:#2563eb;font-size:11px;font-weight:800;letter-spacing:1.2px;position:relative}
+.hero h1{font-size:48px;margin:20px 0 12px;position:relative}.hero h1 span{color:#2563eb}.hero p{max-width:750px;margin:auto;color:#68758a;font-size:17px;line-height:1.7;position:relative}
+.library{max-width:1200px;margin:-34px auto 0;padding:0 22px 90px;position:relative}
+.class-picker{background:#fff;border:1px solid #dce5f3;border-radius:18px;padding:22px;box-shadow:0 18px 45px rgba(30,70,140,.10);display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.class-picker strong{font-size:15px;margin-right:5px}.class-buttons{display:flex;gap:8px;flex-wrap:wrap}
+.class-btn{border:1px solid #d5dfef;background:#fff;color:#4d5870;border-radius:22px;padding:10px 18px;font-weight:800;font-size:13px;cursor:pointer;transition:.2s}.class-btn:hover,.class-btn.active{background:#2563eb;color:#fff;border-color:#2563eb;transform:translateY(-2px)}
+.selected{margin:34px 0 20px;text-align:center}.selected small{color:#2563eb;font-weight:800;letter-spacing:1.5px}.selected h2{font-size:31px;margin:8px 0}.selected p{color:#687389;font-size:14px}
+.subject-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.subject-card{background:#fff;border:1px solid #e0e7f2;border-radius:17px;padding:24px;box-shadow:0 8px 25px rgba(30,70,140,.05);transition:.25s;display:flex;flex-direction:column;min-height:260px}
+.subject-card:hover{transform:translateY(-7px);box-shadow:0 18px 40px rgba(37,99,235,.12)}
+.subject-icon{width:55px;height:55px;border-radius:15px;background:#edf3ff;display:grid;place-items:center;font-size:28px;margin-bottom:17px}.subject-card h3{font-size:19px;margin-bottom:9px}.subject-card p{font-size:13px;line-height:1.6;color:#687389;flex:1}.topics{margin-top:13px;font-size:11px;color:#526078;line-height:1.5}.download{display:block;text-align:center;background:#2563eb;color:#fff;text-decoration:none;padding:11px;border-radius:9px;margin-top:17px;font-size:12px;font-weight:800;border:0;cursor:pointer}.download:hover{background:#1d4ed8}
+.note{margin-top:25px;padding:17px 20px;border:1px solid #d9e5f7;background:#eef4ff;border-radius:12px;color:#526078;font-size:12px;line-height:1.6;text-align:center}
+.source{margin-top:14px;text-align:center;font-size:12px;color:#687389}.source a{color:#2563eb;font-weight:700;text-decoration:none}
+footer{text-align:center;background:#0e1525;color:#fff;padding:35px}footer p{color:#929caf;margin-top:8px;font-size:13px}
+@media(max-width:950px){.subject-grid{grid-template-columns:repeat(2,1fr)}.links{display:none}}
+@media(max-width:600px){.nav{padding:0 5%;height:66px}.logo{font-size:18px}.logo img{width:36px;height:36px}.auth{gap:5px}.login,.signup{padding:8px 11px}.hero{padding:62px 18px 78px}.hero h1{font-size:37px}.library{padding:0 15px 65px}.subject-grid{grid-template-columns:1fr}.class-picker{padding:18px}.class-buttons{width:100%}.class-btn{flex:1;min-width:72px}}
+</style>
+</head>
+<body>
+<header class="nav">
+<a href="index.html" class="logo"><img src="assets/pavan-logo.svg" alt="Pavan Educator logo"><span>Pavan Educator</span></a>
+<ul class="links"><li><a href="index.html">Home</a></li><li><a href="what-we-have.html">What We Have</a></li><li><a href="digital-library.html" class="active">Library</a></li><li><a href="about.html">About</a></li></ul>
+<div class="auth"><a href="login.html" class="login">Login</a><a href="signup.html" class="signup">Sign Up</a></div>
+</header>
+
+<section class="hero">
+<div class="badge">SCHOOL PDF LIBRARY • CLASSES 6–10</div>
+<h1>Study <span>PDF Library</span></h1>
+<p>Choose your class and download subject-wise study guides. Each class contains 8 learning subjects, organized for quick access and revision.</p>
+</section>
+
+<main class="library">
+<section class="class-picker">
+<strong>Choose Your Class</strong>
+<div class="class-buttons" id="classButtons">
+<button class="class-btn active" data-class="6">Class 6</button>
+<button class="class-btn" data-class="7">Class 7</button>
+<button class="class-btn" data-class="8">Class 8</button>
+<button class="class-btn" data-class="9">Class 9</button>
+<button class="class-btn" data-class="10">Class 10</button>
+</div>
+</section>
+
+<section class="selected">
+<small id="classLabel">CLASS 6</small>
+<h2 id="title">Class 6 Study Materials</h2>
+<p id="subtitle">8 subject PDFs are available for download.</p>
+</section>
+
+<section class="subject-grid" id="subjectGrid"></section>
+
+<div class="note"><strong>Important:</strong> These are Pavan Educator study-guide PDFs created for learning and revision. Subject combinations can vary by school and board. For official NCERT textbooks, use the official NCERT textbook portal.</div>
+<div class="source">Official textbook source: <a href="https://ncert.nic.in/textbook.php" target="_blank" rel="noopener">NCERT Textbooks PDF (Classes I–XII)</a></div>
+</main>
+
+<footer><strong>Pavan Educator</strong><p>Learn • Build • Grow<br>© 2026 Pavan Educator. All Rights Reserved.</p></footer>
+
+<script>
+const DATA={
+6:[
+['📐','Mathematics','Whole numbers, integers, fractions, decimals, basic geometry and data handling.'],
+['📘','English','Reading comprehension, grammar, vocabulary, writing and literature skills.'],
+['🪔','Telugu','Reading, grammar, vocabulary, poetry, prose and writing practice.'],
+['🪷','Hindi','Reading, grammar, vocabulary, prose, poetry and basic writing.'],
+['🔬','Science','Food, materials, living organisms, motion, electricity, light and environment.'],
+['🌍','Social Science','History, geography, civics, communities, maps and India.'],
+['💻','Computer Science','Computer basics, operating systems, files, internet safety and algorithms.'],
+['🧠','General Knowledge','India, science, geography, environment, sports and current learning facts.']
+],
+7:[
+['📐','Mathematics','Integers, fractions, rational numbers, algebra, geometry, mensuration and data.'],
+['📘','English','Grammar, comprehension, vocabulary, writing and literature appreciation.'],
+['🪔','Telugu','Grammar, prose, poetry, comprehension and structured writing.'],
+['🪷','Hindi','Grammar, comprehension, vocabulary, prose, poetry and composition.'],
+['🔬','Science','Nutrition, heat, acids and bases, motion, electricity, plants, animals and ecosystems.'],
+['🌍','Social Science','Medieval history, geography, government, markets and social life.'],
+['💻','Computer Science','Computer networks, coding basics, presentations, spreadsheets and digital safety.'],
+['🧠','General Knowledge','India and world, inventions, science, environment, culture and sports.']
+],
+8:[
+['📐','Mathematics','Rational numbers, linear equations, squares, cubes, geometry, mensuration and graphs.'],
+['📘','English','Reading, grammar, vocabulary, writing, comprehension and literature.'],
+['🪔','Telugu','Grammar, prose, poetry, comprehension and creative writing.'],
+['🪷','Hindi','Grammar, reading, prose, poetry, vocabulary and composition.'],
+['🔬','Science','Crop production, microorganisms, force, pressure, sound, light, cells and reproduction.'],
+['🌍','Social Science','History, geography, constitution, resources, industries and human development.'],
+['💻','Computer Science','Programming concepts, HTML basics, databases, cyber safety and digital tools.'],
+['🧠','General Knowledge','Indian heritage, world geography, science, technology, environment and sports.']
+],
+9:[
+['📐','Mathematics','Number systems, polynomials, coordinate geometry, linear equations, geometry and statistics.'],
+['📘','English','Reading, grammar, writing, literature, vocabulary and communication skills.'],
+['🪔','Telugu','Language skills, grammar, prose, poetry, comprehension and writing.'],
+['🪷','Hindi','Reading, grammar, prose, poetry, vocabulary and composition.'],
+['⚡','Physical Science','Matter, atoms, motion, force, gravitation, work, sound, electricity and chemistry basics.'],
+['🧬','Biological Science','Cell, tissues, diversity, nutrition, health, natural resources and life processes.'],
+['🌍','Social Science','India and the contemporary world, geography, democracy and economics.'],
+['💻','Computer Science','Programming, algorithms, data representation, networks and cyber security.']
+],
+10:[
+['📐','Mathematics','Real numbers, polynomials, equations, triangles, trigonometry, statistics and probability.'],
+['📘','English','Advanced reading, grammar, writing, literature, vocabulary and communication.'],
+['🪔','Telugu','Grammar, prose, poetry, comprehension, composition and language skills.'],
+['🪷','Hindi','Grammar, prose, poetry, reading comprehension and composition.'],
+['⚡','Physical Science','Chemical reactions, acids, metals, electricity, light, magnetic effects and energy.'],
+['🧬','Biological Science','Life processes, control and coordination, reproduction, heredity, evolution and environment.'],
+['🌍','Social Science','History, geography, political science, economics and democratic institutions.'],
+['💻','Computer Science','Python/programming basics, data, algorithms, web concepts, databases and cyber safety.']
+]};
+
+function esc(s){return String(s).replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)')}
+function pdfBlob(lines){
+  const objects=[];
+  objects.push('<< /Type /Catalog /Pages 2 0 R >>');
+  objects.push('<< /Type /Pages /Kids [3 0 R] /Count 1 >>');
+  objects.push('<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>');
+  objects.push('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>');
+  let stream='BT\n/F1 18 Tf\n50 742 Td\n';
+  lines.forEach((line,i)=>{if(i>0)stream+='0 -28 Td\n';stream+='('+esc(line)+') Tj\n';});
+  stream+='ET';
+  objects.push('<< /Length '+stream.length+' >>\nstream\n'+stream+'\nendstream');
+  let pdf='%PDF-1.4\n%PAVAN\n',offsets=[0];
+  objects.forEach((obj,i)=>{offsets.push(pdf.length);pdf+=(i+1)+' 0 obj\n'+obj+'\nendobj\n';});
+  const xref=pdf.length;pdf+='xref\n0 '+(objects.length+1)+'\n0000000000 65535 f \n';
+  for(let i=1;i<offsets.length;i++)pdf+=String(offsets[i]).padStart(10,'0')+' 00000 n \n';
+  pdf+='trailer\n<< /Size '+(objects.length+1)+' /Root 1 0 R >>\nstartxref\n'+xref+'\n%%EOF';
+  return new Blob([pdf],{type:'application/pdf'});
+}
+function downloadPdf(cls,subject,description){
+  const lines=[
+    'PAVAN EDUCATOR - STUDY GUIDE',
+    'Class '+cls+' | '+subject,
+    '',
+    'Learning overview',
+    description,
+    '',
+    'Key revision areas:',
+    ...description.split(', ').slice(0,6).map((x,i)=>(i+1)+'. '+x),
+    '',
+    'Use this guide for revision and classroom support.',
+    'Pavan Educator | Learn - Build - Grow'
+  ];
+  const blob=pdfBlob(lines),url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download='Pavan-Educator-Class-'+cls+'-'+subject.replace(/[^a-z0-9]+/gi,'-')+'.pdf';
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function render(cls){
+  document.querySelectorAll('.class-btn').forEach(b=>b.classList.toggle('active',b.dataset.class===String(cls)));
+  document.getElementById('classLabel').textContent='CLASS '+cls;
+  document.getElementById('title').textContent='Class '+cls+' Study Materials';
+  document.getElementById('subtitle').textContent='8 subject PDFs are available for download.';
+  document.getElementById('subjectGrid').innerHTML=DATA[cls].map((s,i)=>'<article class="subject-card"><div class="subject-icon">'+s[0]+'</div><h3>'+s[1]+'</h3><p>'+s[2]+'</p><div class="topics"><strong>PDF:</strong> Class '+cls+' revision guide</div><button class="download" type="button" data-i="'+i+'">⬇ Download PDF</button></article>').join('');
+  document.querySelectorAll('.download').forEach(btn=>btn.addEventListener('click',()=>{const s=DATA[cls][Number(btn.dataset.i)];downloadPdf(cls,s[1],s[2]);}));
+}
+document.querySelectorAll('.class-btn').forEach(btn=>btn.addEventListener('click',()=>render(btn.dataset.class)));
+render(6);
+</script>
+</body>
+</html>

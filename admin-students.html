@@ -17,7 +17,7 @@
 </div><div class="form-actions"><button class="btn" onclick="addStudent()">Save Student</button><button class="btn secondary" onclick="toggleForm()">Cancel</button><span class="message" id="formMessage"></span></div></section>
 <div class="stats"><div class="stat"><div class="stat-number" id="totalStudents">0</div><div class="stat-label">Total Students</div></div><div class="stat"><div class="stat-number" id="totalLogins">0</div><div class="stat-label">Total Logins</div></div><div class="stat"><div class="stat-number" id="loggedStudents">0</div><div class="stat-label">Students Online</div></div><div class="stat"><div class="stat-number" id="remainingStudents">100</div><div class="stat-label">Student Slots Remaining</div></div></div>
 <div class="search">🔍 <input id="searchInput" placeholder="Search students..." oninput="render()"></div>
-<div class="table-box"><table><thead><tr><th>NAME</th><th>USERNAME</th><th>CLASS</th><th>AGE</th><th>LOCATION</th><th>LOGINS</th><th>LAST SEEN</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody id="studentsBody"></tbody></table></div>
+<div class="table-box"><table><thead><tr><th>NAME</th><th>USERNAME</th><th>CLASS</th><th>AGE</th><th>LOCATION</th><th>LOGINS</th><th>LAST SEEN</th><th>STATUS</th><th>PROGRESS</th><th>ACTION</th></tr></thead><tbody id="studentsBody"></tbody></table></div>
 <div class="footer-note">New students are stored in the Supabase student profile/credential tables and can log in through the Student login.</div>
 </div></main>
 <script>
@@ -51,7 +51,7 @@ async function deleteStudent(username){
   const tables=[
    'student_credentials','student_profiles','student_presence','student_attendance',
    'student_chat_messages','student_learning_progress','student_video_progress',
-   'student_certificates','students'
+   'student_certificates','student_login_overrides','jarvis_memories','students'
   ];
   for(const table of tables){
    const r=await fetch(SUPABASE_URL+'/rest/v1/'+table+'?username=eq.'+encodeURIComponent(clean),{method:'DELETE',headers:H});
@@ -71,14 +71,14 @@ async function get(path){const r=await fetch(SUPABASE_URL+'/rest/v1/'+path,{head
 function render(){
  const q=document.getElementById('searchInput').value.trim().toLowerCase();
  const list=activity.filter(s=>!q||[s.name,s.username,s.studentClass,s.location].some(v=>String(v).toLowerCase().includes(q)));
- document.getElementById('studentsBody').innerHTML=list.length?list.map(s=>{const p=s.presence,seen=p?.last_seen?new Date(p.last_seen):null,online=seen&&Date.now()-seen.getTime()<ONLINE_MS,logins=Number(p?.login_count||0);return '<tr><td><strong>'+esc(s.name)+'</strong></td><td>'+esc(s.username)+'</td><td>'+esc(s.studentClass)+'</td><td>'+esc(s.age??'—')+'</td><td>'+esc(s.location??'—')+'</td><td>'+logins+'</td><td>'+esc(seen?seen.toLocaleString():'Never')+'</td><td><span class="status '+(online?'online':'offline')+'">'+(online?'● Online':'Offline')+'</span></td><td><button class="delete-btn" onclick="deleteStudent(\''+esc(s.username).replace(/'/g,'\\&#39;')+'\')">Delete</button></td></tr>'}).join(''):'<tr><td colspan="9" style="text-align:center;padding:30px;color:#718096">No students found.</td></tr>';
+ document.getElementById('studentsBody').innerHTML=list.length?list.map(s=>{const p=s.presence,seen=p?.last_seen?new Date(p.last_seen):null,online=seen&&Date.now()-seen.getTime()<ONLINE_MS,logins=Number(p?.login_count||0);return '<tr><td><strong>'+esc(s.name)+'</strong></td><td>'+esc(s.username)+'</td><td>'+esc(s.studentClass)+'</td><td>'+esc(s.age??'—')+'</td><td>'+esc(s.location??'—')+'</td><td>'+logins+'</td><td>'+esc(seen?seen.toLocaleString():'Never')+'</td><td><span class="status '+(online?'online':'offline')+'">'+(online?'● Online':'Offline')+'</span></td><td>'+esc(s.progress.length?Math.round(s.progress.reduce((a,b)=>a+b,0)/s.progress.length):0)+'%')+'</td><td><button class="delete-btn" onclick="deleteStudent(\''+esc(s.username).replace(/'/g,'\\&#39;')+'\')">Delete</button></td></tr>'}).join(''):'<tr><td colspan="10" style="text-align:center;padding:30px;color:#718096">No students found.</td></tr>';
 }
 async function loadActivity(){
  try{
-  const [profiles,presence]=await Promise.all([get('student_profiles?select=username,name,student_class,age,location,active&order=id.asc'),get('student_presence?select=username,last_seen,login_count')]);
-  const map=new Map((presence||[]).map(x=>[String(x.username).toLowerCase(),x]));
-  const db=(profiles||[]).map(s=>({...s,presence:map.get(String(s.username).toLowerCase())||null}));
-  const demo=(window.PAVAN_DEMO_STUDENTS||[]).map(s=>({...s,presence:map.get(String(s.username).toLowerCase())||null}));
+  const [profiles,presence,attendance,progress]=await Promise.all([get('student_profiles?select=username,name,student_class,age,location,active&order=id.asc'),get('student_presence?select=username,last_seen,login_count'),get('student_attendance?select=username,status,subject'),get('student_learning_progress?select=username,percent')]);
+  const map=new Map((presence||[]).map(x=>[String(x.username).toLowerCase(),x]));const attMap=new Map(),progMap=new Map();(attendance||[]).forEach(a=>{const k=String(a.username).toLowerCase();const z=attMap.get(k)||{p:0,t:0};if(a.subject!=='Portal Login'){z.t++;if(a.status==='Present')z.p++;}attMap.set(k,z)});(progress||[]).forEach(p=>{const k=String(p.username).toLowerCase();const z=progMap.get(k)||[];z.push(Number(p.percent||0));progMap.set(k,z)});
+  const db=(profiles||[]).map(s=>({...s,presence:map.get(String(s.username).toLowerCase())||null,attendance:attMap.get(String(s.username).toLowerCase())||{p:0,t:0},progress:progMap.get(String(s.username).toLowerCase())||[]}));
+  const demo=(window.PAVAN_DEMO_STUDENTS||[]).map(s=>({...s,presence:map.get(String(s.username).toLowerCase())||null,attendance:attMap.get(String(s.username).toLowerCase())||{p:0,t:0},progress:progMap.get(String(s.username).toLowerCase())||[]}));
   const merged=new Map();demo.concat(db).forEach(s=>merged.set(String(s.username).toLowerCase(),s));activity=[...merged.values()];
   const totalLogins=activity.reduce((n,s)=>n+Number(s.presence?.login_count||0),0),logged=activity.filter(s=>s.presence?.last_seen&&Date.now()-new Date(s.presence.last_seen).getTime()<ONLINE_MS).length;
   document.getElementById('totalStudents').textContent=activity.length;document.getElementById('totalLogins').textContent=totalLogins;document.getElementById('loggedStudents').textContent=logged;document.getElementById('remainingStudents').textContent=Math.max(0,CAPACITY-activity.length);render();

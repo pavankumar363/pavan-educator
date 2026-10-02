@@ -127,38 +127,64 @@ const DATA={
 ]};
 
 function esc(s){return String(s).replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)')}
-function pdfBlob(lines){
-  const objects=[];
-  objects.push('<< /Type /Catalog /Pages 2 0 R >>');
-  objects.push('<< /Type /Pages /Kids [3 0 R] /Count 1 >>');
-  objects.push('<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>');
-  objects.push('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>');
-  let stream='BT\n/F1 18 Tf\n50 742 Td\n';
-  lines.forEach((line,i)=>{if(i>0)stream+='0 -28 Td\n';stream+='('+esc(line)+') Tj\n';});
+function pdfBlob(cls,subject,description){
+  const escText=s=>String(s).replace(/\\/g,'\\\\').replace(/\\(/g,'\\(').replace(/\\)/g,'\\)');
+  const lines=[];
+  lines.push('PAVAN EDUCATOR');
+  lines.push('PROFESSIONAL STUDY GUIDE');
+  lines.push('CLASS '+cls+'  |  '+subject);
+  lines.push('');
+  lines.push('ABOUT THIS GUIDE');
+  lines.push('This study guide is designed for Class '+cls+' students.');
+  lines.push('Use it for revision, classroom support and self-study.');
+  lines.push('');
+  lines.push('LEARNING OVERVIEW');
+  lines.push(description);
+  lines.push('');
+  lines.push('KEY LEARNING AREAS');
+  description.split(', ').slice(0,6).forEach((x,i)=>lines.push((i+1)+'. '+x));
+  lines.push('');
+  lines.push('STUDY PLAN');
+  lines.push('1. Read the lesson carefully and identify the main ideas.');
+  lines.push('2. Write short notes for definitions, formulas and examples.');
+  lines.push('3. Practice questions without checking the answer first.');
+  lines.push('4. Review mistakes and revise difficult areas.');
+  lines.push('5. Use your school textbook and teacher material with this guide.');
+  lines.push('');
+  lines.push('REVISION CHECKLIST');
+  lines.push('[ ] I understand the main concepts.');
+  lines.push('[ ] I can answer basic practice questions.');
+  lines.push('[ ] I revised important terms and examples.');
+  lines.push('[ ] I identified topics that need more practice.');
+  lines.push('');
+  lines.push('Pavan Educator  |  Learn - Build - Grow');
+
+  const objs=[];
+  objs.push('<< /Type /Catalog /Pages 2 0 R >>');
+  objs.push('<< /Type /Pages /Kids [3 0 R] /Count 1 >>');
+  objs.push('<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>');
+  objs.push('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>');
+  let stream='BT\\n/F1 12 Tf\\n50 742 Td\\n';
+  lines.forEach((line,i)=>{
+    if(i===0) stream+='/F1 22 Tf\\n';
+    else if(i===1) stream+='/F1 15 Tf\\n';
+    else if(i===2) stream+='/F1 16 Tf\\n';
+    else if(line==='ABOUT THIS GUIDE'||line==='LEARNING OVERVIEW'||line==='KEY LEARNING AREAS'||line==='STUDY PLAN'||line==='REVISION CHECKLIST') stream+='/F1 13 Tf\\n';
+    else stream+='/F1 11 Tf\\n';
+    if(i>0) stream+='0 -25 Td\\n';
+    stream+='('+escText(line)+') Tj\\n';
+  });
   stream+='ET';
-  objects.push('<< /Length '+stream.length+' >>\nstream\n'+stream+'\nendstream');
-  let pdf='%PDF-1.4\n%PAVAN\n',offsets=[0];
-  objects.forEach((obj,i)=>{offsets.push(pdf.length);pdf+=(i+1)+' 0 obj\n'+obj+'\nendobj\n';});
-  const xref=pdf.length;pdf+='xref\n0 '+(objects.length+1)+'\n0000000000 65535 f \n';
-  for(let i=1;i<offsets.length;i++)pdf+=String(offsets[i]).padStart(10,'0')+' 00000 n \n';
-  pdf+='trailer\n<< /Size '+(objects.length+1)+' /Root 1 0 R >>\nstartxref\n'+xref+'\n%%EOF';
+  objs.push('<< /Length '+stream.length+' >>\\nstream\\n'+stream+'\\nendstream');
+  let pdf='%PDF-1.4\\n%PAVAN\\n',offs=[0];
+  objs.forEach((o,i)=>{offs.push(pdf.length);pdf+=(i+1)+' 0 obj\\n'+o+'\\nendobj\\n';});
+  const xref=pdf.length;pdf+='xref\\n0 '+(objs.length+1)+'\\n0000000000 65535 f \\n';
+  for(let i=1;i<offs.length;i++)pdf+=String(offs[i]).padStart(10,'0')+' 00000 n \\n';
+  pdf+='trailer\\n<< /Size '+(objs.length+1)+' /Root 1 0 R >>\\nstartxref\\n'+xref+'\\n%%EOF';
   return new Blob([pdf],{type:'application/pdf'});
 }
 function downloadPdf(cls,subject,description){
-  const lines=[
-    'PAVAN EDUCATOR - STUDY GUIDE',
-    'Class '+cls+' | '+subject,
-    '',
-    'Learning overview',
-    description,
-    '',
-    'Key revision areas:',
-    ...description.split(', ').slice(0,6).map((x,i)=>(i+1)+'. '+x),
-    '',
-    'Use this guide for revision and classroom support.',
-    'Pavan Educator | Learn - Build - Grow'
-  ];
-  const blob=pdfBlob(lines),url=URL.createObjectURL(blob),a=document.createElement('a');
+  const blob=pdfBlob(cls,subject,description),url=URL.createObjectURL(blob),a=document.createElement('a');
   a.href=url;a.download='Pavan-Educator-Class-'+cls+'-'+subject.replace(/[^a-z0-9]+/gi,'-')+'.pdf';
   document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }

@@ -3,7 +3,7 @@
 </style><script src="data/demo-students.js?v=20261001"></script><script src="data/demo-auth.js?v=20261001-attendance"></script></head><body>
 <header class="nav"><a class="logo" href="index.html">Pavan <span>Educator</span></a><div class="nav-right"><a class="back" id="back" href="student-courses.html">← My Courses</a><a class="portal" href="student-dashboard.html">Student Dashboard</a></div></header>
 <main class="wrap"><section class="hero"><small id="subject">COURSE</small><h1 id="title">Loading…</h1><p id="desc"></p><div class="badges"><span class="badge" id="classBadge">Class</span><span class="badge" id="levelBadge">Level</span></div><div class="progress"><div id="fill" class="fill" style="width:0"></div></div><div id="pct" class="pct">Loading progress…</div></section>
-<nav class="tabs"><button class="tab active" data-tab="lessons">📚 Chapters & Lessons</button><button class="tab" data-tab="videos">🎥 Videos</button><button class="tab" data-tab="materials">📖 Study Materials</button></nav>
+<nav class="tabs"><button class="tab active" data-tab="lessons">📚 Chapters & Lessons</button></nav>
 <section id="lessons" class="section active"></section><section id="videos" class="section"></section><section id="materials" class="section"></section></main>
 <script>
 const U='https://jlrmmkgcjckkayearlca.supabase.co',K='sb_publishable_eEPceWmh6MUHLwZmAQMEdQ_uk1Gp1EH',H={apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'};let course,lessons=[],videos=[],materials=[],student,completedSet=new Set();

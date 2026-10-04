@@ -55,10 +55,11 @@
 <div class="modal" id="portfolioModal"><div class="modal-box"><button class="close" data-close>×</button><h2>🏆 My Practical Portfolio</h2><p class="muted">Your saved activities, challenges and projects are stored on this device for your student session.</p><div id="portfolioContent"></div></div></div>
 <div class="toast" id="toast"></div>
 
+<script src="data/demo-auth.js?v=20261004-practical"></script>
 <script src="assets/page-transition.js?v=20261004-practical2"></script>
 <script>
 (function(){
-const key='pavanPracticalActivities_guest';
+const session=window.PavanDemoAuth&&PavanDemoAuth.current();const key='pavanPracticalActivities_'+(session&&session.username?session.username:'guest');
 function getState(){try{return JSON.parse(localStorage.getItem(key)||'{"activities":{},"challenges":{},"projects":[]}')}catch(e){return {activities:{},challenges:{},projects:[]}}}
 function saveState(s){localStorage.setItem(key,JSON.stringify(s));updateUI()}
 function toast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2200)}

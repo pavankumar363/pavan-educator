@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="assets/pavan-logo.svg">
+<title>My Skills & Portfolio | Pavan Educator</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033}.sidebar{position:fixed;inset:0 auto 0 0;width:270px;background:#071a33;color:#fff;padding:28px 22px;display:flex;flex-direction:column;z-index:5}.logo{font-size:29px;font-weight:800;padding:5px 5px 42px}.logo span{color:#2474ff}.title{color:#aeb9cb;font-size:13px;font-weight:800;letter-spacing:1px;margin-bottom:20px}.menu{list-style:none;margin:0;padding:0}.menu li{margin-bottom:8px}.menu a{display:flex;align-items:center;gap:13px;padding:13px 15px;border-radius:10px;color:#fff;text-decoration:none;font-weight:700;font-size:14px}.menu a:hover,.menu a.active{background:#2474ff}.icon{width:25px;text-align:center;font-size:19px}.logout{margin-top:auto}.logout a{background:#142b4a}.main{margin-left:270px;min-height:100vh}.topbar{height:82px;background:#fff;border-bottom:1px solid #e4e9f1;display:flex;align-items:center;justify-content:space-between;padding:0 35px}.topbar h1{font-size:25px}.user{display:flex;align-items:center;gap:10px;font-weight:700}.avatar{width:40px;height:40px;border-radius:50%;background:#2474ff;color:#fff;display:grid;place-items:center}.content{padding:28px;max-width:1400px}.hero{background:linear-gradient(110deg,#126df3,#5645f4);color:#fff;border-radius:18px;padding:30px;margin-bottom:20px}.hero h2{margin:0 0 6px;font-size:31px}.hero p{margin:0;opacity:.9}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.card{background:#fff;border:1px solid #e0e7f2;border-radius:15px;padding:20px}.metric{font-size:30px;font-weight:800;color:#2474ff}.muted{font-size:12px;color:#718096;line-height:1.6}.section-title{display:flex;justify-content:space-between;align-items:end;margin:27px 0 13px}.section-title h2{font-size:20px;margin:0}.section-title span{font-size:12px;color:#718096}.progress{height:10px;background:#e9edf5;border-radius:20px;overflow:hidden;margin-top:9px}.fill{height:100%;background:#2474ff}.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.skill{background:#fff;border:1px solid #e0e7f2;border-radius:14px;padding:17px}.skill-head{display:flex;justify-content:space-between;font-weight:800;font-size:13px}.skill small{display:block;color:#718096;margin-top:5px}.badges{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.badge{background:#fff;border:1px solid #e0e7f2;border-radius:14px;padding:17px;text-align:center}.badge .emoji{font-size:30px}.badge b{display:block;margin-top:7px;font-size:12px}.badge small{display:block;color:#718096;margin-top:4px}.badge.locked{opacity:.4}.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.project{background:#fff;border:1px solid #e0e7f2;border-radius:15px;padding:19px}.project h3{margin:0 0 8px;font-size:16px}.project p{font-size:12px;color:#718096;line-height:1.6}.tag{display:inline-block;margin-top:10px;background:#eef4ff;color:#2474ff;padding:6px 9px;border-radius:20px;font-size:10px;font-weight:800}.empty{background:#fff;border:1px solid #e0e7f2;border-radius:15px;padding:30px;text-align:center;color:#718096}.actions{margin-top:20px;display:flex;gap:10px}.btn{display:inline-block;border:0;border-radius:9px;background:#2474ff;color:#fff;padding:11px 16px;text-decoration:none;font-weight:800;font-size:12px;cursor:pointer}.secondary{background:#eef4ff;color:#2474ff}@media(max-width:1100px){.cards{grid-template-columns:repeat(2,1fr)}.skills{grid-template-columns:1fr 1fr}.badges{grid-template-columns:repeat(3,1fr)}.projects{grid-template-columns:1fr 1fr}}@media(max-width:750px){.sidebar{position:relative;width:100%;height:auto}.main{margin-left:0}.topbar{padding:0 18px}.content{padding:18px}.cards,.skills,.projects{grid-template-columns:1fr}.badges{grid-template-columns:1fr 1fr}.logout{margin-top:20px}}
+</style>
+</head>
+<body>
+<aside class="sidebar"><div class="logo">Pavan <span>Educator</span></div><div class="title">STUDENT PANEL</div><ul class="menu">
+<li><a href="student-dashboard.html"><span class="icon">🏠</span>Dashboard</a></li>
+<li><a href="student-courses.html"><span class="icon">📚</span>Courses</a></li>
+<li><a href="student-videos.html"><span class="icon">🎥</span>Videos</a></li>
+<li><a href="student-materials.html"><span class="icon">📖</span>Study Materials</a></li>
+<li><a href="student-projects.html"><span class="icon">💻</span>My Projects</a></li>
+<li><a href="skills-portfolio.html" class="active"><span class="icon">🏆</span>My Skills & Portfolio</a></li>
+<li><a href="student-chat.html"><span class="icon">💬</span>Chat with Students</a></li>
+<li><a href="student-profile.html"><span class="icon">👤</span>My Profile</a></li>
+</ul><div class="logout"><a href="login.html" onclick="if(window.PavanDemoAuth)PavanDemoAuth.logout()">🚪 Logout</a></div></aside>
+<main class="main"><header class="topbar"><h1>My Skills & Portfolio</h1><div class="user"><div class="avatar">👤</div><span id="name">Student</span></div></header>
+<div class="content">
+<section class="hero"><h2 id="welcome">My Skills & Portfolio</h2><p>Turn your learning activities, challenges and projects into evidence of what you can do.</p><div class="actions"><a class="btn" href="practical-learning.html">🛠️ Continue Practical Learning</a><a class="btn secondary" href="student-projects.html">💻 Manage Projects</a></div></section>
+<div class="cards"><div class="card"><div class="metric" id="overall">0%</div><div class="muted">Practical Learning Progress</div><div class="progress"><div class="fill" id="overallBar" style="width:0%"></div></div></div><div class="card"><div class="metric" id="completed">0</div><div class="muted">Activities Completed</div></div><div class="card"><div class="metric" id="challenges">0</div><div class="muted">Challenges Completed</div></div><div class="card"><div class="metric" id="projects">0</div><div class="muted">Projects in Portfolio</div></div></div>
+
+<div class="section-title"><h2>🧠 My Future Skills</h2><span>Built through practical work</span></div>
+<section class="skills" id="skills"></section>
+
+<div class="section-title"><h2>🏆 My Badges</h2><span>Earn badges by doing, creating and completing</span></div>
+<section class="badges" id="badges"></section>
+
+<div class="section-title"><h2>💼 My Project Portfolio</h2><span>Academic + practical projects</span></div>
+<section class="projects" id="projectList"></section>
+
+<div class="section-title"><h2>📌 My Learning Evidence</h2><span>What I have actually done</span></div>
+<section class="card"><div id="evidence" class="muted"></div></section>
+</div></main>
+<script src="data/demo-auth.js?v=20261004-portfolio"></script>
+<script>
+(function(){
+const s=window.PavanDemoAuth&&PavanDemoAuth.current();if(!s){location.href='login.html?next=skills-portfolio.html';return}
+document.getElementById('name').textContent=s.name||'Student';document.getElementById('welcome').textContent=(s.name||'Student')+' — My Skills & Portfolio';
+const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+function read(k,f){try{const x=JSON.parse(localStorage.getItem(k)||JSON.stringify(f));return x||f}catch(e){return f}}
+const practical=read('pavanPracticalActivities_'+s.username,{activities:{},challenges:{},projects:[]});
+const studentProjects=read('pavanStudentProjects_'+s.username,[]);
+const acts=Object.values(practical.activities||{}),chs=Object.values(practical.challenges||{}),pProjects=practical.projects||[];
+const completed=acts.filter(x=>x.completed).length,challenges=chs.filter(x=>x.completed).length,projects=pProjects.length+studentProjects.length;
+const pct=Math.min(100,Math.round((completed+challenges+projects)/16*100));
+document.getElementById('overall').textContent=pct+'%';document.getElementById('overallBar').style.width=pct+'%';document.getElementById('completed').textContent=completed;document.getElementById('challenges').textContent=challenges;document.getElementById('projects').textContent=projects;
+const skillDefs=[['🤖','AI for Young Minds','ai'],['🧠','Critical Thinking','critical'],['💻','Digital Intelligence','digital'],['💰','Financial Intelligence','financial'],['🎤','Communication','communication'],['🎨','Creativity & Design','creativity'],['🚀','Entrepreneurship','entrepreneurship'],['❤️','Emotional Intelligence','emotional'],['🎯','Career Discovery','career']];
+document.getElementById('skills').innerHTML=skillDefs.map(([ico,name,id])=>{const x=practical.activities&&practical.activities[id];const v=x&&x.completed?100:x&&(x.started||x.work)?50:0;return '<div class="skill"><div class="skill-head"><span>'+ico+' '+name+'</span><span>'+v+'%</span></div><small>'+(v===100?'Completed':v?'In progress':'Not started')+'</small><div class="progress"><div class="fill" style="width:'+v+'%"></div></div></div>'}).join('');
+const badges=[['🌱','First Step','Start your first practical activity',acts.some(x=>x.started||x.work)],['🧠','Thinker','Complete 2 activities',completed>=2],['🌍','Challenge Solver','Complete a real-world challenge',challenges>=1],['🛠️','Builder','Create a project',projects>=1],['🏆','Practical Champion','Complete 6+ practical items',completed+challenges+projects>=6]];
+document.getElementById('badges').innerHTML=badges.map(b=>'<div class="badge '+(b[3]?'':'locked')+'"><div class="emoji">'+b[0]+'</div><b>'+b[1]+(b[3]?' ✓':' 🔒')+'</b><small>'+b[2]+'</small></div>').join('');
+const allProjects=[...pProjects.map(x=>({title:x.title,description:x.problem||x.solution||'Practical Learning Project',type:'Practical Project'})),...studentProjects.map(x=>({title:x.title,description:x.description,type:'Student Project'}))];
+document.getElementById('projectList').innerHTML=allProjects.length?allProjects.map(p=>'<article class="project"><h3>'+esc(p.title)+'</h3><p>'+esc(p.description)+'</p><span class="tag">'+esc(p.type)+'</span></article>').join(''):'<div class="empty">No projects yet. Start a practical activity or create a project.</div>';
+const started=acts.filter(x=>x.started||x.work).length;document.getElementById('evidence').innerHTML='You have started <b>'+started+'</b> practical activities, completed <b>'+completed+'</b>, completed <b>'+challenges+'</b> real-world challenges and created <b>'+projects+'</b> projects. Keep building your portfolio by turning every activity into something you can explain, demonstrate or showcase.';
+})();
+</script>
+<script src="assets/page-transition.js?v=20261004-portfolio"></script>
+</body></html>

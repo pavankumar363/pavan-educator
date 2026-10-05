@@ -1,0 +1,27 @@
+(function(){'use strict';
+const KEY='pavanFutureAIProgress';
+function getP(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return{}}}
+function saveP(p){localStorage.setItem(KEY,JSON.stringify(p))}
+function award(type,xp,label){const p=getP();p.xp=(p.xp||0)+xp;p.visits=p.visits||{};p.visits[type]=(p.visits[type]||0)+1;p.last=label;saveP(p);window.dispatchEvent(new CustomEvent('peProgress',{detail:p}))}
+function esc(v){const d=document.createElement('div');d.textContent=v||'';return d.innerHTML}
+function toast(msg){let t=document.querySelector('.pe-toast');if(!t){t=document.createElement('div');t.className='pe-toast';document.body.appendChild(t)}t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2400)}
+function workspace(){const path=location.pathname.toLowerCase();let cfg=null;
+if(path.includes('prompt-engineering'))cfg={title:'Prompt Playground',desc:'Write a prompt, improve it with structure, and save your practice.',placeholder:'Write your AI prompt here...',button:'Improve Prompt',out:'A strong prompt usually includes a clear goal, context, constraints and the desired output format.'};
+else if(path.includes('build-a-chatbot'))cfg={title:'Chatbot Builder',desc:'Define a simple chatbot concept and its purpose.',placeholder:'Example: A study assistant that helps students revise Python...',button:'Create Blueprint',out:'Your blueprint can include: role, audience, knowledge, conversation flow and safety rules.'};
+else if(path.includes('create-with-image-ai'))cfg={title:'Image Prompt Studio',desc:'Turn an idea into a structured image-generation prompt.',placeholder:'Describe the image you want to create...',button:'Build Prompt',out:'Add subject + environment + composition + lighting + style + aspect ratio.'};
+else if(path.includes('explore-voice-ai'))cfg={title:'Voice AI Planner',desc:'Design a voice assistant experience.',placeholder:'What should your voice assistant help people do?',button:'Plan Voice Flow',out:'Define wake phrase → user intent → AI response → confirmation → action.'};
+else if(path.includes('analyze-data-with-ai'))cfg={title:'AI Data Thinking Lab',desc:'Describe a dataset and choose the analysis goal.',placeholder:'Example: Student attendance by month and subject...',button:'Generate Analysis Plan',out:'Start with data quality, key metrics, patterns, comparisons and decisions.'};
+else if(path.includes('build-ai-workflow'))cfg={title:'AI Workflow Builder',desc:'Sketch an intelligent multi-step workflow.',placeholder:'Example: Collect question → search knowledge → generate answer → review...',button:'Build Workflow',out:'A useful workflow has: trigger → inputs → AI step → tools → validation → output.'};
+else return;
+const host=document.querySelector('.content')||document.querySelector('main')||document.body;const box=document.createElement('section');box.className='pe-workspace pe-reveal';box.innerHTML='<h2>🧪 '+cfg.title+'</h2><p>'+cfg.desc+'</p><textarea class="pe-field" rows="5" aria-label="'+cfg.title+' input" placeholder="'+cfg.placeholder+'"></textarea><div class="pe-work-actions"><button class="pe-btn pe-primary" type="button">'+cfg.button+' →</button><button class="pe-btn pe-secondary" type="button">Save Practice</button></div><div class="pe-output" aria-live="polite">Your result will appear here.</div>';host.appendChild(box);
+const input=box.querySelector('textarea'),out=box.querySelector('.pe-output');box.querySelector('.pe-primary').onclick=()=>{if(!input.value.trim()){toast('Add your idea first.');input.focus();return}out.textContent=cfg.out+' Your input: '+input.value.trim();award('lab',15,cfg.title);toast('Practice completed • +15 XP')};box.querySelector('.pe-secondary').onclick=()=>{if(!input.value.trim()){toast('Add something before saving.');return}const arr=JSON.parse(localStorage.getItem('pavanLabPractices')||'[]');arr.push({title:cfg.title,input:input.value.trim(),date:new Date().toISOString()});localStorage.setItem('pavanLabPractices',JSON.stringify(arr));award('save',10,'Saved '+cfg.title);toast('Saved to your workspace • +10 XP')};
+}
+function init(){document.documentElement.classList.add('pe-ready');let skip=document.createElement('a');skip.href='#main';skip.className='pe-skip';skip.textContent='Skip to main content';document.body.prepend(skip);let main=document.querySelector('main')||document.querySelector('.content');if(main&&!main.id)main.id='main';
+let bar=document.createElement('div');bar.className='pe-page-progress';document.body.appendChild(bar);window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;bar.style.width=(h>0?(scrollY/h*100):0)+'%'},{passive:true});
+document.querySelectorAll('section,.card,.panel,.feature,.learning-card,.quick-card').forEach(x=>x.classList.add('pe-reveal'));const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('pe-visible')}),{threshold:.08});document.querySelectorAll('.pe-reveal').forEach(x=>io.observe(x));
+const p=location.pathname.toLowerCase();if(p.includes('future-ai'))award('future',10,'Future AI explored');else if(p.includes('ai-lab'))award('labHub',10,'AI Lab opened');else if(p.match(/ai-fundamentals|generative-ai|ai-agents|ai-tools|computer-vision|language-ai|ai-robotics|real-world-ai/))award('topic',10,'AI topic explored');
+workspace();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+window.PavanPlatform={getProgress:getP,award,toast};
+})();

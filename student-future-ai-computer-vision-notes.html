@@ -756,4 +756,39 @@ h1{font-size:38px;margin:14px 0 8px}.hero p{max-width:760px;line-height:1.7;marg
 <p>Final Answer Key</p>
 <p>MCQs: 1-A through 10-A. Short-answer questions: answers should demonstrate correct concepts, examples, and responsible-use</p>
 <p>reasoning.</p></article>
-<footer class="footer">© 2026 Pavan Educator • Future AI • Computer Vision Notes</footer></main></body></html>
+<footer class="footer">© 2026 Pavan Educator • Future AI • Computer Vision Notes</footer></main><script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+async function downloadNotesPDF(){
+  const button=document.querySelector('.top-btn');
+  const original=button?button.innerHTML:'⬇ Download PDF';
+  if(button){button.innerHTML='Preparing PDF…';button.disabled=true;}
+  try{
+    const source=document.querySelector('.notes-body');
+    if(!source) throw new Error('Notes content not found');
+    const clone=source.cloneNode(true);
+    clone.style.background='#fff';
+    clone.style.padding='24px';
+    clone.style.maxWidth='900px';
+    clone.style.margin='0 auto';
+    clone.querySelectorAll('.blank-line').forEach(el=>el.style.height='28px');
+    const wrapper=document.createElement('div');
+    wrapper.style.background='#fff';
+    wrapper.style.width='100%';
+    wrapper.appendChild(clone);
+    document.body.appendChild(wrapper);
+    await html2pdf().set({
+      margin:[10,10,12,10],
+      filename:'Pavan-Educator-Future-AI-Chapter-Notes.pdf',
+      image:{type:'jpeg',quality:.96},
+      html2canvas:{scale:2,useCORS:true,backgroundColor:'#ffffff'},
+      jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},
+      pagebreak:{mode:['css','legacy']}
+    }).from(wrapper).save();
+    wrapper.remove();
+  }catch(err){
+    alert('PDF download could not be completed. Please use Print Notes → Save as PDF.');
+  }finally{
+    if(button){button.innerHTML=original;button.disabled=false;}
+  }
+}
+</script></body></html>

@@ -3,27 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="description" content="Explore everything available on Pavan Educator.">
+<meta name="description" content="Explore the learning ecosystem, tools, resources and student features available inside Pavan Educator.">
 <title>What We Have | Pavan Educator</title>
 <link rel="icon" type="image/svg+xml" href="assets/pavan-logo.svg">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,Helvetica,sans-serif;background:#f5f8ff;color:#172033}.navbar{height:74px;background:#fff;border-bottom:1px solid #e5eaf3;display:flex;align-items:center;justify-content:space-between;padding:0 7%;position:sticky;top:0;z-index:10}.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#172033;font-size:23px;font-weight:800}.logo img{width:42px}.logo span{color:#2563eb}.nav{display:flex;gap:28px;list-style:none}.nav a{text-decoration:none;color:#4d5870;font-size:14px;font-weight:600}.login{background:#2563eb;color:#fff!important;padding:11px 22px;border-radius:8px}.hero{text-align:center;padding:90px 7%;background:linear-gradient(135deg,#eef4ff,#fff)}.hero small{color:#2563eb;font-weight:800;letter-spacing:2px}.hero h1{font-size:48px;margin:14px 0}.hero h1 span{color:#2563eb}.hero p{max-width:700px;margin:auto;color:#687389;line-height:1.7;font-size:17px}.grid{max-width:1200px;margin:auto;padding:70px 7%;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}.card{background:#fff;border:1px solid #e1e7f2;border-radius:16px;padding:28px;min-height:220px;box-shadow:0 8px 25px rgba(30,70,140,.05);transition:.25s}.card:hover{transform:translateY(-5px);box-shadow:0 16px 35px rgba(30,70,140,.1)}.icon{font-size:35px;margin-bottom:18px}.card h2{font-size:20px;margin-bottom:10px}.card p{color:#687389;font-size:14px;line-height:1.65}.card a{display:inline-block;margin-top:18px;color:#2563eb;text-decoration:none;font-weight:700;font-size:13px}footer{background:#0e1525;color:#fff;text-align:center;padding:35px}footer p{color:#929caf;margin-top:8px;font-size:14px}@media(max-width:900px){.nav{display:none}.grid{grid-template-columns:1fr 1fr}}@media(max-width:550px){.grid{grid-template-columns:1fr}.hero h1{font-size:36px}.navbar{padding:0 5%}}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#2563eb;--blue2:#4f46e5;--ink:#12213b;--muted:#64748b;--line:#e3eaf4;--bg:#f5f8ff}
+body{font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+.navbar{height:76px;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 6%;position:sticky;top:0;z-index:20}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-size:23px;font-weight:900;letter-spacing:-.4px}.logo img{width:43px;height:43px}.logo span{color:var(--blue)}
+.nav{display:flex;gap:26px;list-style:none}.nav a{text-decoration:none;color:#506078;font-size:13px;font-weight:700}.nav a:hover,.nav a.active{color:var(--blue)}
+.login{background:var(--blue);color:#fff!important;padding:11px 23px;border-radius:9px;box-shadow:0 8px 18px rgba(37,99,235,.2)}
+.hero{position:relative;overflow:hidden;text-align:center;padding:82px 6% 72px;background:linear-gradient(135deg,#edf4ff 0%,#fff 52%,#eef1ff 100%);border-bottom:1px solid #e8eef7}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;pointer-events:none}.hero:before{width:260px;height:260px;left:-120px;top:-100px;background:rgba(37,99,235,.08)}.hero:after{width:300px;height:300px;right:-130px;bottom:-170px;background:rgba(79,70,229,.08)}
+.hero-inner{position:relative;z-index:1;max-width:900px;margin:auto}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--blue);font-size:11px;font-weight:900;letter-spacing:2.2px}.eyebrow:before{content:"";width:24px;height:2px;background:var(--blue);border-radius:3px}
+.hero h1{font-size:48px;line-height:1.1;letter-spacing:-1.5px;margin:15px 0}.hero h1 span{background:linear-gradient(90deg,var(--blue),var(--blue2));-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{max-width:700px;margin:auto;color:var(--muted);font-size:16px;line-height:1.8}
+.hero-actions{display:flex;justify-content:center;gap:12px;margin-top:25px;flex-wrap:wrap}.hero-btn{display:inline-block;text-decoration:none;padding:11px 18px;border-radius:9px;font-size:13px;font-weight:800}.hero-btn.primary{background:var(--blue);color:#fff;box-shadow:0 9px 20px rgba(37,99,235,.18)}.hero-btn.secondary{background:#fff;color:var(--blue);border:1px solid #d8e3f3}
+.stats{max-width:1050px;margin:-27px auto 0;padding:0 20px;position:relative;z-index:3;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.stat{background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px 20px;display:flex;align-items:center;gap:13px;box-shadow:0 10px 28px rgba(28,58,110,.07)}.stat-icon{width:42px;height:42px;border-radius:11px;background:#edf4ff;display:grid;place-items:center;font-size:20px}.stat b{display:block;font-size:14px}.stat span{font-size:11px;color:#78869b}
+.section{max-width:1180px;margin:auto;padding:62px 6% 78px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:27px}.section-head small{color:var(--blue);font-size:10px;font-weight:900;letter-spacing:1.8px}.section-head h2{font-size:30px;letter-spacing:-.6px;margin-top:5px}.section-head p{color:var(--muted);font-size:13px;margin-top:5px}.section-note{font-size:11px;color:#738197}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;padding:25px;min-height:245px;box-shadow:0 8px 25px rgba(30,70,140,.045);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;overflow:hidden}.card:after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;right:-40px;top:-45px;background:#edf4ff}.card:hover{transform:translateY(-5px);box-shadow:0 18px 38px rgba(30,70,140,.10);border-color:#cddbf1}.card-number{position:absolute;right:17px;top:14px;font-size:10px;font-weight:900;color:#9aa8bb;z-index:2}.icon{width:48px;height:48px;border-radius:13px;background:#edf4ff;display:grid;place-items:center;font-size:25px;margin-bottom:18px;position:relative;z-index:2}.card h2{font-size:18px;letter-spacing:-.2px;margin-bottom:8px;position:relative;z-index:2}.card p{color:#68778d;font-size:13px;line-height:1.7;min-height:66px;position:relative;z-index:2}.card a{display:inline-flex;align-items:center;gap:6px;margin-top:16px;color:var(--blue);text-decoration:none;font-weight:800;font-size:12px;position:relative;z-index:2}.card a:hover{gap:9px}.featured{background:linear-gradient(135deg,#eef5ff,#f5f2ff);border-color:#ccd9f2}.featured .icon{background:#fff}
+.cta{max-width:1180px;margin:0 auto 70px;padding:0 6%}.cta-box{border-radius:20px;padding:36px 40px;background:linear-gradient(110deg,#1769ee,#5146e5);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:25px;box-shadow:0 18px 40px rgba(45,79,190,.2)}.cta-box h2{font-size:26px;margin-bottom:6px}.cta-box p{color:#dbe7ff;font-size:13px}.cta-box a{background:#fff;color:var(--blue);padding:12px 18px;border-radius:9px;text-decoration:none;font-weight:900;font-size:12px;white-space:nowrap}
+footer{background:#0d182b;color:#fff;text-align:center;padding:38px 20px}footer strong{font-size:17px}footer p{color:#93a2b8;margin-top:8px;font-size:12px;line-height:1.8}
+@media(max-width:900px){.nav{display:none}.grid{grid-template-columns:1fr 1fr}.hero h1{font-size:40px}.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:1/-1}}
+@media(max-width:600px){.navbar{padding:0 5%}.logo{font-size:19px}.hero{padding:65px 5% 60px}.hero h1{font-size:34px}.hero p{font-size:14px}.stats{grid-template-columns:1fr;margin-top:18px}.stats .stat:last-child{grid-column:auto}.section{padding:48px 5% 60px}.section-head{display:block}.section-note{display:block;margin-top:12px}.grid{grid-template-columns:1fr}.card{min-height:0}.cta{padding:0 5%;margin-bottom:50px}.cta-box{padding:28px 24px;display:block}.cta-box a{display:inline-block;margin-top:18px}}
 </style>
 </head>
 <body>
-<header class="navbar"><a href="index.html" class="logo"><img src="assets/pavan-logo.svg" alt="Pavan Educator"><span>Pavan Educator</span></a><ul class="nav"><li><a href="index.html">Home</a></li><li><a href="what-we-have.html">What We Have</a></li><li><a href="digital-library.html">Library</a></li><li><a href="practical-learning.html">Practical Learning</a></li><li><a href="about.html">About</a></li></ul><a href="login.html" class="login">Login</a></header>
-<section class="hero"><small>WHAT WE HAVE</small><h1>Everything You Need to <span>Learn & Grow</span></h1><p>Explore the learning tools, resources and student features available inside Pavan Educator.</p></section>
-<section class="grid">
-<div class="card"><div class="icon">🎓</div><h2>Student Learning</h2><p>A dedicated student area for learning activities and academic resources.</p><a href="login.html">Open Student Area →</a></div>
-<div class="card"><div class="icon">📖</div><h2>Courses & Lessons</h2><p>Structured courses and lessons for technical education.</p><a href="login.html?next=courses.html">Explore Courses →</a></div>
-<div class="card"><div class="icon">🎥</div><h2>Video Learning</h2><p>Video-based lessons, demonstrations and practical learning resources.</p><a href="login.html?next=videos.html">Open Videos →</a></div>
-<div class="card"><div class="icon">📄</div><h2>Study Materials</h2><p>Notes, references, documentation and useful study resources.</p><a href="login.html?next=materials.html">Open Materials →</a></div>
-<div class="card"><div class="icon">🛠️</div><h2>Practical Learning</h2><p>Learn by doing through real-world activities, challenges, projects and future skills.</p><a href="practical-learning.html">Explore Practical Learning →</a></div>
+<header class="navbar">
+<a href="index.html" class="logo"><img src="assets/pavan-logo.svg" alt="Pavan Educator logo"><span>Pavan Educator</span></a>
+<ul class="nav">
+<li><a href="index.html">Home</a></li><li><a class="active" href="what-we-have.html">What We Have</a></li><li><a href="digital-library.html">Library</a></li><li><a href="practical-learning.html">Practical Learning</a></li><li><a href="about.html">About</a></li>
+</ul>
+<a href="login.html" class="login">Login</a>
+</header>
 
-<div class="card"><div class="icon">🚀</div><h2>Future Skills</h2><p>AI, critical thinking, digital intelligence, financial intelligence, communication, creativity and career discovery.</p><a href="practical-learning.html">Explore Future Skills →</a></div>
-<div class="card"><div class="icon">📊</div><h2>Progress Tracking</h2><p>Monitor completed learning activities and student progress.</p><a href="login.html">View Progress →</a></div>
-<div class="card"><div class="icon">🏆</div><h2>Certificates</h2><p>Completion certificates for eligible completed learning activities.</p><a href="login.html?next=certificates.html">View Certificates →</a></div>
+<section class="hero"><div class="hero-inner">
+<div class="eyebrow">WHAT WE HAVE</div>
+<h1>Everything You Need to <span>Learn & Grow</span></h1>
+<p>Discover the learning spaces, courses, practical experiences, Future AI resources and student tools built into Pavan Educator.</p>
+<div class="hero-actions"><a class="hero-btn primary" href="login.html">Start Learning →</a><a class="hero-btn secondary" href="#features">Explore Features ↓</a></div>
+</div></section>
+
+<div class="stats">
+<div class="stat"><div class="stat-icon">📚</div><div><b>Structured Learning</b><span>Courses, lessons and resources</span></div></div>
+<div class="stat"><div class="stat-icon">🚀</div><div><b>Future Ready</b><span>AI and practical skill development</span></div></div>
+<div class="stat"><div class="stat-icon">📊</div><div><b>Student Progress</b><span>Learn, build and track your journey</span></div></div>
+</div>
+
+<section class="section" id="features">
+<div class="section-head"><div><small>THE PAVAN EDUCATOR ECOSYSTEM</small><h2>Everything in one learning space</h2><p>Choose a learning area and continue your journey.</p></div><span class="section-note">9 learning experiences</span></div>
+<div class="grid">
+<div class="card"><span class="card-number">01</span><div class="icon">🎓</div><h2>Student Learning</h2><p>A dedicated student area for learning activities, projects and academic resources.</p><a href="login.html">Open Student Area →</a></div>
+<div class="card"><span class="card-number">02</span><div class="icon">📖</div><h2>Courses & Lessons</h2><p>Structured courses and lessons designed to make technical learning clear and organized.</p><a href="login.html?next=courses.html">Explore Courses →</a></div>
+<div class="card"><span class="card-number">03</span><div class="icon">🎥</div><h2>Video Learning</h2><p>Video-based explanations, demonstrations and visual learning resources.</p><a href="login.html?next=videos.html">Open Videos →</a></div>
+<div class="card"><span class="card-number">04</span><div class="icon">📄</div><h2>Study Materials</h2><p>Notes, references, documentation and useful resources for independent study.</p><a href="login.html?next=materials.html">Open Materials →</a></div>
+<div class="card"><span class="card-number">05</span><div class="icon">🛠️</div><h2>Practical Learning</h2><p>Learn by doing through real-world activities, challenges, projects and hands-on practice.</p><a href="practical-learning.html">Explore Practical Learning →</a></div>
+<div class="card featured"><span class="card-number">06</span><div class="icon">🤖</div><h2>Future AI</h2><p>Explore AI fundamentals, generative AI, agents, tools, vision, language, robotics and real-world AI.</p><a href="future-ai.html">Explore Future AI →</a></div>
+<div class="card"><span class="card-number">07</span><div class="icon">🚀</div><h2>Future Skills</h2><p>Build critical thinking, communication, creativity, digital intelligence and career-ready skills.</p><a href="practical-learning.html">Explore Future Skills →</a></div>
+<div class="card"><span class="card-number">08</span><div class="icon">📊</div><h2>Progress Tracking</h2><p>Monitor completed learning activities and follow your student learning journey.</p><a href="login.html">View Progress →</a></div>
+<div class="card"><span class="card-number">09</span><div class="icon">🏆</div><h2>Certificates</h2><p>Access completion certificates for eligible learning activities and achievements.</p><a href="login.html?next=certificates.html">View Certificates →</a></div>
+</div>
 </section>
+
+<section class="cta"><div class="cta-box"><div><h2>Ready to start learning?</h2><p>Enter Pavan Educator and continue your learning journey.</p></div><a href="login.html">Go to Student Login →</a></div></section>
+
 <footer><strong>Pavan Educator</strong><p>Learn • Build • Grow<br>© 2026 Pavan Educator. All Rights Reserved.</p></footer>
 <script src="assets/page-transition.js?v=20260911"></script>
 </body>

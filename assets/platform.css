@@ -10,3 +10,5 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 @media(max-width:800px){.pe-achievement-strip{grid-template-columns:1fr 1fr}.pe-workspace{padding:18px}}
 @media(max-width:480px){.pe-achievement-strip{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}.pe-reveal{opacity:1;transform:none}}
+
+body{transition:opacity .18s ease,transform .18s ease}body.pe-leave{opacity:.25;transform:translateY(3px)}img:not([loading]){content-visibility:auto}

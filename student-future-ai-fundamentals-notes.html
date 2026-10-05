@@ -49,7 +49,7 @@ a{color:inherit}
 @media(max-width:700px){.top{height:auto;min-height:62px;padding:10px 14px}.top-actions .top-btn{display:none}.wrap{padding:18px 12px 45px}.hero{padding:26px 22px;border-radius:18px}.hero h1{font-size:31px}.notes-body{padding:4px 20px 32px}.notes-head{padding:20px}.sidebar-links{grid-template-columns:1fr}.back{font-size:12px;padding:8px 10px}}
 @media print{.top,.sidebar,.hero .top-btn,.top-actions{display:none!important}.wrap{max-width:none;padding:0}.layout{display:block}.reader{border:0;box-shadow:none}.notes-body{padding:0}.chapter{break-inside:auto}.hero{color:#111;background:#fff;border:1px solid #ddd;box-shadow:none}}
 </style></head><body>
-<header class="top"><div class="brand">Pavan <span>Educator</span></div><div class="top-actions"><button class="top-btn" onclick="window.print()">Print Notes</button><a class="back" href="student-future-ai.html">← Student Future AI</a></div></header>
+<header class="top"><div class="brand">Pavan <span>Educator</span></div><div class="top-actions"><button class="top-btn" onclick="downloadNotesPDF()">⬇ Download PDF</button><button class="top-btn" onclick="window.print()">Print Notes</button><a class="back" href="student-future-ai.html">← Student Future AI</a></div></header>
 <main class="wrap"><section class="hero"><span class="badge">FUTURE AI • CHAPTER NOTES</span><h1>🧠 AI Fundamentals</h1><p>A structured five-chapter learning guide built from the supplied AI Fundamentals workbook. Read each chapter, review the key ideas, complete the activities and finish with the final assessment.</p><div class="hero-meta"><span>5 Chapters</span><span>Beginner Friendly</span><span>Practice + Revision</span><span>Final Assessment</span></div></section>
 <div class="layout"><aside class="sidebar"><div class="sidebar-title">Chapter navigation</div><nav class="sidebar-links">
 <a class="chapter-link" href="#chapter-1"><span class="num">01</span><span>What AI Is</span></a>
@@ -790,4 +790,39 @@ a{color:inherit}
   }
   window.addEventListener('scroll',update,{passive:true});update();
 })();
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+async function downloadNotesPDF(){
+  const button=document.querySelector('.top-btn');
+  const original=button?button.innerHTML:'⬇ Download PDF';
+  if(button){button.innerHTML='Preparing PDF…';button.disabled=true;}
+  try{
+    const source=document.querySelector('.notes-body');
+    if(!source) throw new Error('Notes content not found');
+    const clone=source.cloneNode(true);
+    clone.style.background='#fff';
+    clone.style.padding='24px';
+    clone.style.maxWidth='900px';
+    clone.style.margin='0 auto';
+    clone.querySelectorAll('.blank-line').forEach(el=>el.style.height='28px');
+    const wrapper=document.createElement('div');
+    wrapper.style.background='#fff';
+    wrapper.style.width='100%';
+    wrapper.appendChild(clone);
+    document.body.appendChild(wrapper);
+    await html2pdf().set({
+      margin:[10,10,12,10],
+      filename:'Pavan-Educator-AI-Fundamentals-Chapter-Notes.pdf',
+      image:{type:'jpeg',quality:.96},
+      html2canvas:{scale:2,useCORS:true,backgroundColor:'#ffffff'},
+      jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},
+      pagebreak:{mode:['css','legacy']}
+    }).from(wrapper).save();
+    wrapper.remove();
+  }catch(err){
+    alert('PDF download could not be completed. Please use Print Notes → Save as PDF.');
+  }finally{
+    if(button){button.innerHTML=original;button.disabled=false;}
+  }
+}
 </script></body></html>

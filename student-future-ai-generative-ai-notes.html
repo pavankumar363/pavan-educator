@@ -783,7 +783,7 @@ async function downloadNotesPDF(){
     document.body.appendChild(wrapper);
     await html2pdf().set({
       margin:[10,10,12,10],
-      filename:'Pavan-Educator-Future-AI-Chapter-Notes.pdf',
+      filename:'Pavan-Educator-'+((document.querySelector('.hero h1')?.textContent||'Future-AI-Notes').replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,''))+'-Chapter-Notes.pdf',
       image:{type:'jpeg',quality:.96},
       html2canvas:{scale:2,useCORS:true,backgroundColor:'#ffffff'},
       jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},

@@ -76,5 +76,5 @@ const body=document.getElementById('activityBody');body.innerHTML=presence.lengt
 }catch(e){console.error(e);document.getElementById('notificationBox').innerHTML='<strong>Live activity unavailable.</strong><br>Check the Supabase connection.';document.getElementById('activityBody').innerHTML='<tr><td colspan="5" class="no-data">Unable to load live student activity.</td></tr>'}}
 function logout(){sessionStorage.clear()}updateDashboard();setInterval(updateDashboard,10000);
 </script>
-<script src="assets/page-transition.js?v=20260929"></script></body></html>
+<script src="assets/page-transition.js?v=20260929"></script><script src="assets/admin-sidebar.js?v=20261006-1"></script></body></html>
 <style>.sidebar::-webkit-scrollbar{width:6px}.sidebar::-webkit-scrollbar-track{background:transparent}.sidebar::-webkit-scrollbar-thumb{background:#334563;border-radius:10px}.sidebar::-webkit-scrollbar-thumb:hover{background:#4d6a94}</style>

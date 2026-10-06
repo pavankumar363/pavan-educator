@@ -26,4 +26,4 @@ const user=sessionStorage.getItem('currentUser')||'pavan',role=sessionStorage.ge
 function toggle(b,k){const off=b.classList.toggle('off');localStorage.setItem(k,off?'off':'on');document.getElementById('status').textContent='✓ Preference saved'}
 function resetPreferences(){['siteAnimations','adminNotifications','adminCompact'].forEach(k=>localStorage.removeItem(k));document.getElementById('animations').classList.remove('off');document.getElementById('notifications').classList.remove('off');document.getElementById('compact').classList.add('off');document.getElementById('status').textContent='✓ Preferences reset'}
 [['animations','siteAnimations'],['notifications','adminNotifications'],['compact','adminCompact']].forEach(x=>{const v=localStorage.getItem(x[1]);if(v==='off')document.getElementById(x[0]).classList.add('off');if(v==='on')document.getElementById(x[0]).classList.remove('off')});
-</script><script src="assets/page-transition.js?v=20260929"></script></body></html>
+</script><script src="assets/page-transition.js?v=20260929"></script><script src="assets/admin-sidebar.js?v=20261006-1"></script></body></html>

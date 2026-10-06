@@ -24,4 +24,4 @@ async function save(e){e.preventDefault();const body={course_name:document.getEl
 async function deleteCourse(id){if(!confirm('Delete this course? Its lessons/videos may also need to be removed separately.'))return;try{await api('course_catalog?id=eq.'+id,{method:'DELETE',headers:{...H,Prefer:'return=minimal'}});await load()}catch(e){alert('Unable to delete course. '+e.message)}}
 function logout(){sessionStorage.removeItem('currentRole');sessionStorage.removeItem('currentUser');sessionStorage.removeItem('adminLoggedIn')}
 if(guard())load();
-</script><script src="assets/page-transition.js?v=20261001"></script></body></html>
+</script><script src="assets/page-transition.js?v=20261001"></script><script src="assets/admin-sidebar.js?v=20261006-1"></script></body></html>

@@ -23,6 +23,9 @@
       document.body.insertBefore(sidebar,document.body.firstChild);
     }
     sidebar.classList.add('pe-unified-sidebar');
+    sidebar.classList.remove('collapsed');
+    var oldMain=document.querySelector('.main,.student-page-main');
+    if(oldMain)oldMain.classList.remove('sidebar-collapsed');
     var isStudent=sidebar.classList.contains('student-sidebar');
     var menu=sidebar.querySelector('.student-menu,.menu');
     if(!menu){
@@ -68,6 +71,7 @@
       document.body.classList.toggle('pe-unified-sidebar-collapsed',c);
       toggle.innerHTML=c?'›':'‹';toggle.title=c?'Open sidebar':'Collapse sidebar';toggle.setAttribute('aria-label',toggle.title);
       localStorage.setItem('pavanStudentSidebarCollapsed',c?'1':'0');
+      localStorage.setItem('pavanSidebarCollapsed',c?'1':'0');
     }
     if(!toggle.dataset.peUnifiedBound){
       toggle.dataset.peUnifiedBound='1';

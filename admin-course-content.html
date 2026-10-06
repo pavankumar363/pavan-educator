@@ -20,4 +20,4 @@ async function save(e){e.preventDefault();const title=document.getElementById('f
 async function removeItem(id,t){if(!confirm('Delete this item?'))return;try{await api((t==='lesson'?'course_lessons':t==='video'?'course_videos':'digital_library')+'?id=eq.'+id,{method:'DELETE',headers:{...H,Prefer:'return=minimal'}});await load()}catch(e){alert('Could not delete item: '+e.message)}}
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.p).classList.add('active')});
 init();
-</script><script src="assets/page-transition.js?v=20261001"></script></body></html>
+</script><script src="assets/page-transition.js?v=20261001"></script><script src="assets/admin-sidebar.js?v=20261006-1"></script></body></html>

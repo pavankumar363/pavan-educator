@@ -58,8 +58,8 @@
     if(title)title.textContent='STUDENT PANEL';
     var oldToggle=sidebar.querySelector('#sidebarToggle,.sidebar-toggle');
     var toggle=oldToggle;
-    if(toggle){ var cleanToggle=toggle.cloneNode(true); toggle.parentNode.replaceChild(cleanToggle,toggle); toggle=cleanToggle; }
-    if(!toggle || !toggle.classList.contains('pe-unified-toggle')){
+    if(toggle){ var cleanToggle=toggle.cloneNode(true); toggle.parentNode.replaceChild(cleanToggle,toggle); toggle=cleanToggle; toggle.classList.add('pe-unified-toggle'); }
+    if(!toggle){
       toggle=document.createElement('button');toggle.type='button';toggle.className='pe-unified-toggle';toggle.innerHTML='‹';toggle.setAttribute('aria-label','Collapse sidebar');toggle.title='Collapse sidebar';sidebar.appendChild(toggle);
       toggle.addEventListener('click',function(){setCollapsed(!sidebar.classList.contains('pe-unified-collapsed'));});
     }

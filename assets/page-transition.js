@@ -1,5 +1,6 @@
 /* Pavan Educator - smooth page transitions */
 (function(){
+  window.addEventListener('pageshow',function(){var o=document.getElementById('pageTransition');if(o)o.remove();document.body&&document.body.classList.remove('pe-leave');});
   var founder=document.getElementById('founderPhoto');
   if(founder){
     founder.style.mixBlendMode='multiply';

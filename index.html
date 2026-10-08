@@ -22,7 +22,18 @@ footer{background:#091426;color:#fff;text-align:center;padding:34px 20px}footer 
 @media(max-width:600px){.navbar{height:68px;padding:0 5%}.logo{font-size:19px}.logo img{width:37px;height:37px}.auth-buttons .signup-btn{display:none}.login-btn{padding:9px 14px}.hero{padding:60px 6%}.hero h1{font-size:40px;letter-spacing:-1px}.hero p{font-size:14px}.hero-card{min-width:0;padding:30px 22px}.trust{grid-template-columns:1fr;margin-top:18px}.trust-card:last-child{grid-column:auto}.section{padding:55px 6%}.section-head h2{font-size:29px}.feature-grid,.what-grid{grid-template-columns:1fr}.cta{padding:0 6% 55px}.cta-box{display:block;padding:28px 24px}.cta-box a{display:inline-block;margin-top:18px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
-<link rel="stylesheet" href="assets/platform.css"><script defer src="assets/platform.js"></script></head>
+<link rel="stylesheet" href="assets/platform.css"><script defer src="assets/platform.js"></script><style id="pavan-ai-chat-style">
+#pavanAiChat{position:fixed;right:22px;bottom:22px;width:min(430px,calc(100vw - 28px));height:min(680px,calc(100vh - 110px));background:#fff;border:1px solid #dfe6f1;border-radius:18px;box-shadow:0 24px 70px rgba(16,34,68,.22);display:none;flex-direction:column;overflow:hidden;z-index:9999;font-family:Inter,Arial,sans-serif}
+#pavanAiChat.open{display:flex;animation:pavanChatIn .2s ease-out}
+@keyframes pavanChatIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+.pavan-ai-head{height:64px;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid #e8edf5;background:#fff}
+.pavan-ai-brand{display:flex;align-items:center;gap:10px}.pavan-ai-avatar{width:38px;height:38px;border-radius:11px;background:#edf4ff;display:grid;place-items:center;overflow:hidden}.pavan-ai-avatar img{width:31px;height:31px}.pavan-ai-title{font-size:14px;font-weight:850;color:#14213a}.pavan-ai-status{font-size:10px;color:#718096;margin-top:1px}.pavan-ai-actions{display:flex;gap:5px}.pavan-ai-iconbtn{width:32px;height:32px;border:0;background:transparent;border-radius:8px;color:#66758c;cursor:pointer;font-size:17px}.pavan-ai-iconbtn:hover{background:#f1f5fb;color:#2563eb}
+.pavan-ai-body{flex:1;overflow:auto;background:#fff;padding:22px 18px 18px;scroll-behavior:smooth}.pavan-ai-welcome{text-align:center;max-width:320px;margin:34px auto 22px}.pavan-ai-welcome .big{width:64px;height:64px;margin:auto;border-radius:18px;background:#edf4ff;display:grid;place-items:center;box-shadow:0 8px 24px rgba(37,99,235,.12)}.pavan-ai-welcome .big img{width:50px;height:50px}.pavan-ai-welcome h3{margin:15px 0 6px;font-size:20px;color:#14213a}.pavan-ai-welcome p{font-size:12px;color:#728198;line-height:1.65}
+.pavan-ai-msg{display:flex;gap:9px;margin:17px 0;align-items:flex-start}.pavan-ai-msg.user{justify-content:flex-end}.pavan-ai-msg .bubble{max-width:82%;padding:11px 14px;border-radius:15px;font-size:13px;line-height:1.6;white-space:pre-wrap}.pavan-ai-msg.assistant .bubble{background:#f4f7fb;color:#1d2a40;border-top-left-radius:5px}.pavan-ai-msg.user .bubble{background:#2563eb;color:#fff;border-top-right-radius:5px}.pavan-ai-msg .mini{width:27px;height:27px;border-radius:8px;background:#edf4ff;display:grid;place-items:center;flex:0 0 27px;overflow:hidden}.pavan-ai-msg .mini img{width:23px;height:23px}.pavan-ai-typing{display:flex;gap:4px;padding:4px}.pavan-ai-typing i{width:6px;height:6px;border-radius:50%;background:#8b99ad;animation:pavanDot 1s infinite}.pavan-ai-typing i:nth-child(2){animation-delay:.15s}.pavan-ai-typing i:nth-child(3){animation-delay:.3s}@keyframes pavanDot{0%,70%,100%{opacity:.25;transform:translateY(0)}35%{opacity:1;transform:translateY(-3px)}}
+.pavan-ai-suggestions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:12px 0}.pavan-ai-suggestion{padding:9px 10px;background:#fff;border:1px solid #dce5f1;border-radius:10px;color:#2563eb;font-weight:750;font-size:11px;cursor:pointer;text-align:left}.pavan-ai-suggestion:hover{background:#f3f7ff;border-color:#bcd0f0}
+.pavan-ai-composer{padding:11px 12px 12px;border-top:1px solid #e8edf5;background:#fff}.pavan-ai-inputwrap{display:flex;align-items:flex-end;border:1px solid #ccd8e8;border-radius:14px;background:#fff;box-shadow:0 2px 8px rgba(20,40,70,.04);padding:7px 8px 7px 12px}.pavan-ai-input{border:0;outline:0;resize:none;flex:1;min-height:24px;max-height:120px;font:13px Inter,Arial,sans-serif;color:#17233a;background:transparent;padding:4px 0}.pavan-ai-send{width:34px;height:34px;border:0;border-radius:9px;background:#2563eb;color:#fff;cursor:pointer;font-size:16px}.pavan-ai-send:disabled{opacity:.45;cursor:not-allowed}.pavan-ai-hint{text-align:center;font-size:9px;color:#8794a8;margin-top:7px}.pavan-ai-float{position:fixed;right:24px;bottom:24px;width:58px;height:58px;border:0;border-radius:50%;background:#2563eb;color:#fff;box-shadow:0 14px 30px rgba(37,99,235,.3);display:grid;place-items:center;z-index:9998;cursor:pointer}.pavan-ai-float img{width:36px;height:36px}.pavan-ai-float:hover{transform:translateY(-2px);box-shadow:0 18px 35px rgba(37,99,235,.38)}body.pavan-chat-open .pavan-ai-float{display:none}
+@media(max-width:600px){#pavanAiChat{right:0;bottom:0;width:100vw;height:100vh;border-radius:0}.pavan-ai-float{right:16px;bottom:16px}}
+</style></head>
 <body>
 <header class="navbar">
 <a href="index.html" class="logo"><img src="assets/pavan-logo.svg" alt="Pavan Educator logo"><span>Pavan Educator</span></a>
@@ -53,4 +64,49 @@ footer{background:#091426;color:#fff;text-align:center;padding:34px 20px}footer 
 </script>
 <script src="data/demo-auth.js"></script>
 <script src="assets/page-transition.js?v=20261002"></script>
-<script src="assets/world-class.js?v=20261005"></script></body></html>
+<script src="assets/world-class.js?v=20261005"></script><button class="pavan-ai-float" id="pavanAiFloat" aria-label="Open Pavan AI"><img src="assets/pavan-logo.svg" alt=""></button>
+<section id="pavanAiChat" aria-label="Pavan AI Assistant">
+<header class="pavan-ai-head"><div class="pavan-ai-brand"><div class="pavan-ai-avatar"><img src="assets/pavan-logo.svg" alt=""></div><div><div class="pavan-ai-title">Pavan AI</div><div class="pavan-ai-status">Learning assistant • Ready</div></div></div><div class="pavan-ai-actions"><button class="pavan-ai-iconbtn" id="pavanNewChat" title="New chat">＋</button><button class="pavan-ai-iconbtn" id="pavanCloseChat" title="Close">×</button></div></header>
+<div class="pavan-ai-body" id="pavanAiBody"><div class="pavan-ai-welcome" id="pavanAiWelcome"><div class="big"><img src="assets/pavan-logo.svg" alt=""></div><h3>How can I help you?</h3><p>Ask me about courses, AI, projects, learning plans, or anything inside Pavan Educator.</p><div class="pavan-ai-suggestions"><button class="pavan-ai-suggestion" data-prompt="Create a learning plan for me">Create a learning plan</button><button class="pavan-ai-suggestion" data-prompt="What should I learn next?">What should I learn next?</button><button class="pavan-ai-suggestion" data-prompt="Explain AI fundamentals">Explain AI</button><button class="pavan-ai-suggestion" data-prompt="How is my learning progress?">My progress</button></div></div></div>
+<form class="pavan-ai-composer" id="pavanAiForm"><div class="pavan-ai-inputwrap"><textarea class="pavan-ai-input" id="pavanAiInput" rows="1" placeholder="Message Pavan AI..."></textarea><button class="pavan-ai-send" id="pavanAiSend" type="submit" disabled>↑</button></div><div class="pavan-ai-hint">Pavan AI can make mistakes. Check important information.</div></form></section><script id="pavan-ai-chat-script">
+(function(){
+const chat=document.getElementById('pavanAiChat'),float=document.getElementById('pavanAiFloat'),body=document.getElementById('pavanAiBody'),input=document.getElementById('pavanAiInput'),send=document.getElementById('pavanAiSend'),form=document.getElementById('pavanAiForm'),welcome=document.getElementById('pavanAiWelcome');
+if(!chat)return;
+let history=[];try{history=JSON.parse(localStorage.getItem('pavanAiChatHistory')||'[]')}catch(e){}
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function save(){localStorage.setItem('pavanAiChatHistory',JSON.stringify(history.slice(-30)))}
+function render(){
+ body.querySelectorAll('.pavan-ai-msg').forEach(e=>e.remove());
+ if(!history.length){welcome.style.display='block';return}
+ welcome.style.display='none';
+ history.forEach(m=>{const row=document.createElement('div');row.className='pavan-ai-msg '+m.role;const bubble=document.createElement('div');bubble.className='bubble';bubble.textContent=m.text;if(m.role==='assistant'){const mini=document.createElement('div');mini.className='mini';mini.innerHTML='<img src="assets/pavan-logo.svg" alt="">';row.appendChild(mini)}row.appendChild(bubble);body.appendChild(row)});
+ body.scrollTop=body.scrollHeight;
+}
+function open(){chat.classList.add('open');document.body.classList.add('pavan-chat-open');render();input.focus()}
+function close(){chat.classList.remove('open');document.body.classList.remove('pavan-chat-open')}
+function reply(text){
+ const q=text.toLowerCase();
+ if(q.includes('learning plan'))return 'Absolutely. Start with AI Fundamentals, then Generative AI, AI Agents, AI Tools, Computer Vision, Language AI, AI + Robotics and Real-World AI. I can turn this into a weekly plan for you.';
+ if(q.includes('what should')||q.includes('next'))return 'Based on the Pavan Educator pathway, start with AI Fundamentals. Then practise with AI Lab and build a small project in My Projects.';
+ if(q.includes('explain ai')||q.includes('ai fundamentals'))return 'AI (Artificial Intelligence) is the ability of computer systems to perform tasks that normally require human intelligence, such as understanding language, recognizing patterns, learning from data and making decisions.';
+ if(q.includes('progress'))return 'Your learning progress is available in the Student Dashboard. Open the dashboard to see projects, practical activities, attendance and Future AI progress.';
+ if(q.includes('course'))return 'You can explore structured courses from the Courses page. Choose a topic, learn the lessons, practise, and build a project.';
+ if(q.includes('project'))return 'Open My Projects from the Student Panel to create, manage and showcase your learning projects.';
+ return 'I can help with Pavan Educator courses, AI learning, projects, study plans and navigation. Try asking me “Explain AI”, “What should I learn next?”, or “Create a learning plan”.';
+}
+async function ask(text){
+ if(!text.trim())return;
+ history.push({role:'user',text:text.trim()});save();render();
+ const typing=document.createElement('div');typing.className='pavan-ai-msg assistant';typing.innerHTML='<div class="mini"><img src="assets/pavan-logo.svg" alt=""></div><div class="bubble"><div class="pavan-ai-typing"><i></i><i></i><i></i></div></div>';body.appendChild(typing);body.scrollTop=body.scrollHeight;send.disabled=true;
+ await new Promise(r=>setTimeout(r,450+Math.min(900,text.length*8)));
+ typing.remove();history.push({role:'assistant',text:reply(text)});save();render();send.disabled=!input.value.trim();
+}
+float.onclick=open;document.getElementById('pavanCloseChat').onclick=close;
+document.getElementById('pavanNewChat').onclick=function(){history=[];save();render();input.value='';input.focus()};
+document.querySelectorAll('.pavan-ai-suggestion').forEach(b=>b.onclick=()=>{open();ask(b.dataset.prompt)});
+input.addEventListener('input',()=>{send.disabled=!input.value.trim();input.style.height='auto';input.style.height=Math.min(input.scrollHeight,120)+'px'});
+input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();form.requestSubmit()}});
+form.addEventListener('submit',e=>{e.preventDefault();const t=input.value;input.value='';input.style.height='auto';send.disabled=true;ask(t)});
+render();
+})();
+</script></body></html>

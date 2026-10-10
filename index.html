@@ -98,8 +98,18 @@ async function ask(text){
  if(!text.trim())return;
  history.push({role:'user',text:text.trim()});save();render();
  const typing=document.createElement('div');typing.className='pavan-ai-msg assistant';typing.innerHTML='<div class="mini"><img src="assets/pavan-logo.svg" alt=""></div><div class="bubble"><div class="pavan-ai-typing"><i></i><i></i><i></i></div></div>';body.appendChild(typing);body.scrollTop=body.scrollHeight;send.disabled=true;
- await new Promise(r=>setTimeout(r,450+Math.min(900,text.length*8)));
- typing.remove();history.push({role:'assistant',text:reply(text)});save();render();send.disabled=!input.value.trim();
+ try{
+   const messages=history.slice(-24).map(m=>({role:m.role,content:m.text}));
+   const response=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages})});
+   const data=await response.json().catch(()=>({}));
+   if(!response.ok)throw new Error(data.error||'Pavan AI could not answer. Please try again.');
+   if(typeof data.reply!=='string'||!data.reply.trim())throw new Error('Pavan AI returned an empty response. Please try again.');
+   history.push({role:'assistant',text:data.reply.trim()});save();
+ }catch(error){
+   history.push({role:'assistant',text:'I could not connect to the AI service. '+(error&&error.message?error.message:'Please try again.')+' If this site is still running on GitHub Pages, open the Vercel deployment that hosts the /api/chat backend.'});save();
+ }finally{
+   typing.remove();render();send.disabled=!input.value.trim();
+ }
 }
 float.onclick=open;document.getElementById('pavanCloseChat').onclick=close;
 document.getElementById('pavanNewChat').onclick=function(){history=[];save();render();input.value='';input.focus()};

@@ -100,7 +100,7 @@ async function ask(text){
  const typing=document.createElement('div');typing.className='pavan-ai-msg assistant';typing.innerHTML='<div class="mini"><img src="assets/pavan-logo.svg" alt=""></div><div class="bubble"><div class="pavan-ai-typing"><i></i><i></i><i></i></div></div>';body.appendChild(typing);body.scrollTop=body.scrollHeight;send.disabled=true;
  try{
    const messages=history.slice(-24).map(m=>({role:m.role,content:m.text}));
-   const response=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages})});
+   const response=await fetch('https://jlrmmkgcjckkayearlca.supabase.co/functions/v1/pavan-ai-chat',{method:'POST',headers:{'Content-Type':'application/json','apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impscm1ta2djamNra2F5ZWFybGNhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc3NDk5OTMsImV4cCI6MjEwMzMyNTk5M30.xHktxRTZt-nUG89B-DVdn1m7MRcYh8k5HEAbtne4Hng','Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impscm1ta2djamNra2F5ZWFybGNhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc3NDk5OTMsImV4cCI6MjEwMzMyNTk5M30.xHktxRTZt-nUG89B-DVdn1m7MRcYh8k5HEAbtne4Hng'},body:JSON.stringify({messages})});
    const data=await response.json().catch(()=>({}));
    if(!response.ok)throw new Error(data.error||'Pavan AI could not answer. Please try again.');
    if(typeof data.reply!=='string'||!data.reply.trim())throw new Error('Pavan AI returned an empty response. Please try again.');

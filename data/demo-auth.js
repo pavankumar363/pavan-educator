@@ -60,7 +60,17 @@
     current:function(){
       try{
         const s=JSON.parse(sessionStorage.getItem('pavanDemoStudent')||localStorage.getItem('pavanDemoStudent')||'null');
-        if(s && s.username){ sessionStorage.setItem('pavanDemoStudent',JSON.stringify(s)); startHeartbeat(s.username); }
+        if(s && s.username){
+          const record=students().find(x=>String(x.username).toLowerCase()===String(s.username).toLowerCase());
+          // Keep the logged-in student's actual name from the saved session or student record.
+          s.name=String(s.name||s.fullName||(record&&record.name)||s.username).trim();
+          s.username=String(s.username).trim();
+          if(!s.studentClass && record) s.studentClass=record.studentClass||'';
+          sessionStorage.setItem('pavanDemoStudent',JSON.stringify(s));
+          localStorage.setItem('pavanDemoStudent',JSON.stringify(s));
+          sessionStorage.setItem('studentName',s.name);
+          startHeartbeat(s.username);
+        }
         return s;
       }catch(e){return null;}
     },

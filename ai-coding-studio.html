@@ -6,7 +6,7 @@ document.getElementById('example').onchange=loadExample;document.getElementById(
 document.getElementById('run').onclick=()=>{
  const source=JSON.stringify(code.value);
  const openTag='<scr'+'ipt>';
- const closeTag='<\\/scr'+'ipt>';
+ const closeTag='</scr'+'ipt>';
  const wrapped='<!doctype html><html><head><meta charset="utf-8"><style>body{font-family:Arial,sans-serif;color:#14213a;margin:0}button{cursor:pointer;padding:12px 18px;background:#2563eb;color:white;border:0;border-radius:8px}</style></head><body>'+openTag+'const _logs=[];const _log=(...args)=>_logs.push(args.map(v=>{try{return typeof v==="object"?JSON.stringify(v):String(v)}catch(e){return String(v)}}).join(" "));console.log=_log;console.warn=(...a)=>_log("WARN:",...a);console.error=(...a)=>_log("ERROR:",...a);try{eval('+source+')}catch(e){_log("ERROR:",e.message);document.body.insertAdjacentHTML("beforeend","<pre style=\\"color:#b91c1c;padding:12px\\">"+String(e.message)+"</pre>")}parent.postMessage({type:"pavan-code-log",logs:_logs},"*");'+closeTag+'</body></html>';
  frame.srcdoc=wrapped;log.textContent='Code executed in the isolated preview. Console messages appear here when the preview reports them.';document.getElementById('runStatus').textContent='RAN';
 };

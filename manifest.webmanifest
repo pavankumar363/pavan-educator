@@ -1,0 +1,13 @@
+{
+  "name":"Pavan Educator — The Future Learning Platform",
+  "short_name":"Pavan Educator",
+  "description":"Courses, practical learning, Future AI and student progress.",
+  "start_url":"./index.html",
+  "scope":"./",
+  "display":"standalone",
+  "background_color":"#f5f8ff",
+  "theme_color":"#2563eb",
+  "icons":[
+    {"src":"assets/pavan-logo.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}
+  ]
+}

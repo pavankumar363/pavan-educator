@@ -1,0 +1,40 @@
+(function(){
+'use strict';
+const KEY='pavanEducatorLearningProgressV1';
+const catalogue=[
+['Learning Paths','learning-paths.html','Learning'],
+['Home','index.html','Platform'],['Practical Learning','practical-learning.html','Practical'],['Virtual Science Lab','virtual-science-lab.html','Practical'],['Virtual Field Trips','virtual-field-trips.html','Practical'],['3D Learning Explorer','3d-learning-explorer.html','Practical'],['Robotics Engineering Lab','robotics-engineering-lab.html','Practical'],['AI & Coding Studio','ai-coding-studio.html','Practical'],['Smart City Digital Twin','smart-city-digital-twin.html','Practical'],['Innovation Studio','innovation-showcase.html','Practical'],['Future AI','future-ai.html','Future AI'],['AI Fundamentals','ai-fundamentals.html','Future AI'],['Generative AI','generative-ai.html','Future AI'],['AI Agents','ai-agents.html','Future AI'],['AI Tools','ai-tools.html','Future AI'],['Computer Vision','computer-vision.html','Future AI'],['Language AI','language-ai.html','Future AI'],['AI + Robotics','ai-robotics.html','Future AI'],['Real World AI','ai-in-the-real-world.html','Future AI'],['Learning Center','student-learning-center.html','Student'],['Study Materials','student-materials.html','Student','PDF PDFs notes worksheets books downloads study guides'],['Videos','student-videos.html','Student','video lecture tutorial watch'],['Quizzes','student-quiz.html','Student','quiz test exam assessment mcq questions answers auto grading'],['My Progress','student-progress.html','Student','progress dashboard achievements completed lessons xp results'],['AI Lab','ai-lab.html','AI','AI assistant chatbot prompt engineering artificial intelligence'],['About Pavan Educator','about.html','Platform'],['What We Have','what-we-have.html','Platform']
+];
+function read(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}}
+function write(data){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){}}
+function pageName(){const path=location.pathname.split('/').pop()||'index.html';return catalogue.find(x=>x[1]===path)?.[0]||document.title.replace(/\s*[|—-].*$/,'').trim()||path}
+function track(){const data=read();data.visited=data.visited||{};const p=location.pathname.split('/').pop()||'index.html';data.visited[p]=Date.now();write(data)}
+function overlay(){
+ if(document.querySelector('.pe-overlay'))return;
+ const previousFocus=document.activeElement;
+ const layer=document.createElement('div');layer.className='pe-overlay';layer.innerHTML='<section class="pe-panel" role="dialog" aria-modal="true" aria-label="Search and learning progress"><header class="pe-panel-head"><div><h2>Pavan Educator Search</h2><small style="color:#64748b">Find lessons, practical labs, materials and tools</small></div><button class="pe-close" type="button">Close ✕</button></header><div class="pe-panel-body"><input class="pe-search" type="search" placeholder="Search learning content…" aria-label="Search learning content"><div class="pe-results"></div><div class="pe-progress-card"><div class="pe-progress-head"><h3>Your learning progress</h3><span class="pe-chip" data-pe-count>0 completed</span></div><p>Progress is stored in this browser on this device. It is not yet synced to an account.</p><div class="pe-progress-track"><span data-pe-bar></span></div><div class="pe-progress-links"><button type="button" class="pe-mini-btn" data-pe-complete>Mark this page complete</button><a class="pe-mini-btn" href="student-progress.html">Open progress page</a><a class="pe-mini-btn" href="ai-lab.html">Open AI Study Lab</a></div></div></div></section>';
+ document.body.appendChild(layer);
+ const input=layer.querySelector('.pe-search'),results=layer.querySelector('.pe-results');
+ function render(q){const query=q.trim().toLowerCase();const list=catalogue.filter(x=>x.join(' ').toLowerCase().includes(query));results.innerHTML=list.length?list.map(x=>'<a class="pe-result" href="'+x[1]+'"><span><strong>'+x[0]+'</strong><small>'+x[2]+' learning resource</small></span><span class="pe-chip">Open →</span></a>').join(''):'<div class="pe-empty">No matching topics. Try “robotics”, “PDF notes”, “AI assistant” or “quiz”.</div>'}
+ function update(){const d=read(),done=Object.keys(d.completed||{}).length,total=catalogue.length;layer.querySelector('[data-pe-count]').textContent=done+' activities completed';layer.querySelector('[data-pe-bar]').style.width=Math.min(100,done/total*100)+'%';const page=location.pathname.split('/').pop()||'index.html';const button=layer.querySelector('[data-pe-complete]');const completed=Boolean((d.completed||{})[page]);button.textContent=completed?'✓ Page marked complete':'Mark this page complete';button.disabled=completed;button.setAttribute('aria-pressed',String(completed));}
+ function close(){layer.remove();if(previousFocus&&typeof previousFocus.focus==='function')previousFocus.focus();document.removeEventListener('keydown',onKey)}
+ function onKey(e){if(e.key==='Escape')close();if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();input.focus()}}
+ input.addEventListener('input',()=>render(input.value));render('');update();input.focus();
+ layer.querySelector('.pe-close').onclick=close;
+ layer.addEventListener('click',e=>{if(e.target===layer)close()});
+ document.addEventListener('keydown',onKey);
+ layer.querySelector('[data-pe-complete]').onclick=()=>{const d=read();d.completed=d.completed||{};d.completed[location.pathname.split('/').pop()||'index.html']=Date.now();write(d);update()};
+}
+function installProgress(){const d=read(),done=Object.keys(d.completed||{}).length,total=catalogue.length;
+ const main=document.querySelector('.content')||document.querySelector('main')||document.body;
+ if(document.querySelector('[data-pe-progress-widget]'))return;
+ const card=document.createElement('section');card.className='pe-progress-card';card.setAttribute('data-pe-progress-widget','');
+ card.innerHTML='<div class="pe-progress-head"><h3>Learning Progress</h3><span class="pe-chip" data-pe-count>'+done+' activities completed</span></div><p>Keep exploring lessons and practical experiences. Progress is saved locally in this browser.</p><div class="pe-progress-track"><span data-pe-bar style="width:'+Math.min(100,done/total*100)+'%"></span></div><div class="pe-progress-links"><button class="pe-mini-btn" data-pe-search>Search learning content</button><a class="pe-mini-btn" href="student-learning-center.html">Continue learning</a><a class="pe-mini-btn" href="ai-lab.html">AI Study Lab</a></div>';
+ const welcome=main.querySelector('.welcome');if(welcome)welcome.insertAdjacentElement('afterend',card);else main.insertBefore(card,main.firstChild);
+ card.querySelector('[data-pe-search]').onclick=overlay;
+}
+function addFab(){if(document.querySelector('.pe-fab'))return;const b=document.createElement('button');b.className='pe-fab';b.type='button';b.textContent='⌕ Search & Progress';b.setAttribute('aria-label','Open learning search and progress');b.onclick=overlay;document.body.appendChild(b)}
+function addInstall(){let deferred=null;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;const b=document.createElement('button');b.className='pe-mini-btn pe-install';b.textContent='Install Pavan Educator';b.style.display='inline-block';b.onclick=async()=>{if(!deferred)return;deferred.prompt();await deferred.userChoice;deferred=null;b.remove()};const target=document.querySelector('.auth-buttons')||document.querySelector('.topbar');if(target)target.appendChild(b)});if('serviceWorker'in navigator&&/^https?:$/.test(location.protocol)){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}))}}
+function init(){track();addFab();if(location.pathname.endsWith('student-dashboard.html')||location.pathname.endsWith('student-progress.html'))installProgress();addInstall()}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();

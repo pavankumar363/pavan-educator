@@ -11,7 +11,24 @@ if(document.getElementById("pewFab"))return;
 const link=document.createElement("link");link.rel="stylesheet";link.href="assets/world-class.css?v=20261005";document.head.appendChild(link);
 const fab=document.createElement("button");fab.id="pewFab";fab.className="pew-fab";fab.textContent="🤖";fab.title="Pavan AI Learning Assistant";document.body.appendChild(fab);
 const panel=document.createElement("section");panel.className="pew-panel";panel.innerHTML='<div class="pew-head"><strong>Pavan AI Learning Assistant</strong><button class="pew-close">×</button></div><div class="pew-body"><div class="pew-msg" id="pewMsg">Welcome. I can guide your learning journey.</div><div class="pew-actions"><button class="pew-action" data-a="plan">Learning Plan</button><button class="pew-action" data-a="next">What next?</button><button class="pew-action" data-a="ai">Explain AI</button><button class="pew-action" data-a="progress">Progress</button></div></div>';document.body.appendChild(panel);
-fab.onclick=()=>panel.classList.toggle("show");panel.querySelector(".pew-close").onclick=()=>panel.classList.remove("show");
+// Drag the launcher and chat panel independently; positions persist on this device.
+const POS_KEY="pavanJarvisWidgetPositions";
+let positions={};try{positions=JSON.parse(localStorage.getItem(POS_KEY)||"{}")}catch(e){positions={}}
+function savePositions(){try{localStorage.setItem(POS_KEY,JSON.stringify(positions))}catch(e){}}
+function applyPosition(el,key){const p=positions[key];if(!p)return;const r=el.getBoundingClientRect(),x=Math.max(8,Math.min(innerWidth-r.width-8,p.x)),y=Math.max(8,Math.min(innerHeight-r.height-8,p.y));el.style.left=x+"px";el.style.top=y+"px";el.style.right="auto";el.style.bottom="auto"}
+function makeDraggable(el,handle,key,onTap){
+let startX=0,startY=0,originX=0,originY=0,moved=false,active=false;
+handle.style.touchAction="none";handle.style.cursor="grab";
+handle.addEventListener("pointerdown",e=>{if(e.button!==undefined&&e.button!==0)return;if(e.target.closest("button")&&e.target!==handle)return;active=true;moved=false;startX=e.clientX;startY=e.clientY;const r=el.getBoundingClientRect();originX=r.left;originY=r.top;handle.setPointerCapture(e.pointerId);});
+handle.addEventListener("pointermove",e=>{if(!active)return;const dx=e.clientX-startX,dy=e.clientY-startY;if(Math.abs(dx)+Math.abs(dy)>4)moved=true;if(!moved)return;const x=Math.max(8,Math.min(innerWidth-el.offsetWidth-8,originX+dx)),y=Math.max(8,Math.min(innerHeight-el.offsetHeight-8,originY+dy));el.style.left=x+"px";el.style.top=y+"px";el.style.right="auto";el.style.bottom="auto";});
+function finish(e){if(!active)return;active=false;if(moved){const r=el.getBoundingClientRect();positions[key]={x:r.left,y:r.top};savePositions()}else if(onTap)onTap();handle.style.cursor="grab"}
+handle.addEventListener("pointerup",finish);handle.addEventListener("pointercancel",finish);
+}
+makeDraggable(fab,fab,"fab",()=>panel.classList.toggle("show"));
+const head=panel.querySelector(".pew-head");makeDraggable(panel,head,"panel");
+panel.querySelector(".pew-close").onclick=()=>panel.classList.remove("show");
+applyPosition(fab,"fab");applyPosition(panel,"panel");
+window.addEventListener("resize",()=>{applyPosition(fab,"fab");if(positions.panel)applyPosition(panel,"panel")});
 panel.querySelectorAll("[data-a]").forEach(b=>b.onclick=()=>{const m=panel.querySelector("#pewMsg"),a=b.dataset.a;m.textContent=a==="plan"?"Learn → Watch → Practice → Quiz → Project → Portfolio.":a==="next"?"Continue your Future AI topic or open an AI Lab activity.":a==="ai"?"AI enables computers to perform tasks such as recognizing patterns, understanding language and making predictions.":"XP: "+state.xp+" • Learning streak: "+state.streak+" day(s).";state.xp+=2;save()});
 const toolbar=document.createElement("div");toolbar.className="pew-toolbar";toolbar.innerHTML='<button class="pew-tool" id="pewTop">↑ Top</button><button class="pew-tool" id="pewAccess">Accessibility</button>';document.body.appendChild(toolbar);
 toolbar.querySelector("#pewTop").onclick=()=>scrollTo({top:0,behavior:"smooth"});toolbar.querySelector("#pewAccess").onclick=()=>document.documentElement.classList.toggle("pew-access");

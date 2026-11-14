@@ -24,7 +24,7 @@ handle.addEventListener("pointermove",e=>{if(!active)return;const dx=e.clientX-s
 function finish(e){if(!active)return;active=false;if(moved){const r=el.getBoundingClientRect();positions[key]={x:r.left,y:r.top};savePositions()}else if(onTap)onTap();handle.style.cursor="grab"}
 handle.addEventListener("pointerup",finish);handle.addEventListener("pointercancel",finish);
 }
-makeDraggable(fab,fab,"fab",()=>panel.classList.toggle("show"));
+makeDraggable(fab,fab,"fab",()=>{panel.classList.toggle("show");if(panel.classList.contains("show"))requestAnimationFrame(()=>applyPosition(panel,"panel"))});
 const head=panel.querySelector(".pew-head");makeDraggable(panel,head,"panel");
 panel.querySelector(".pew-close").onclick=()=>panel.classList.remove("show");
 applyPosition(fab,"fab");applyPosition(panel,"panel");

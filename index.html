@@ -21,6 +21,31 @@ footer{background:#091426;color:#fff;text-align:center;padding:34px 20px}footer 
 @media(max-width:950px){.nav-links{display:none}.hero{flex-direction:column;text-align:center}.hero-content{max-width:760px}.hero p{margin:auto}.hero-buttons{justify-content:center}.feature-grid{grid-template-columns:1fr 1fr}.what-grid{grid-template-columns:1fr 1fr}.hero-card{width:min(420px,100%)}.trust{grid-template-columns:1fr 1fr}.trust-card:last-child{grid-column:1/-1}}
 @media(max-width:600px){.navbar{height:68px;padding:0 5%}.logo{font-size:19px}.logo img{width:37px;height:37px}.auth-buttons .signup-btn{display:none}.login-btn{padding:9px 14px}.hero{padding:60px 6%}.hero h1{font-size:40px;letter-spacing:-1px}.hero p{font-size:14px}.hero-card{min-width:0;padding:30px 22px}.trust{grid-template-columns:1fr;margin-top:18px}.trust-card:last-child{grid-column:auto}.section{padding:55px 6%}.section-head h2{font-size:29px}.feature-grid,.what-grid{grid-template-columns:1fr}.cta{padding:0 6% 55px}.cta-box{display:block;padding:28px 24px}.cta-box a{display:inline-block;margin-top:18px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+/* Founder spotlight */
+.founder-section{padding:82px 7%;background:linear-gradient(135deg,#eef4ff 0%,#fff 52%,#f1f3ff 100%);border-top:1px solid #e4ebf7;border-bottom:1px solid #e4ebf7}
+.founder-wrap{max-width:1120px;margin:auto}
+.founder-heading{text-align:center;margin:0 auto 34px;max-width:720px}
+.founder-heading small{color:#2563eb;font-size:10px;font-weight:900;letter-spacing:2px}
+.founder-heading h2{font-size:35px;letter-spacing:-.7px;margin:8px 0;color:#13213b}
+.founder-heading p{color:#65748b;font-size:14px;line-height:1.7}
+.founder-card{display:grid;grid-template-columns:300px 1fr;gap:38px;align-items:center;background:#fff;border:1px solid #dfe8f6;border-radius:22px;padding:34px;box-shadow:0 18px 50px rgba(37,99,235,.08)}
+.founder-profile{min-height:290px;border-radius:18px;background:linear-gradient(145deg,#1769ee,#4f46e5);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:24px;position:relative;overflow:hidden}
+.founder-profile:before,.founder-profile:after{content:"";position:absolute;border:1px solid #ffffff30;border-radius:50%;width:250px;height:250px}
+.founder-profile:before{top:-150px;right:-110px}.founder-profile:after{bottom:-170px;left:-120px}
+.founder-monogram{width:112px;height:112px;border-radius:50%;display:grid;place-items:center;background:#ffffff20;border:2px solid #ffffff80;font-size:31px;font-weight:900;letter-spacing:1px;box-shadow:0 12px 28px #0b2b7a35;position:relative;z-index:1}
+.founder-profile strong{font-size:18px;margin-top:18px;position:relative;z-index:1}
+.founder-profile span{font-size:11px;color:#e2ebff;margin-top:4px;position:relative;z-index:1;letter-spacing:.4px}
+.founder-copy .eyebrow{display:inline-block;color:#2563eb;background:#edf4ff;border:1px solid #dce8ff;border-radius:999px;padding:7px 11px;font-size:10px;font-weight:900;letter-spacing:1.2px}
+.founder-copy h3{font-size:29px;line-height:1.2;margin:15px 0 12px;color:#13213b}
+.founder-copy>p{font-size:14px;line-height:1.85;color:#65748b}
+.founder-vision{margin-top:20px;padding:17px 19px;border-left:3px solid #2563eb;background:#f5f8ff;border-radius:0 12px 12px 0}
+.founder-vision b{display:block;color:#1d3f82;font-size:12px;margin-bottom:5px}
+.founder-vision p{color:#5e6f88;font-size:13px;line-height:1.7}
+.founder-values{display:flex;flex-wrap:wrap;gap:8px;margin-top:19px}
+.founder-values span{background:#f2f6fd;border:1px solid #e1e9f5;border-radius:999px;padding:7px 11px;color:#415571;font-size:10px;font-weight:800}
+@media(max-width:760px){.founder-section{padding:58px 6%}.founder-card{grid-template-columns:1fr;gap:24px;padding:20px}.founder-profile{min-height:235px}.founder-heading h2{font-size:29px}.founder-copy h3{font-size:25px}}
+
 </style>
 <link rel="stylesheet" href="assets/platform.css"><script defer src="assets/platform.js"></script><style id="pavan-ai-chat-style">
 #pavanAiChat{position:fixed;right:22px;bottom:22px;width:min(430px,calc(100vw - 28px));height:min(680px,calc(100vh - 110px));background:#fff;border:1px solid #dfe6f1;border-radius:18px;box-shadow:0 24px 70px rgba(16,34,68,.22);display:none;flex-direction:column;overflow:hidden;z-index:9999;font-family:Inter,Arial,sans-serif}
@@ -65,6 +90,34 @@ footer{background:#091426;color:#fff;text-align:center;padding:34px 20px}footer 
 <div class="feature"><div class="feature-icon">🤖</div><h3>Robotics Engineering Lab</h3><p>Drive a virtual rover, detect obstacles, manage battery and complete a navigation mission.</p><a href="robotics-engineering-lab.html" class="card-link">Launch Rover →</a></div>
 <div class="feature"><div class="feature-icon">💻</div><h3>AI & Coding Studio</h3><p>Write JavaScript, run it in an isolated preview, explore examples and practise debugging.</p><a href="ai-coding-studio.html" class="card-link">Open Code Studio →</a></div>
 </div></section>
+
+<section class="founder-section" id="founder">
+  <div class="founder-wrap">
+    <div class="founder-heading">
+      <small>THE PERSON BEHIND THE VISION</small>
+      <h2>Meet the Founder</h2>
+      <p>The vision and purpose behind Pavan Educator.</p>
+    </div>
+    <div class="founder-card">
+      <div class="founder-profile" aria-label="Founder profile for G. Pavan Kumar">
+        <div class="founder-monogram" aria-hidden="true">GPK</div>
+        <strong>G. Pavan Kumar</strong>
+        <span>Founder &amp; Creator · Pavan Educator</span>
+      </div>
+      <div class="founder-copy">
+        <span class="eyebrow">FOUNDER'S NOTE</span>
+        <h3>Building a more practical learning experience.</h3>
+        <p>G. Pavan Kumar is the founder of Pavan Educator, a learning platform created to bring courses, study resources, practical projects and emerging technology experiences together in one place.</p>
+        <div class="founder-vision">
+          <b>THE VISION</b>
+          <p>Help learners move beyond reading concepts—understand them, practise them and use their knowledge to build with confidence.</p>
+        </div>
+        <div class="founder-values"><span>📚 Quality Learning</span><span>💻 Practical Skills</span><span>🚀 Future Technology</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="cta"><div class="cta-box"><div><h2>Ready to start learning?</h2><p>Enter Pavan Educator and continue your learning journey.</p></div><a href="login.html">Go to Student Login →</a></div></section>
 <section class="about"><h2>Learn. Build. Grow.</h2><p>Pavan Educator brings digital learning, practical skills, Future AI and student progress together in one professional platform.</p><a href="about.html" class="primary-btn">Learn More →</a></section>
 <footer><strong>Pavan Educator</strong><p>Learn • Build • Grow<br>© 2026 Pavan Educator. All Rights Reserved.</p></footer>
